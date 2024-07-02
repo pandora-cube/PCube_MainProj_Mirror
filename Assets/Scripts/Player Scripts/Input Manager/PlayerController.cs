@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovementController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     protected PlayerControls controls;
     protected float direction = 0;
@@ -71,9 +71,9 @@ public class PlayerMovementController : MonoBehaviour
         { 
             Crawl(); 
         };
-        controls.PlayerActions.Interact.performed += ctx => 
-        { 
-            Interact(); 
+        controls.PlayerActions.Interact.performed += ctx =>
+        {
+            Interact();
         };
         controls.PlayerActions.Attack.performed += ctx =>
         {

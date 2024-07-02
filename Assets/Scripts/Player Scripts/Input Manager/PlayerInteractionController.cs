@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInteractionController : MonoBehaviour
+public class PlayerInteractionController : PlayerController
 {
     void Start()
     {

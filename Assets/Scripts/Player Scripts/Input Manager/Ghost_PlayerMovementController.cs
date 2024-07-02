@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ghost_PlayerMovementController : PlayerMovementController
+public class Ghost_PlayerMovementController : PlayerController
 {
     #region dash variables
     private bool isGhost = false;
@@ -22,11 +22,6 @@ public class Ghost_PlayerMovementController : PlayerMovementController
             base.FixedUpdate();
         
     }
-
-   
-
-   
-   
 
     void Teleport()
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO.Enumeration;
 using UnityEngine;
 
-public class Normal_PlayerMovementController : PlayerMovementController
+public class Normal_PlayerMovementController : PlayerController
 {
   
     
