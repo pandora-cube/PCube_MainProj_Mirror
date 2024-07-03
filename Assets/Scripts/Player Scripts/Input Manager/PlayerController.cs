@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     protected PlayerControls controls;
     protected float direction = 0;
     public float speed = 0;
+    private float normalInteractRange = 0.5f;
+    private float ghostInteractRange = 1f;
 
     #region crawling variables
     protected float crawlSpeedDecrease = 300f;
@@ -15,12 +17,22 @@ public class PlayerController : MonoBehaviour
     protected bool isCrawling = false;
     #endregion
 
+    #region dash variables
+    private bool canDash = true;
+    private bool isDashing;
+    private float dashForce = 24f;
+    private float dashTime = 0.2f;
+    private float dashCooldown = 5.0f;
+    [SerializeField] TrailRenderer trailRenderer;
+
+    #endregion
+
     #region jump variables
     [Header("Jump Variables")]
     public float jumpForce = 5f;
     [SerializeField] protected bool isGrounded = false;
     [SerializeField] protected bool isOnSlope = false;
-    public Transform groundCheck;
+    [SerializeField] private Transform groundCheckCollider;
     [SerializeField] protected LayerMask groundLayer;
     #endregion
 
@@ -31,25 +43,31 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     [Header("Normal Variables")]
-    [SerializeField] protected Rigidbody2D normal_rb;
-    [SerializeField] protected PolygonCollider2D normal_collider;
+    [SerializeField] private GameObject normalGameObejct;
+    [SerializeField] private Rigidbody2D normalRb;
+    [SerializeField] private PolygonCollider2D normalCollider;
+    [SerializeField] private SpriteRenderer normalSprite;
+    [SerializeField] private Transform normalTransform;
+
 
     [Header("Ghost Variables")]
-    [SerializeField] protected Rigidbody2D ghost_rb;
-    [SerializeField] protected PolygonCollider2D ghost_collider;
+    [SerializeField] private GameObject ghostGameObejct;
+    [SerializeField] protected Rigidbody2D ghostRb;
+    [SerializeField] protected PolygonCollider2D ghostCollider;
 
-    [SerializeField] protected SpriteRenderer[] playerSprites;
-    void Awake()
+    private bool isNormal = true;
+    private bool isGhost = false;
+
+    protected virtual void Awake()
     {
         InitializeVariables();
     }
 
-    // Update is called once per frame
-    protected virtual void FixedUpdate()
+    private void FixedUpdate()
     {
-        Move();
+        if (!isDashing)
+            Move();
     }
-
     protected virtual void InitializeVariables()
     {
         //input manager 초기화
@@ -63,18 +81,15 @@ public class PlayerController : MonoBehaviour
         {
             direction = ctx.ReadValue<float>();
         };
-        controls.PlayerActions.Jump.performed += ctx => 
-        { 
-            Jump(); 
+        controls.PlayerActions.Jump.performed += ctx =>
+        {
+            Jump();
         };
         controls.PlayerActions.Crawl.performed += ctx => 
         { 
             Crawl(); 
         };
-        controls.PlayerActions.Interact.performed += ctx =>
-        {
-            Interact();
-        };
+        
         controls.PlayerActions.Attack.performed += ctx =>
         {
             Attack();
@@ -87,21 +102,27 @@ public class PlayerController : MonoBehaviour
         {
             Smoke();
         };
+
+        controls.PlayerActions.Interact.performed += ctx =>
+        {
+            Interact();
+        };
         #endregion
     }
 
-    protected virtual void Move()
+    #region common functions (normal && ghost)
+    void Move()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
-        RaycastHit2D slopeHit = Physics2D.Raycast(groundCheck.position, new Vector2(0, 0.2f), slopeLayer);
+        isGrounded = Physics2D.OverlapCircle(groundCheckCollider.position, 0.1f, groundLayer);
+        RaycastHit2D slopeHit = Physics2D.Raycast(groundCheckCollider.position, new Vector2(0, 0.2f), slopeLayer);
 
-        if (!isCrawling) normal_rb.velocity = new Vector2(direction * speed * Time.deltaTime, normal_rb.velocity.y);
-        else if (isCrawling) normal_rb.velocity = new Vector2(direction * (speed - crawlSpeedDecrease) * Time.deltaTime, normal_rb.velocity.y);
+        if (!isCrawling) normalRb.velocity = new Vector2(direction * speed * Time.deltaTime, normalRb.velocity.y);
+        else if (isCrawling) normalRb.velocity = new Vector2(direction * (speed - crawlSpeedDecrease) * Time.deltaTime, normalRb.velocity.y);
 
         if (Mathf.Approximately(direction, 0f))
         {
-            if (!isGrounded) normal_rb.velocity = new Vector2(0f, -1f);
-            else normal_rb.velocity = new Vector2(0f, 0f);
+            if (!isGrounded) normalRb.velocity = new Vector2(0f, -1f);
+            else normalRb.velocity = new Vector2(0f, 0f);
         }
 
         if (isOnSlope)
@@ -109,14 +130,38 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        if (direction > 0) playerSprites[0].flipX = true;
-        else playerSprites[0].flipX = false;
+        if (direction > 0) normalSprite.flipX = true;
+        else normalSprite.flipX = false;
 
     }
-    protected virtual void Jump()
+    void Jump()
     {
-        if (isGrounded) normal_rb.velocity = new Vector2(normal_rb.velocity.x, jumpForce);
+        if (isGrounded) normalRb.velocity = new Vector2(normalRb.velocity.x, jumpForce);
     }
+    void Interact()
+    {
+        Collider2D[] colldierArray = Physics2D.OverlapCircleAll(normalTransform.position, normalInteractRange);
+
+        foreach (Collider2D collider in colldierArray)
+        {
+            if (collider.gameObject.CompareTag("Player")) continue; 
+
+            if (collider.TryGetComponent(out Mirror mirror))
+            {
+                mirror.Interact();
+            }
+        }
+    }
+    public void Transform()
+    {
+        isNormal = !isNormal;
+        isGhost = !isGhost;
+
+        normalGameObejct.SetActive(isNormal); ghostGameObejct.SetActive(isGhost);
+    }
+    #endregion
+
+    #region player only functions
     protected virtual void Crawl()
     {
         isCrawling = !isCrawling;
@@ -131,20 +176,56 @@ public class PlayerController : MonoBehaviour
         }
         Debug.Log(isCrawling);
     }
-    protected virtual void Interact()
+
+    #endregion
+
+    #region ghost only functions
+    void Teleport()
     {
 
     }
-    protected virtual void Attack()
+    private IEnumerator Dash()
+    {
+        if (canDash)
+        {
+            canDash = false;
+            isDashing = true;
+
+            //대쉬 중 떨어지지 않게 gravity 값 변경
+            float originalGravity = ghostRb.gravityScale;
+            ghostRb.gravityScale = 0f;
+
+            ghostRb.velocity = new Vector2(direction * dashForce, 0f);
+            trailRenderer.emitting = true;
+
+            yield return new WaitForSeconds(dashTime);
+
+            trailRenderer.emitting = false;
+            ghostRb.gravityScale = originalGravity;
+            isDashing = false;
+
+            yield return new WaitForSeconds(dashCooldown);
+            canDash = true;
+        }
+    }
+    void Smoke()
     {
 
     }
-    protected virtual void Teleport()
+
+    void Attack()
     {
 
     }
-    protected virtual void Smoke()
-    {
+    #endregion
 
+
+
+    #region debugging functions
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(normalTransform.position, normalInteractRange);
     }
+    #endregion
 }
