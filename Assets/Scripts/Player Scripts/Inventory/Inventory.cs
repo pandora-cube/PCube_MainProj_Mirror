@@ -36,4 +36,15 @@ public class Inventory : MonoBehaviour
         }
         else Debug.Log("슬롯이 가득 참");
     }
+
+    public void UseItem(Item _item)
+    {
+        if (items.Contains(_item))
+        {
+            items.Remove(_item);
+            FreshSlot();
+            // 아이템 사용 로직 추가
+        }
+        else Debug.Log("해당 아이템이 없음");
+    }
 }
