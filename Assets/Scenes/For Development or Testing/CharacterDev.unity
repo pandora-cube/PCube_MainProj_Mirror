@@ -359,6 +359,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 273986389}
   inventory: {fileID: 1385080646}
+  NameText: {fileID: 2133421822}
+  InfoText: {fileID: 1776948020}
+  InfoScreen: {fileID: 1102745305}
+  infoRect: {fileID: 1102745306}
 --- !u!1 &290632154
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,6 +584,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 328491588}
   inventory: {fileID: 1385080646}
+  NameText: {fileID: 2133421822}
+  InfoText: {fileID: 1776948020}
+  InfoScreen: {fileID: 1102745305}
+  infoRect: {fileID: 1102745306}
 --- !u!1 &395122747
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,6 +917,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 594745349}
   inventory: {fileID: 1385080646}
+  NameText: {fileID: 2133421822}
+  InfoText: {fileID: 1776948020}
+  InfoScreen: {fileID: 1102745305}
+  infoRect: {fileID: 1102745306}
 --- !u!1 &624989630
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,6 +1156,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 681366612}
   inventory: {fileID: 1385080646}
+  NameText: {fileID: 2133421822}
+  InfoText: {fileID: 1776948020}
+  InfoScreen: {fileID: 1102745305}
+  infoRect: {fileID: 1102745306}
 --- !u!1 &789967233
 GameObject:
   m_ObjectHideFlags: 0
@@ -1519,11 +1535,11 @@ RectTransform:
   m_Father: {fileID: 936512068}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -186, y: 143}
-  m_SizeDelta: {x: -577.1755, y: -27.4904}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -326.4123, y: 17.492325}
+  m_SizeDelta: {x: 279.82452, y: 157.5096}
+  m_Pivot: {x: 0, y: -0.3}
 --- !u!114 &1102745307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2090,6 +2106,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 1792354144}
   inventory: {fileID: 1385080646}
+  NameText: {fileID: 2133421822}
+  InfoText: {fileID: 1776948020}
+  InfoScreen: {fileID: 1102745305}
+  infoRect: {fileID: 1102745306}
 --- !u!1 &1953395746
 GameObject:
   m_ObjectHideFlags: 0
