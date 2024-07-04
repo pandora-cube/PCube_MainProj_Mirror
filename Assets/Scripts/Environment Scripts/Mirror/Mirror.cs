@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Mirror : MonoBehaviour
 {
-    public void Interact()
+    public InteractableObject interactableObject;
+    void Start()
     {
-        PlayerController playerController = FindObjectOfType<PlayerController>();
-        playerController.Transform();
-        Debug.Log("Interacted");
+        
+    }
+
+    void Update()
+    {
+        
     }
 }
