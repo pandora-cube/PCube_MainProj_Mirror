@@ -123,6 +123,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &86762770
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 86762771}
+  m_Layer: 0
+  m_Name: Ghost Slope Check Raycast
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &86762771
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86762770}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 611143287}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &290632154
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,7 +771,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.7, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 86762771}
+  - {fileID: 698941569}
   m_Father: {fileID: 1953395748}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2070,6 +2103,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e5eaa5777ee0842985a02bb0b4c49a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactText: 
+--- !u!1 &698941568
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 698941569}
+  m_Layer: 0
+  m_Name: Ghost Ground Check Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &698941569
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698941568}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.24, y: -9.85, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 611143287}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1068488383
 GameObject:
   m_ObjectHideFlags: 0
@@ -2080,7 +2145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1068488384}
   m_Layer: 0
-  m_Name: Ground Check Collider
+  m_Name: Normal Ground Check Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2111,7 +2176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1317455652}
   m_Layer: 0
-  m_Name: Slope Check RayCast
+  m_Name: Normal Slope Check Raycast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2273,10 +2338,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 250
   trailRenderer: {fileID: 1953395755}
-  jumpForce: 5
+  jumpForce: 10
   isGrounded: 0
   isOnSlope: 0
-  groundCheckCollider: {fileID: 1068488384}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -2288,9 +2352,15 @@ MonoBehaviour:
   normalCollider: {fileID: 395122751}
   normalSprite: {fileID: 395122749}
   normalTransform: {fileID: 395122748}
+  normalGroundCheckCollider: {fileID: 1068488384}
   ghostGameObejct: {fileID: 611143286}
   ghostRb: {fileID: 611143290}
   ghostCollider: {fileID: 611143289}
+  ghostSprite: {fileID: 611143288}
+  ghostTransform: {fileID: 611143287}
+  ghostGroundCheckCollider: {fileID: 698941569}
+  isNormal: 1
+  isGhost: 0
 --- !u!96 &1953395755
 TrailRenderer:
   serializedVersion: 3

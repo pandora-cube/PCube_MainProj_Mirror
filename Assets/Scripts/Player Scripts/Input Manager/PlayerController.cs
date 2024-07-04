@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -32,7 +33,6 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 5f;
     [SerializeField] protected bool isGrounded = false;
     [SerializeField] protected bool isOnSlope = false;
-    [SerializeField] private Transform groundCheckCollider;
     [SerializeField] protected LayerMask groundLayer;
     #endregion
 
@@ -48,20 +48,25 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PolygonCollider2D normalCollider;
     [SerializeField] private SpriteRenderer normalSprite;
     [SerializeField] private Transform normalTransform;
+    [SerializeField] private Transform normalGroundCheckCollider;
 
 
     [Header("Ghost Variables")]
     [SerializeField] private GameObject ghostGameObejct;
     [SerializeField] protected Rigidbody2D ghostRb;
     [SerializeField] protected PolygonCollider2D ghostCollider;
+    [SerializeField] protected SpriteRenderer ghostSprite;
+    [SerializeField] private Transform ghostTransform;
+    [SerializeField] private Transform ghostGroundCheckCollider;
 
-    private bool isNormal = true;
-    private bool isGhost = false;
+    [SerializeField] private bool isNormal = true;
+    [SerializeField] private bool isGhost = false;
 
     protected virtual void Awake()
     {
         InitializeVariables();
     }
+
 
     private void FixedUpdate()
     {
@@ -113,11 +118,38 @@ public class PlayerController : MonoBehaviour
     #region common functions (normal && ghost)
     void Move()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheckCollider.position, 0.1f, groundLayer);
-        RaycastHit2D slopeHit = Physics2D.Raycast(groundCheckCollider.position, new Vector2(0, 0.2f), slopeLayer);
+        
+        if (isNormal)
+        {
+            isGrounded = Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, groundLayer);
+            RaycastHit2D slopeHit = Physics2D.Raycast(normalGroundCheckCollider.position, new Vector2(0, 0.2f), slopeLayer);
 
-        if (!isCrawling) normalRb.velocity = new Vector2(direction * speed * Time.deltaTime, normalRb.velocity.y);
-        else if (isCrawling) normalRb.velocity = new Vector2(direction * (speed - crawlSpeedDecrease) * Time.deltaTime, normalRb.velocity.y);
+            if (!isCrawling) normalRb.velocity = new Vector2(direction * speed * Time.deltaTime, normalRb.velocity.y);
+            else if (isCrawling) normalRb.velocity = new Vector2(direction * (speed - crawlSpeedDecrease) * Time.deltaTime, normalRb.velocity.y);
+
+            //flip sprite based on direction of travel
+            if (direction > 0f) normalSprite.flipX = true;
+            else if (direction < 0f) normalSprite.flipX = false;
+
+            //update position of ghost object when normal
+            ghostTransform.position = new Vector3 (normalTransform.position.x, normalTransform.position.y + 0.7f, 0f);
+        }
+
+        if (isGhost)
+        {
+            isGrounded = Physics2D.OverlapCircle(ghostGroundCheckCollider.position, 0.1f, groundLayer);
+            RaycastHit2D slopeHit = Physics2D.Raycast(ghostGroundCheckCollider.position, new Vector2(0, 0.2f), slopeLayer);
+
+            if (!isCrawling) ghostRb.velocity = new Vector2(direction * speed * Time.deltaTime, ghostRb.velocity.y);
+            else if (isCrawling) ghostRb.velocity = new Vector2(direction * (speed - crawlSpeedDecrease) * Time.deltaTime, ghostRb.velocity.y);
+
+            //flip sprite based on direction of travel
+            if (direction > 0f) ghostSprite.flipX = false;
+            else if (direction < 0f) ghostSprite.flipX = true;
+
+            //update position of plyaer object when normal
+            normalTransform.position = ghostTransform.position;
+        }
 
         if (Mathf.Approximately(direction, 0f))
         {
@@ -125,32 +157,59 @@ public class PlayerController : MonoBehaviour
             else normalRb.velocity = new Vector2(0f, 0f);
         }
 
-        if (isOnSlope)
-        {
-
-        }
-
-        if (direction > 0) normalSprite.flipX = true;
-        else normalSprite.flipX = false;
-
     }
     void Jump()
     {
-        if (isGrounded) normalRb.velocity = new Vector2(normalRb.velocity.x, jumpForce);
+        if (isGrounded)
+        {
+            if (isNormal)
+            {
+                Debug.Log("JUMP!");
+                Debug.Log("Before AddForce - normalRb.velocity: " + normalRb.velocity);
+                normalRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+                Debug.Log("After AddForce - normalRb.velocity: " + normalRb.velocity);
+            }
+            if (isGrounded) ghostRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+        }
     }
     void Interact()
     {
         Collider2D[] colldierArray = Physics2D.OverlapCircleAll(normalTransform.position, normalInteractRange);
+        IInteractable interactable = GetInteractableObject();
 
-        foreach (Collider2D collider in colldierArray)
+        if (interactable != null) interactable.Interact(transform);
+    }
+
+    public IInteractable GetInteractableObject()
+    {
+        List<IInteractable> interactableList = new List<IInteractable>();
+        Collider2D[] colliderArray = Physics2D.OverlapCircleAll(normalTransform.position, normalInteractRange);
+        foreach (Collider2D collider in colliderArray)
         {
-            if (collider.gameObject.CompareTag("Player")) continue; 
+            if (collider.gameObject.CompareTag("Player")) continue;
 
-            if (collider.TryGetComponent(out Mirror mirror))
+            if (collider.TryGetComponent(out IInteractable interactable))
             {
-                mirror.Interact();
+                interactableList.Add(interactable);
             }
         }
+
+        IInteractable closestInteractable = null;
+        foreach (IInteractable interactable in interactableList)
+        {
+            if (closestInteractable == null) closestInteractable = interactable;
+            else
+            {
+                if (Vector2.Distance(normalTransform.position, interactable.GetTransform().position) <
+                    Vector2.Distance(normalTransform.position, closestInteractable.GetTransform().position))
+                {
+                    closestInteractable = interactable;
+
+                }
+            }
+        }
+
+        return closestInteractable;
     }
     public void Transform()
     {
