@@ -118,8 +118,7 @@ public class PlayerController : MonoBehaviour
     #region common functions (normal && ghost)
     void Move()
     {
-                float horizontalVelocity = direction * speed * Time.deltaTime;
-
+        
         if (isNormal)
         {
             isGrounded = Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, groundLayer);
