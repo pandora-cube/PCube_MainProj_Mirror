@@ -2,23 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mirror : MonoBehaviour, IInteractable
+public class Mirror : MonoBehaviour
 {
-    [SerializeField] private string interactText;
-    public void Interact(Transform interactorTransform)
+    public InteractableObject interactableObject;
+    void Start()
     {
-        PlayerController playerController = FindObjectOfType<PlayerController>();
-        playerController.Transform();
-        Debug.Log("Interacted");
+        
     }
 
-    public string GetInteractText()
+    void Update()
     {
-        return interactText;
-    }
-
-    public Transform GetTransform()
-    {
-        return transform;                         
+        
     }
 }
