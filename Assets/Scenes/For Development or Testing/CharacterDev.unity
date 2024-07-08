@@ -985,7 +985,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 9.75, y: 4.98}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -3248,7 +3248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e5eaa5777ee0842985a02bb0b4c49a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactText: 
+  interactableObject: {fileID: 0}
 --- !u!1 &698941568
 GameObject:
   m_ObjectHideFlags: 0
@@ -4156,10 +4156,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1953395746}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb1e83b78c1b0844d81ea96a88f56062, type: 3}
+  m_Script: {fileID: 11500000, guid: 024d7d8440eb43540a330e89c6324cd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 250
+  speed: 0
   trailRenderer: {fileID: 0}
   jumpForce: 5
   isGrounded: 0
