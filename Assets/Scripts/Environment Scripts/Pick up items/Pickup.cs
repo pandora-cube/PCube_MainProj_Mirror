@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Pickup : MonoBehaviour, IInteractable
@@ -10,9 +11,14 @@ public class Pickup : MonoBehaviour, IInteractable
     public void Interact(Transform interactorTransform)
     {
         Inventory inventory = FindObjectOfType<Inventory>();
-        inventory.AddItem(item);
-        Destroy(gameObject);
-        Debug.Log("Interacted");
+
+        if (inventory.items.Count < inventory.slots.Length)
+        {
+            inventory.AddItem(item);
+            Destroy(gameObject);
+            Debug.Log("Interacted");
+        }
+    
     }
 
     public string GetInteractText()

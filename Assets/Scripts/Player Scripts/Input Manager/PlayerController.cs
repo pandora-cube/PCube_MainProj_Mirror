@@ -8,8 +8,7 @@ public class PlayerController : MonoBehaviour
     protected PlayerControls controls;
     protected float direction = 0;
     public float speed = 0;
-    private float normalInteractRange = 0.5f;
-    private float ghostInteractRange = 1f;
+   
 
     #region crawling variables
     protected float crawlSpeedDecrease = 300f;
@@ -49,6 +48,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private SpriteRenderer normalSprite;
     [SerializeField] private Transform normalTransform;
     [SerializeField] private Transform normalGroundCheckCollider;
+    [SerializeField] private float normalInteractRange = 0.5f;
 
 
     [Header("Ghost Variables")]
@@ -58,6 +58,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] protected SpriteRenderer ghostSprite;
     [SerializeField] private Transform ghostTransform;
     [SerializeField] private Transform ghostGroundCheckCollider;
+    [SerializeField] private float ghostInteractRange = 1f;
+
 
     [SerializeField] private bool isNormal = true;
     [SerializeField] private bool isGhost = false;
@@ -90,11 +92,11 @@ public class PlayerController : MonoBehaviour
         {
             Jump();
         };
-        controls.PlayerActions.Crawl.performed += ctx => 
-        { 
-            Crawl(); 
+        controls.PlayerActions.Crawl.performed += ctx =>
+        {
+            Crawl();
         };
-        
+
         controls.PlayerActions.Attack.performed += ctx =>
         {
             Attack();
@@ -118,7 +120,6 @@ public class PlayerController : MonoBehaviour
     #region common functions (normal && ghost)
     void Move()
     {
-        
         if (isNormal)
         {
             isGrounded = Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, groundLayer);
@@ -132,12 +133,12 @@ public class PlayerController : MonoBehaviour
             else if (direction < 0f) normalSprite.flipX = false;
 
             //update position of ghost object when normal
-            ghostTransform.position = new Vector3 (normalTransform.position.x, normalTransform.position.y + 0.7f, 0f);
+            ghostTransform.position = new Vector3(normalTransform.position.x, normalTransform.position.y + 0.8f, 0f);
         }
 
         if (isGhost)
         {
-            isGrounded = Physics2D.OverlapCircle(ghostGroundCheckCollider.position, 0.1f, groundLayer);
+            isGrounded = Physics2D.OverlapCircle(ghostGroundCheckCollider.position, 0.3f, groundLayer);
             RaycastHit2D slopeHit = Physics2D.Raycast(ghostGroundCheckCollider.position, new Vector2(0, 0.2f), slopeLayer);
 
             if (!isCrawling) ghostRb.velocity = new Vector2(direction * speed * Time.deltaTime, ghostRb.velocity.y);
@@ -162,19 +163,21 @@ public class PlayerController : MonoBehaviour
     {
         if (isGrounded)
         {
-            if (isNormal)
-            {
-                Debug.Log("JUMP!");
-                Debug.Log("Before AddForce - normalRb.velocity: " + normalRb.velocity);
-                normalRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-                Debug.Log("After AddForce - normalRb.velocity: " + normalRb.velocity);
-            }
-            if (isGrounded) ghostRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            if (isNormal) normalRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+
+            else if (isGhost) ghostRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
     }
     void Interact()
     {
-        Collider2D[] colldierArray = Physics2D.OverlapCircleAll(normalTransform.position, normalInteractRange);
+        if (isNormal) 
+        {
+            Collider2D[] colldierArray = Physics2D.OverlapCircleAll(normalTransform.position, normalInteractRange);
+        }
+        else if (isGhost)
+        {
+            Collider2D[] colldierArray = Physics2D.OverlapCircleAll(ghostTransform.position, ghostInteractRange);
+        }
         IInteractable interactable = GetInteractableObject();
 
         if (interactable != null) interactable.Interact(transform);
@@ -284,7 +287,7 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(normalTransform.position, normalInteractRange);
+        Gizmos.DrawSphere(ghostTransform.position, ghostInteractRange);
+        #endregion
     }
-    #endregion
 }

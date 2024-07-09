@@ -1,17 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
-public class Mirror : MonoBehaviour
+public class Mirror : MonoBehaviour, IInteractable
 {
+    [SerializeField] private string interactText;
     public InteractableObject interactableObject;
-    void Start()
+    public void Interact(Transform interactorTransform)
     {
-        
+        PlayerController player = FindAnyObjectByType<PlayerController>();
+
+        player.Transform();
     }
 
-    void Update()
+    public string GetInteractText()
     {
-        
+        return interactText;
+    }
+
+    public Transform GetTransform()
+    {
+        return transform;
     }
 }

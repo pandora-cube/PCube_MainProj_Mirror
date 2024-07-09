@@ -3248,6 +3248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e5eaa5777ee0842985a02bb0b4c49a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactText: 
   interactableObject: {fileID: 0}
 --- !u!1 &698941568
 GameObject:
@@ -3273,7 +3274,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 698941568}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.24, y: -9.85, z: 0}
+  m_LocalPosition: {x: -2.24, y: -9.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4159,29 +4160,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 024d7d8440eb43540a330e89c6324cd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 250
   trailRenderer: {fileID: 0}
   jumpForce: 5
   isGrounded: 0
   isOnSlope: 0
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   slopeLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   normalGameObejct: {fileID: 395122747}
   normalRb: {fileID: 395122750}
   normalCollider: {fileID: 395122751}
   normalSprite: {fileID: 395122749}
   normalTransform: {fileID: 395122748}
   normalGroundCheckCollider: {fileID: 1068488384}
+  normalInteractRange: 0.5
   ghostGameObejct: {fileID: 611143286}
   ghostRb: {fileID: 611143290}
   ghostCollider: {fileID: 611143289}
   ghostSprite: {fileID: 611143288}
   ghostTransform: {fileID: 611143287}
   ghostGroundCheckCollider: {fileID: 698941569}
+  ghostInteractRange: 1
   isNormal: 1
   isGhost: 0
 --- !u!1 &2008271321

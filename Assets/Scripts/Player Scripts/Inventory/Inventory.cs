@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour
     public List<Item> items;
 
     [SerializeField] private Transform slotParent;
-    [SerializeField] private Slot[] slots;
+    [SerializeField] public Slot[] slots;
 
 #if UNITY_EDITOR
     private void OnValidate()
