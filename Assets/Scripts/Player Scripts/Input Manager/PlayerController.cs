@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -31,14 +30,21 @@ public class PlayerController : MonoBehaviour
     [Header("Jump Variables")]
     public float jumpForce = 5f;
     [SerializeField] protected bool isGrounded = false;
-    [SerializeField] protected bool isOnSlope = false;
     [SerializeField] protected LayerMask groundLayer;
     #endregion
 
     #region slope variables
     [Header("Slope Variables")]
-    [SerializeField] protected LayerMask slopeLayer;
-    protected float slopeCheckRadius = 0.2f;
+    [SerializeField] protected bool isOnSlope = false;
+    [SerializeField] private PhysicsMaterial2D noFiction;
+    [SerializeField] private PhysicsMaterial2D fullFiction;
+    private Vector2 slopeNormalPrep;
+
+    private float slopeDownAngle;
+    private float slopeSideAngle;
+    private float lastSlopeAngle;
+    [SerializeField] private float slopeCheckDistanceVert;
+    [SerializeField] private float slopeCheckDistanceHori;
     #endregion
 
     [Header("Normal Variables")]
@@ -73,7 +79,10 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         if (!isDashing)
+        {
             Move();
+        }
+            
     }
     protected virtual void InitializeVariables()
     {
@@ -123,10 +132,12 @@ public class PlayerController : MonoBehaviour
         if (isNormal)
         {
             isGrounded = Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, groundLayer);
-            RaycastHit2D slopeHit = Physics2D.Raycast(normalGroundCheckCollider.position, new Vector2(0, 0.2f), slopeLayer);
+            //RaycastHit2D slopeHit = Physics2D.Raycast(normalGroundCheckCollider.position, new Vector2(0, 0.2f), slopeLayer);
+            SlopeCheck(normalGroundCheckCollider.position);
 
-            if (!isCrawling) normalRb.velocity = new Vector2(direction * speed * Time.deltaTime, normalRb.velocity.y);
-            else if (isCrawling) normalRb.velocity = new Vector2(direction * (speed - crawlSpeedDecrease) * Time.deltaTime, normalRb.velocity.y);
+            if (!isCrawling && !isOnSlope) normalRb.velocity = new Vector2(direction * speed * Time.deltaTime, normalRb.velocity.y); // normal walk
+            else if (isOnSlope) normalRb.velocity = new Vector2(-direction * speed * slopeNormalPrep.x * Time.deltaTime, speed * slopeNormalPrep.y * -direction * Time.deltaTime); // slope walk
+            else if (isCrawling) normalRb.velocity = new Vector2(direction * (speed - crawlSpeedDecrease) * Time.deltaTime, normalRb.velocity.y); // craw walk
 
             //flip sprite based on direction of travel
             if (direction > 0f) normalSprite.flipX = true;
@@ -134,14 +145,19 @@ public class PlayerController : MonoBehaviour
 
             //update position of ghost object when normal
             ghostTransform.position = new Vector3(normalTransform.position.x, normalTransform.position.y + 0.8f, 0f);
+
+            if (isOnSlope && Mathf.Approximately(direction, 0f)) normalRb.sharedMaterial = fullFiction;
+            else normalRb.sharedMaterial = noFiction;
         }
 
         if (isGhost)
         {
             isGrounded = Physics2D.OverlapCircle(ghostGroundCheckCollider.position, 0.3f, groundLayer);
-            RaycastHit2D slopeHit = Physics2D.Raycast(ghostGroundCheckCollider.position, new Vector2(0, 0.2f), slopeLayer);
+            //RaycastHit2D slopeHit = Physics2D.Raycast(ghostGroundCheckCollider.position, new Vector2(0, 0.2f), slopeLayer);
+            SlopeCheck(ghostGroundCheckCollider.position);
 
-            if (!isCrawling) ghostRb.velocity = new Vector2(direction * speed * Time.deltaTime, ghostRb.velocity.y);
+            if (!isCrawling && !isOnSlope) ghostRb.velocity = new Vector2(direction * speed * Time.deltaTime, ghostRb.velocity.y);
+            else if (isOnSlope) ghostRb.velocity = new Vector2(-direction * speed * slopeNormalPrep.x * Time.deltaTime, speed * slopeNormalPrep.y * Time.deltaTime); // slope walk
             else if (isCrawling) ghostRb.velocity = new Vector2(direction * (speed - crawlSpeedDecrease) * Time.deltaTime, ghostRb.velocity.y);
 
             //flip sprite based on direction of travel
@@ -150,6 +166,9 @@ public class PlayerController : MonoBehaviour
 
             //update position of plyaer object when normal
             normalTransform.position = ghostTransform.position;
+
+            if (isOnSlope && Mathf.Approximately(direction, 0f)) ghostRb.sharedMaterial = fullFiction;
+            else ghostRb.sharedMaterial = noFiction;
         }
 
         if (Mathf.Approximately(direction, 0f))
@@ -220,6 +239,52 @@ public class PlayerController : MonoBehaviour
         isGhost = !isGhost;
 
         normalGameObejct.SetActive(isNormal); ghostGameObejct.SetActive(isGhost);
+    }
+
+    private void SlopeCheck(Vector2 checkPos)
+    {
+        SlopeCheckVertical(checkPos);
+        SlopeCheckHorizontal(checkPos);
+    }
+
+    private void SlopeCheckHorizontal(Vector2 checkPos)
+    {
+        RaycastHit2D slopeHitFront = Physics2D.Raycast(checkPos, transform.right, slopeCheckDistanceHori, groundLayer);
+        RaycastHit2D slopeHitBack = Physics2D.Raycast(checkPos, -transform.right, slopeCheckDistanceHori, groundLayer);
+
+        if (slopeHitFront)
+        {
+            isOnSlope = true;
+            slopeSideAngle = Vector2.Angle(slopeHitFront.normal, Vector2.up);
+        }
+        else if (slopeHitBack)
+        {
+            isOnSlope = true;
+            slopeSideAngle = Vector2.Angle(slopeHitBack.normal, Vector2.up);
+        }
+        else
+        {
+            isOnSlope = false;
+            slopeSideAngle = 0f;
+        }
+    }
+
+    private void SlopeCheckVertical(Vector2 checkPos)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckDistanceVert, groundLayer);
+        
+        if (hit)
+        {
+            slopeNormalPrep = Vector2.Perpendicular(hit.normal).normalized;
+            slopeDownAngle = Vector2.Angle(hit.normal, Vector2.up);
+
+            if (slopeDownAngle != lastSlopeAngle) isOnSlope = true;
+
+            lastSlopeAngle = slopeDownAngle;
+
+            Debug.DrawRay(hit.point, slopeNormalPrep, Color.blue);
+            Debug.DrawRay(hit.point, hit.normal, Color.green);
+        }
     }
     #endregion
 
