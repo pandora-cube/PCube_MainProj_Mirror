@@ -131,20 +131,29 @@ public class PlayerController : MonoBehaviour
     {
         if (isNormal)
         {
-            isGrounded = Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, groundLayer);
-            //RaycastHit2D slopeHit = Physics2D.Raycast(normalGroundCheckCollider.position, new Vector2(0, 0.2f), slopeLayer);
+            isGrounded = Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, groundLayer) || isOnSlope ;
             SlopeCheck(normalGroundCheckCollider.position);
 
             if (!isCrawling && !isOnSlope) normalRb.velocity = new Vector2(direction * speed * Time.deltaTime, normalRb.velocity.y); // normal walk
-            else if (isOnSlope) normalRb.velocity = new Vector2(-direction * speed * slopeNormalPrep.x * Time.deltaTime, speed * slopeNormalPrep.y * -direction * Time.deltaTime); // slope walk
+            else if (isOnSlope &&!isCrawling) normalRb.velocity = new Vector2(-direction * speed * slopeNormalPrep.x * Time.deltaTime, speed * slopeNormalPrep.y * -direction * Time.deltaTime); // slope walk
+            else if (isOnSlope && isCrawling) normalRb.velocity = new Vector2(-direction * (speed- crawlSpeedDecrease) * slopeNormalPrep.x * Time.deltaTime, (speed-crawlSpeedDecrease) * slopeNormalPrep.y * -direction * Time.deltaTime);
             else if (isCrawling) normalRb.velocity = new Vector2(direction * (speed - crawlSpeedDecrease) * Time.deltaTime, normalRb.velocity.y); // craw walk
 
             //flip sprite based on direction of travel
-            if (direction > 0f) normalSprite.flipX = true;
-            else if (direction < 0f) normalSprite.flipX = false;
-
+            if (direction > 0f)
+            {
+                Vector3 newScale = normalTransform.localScale;
+                newScale.x = 1;
+                normalTransform.localScale = newScale;
+            }
+            else if (direction < 0f)
+            {
+                Vector3 newScale = normalTransform.localScale;
+                newScale.x = -1;
+                normalTransform.localScale = newScale;
+            }
             //update position of ghost object when normal
-            ghostTransform.position = new Vector3(normalTransform.position.x, normalTransform.position.y + 0.8f, 0f);
+            ghostTransform.position = new Vector3(normalTransform.position.x, normalTransform.position.y + 5f, 0f);
 
             if (isOnSlope && Mathf.Approximately(direction, 0f)) normalRb.sharedMaterial = fullFiction;
             else normalRb.sharedMaterial = noFiction;
@@ -152,8 +161,7 @@ public class PlayerController : MonoBehaviour
 
         if (isGhost)
         {
-            isGrounded = Physics2D.OverlapCircle(ghostGroundCheckCollider.position, 0.3f, groundLayer);
-            //RaycastHit2D slopeHit = Physics2D.Raycast(ghostGroundCheckCollider.position, new Vector2(0, 0.2f), slopeLayer);
+            isGrounded = Physics2D.OverlapCircle(ghostGroundCheckCollider.position, 0.3f, groundLayer) || isOnSlope;
             SlopeCheck(ghostGroundCheckCollider.position);
 
             if (!isCrawling && !isOnSlope) ghostRb.velocity = new Vector2(direction * speed * Time.deltaTime, ghostRb.velocity.y);
@@ -161,28 +169,37 @@ public class PlayerController : MonoBehaviour
             else if (isCrawling) ghostRb.velocity = new Vector2(direction * (speed - crawlSpeedDecrease) * Time.deltaTime, ghostRb.velocity.y);
 
             //flip sprite based on direction of travel
-            if (direction > 0f) ghostSprite.flipX = false;
-            else if (direction < 0f) ghostSprite.flipX = true;
+            if (direction > 0f)
+            {
+                Vector3 newScale = ghostTransform.localScale;
+                newScale.x = 1;
+                ghostTransform.localScale = newScale;
+            }
+            else if (direction < 0f)
+            {
+                Vector3 newScale = ghostTransform.localScale;
+                newScale.x = -1;
+                ghostTransform.localScale = newScale;
+            }
 
-            //update position of plyaer object when normal
+            //update position of ghost object when normal
             normalTransform.position = ghostTransform.position;
 
             if (isOnSlope && Mathf.Approximately(direction, 0f)) ghostRb.sharedMaterial = fullFiction;
             else ghostRb.sharedMaterial = noFiction;
         }
-
-        if (Mathf.Approximately(direction, 0f))
-        {
-            if (!isGrounded) normalRb.velocity = new Vector2(0f, -1f);
-            else normalRb.velocity = new Vector2(0f, 0f);
-        }
-
     }
     void Jump()
     {
         if (isGrounded)
         {
-            if (isNormal) normalRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            if (isNormal)
+            {
+                Debug.Log("before:" + normalRb.velocity);
+                normalRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+                Debug.Log("after:" + normalRb.velocity);
+
+            }
 
             else if (isGhost) ghostRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
@@ -202,6 +219,10 @@ public class PlayerController : MonoBehaviour
         if (interactable != null) interactable.Interact(transform);
     }
 
+    /// <summary>
+    /// function for finding the nearest interactable object
+    /// </summary>
+    /// <returns>nearest interactable object found</returns>
     public IInteractable GetInteractableObject()
     {
         List<IInteractable> interactableList = new List<IInteractable>();
@@ -226,7 +247,6 @@ public class PlayerController : MonoBehaviour
                     Vector2.Distance(normalTransform.position, closestInteractable.GetTransform().position))
                 {
                     closestInteractable = interactable;
-
                 }
             }
         }
