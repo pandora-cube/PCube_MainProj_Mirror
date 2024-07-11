@@ -165,7 +165,8 @@ public class PlayerController : MonoBehaviour
             SlopeCheck(ghostGroundCheckCollider.position);
 
             if (!isCrawling && !isOnSlope) ghostRb.velocity = new Vector2(direction * speed * Time.deltaTime, ghostRb.velocity.y);
-            else if (isOnSlope) ghostRb.velocity = new Vector2(-direction * speed * slopeNormalPrep.x * Time.deltaTime, speed * slopeNormalPrep.y * Time.deltaTime); // slope walk
+            else if (isOnSlope && !isCrawling) ghostRb.velocity = new Vector2(-direction * speed * slopeNormalPrep.x * Time.deltaTime, speed * slopeNormalPrep.y * Time.deltaTime); // slope walk
+            else if (isOnSlope && isCrawling) ghostRb.velocity = new Vector2(-direction * (speed-crawlSpeedDecrease) * slopeNormalPrep.x * Time.deltaTime, (speed-crawlSpeedDecrease) * slopeNormalPrep.y * Time.deltaTime);
             else if (isCrawling) ghostRb.velocity = new Vector2(direction * (speed - crawlSpeedDecrease) * Time.deltaTime, ghostRb.velocity.y);
 
             //flip sprite based on direction of travel
@@ -371,8 +372,8 @@ public class PlayerController : MonoBehaviour
     #region debugging functions
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(ghostTransform.position, ghostInteractRange);
-        #endregion
+
+
     }
+    #endregion
 }

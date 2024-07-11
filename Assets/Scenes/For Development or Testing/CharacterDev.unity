@@ -4383,8 +4383,8 @@ MonoBehaviour:
   isOnSlope: 0
   noFiction: {fileID: 6200000, guid: d426f8273b3a77149a657a2db620145d, type: 2}
   fullFiction: {fileID: 6200000, guid: 3ecda9b66513d7643831be5058244ac1, type: 2}
-  slopeCheckDistanceVert: 1
-  slopeCheckDistanceHori: 1
+  slopeCheckDistanceVert: 1.5
+  slopeCheckDistanceHori: 1.5
   normalGameObejct: {fileID: 395122747}
   normalRb: {fileID: 395122750}
   normalCollider: {fileID: 395122751}
@@ -4394,7 +4394,7 @@ MonoBehaviour:
   normalInteractRange: 0.5
   ghostGameObejct: {fileID: 611143286}
   ghostRb: {fileID: 611143290}
-  ghostCollider: {fileID: 0}
+  ghostCollider: {fileID: 611143291}
   ghostSprite: {fileID: 611143288}
   ghostTransform: {fileID: 611143287}
   ghostGroundCheckCollider: {fileID: 698941569}
