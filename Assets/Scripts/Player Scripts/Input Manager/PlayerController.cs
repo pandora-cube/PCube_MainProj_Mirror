@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    protected PlayerControls controls;
     protected float direction = 0;
     public float speed = 0;
    
@@ -78,61 +78,42 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isDashing)
-        {
-            Move();
-        }
-            
+        GroundCheck();
+        if (isNormal) SlopeCheck(normalGroundCheckCollider.position);
+        if (isGhost) SlopeCheck(ghostGroundCheckCollider.position);
+
+
     }
     protected virtual void InitializeVariables()
     {
-        //input manager 초기화
-        controls = new PlayerControls();
-        controls.Enable();
-
+ 
 
         //input manager 각 action맵에 대한 구독
         #region input actions
-        controls.PlayerActions.Movement.performed += ctx =>
-        {
-            direction = ctx.ReadValue<float>();
-        };
-        controls.PlayerActions.Jump.performed += ctx =>
-        {
-            Jump();
-        };
-        controls.PlayerActions.Crawl.performed += ctx =>
-        {
-            Crawl();
-        };
+        //controls.PlayerActions.Attack.performed += ctx =>
+        //{
+        //    Attack();
+        //};
+        //controls.PlayerActions.Teleport.performed += ctx =>
+        //{
+        //    Teleport();
+        //};
+        //controls.PlayerActions.Smoke.performed += ctx =>
+        //{
+        //    Smoke();
+        //};
 
-        controls.PlayerActions.Attack.performed += ctx =>
-        {
-            Attack();
-        };
-        controls.PlayerActions.Teleport.performed += ctx =>
-        {
-            Teleport();
-        };
-        controls.PlayerActions.Smoke.performed += ctx =>
-        {
-            Smoke();
-        };
-
-        controls.PlayerActions.Interact.performed += ctx =>
-        {
-            Interact();
-        };
         #endregion
     }
 
     #region common functions (normal && ghost)
-    void Move()
+    public void OnMove(InputAction.CallbackContext ctx)
     {
+        if (isDashing) return;
+
+        direction = ctx.ReadValue<float>();
         if (isNormal)
         {
-            isGrounded = Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, groundLayer) || isOnSlope ;
-            SlopeCheck(normalGroundCheckCollider.position);
 
             if (!isCrawling && !isOnSlope) normalRb.velocity = new Vector2(direction * speed * Time.deltaTime, normalRb.velocity.y); // normal walk
             else if (isOnSlope &&!isCrawling) normalRb.velocity = new Vector2(-direction * speed * slopeNormalPrep.x * Time.deltaTime, speed * slopeNormalPrep.y * -direction * Time.deltaTime); // slope walk
@@ -161,7 +142,6 @@ public class PlayerController : MonoBehaviour
 
         if (isGhost)
         {
-            isGrounded = Physics2D.OverlapCircle(ghostGroundCheckCollider.position, 0.3f, groundLayer) || isOnSlope;
             SlopeCheck(ghostGroundCheckCollider.position);
 
             if (!isCrawling && !isOnSlope) ghostRb.velocity = new Vector2(direction * speed * Time.deltaTime, ghostRb.velocity.y);
@@ -190,7 +170,14 @@ public class PlayerController : MonoBehaviour
             else ghostRb.sharedMaterial = noFiction;
         }
     }
-    void Jump()
+
+    void GroundCheck()
+    {
+        if (isNormal) isGrounded = Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, groundLayer) || isOnSlope;
+        if (isGhost) isGrounded = Physics2D.OverlapCircle(ghostGroundCheckCollider.position, 0.3f, groundLayer) || isOnSlope;
+
+    }
+    public void OnJump(InputAction.CallbackContext ctx)
     {
         if (isGrounded)
         {
@@ -199,13 +186,12 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("before:" + normalRb.velocity);
                 normalRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
                 Debug.Log("after:" + normalRb.velocity);
-
             }
 
             else if (isGhost) ghostRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
     }
-    void Interact()
+    public void OnInteract(InputAction.CallbackContext ctx)
     {
         if (isNormal) 
         {
@@ -262,6 +248,7 @@ public class PlayerController : MonoBehaviour
         normalGameObejct.SetActive(isNormal); ghostGameObejct.SetActive(isGhost);
     }
 
+    #region slope check functions
     private void SlopeCheck(Vector2 checkPos)
     {
         SlopeCheckVertical(checkPos);
@@ -309,8 +296,10 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
+    #endregion
+
     #region player only functions
-    protected virtual void Crawl()
+    public void OnCrawl(InputAction.CallbackContext ctx)
     {
         isCrawling = !isCrawling;
 
@@ -328,7 +317,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region ghost only functions
-    void Teleport()
+    public void Teleport()
     {
 
     }
@@ -372,7 +361,23 @@ public class PlayerController : MonoBehaviour
     #region debugging functions
     private void OnDrawGizmos()
     {
+        // Set the color for the normal ground check gizmo
+        Gizmos.color = Color.green;
 
+        // Draw the normal ground check circle if the normalTransform is assigned
+        if (normalTransform != null)
+        {
+            Gizmos.DrawWireSphere(normalGroundCheckCollider.position, 0.1f);
+        }
+
+        // Set the color for the ghost ground check gizmo
+        Gizmos.color = Color.blue;
+
+        // Draw the ghost ground check circle if the ghostTransform is assigned
+        if (ghostTransform != null)
+        {
+            Gizmos.DrawWireSphere(ghostGroundCheckCollider.position, 0.3f);
+        }
 
     }
     #endregion
