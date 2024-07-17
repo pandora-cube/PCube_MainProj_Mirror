@@ -76,7 +76,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float attackRange = 1.5f;
     [SerializeField] private LayerMask attackableLayer;
     [SerializeField] private float damageAmount = 1f;
+    [SerializeField] private float timeBetweenAttacks = 0.2f;
+    private float attackTimeCounter;
     private RaycastHit2D[] hits;
+
+    public bool canReceiveInput;
+    public bool inputReceived;
     #endregion
 
     protected virtual void Awake()
@@ -84,7 +89,10 @@ public class PlayerController : MonoBehaviour
         InitializeVariables();
     }
 
-
+    private void Update()
+    {
+        attackTimeCounter += Time.deltaTime;
+    }
     private void FixedUpdate()
     {
         GroundCheck();
@@ -361,10 +369,15 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext ctx)
     {
-        if (!isGhost) return;
+        if (!isGhost || attackTimeCounter < timeBetweenAttacks) return;
+
+        attackTimeCounter = 0f;
+        inputReceived = true;
+        canReceiveInput = false;
 
         hits = Physics2D.CircleCastAll(attackTransform.position, attackRange, transform.right, 0f, attackableLayer);
 
+        Debug.Log(hits.Length);
         for (int i = 0; i < hits.Length; ++i)
         {
             IDamageable iDamageable = hits[i].collider.gameObject.GetComponent<IDamageable>();
@@ -372,8 +385,15 @@ public class PlayerController : MonoBehaviour
             if (iDamageable != null)
             {
                 iDamageable.Damage(damageAmount);
+                Debug.Log("DAMAGE!!");
             }
         }
+    }
+
+    public void InputManager()
+    {
+        if (!canReceiveInput) canReceiveInput = true;
+        else canReceiveInput = false;
     }
     #endregion
 
