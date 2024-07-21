@@ -9,6 +9,8 @@ public class Inventory : MonoBehaviour
     [SerializeField] private Transform slotParent;
     [SerializeField] public Slot[] slots;
 
+    [SerializeField] private BoxCollider2D Exit;
+
 #if UNITY_EDITOR
     private void OnValidate()
     {
@@ -41,9 +43,11 @@ public class Inventory : MonoBehaviour
     {
         if (items.Contains(_item))
         {
+            Debug.Log(_item.name);
             items.Remove(_item);
             FreshSlot();
             // 아이템 사용 로직 추가
+            if (_item.name == "keyItem") Exit.isTrigger = true;
         }
         else Debug.Log("해당 아이템이 없음");
     }

@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - ItemAvailable
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -13,7 +15,7 @@ TagManager:
   - UI
   - Platform
   - Slope
-  - 
+  - UsingItem
   - 
   - 
   - 
@@ -46,6 +48,9 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 2332599629
+    locked: 0
+  - name: Obstacle
+    uniqueID: 2728027967
     locked: 0
   - name: Player
     uniqueID: 3818763325
