@@ -67,22 +67,37 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float ghostInteractRange = 1f;
 
 
-    [SerializeField] private bool isNormal = true;
-    [SerializeField] private bool isGhost = false;
+    public bool isNormal = true;
+    public bool isGhost = false;
+
+    #region attack variables
+    [Header("Attack Variables")]
+    [SerializeField] private Transform attackTransform;
+    [SerializeField] private float attackRange = 1.5f;
+    [SerializeField] private LayerMask attackableLayer;
+    [SerializeField] private float damageAmount = 1f;
+    [SerializeField] private float timeBetweenAttacks = 0.2f;
+    private float attackTimeCounter;
+    private RaycastHit2D[] hits;
+
+    public bool canReceiveInput;
+    public bool inputReceived;
+    #endregion
 
     protected virtual void Awake()
     {
         InitializeVariables();
     }
 
-
+    private void Update()
+    {
+        attackTimeCounter += Time.deltaTime;
+    }
     private void FixedUpdate()
     {
         GroundCheck();
         if (isNormal) SlopeCheck(normalGroundCheckCollider.position);
         if (isGhost) SlopeCheck(ghostGroundCheckCollider.position);
-
-
     }
     protected virtual void InitializeVariables()
     {
@@ -114,7 +129,6 @@ public class PlayerController : MonoBehaviour
         direction = ctx.ReadValue<float>();
         if (isNormal)
         {
-
             if (!isCrawling && !isOnSlope) normalRb.velocity = new Vector2(direction * speed * Time.deltaTime, normalRb.velocity.y); // normal walk
             else if (isOnSlope &&!isCrawling) normalRb.velocity = new Vector2(-direction * speed * slopeNormalPrep.x * Time.deltaTime, speed * slopeNormalPrep.y * -direction * Time.deltaTime); // slope walk
             else if (isOnSlope && isCrawling) normalRb.velocity = new Vector2(-direction * (speed- crawlSpeedDecrease) * slopeNormalPrep.x * Time.deltaTime, (speed-crawlSpeedDecrease) * slopeNormalPrep.y * -direction * Time.deltaTime);
@@ -350,9 +364,33 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void Attack()
+    public void OnAttack(InputAction.CallbackContext ctx)
     {
+        if (!isGhost || attackTimeCounter < timeBetweenAttacks) return;
 
+        attackTimeCounter = 0f;
+        inputReceived = true;
+        canReceiveInput = false;
+
+        hits = Physics2D.CircleCastAll(attackTransform.position, attackRange, transform.right, 0f, attackableLayer);
+
+        Debug.Log(hits.Length);
+        for (int i = 0; i < hits.Length; ++i)
+        {
+            IDamageable iDamageable = hits[i].collider.gameObject.GetComponent<IDamageable>();
+
+            if (iDamageable != null)
+            {
+                iDamageable.Damage(damageAmount);
+                Debug.Log("DAMAGE!!");
+            }
+        }
+    }
+
+    public void InputManager()
+    {
+        if (!canReceiveInput) canReceiveInput = true;
+        else canReceiveInput = false;
     }
     #endregion
 
@@ -361,23 +399,7 @@ public class PlayerController : MonoBehaviour
     #region debugging functions
     private void OnDrawGizmos()
     {
-        // Set the color for the normal ground check gizmo
-        Gizmos.color = Color.green;
-
-        // Draw the normal ground check circle if the normalTransform is assigned
-        if (normalTransform != null)
-        {
-            Gizmos.DrawWireSphere(normalGroundCheckCollider.position, 0.1f);
-        }
-
-        // Set the color for the ghost ground check gizmo
-        Gizmos.color = Color.blue;
-
-        // Draw the ghost ground check circle if the ghostTransform is assigned
-        if (ghostTransform != null)
-        {
-            Gizmos.DrawWireSphere(ghostGroundCheckCollider.position, 0.3f);
-        }
+        Gizmos.DrawWireSphere(attackTransform.position, attackRange);
 
     }
     #endregion
