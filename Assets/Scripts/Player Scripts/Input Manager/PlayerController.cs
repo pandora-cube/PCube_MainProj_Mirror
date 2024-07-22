@@ -84,6 +84,10 @@ public class PlayerController : MonoBehaviour
     public bool inputReceived;
     #endregion
 
+    #region Item variables
+    public bool UsingItem = false;
+    [SerializeField] protected LayerMask itemLayer;
+    #endregion
     protected virtual void Awake()
     {
         InitializeVariables();
@@ -152,6 +156,8 @@ public class PlayerController : MonoBehaviour
 
             if (isOnSlope && Mathf.Approximately(direction, 0f)) normalRb.sharedMaterial = fullFiction;
             else normalRb.sharedMaterial = noFiction;
+
+            ItemAvabileAreaCheck(normalGroundCheckCollider.position);
         }
 
         if (isGhost)
@@ -182,6 +188,8 @@ public class PlayerController : MonoBehaviour
 
             if (isOnSlope && Mathf.Approximately(direction, 0f)) ghostRb.sharedMaterial = fullFiction;
             else ghostRb.sharedMaterial = noFiction;
+
+            ItemAvabileAreaCheck(ghostGroundCheckCollider.position);
         }
     }
 
@@ -394,7 +402,16 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-
+    void ItemAvabileAreaCheck(Vector2 checkPos)
+    {
+        RaycastHit2D RaycastFront = Physics2D.Raycast(checkPos, transform.right, 8f, itemLayer);
+        if (RaycastFront)
+        {
+            UsingItem = true;
+            Debug.DrawRay(RaycastFront.point, RaycastFront.normal, Color.green);
+        }
+        else UsingItem = false;
+    }
 
     #region debugging functions
     private void OnDrawGizmos()

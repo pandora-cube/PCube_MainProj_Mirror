@@ -18,6 +18,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     RectTransform slotRect;
 
     private Item _item;
+    [SerializeField] PlayerController controller;
     public Item item {
         get { return _item; }
         set
@@ -38,7 +39,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     }
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (_item != null) inventory.UseItem(item);
+        if (controller.UsingItem && _item != null) inventory.UseItem(item); // 아이템이 존재하고, 현재 사용 가능할 때
     }
 
     public void OnPointerEnter(PointerEventData eventData)
