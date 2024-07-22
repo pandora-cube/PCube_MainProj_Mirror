@@ -67,8 +67,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float ghostInteractRange = 1f;
 
 
-    [SerializeField] private bool isNormal = true;
-    [SerializeField] private bool isGhost = false;
+    public bool isNormal = true;
+    public bool isGhost = false;
 
     #region attack variables
     [Header("Attack Variables")]
@@ -98,8 +98,6 @@ public class PlayerController : MonoBehaviour
         GroundCheck();
         if (isNormal) SlopeCheck(normalGroundCheckCollider.position);
         if (isGhost) SlopeCheck(ghostGroundCheckCollider.position);
-
-
     }
     protected virtual void InitializeVariables()
     {
@@ -131,7 +129,6 @@ public class PlayerController : MonoBehaviour
         direction = ctx.ReadValue<float>();
         if (isNormal)
         {
-
             if (!isCrawling && !isOnSlope) normalRb.velocity = new Vector2(direction * speed * Time.deltaTime, normalRb.velocity.y); // normal walk
             else if (isOnSlope &&!isCrawling) normalRb.velocity = new Vector2(-direction * speed * slopeNormalPrep.x * Time.deltaTime, speed * slopeNormalPrep.y * -direction * Time.deltaTime); // slope walk
             else if (isOnSlope && isCrawling) normalRb.velocity = new Vector2(-direction * (speed- crawlSpeedDecrease) * slopeNormalPrep.x * Time.deltaTime, (speed-crawlSpeedDecrease) * slopeNormalPrep.y * -direction * Time.deltaTime);
