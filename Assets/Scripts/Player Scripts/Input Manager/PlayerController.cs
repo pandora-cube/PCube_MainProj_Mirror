@@ -381,7 +381,7 @@ public class PlayerController : MonoBehaviour
 
             if (iDamageable != null)
             {
-                iDamageable.Damage(damageAmount);
+                iDamageable.TakeDamage(damageAmount);
                 Debug.Log("DAMAGE!!");
             }
         }

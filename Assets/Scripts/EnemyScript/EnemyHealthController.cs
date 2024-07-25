@@ -4,24 +4,25 @@ using UnityEngine;
 
 public class EnemyHealthController : MonoBehaviour, IDamageable
 {
-    private float maxHealth = 3f;
-    [SerializeField] private float currentHealth;
 
-    
-    void Start()
+    public float maxHealth { get; set; }
+    public float currentHealth { get; set; }
+
+    private void Start()
     {
+        maxHealth = 3f;
         currentHealth = maxHealth;
     }
-
-    public void Damage(float damageAmount)
+    public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
 
         if (currentHealth <= 0) Die();
     }
-
-    private void Die()
+    public void Die()
     {
         Destroy(gameObject);
     }
+
+   
 }
