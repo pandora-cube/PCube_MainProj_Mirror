@@ -742,7 +742,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2710728152213815392}
   - component: {fileID: 2652426612113270752}
-  - component: {fileID: 5226621595257410135}
   - component: {fileID: 547016282715293714}
   - component: {fileID: 2623866325261710830}
   m_Layer: 0
@@ -823,22 +822,6 @@ MonoBehaviour:
   itemLayer:
     serializedVersion: 2
     m_Bits: 0
---- !u!114 &5226621595257410135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5824343611764768133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ed4cb3a04fca0f4fa676a10081ccdef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  gameOverPanel: {fileID: 0}
 --- !u!96 &547016282715293714
 TrailRenderer:
   serializedVersion: 3
