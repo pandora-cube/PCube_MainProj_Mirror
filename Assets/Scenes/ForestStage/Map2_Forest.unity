@@ -852,6 +852,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: flow platform (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5537645967490360252, guid: 4362ae765278eb54abd9474805942e9d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1525,6 +1529,10 @@ PrefabInstance:
     - target: {fileID: 5537645967490360252, guid: 4362ae765278eb54abd9474805942e9d, type: 3}
       propertyPath: m_Name
       value: flow platform (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5537645967490360252, guid: 4362ae765278eb54abd9474805942e9d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7933,6 +7941,15 @@ MonoBehaviour:
   ghostInteractRange: 1
   isNormal: 1
   isGhost: 0
+  attackTransform: {fileID: 0}
+  attackRange: 1.5
+  attackableLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  damageAmount: 1
+  timeBetweenAttacks: 0.2
+  canReceiveInput: 0
+  inputReceived: 0
   UsingItem: 0
   itemLayer:
     serializedVersion: 2
@@ -8446,6 +8463,10 @@ PrefabInstance:
     - target: {fileID: 5537645967490360252, guid: 4362ae765278eb54abd9474805942e9d, type: 3}
       propertyPath: m_Name
       value: flow platform
+      objectReference: {fileID: 0}
+    - target: {fileID: 5537645967490360252, guid: 4362ae765278eb54abd9474805942e9d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
