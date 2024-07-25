@@ -416,7 +416,7 @@ public class PlayerController : MonoBehaviour
     #region debugging functions
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(attackTransform.position, attackRange);
+        //Gizmos.DrawWireSphere(attackTransform.position, attackRange);
 
     }
     #endregion
