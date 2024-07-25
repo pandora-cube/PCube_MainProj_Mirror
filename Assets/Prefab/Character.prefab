@@ -234,6 +234,7 @@ MonoBehaviour:
   InfoText: {fileID: 8037551300431985473}
   InfoScreen: {fileID: 6869943870109066890}
   infoRect: {fileID: 7158833696241443019}
+  controller: {fileID: 0}
 --- !u!1 &3430430844043821422
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,6 +635,7 @@ MonoBehaviour:
   InfoText: {fileID: 8037551300431985473}
   InfoScreen: {fileID: 6869943870109066890}
   infoRect: {fileID: 7158833696241443019}
+  controller: {fileID: 0}
 --- !u!1 &5806364636900901976
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,6 +731,7 @@ MonoBehaviour:
   InfoText: {fileID: 8037551300431985473}
   InfoScreen: {fileID: 6869943870109066890}
   infoRect: {fileID: 7158833696241443019}
+  controller: {fileID: 0}
 --- !u!1 &5824343611764768133
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,6 +742,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2710728152213815392}
   - component: {fileID: 2652426612113270752}
+  - component: {fileID: 5226621595257410135}
   - component: {fileID: 547016282715293714}
   - component: {fileID: 2623866325261710830}
   m_Layer: 0
@@ -764,7 +768,7 @@ Transform:
   - {fileID: 488549447599903303}
   - {fileID: 3472490331342985577}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2652426612113270752
 MonoBehaviour:
@@ -778,7 +782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 024d7d8440eb43540a330e89c6324cd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 500
+  speed: 1000
   trailRenderer: {fileID: 0}
   jumpForce: 5
   isGrounded: 0
@@ -815,6 +819,26 @@ MonoBehaviour:
   timeBetweenAttacks: 0.2
   canReceiveInput: 1
   inputReceived: 0
+  UsingItem: 0
+  itemLayer:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!114 &5226621595257410135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5824343611764768133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed4cb3a04fca0f4fa676a10081ccdef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  gameOverPanel: {fileID: 0}
 --- !u!96 &547016282715293714
 TrailRenderer:
   serializedVersion: 3
@@ -1145,6 +1169,7 @@ MonoBehaviour:
   InfoText: {fileID: 8037551300431985473}
   InfoScreen: {fileID: 6869943870109066890}
   infoRect: {fileID: 7158833696241443019}
+  controller: {fileID: 0}
 --- !u!1 &6083986484843730980
 GameObject:
   m_ObjectHideFlags: 0
@@ -1156,7 +1181,9 @@ GameObject:
   - component: {fileID: 869793278093406168}
   - component: {fileID: 1455752272669314600}
   - component: {fileID: 7941484780241062098}
+  - component: {fileID: 25145181744407520}
   - component: {fileID: 6031092596345988927}
+  - component: {fileID: 3367467547188870502}
   m_Layer: 0
   m_Name: Normal
   m_TagString: Player
@@ -1445,6 +1472,51 @@ PolygonCollider2D:
       - {x: -0.22999999, y: -3.485}
       - {x: -0.25, y: -3.2549999}
   m_UseDelaunayMesh: 0
+--- !u!61 &25145181744407520
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6083986484843730980}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.012932241, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.38, y: 7.63}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.4058647, y: 7.63}
+  m_EdgeRadius: 0
 --- !u!50 &6031092596345988927
 Rigidbody2D:
   serializedVersion: 4
@@ -1472,6 +1544,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &3367467547188870502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6083986484843730980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed4cb3a04fca0f4fa676a10081ccdef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  gameOverPanel: {fileID: 0}
 --- !u!1 &6636038154849341944
 GameObject:
   m_ObjectHideFlags: 0
@@ -1579,6 +1667,7 @@ MonoBehaviour:
   - {fileID: 8656799385544903197}
   - {fileID: 8271320838797331914}
   - {fileID: 2008318781593221928}
+  Exit: {fileID: 0}
 --- !u!1 &6682739599294723273
 GameObject:
   m_ObjectHideFlags: 0
@@ -1732,7 +1821,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -476203971
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 0adc1366a8b3d554496befbf018b0388, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3196,6 +3285,7 @@ MonoBehaviour:
   InfoText: {fileID: 8037551300431985473}
   InfoScreen: {fileID: 6869943870109066890}
   infoRect: {fileID: 7158833696241443019}
+  controller: {fileID: 0}
 --- !u!1 &7533095177527207176
 GameObject:
   m_ObjectHideFlags: 0
