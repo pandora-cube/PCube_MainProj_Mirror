@@ -112,6 +112,8 @@ public class PlayerController : MonoBehaviour
     }
 
     #region common functions (normal && ghost)
+
+    #region movement functions
     public void OnMove(InputAction.CallbackContext ctx)
     {
         if (isDashing) return;
@@ -126,27 +128,42 @@ public class PlayerController : MonoBehaviour
         else if (isOnSlope && isCrawling) rb.velocity = new Vector2(-direction * (speed - crawlSpeedDecrease) * slopeNormalPrep.x * Time.deltaTime, (speed - crawlSpeedDecrease) * slopeNormalPrep.y * -direction * Time.deltaTime);
         else if (isCrawling) rb.velocity = new Vector2(direction * (speed - crawlSpeedDecrease) * Time.deltaTime, rb.velocity.y); // craw walk
 
+        FlipSpriteBasedOnDirection(currentTransform);
+        UpdateOtherTransformObjectPosition();
+        UpdateRbFrictionOnSlope(rb);
+        
+        ItemAvabileAreaCheck(ghostGroundCheckCollider.position);
+    }
+
+    void FlipSpriteBasedOnDirection(Transform transform)
+    {
         if (direction > 0f)
         {
-            Vector3 newScale = ghostTransform.localScale;
+            Vector3 newScale = transform.localScale;
             newScale.x = 1;
-            ghostTransform.localScale = newScale;
+            transform.localScale = newScale;
         }
         else if (direction < 0f)
         {
-            Vector3 newScale = ghostTransform.localScale;
+            Vector3 newScale = transform.localScale;
             newScale.x = -1;
-            ghostTransform.localScale = newScale;
+            transform.localScale = newScale;
         }
-
+    }
+    void UpdateOtherTransformObjectPosition()
+    {
         if (isNormal && !isGhost) ghostTransform.position = new Vector3(normalTransform.position.x, normalTransform.position.y + 5f, 0f);
         else if (isGhost && !isNormal) normalTransform.position = ghostTransform.position;
-
+    }
+    void UpdateRbFrictionOnSlope(Rigidbody2D rb)
+    {
         if (isOnSlope && Mathf.Approximately(direction, 0f)) rb.sharedMaterial = fullFiction;
         else rb.sharedMaterial = noFiction;
-
-        ItemAvabileAreaCheck(ghostGroundCheckCollider.position);
     }
+
+    #endregion
+
+    #region jump functions
     void GroundCheck()
     {
         if (isNormal) isGrounded = Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, groundLayer) || isOnSlope;
@@ -160,7 +177,8 @@ public class PlayerController : MonoBehaviour
         if (isNormal) normalRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         else if (isGhost) ghostRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
 
-    } 
+    }
+    #endregion
     public void OnInteract(InputAction.CallbackContext ctx)
     {
         if (isNormal) 
