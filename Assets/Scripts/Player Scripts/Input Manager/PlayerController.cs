@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        attackTimeCounter += Time.deltaTime;
+        //attackTimeCounter += Time.deltaTime;
     }
     private void FixedUpdate()
     {
@@ -99,12 +99,12 @@ public class PlayerController : MonoBehaviour
                 
         GroundCheck();
 
-        if (isNormal)
+        if (isNormal && !isGhost)
         {
             SlopeCheck(normalGroundCheckCollider.position);
             MovePlayer(normalRb, normalTransform, ghostTransform, normalGroundCheckCollider.position);
         }
-        if (isGhost) 
+        if (isGhost && !isNormal) 
         {
             SlopeCheck(ghostGroundCheckCollider.position);
             MovePlayer(ghostRb, ghostTransform, normalTransform, ghostGroundCheckCollider.position);
