@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     #region jump variables
     [Header("Jump Variables")]
     public float jumpForce = 5f;
-    [SerializeField] protected bool isGrounded = false;
+    public bool isGrounded = false;
     [SerializeField] protected LayerMask groundLayer;
     #endregion
 
@@ -46,6 +46,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float slopeCheckDistanceVert;
     [SerializeField] private float slopeCheckDistanceHori;
     #endregion
+
+    [Header("Common Variables")]
+    [SerializeField] private GameObject cameraTransform;
 
     [Header("Normal Variables")]
     [SerializeField] private GameObject normalGameObejct;
@@ -88,6 +91,7 @@ public class PlayerController : MonoBehaviour
     public bool UsingItem = false;
     [SerializeField] protected LayerMask itemLayer;
     #endregion
+
 
     private void Update()
     {
@@ -150,10 +154,22 @@ public class PlayerController : MonoBehaviour
             transform.localScale = newScale;
         }
     }
+    /// <summary>
+    /// move position of inactive object and parent object
+    /// </summary>
     void UpdateOtherTransformObjectPosition()
     {
-        if (isNormal && !isGhost) ghostTransform.position = new Vector3(normalTransform.position.x, normalTransform.position.y + 5f, 0f);
-        else if (isGhost && !isNormal) normalTransform.position = ghostTransform.position;
+        if (isNormal && !isGhost)
+        {
+            ghostTransform.position = new Vector3(normalTransform.position.x, normalTransform.position.y + 5f, 0f);
+            cameraTransform.transform.position = normalTransform.position; //set parent gameobject's transform pos.
+        }
+
+        else if (isGhost && !isNormal)
+        {
+            normalTransform.position = ghostTransform.position;
+            cameraTransform.transform.position = ghostTransform.position; //set parent gameobject's transform pos.
+        }
     }
     void UpdateRbFrictionOnSlope(Rigidbody2D rb)
     {
@@ -168,7 +184,6 @@ public class PlayerController : MonoBehaviour
     {
         if (isNormal) isGrounded = Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, groundLayer) || isOnSlope;
         if (isGhost) isGrounded = Physics2D.OverlapCircle(ghostGroundCheckCollider.position, 0.3f, groundLayer) || isOnSlope;
-
     }
     public void OnJump(InputAction.CallbackContext ctx)
     {
@@ -177,6 +192,7 @@ public class PlayerController : MonoBehaviour
         if (isNormal) normalRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         else if (isGhost) ghostRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
 
+        Debug.Log("JUMP!");
     }
     #endregion
     public void OnInteract(InputAction.CallbackContext ctx)
@@ -316,7 +332,7 @@ public class PlayerController : MonoBehaviour
             canDash = false;
             isDashing = true;
 
-            //´ë½¬ Áß ¶³¾îÁöÁö ¾Ê°Ô gravity °ª º¯°æ
+            //ï¿½ë½¬ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ gravity ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             float originalGravity = ghostRb.gravityScale;
             ghostRb.gravityScale = 0f;
 
