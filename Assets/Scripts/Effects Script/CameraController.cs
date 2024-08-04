@@ -6,10 +6,11 @@ using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
-    private float cameraSpeed = 0.1f;
+    private float cameraSpeed = 1.5f;
     private float direction; 
-    private float timeElapsed;
+    private float timeElapsed = 0f;
     private float timeNeeded = 1.5f;
+    private float peekTimeElapsed = 0f;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private Transform peekTransform;
     [SerializeField] private Transform playerTransform;
@@ -17,6 +18,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] private CinemachineConfiner2D cinemachineConfiner2D;
     [SerializeField] private PolygonCollider2D normalPolygonCollider2D;
     [SerializeField] private PolygonCollider2D peekPolygonCollider2D;
+
+    private Vector3 velocity = Vector3.zero;
 
     void Awake()
     {
@@ -51,9 +54,11 @@ public class CameraController : MonoBehaviour
         if (timeElapsed >= timeNeeded)
         {
             cinemachineConfiner2D.m_BoundingShape2D = peekPolygonCollider2D;
-            Vector3 targetPos = playerTransform.position + new Vector3(0, 2f, 0);
-            peekTransform.position = Vector3.MoveTowards(peekTransform.position, targetPos, cameraSpeed * Time.fixedDeltaTime);
+            Vector3 targetPos = playerTransform.position + new Vector3(0, -0.5f, 0);
+            peekTransform.position = Vector3.Lerp(peekTransform.position, targetPos, peekTimeElapsed/5f);
             virtualCamera.Follow = peekTransform;
+
+            peekTimeElapsed += Time.deltaTime;
         }
     }
 }
