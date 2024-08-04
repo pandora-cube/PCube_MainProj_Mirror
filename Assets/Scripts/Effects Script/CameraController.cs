@@ -1,24 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 public class CameraController : MonoBehaviour
 {
-    private float cameraSpeed = 1f;
-    private float direction;
+    private float cameraSpeed = 0.1f;
+    private float direction; 
     private float timeElapsed;
     private float timeNeeded = 1.5f;
     [SerializeField] private PlayerController playerController;
-    [SerializeField] private InputActionMap playerInputAction;
+    [SerializeField] private Transform peekTransform;
+    [SerializeField] private Transform playerTransform;
+    [SerializeField] private CinemachineVirtualCamera virtualCamera;
+    [SerializeField] private CinemachineConfiner2D cinemachineConfiner2D;
+    [SerializeField] private PolygonCollider2D normalPolygonCollider2D;
+    [SerializeField] private PolygonCollider2D peekPolygonCollider2D;
 
     void Awake()
     {
-       if (playerController == null) Debug.LogError("PLAYER CONTROLLER IS NULL! Object: " + gameObject.name);
+        if (playerController == null) Debug.LogError("PLAYER CONTROLLER IS NULL! Object: " + gameObject.name);
+        if (virtualCamera == null) Debug.LogError("VIRTUAL CAM IS NULL! Object: " + gameObject.name);
+        if (peekTransform == null) Debug.LogError("PEEK TRANSFORM IS NULL! Object: " + gameObject.name);
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         ShiftCameraOnEdge();
@@ -27,12 +33,27 @@ public class CameraController : MonoBehaviour
     public void OnPressUpOrDown(InputAction.CallbackContext ctx)
     {
         direction = ctx.ReadValue<float>();
+        timeElapsed = 0f;
     }
+
     void ShiftCameraOnEdge()
     {
-        if (!playerController.isGrounded || direction == 0) return;
+        if (!playerController.isGrounded || direction == 0)
+        {
+            timeElapsed = 0f;  // Reset the timer when player is not moving or not grounded
+            cinemachineConfiner2D.m_BoundingShape2D = normalPolygonCollider2D;
+            peekTransform.position = playerTransform.position;  // Reset peek position to player position
+            virtualCamera.Follow = playerTransform;
+            return;
+        }
 
-        timeElapsed += Time.deltaTime;
-        if (timeElapsed >= timeNeeded) transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, transform.position.y + 2f), cameraSpeed * Time.deltaTime);
+        timeElapsed += Time.fixedDeltaTime;
+        if (timeElapsed >= timeNeeded)
+        {
+            cinemachineConfiner2D.m_BoundingShape2D = peekPolygonCollider2D;
+            Vector3 targetPos = playerTransform.position + new Vector3(0, 2f, 0);
+            peekTransform.position = Vector3.MoveTowards(peekTransform.position, targetPos, cameraSpeed * Time.fixedDeltaTime);
+            virtualCamera.Follow = peekTransform;
+        }
     }
 }
