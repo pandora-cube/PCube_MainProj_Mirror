@@ -23,13 +23,7 @@ public class PlayerNormalHealthManager : MonoBehaviour, IDamageable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("OnTriggerEnter2D called");
-        Debug.Log("collided layer: " + LayerMask.LayerToName(collision.gameObject.layer));
-        if (collision.gameObject.layer == 9)
-        {
-            Debug.Log("DAMAGE!!");
-            TakeDamage(1f);
-        }
+        if (collision.gameObject.layer == 9) TakeDamage(1f);
     }
 
     public void TakeDamage(float damageAmount)
