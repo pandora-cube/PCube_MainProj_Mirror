@@ -52,6 +52,12 @@ TagManager:
   - name: Obstacle
     uniqueID: 2728027967
     locked: 0
+  - name: Monster
+    uniqueID: 3880065099
+    locked: 0
+  - name: Obj
+    uniqueID: 2534232827
+    locked: 0
   - name: Player
     uniqueID: 3818763325
     locked: 0

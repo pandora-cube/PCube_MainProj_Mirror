@@ -404,11 +404,12 @@ public class PlayerController : MonoBehaviour
 
     void ItemAvabileAreaCheck(Vector2 checkPos)
     {
-        RaycastHit2D RaycastFront = Physics2D.Raycast(checkPos, transform.right, 8f, itemLayer);
+        RaycastHit2D RaycastFront = Physics2D.Raycast(checkPos, transform.right, 20f, itemLayer);
+        Debug.DrawRay(checkPos, transform.right*20f, Color.red);
         if (RaycastFront)
         {
             UsingItem = true;
-            Debug.DrawRay(RaycastFront.point, RaycastFront.normal, Color.green);
+            //Debug.DrawRay(RaycastFront.point, RaycastFront.normal, Color.red);
         }
         else UsingItem = false;
     }
@@ -416,7 +417,7 @@ public class PlayerController : MonoBehaviour
     #region debugging functions
     private void OnDrawGizmos()
     {
-        //Gizmos.DrawWireSphere(attackTransform.position, attackRange);
+        Gizmos.DrawWireSphere(attackTransform.position, attackRange);
 
     }
     #endregion

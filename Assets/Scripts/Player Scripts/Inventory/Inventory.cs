@@ -46,6 +46,7 @@ public class Inventory : MonoBehaviour
             Debug.Log(_item.name);
             items.Remove(_item);
             FreshSlot();
+
             // 아이템 사용 로직 추가
             if (_item.name == "keyItem") Exit.isTrigger = true;
         }
