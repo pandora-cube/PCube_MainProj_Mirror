@@ -180,6 +180,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region jump functions
+    
     void GroundCheck()
     {
         if (isNormal) isGrounded = Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, groundLayer) || isOnSlope;

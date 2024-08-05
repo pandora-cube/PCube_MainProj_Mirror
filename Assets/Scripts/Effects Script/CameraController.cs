@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using Unity.VisualScripting;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
-    private float cameraSpeed = 1.5f;
+    [SerializeField] private float cameraSpeed = 1.5f;
     private float direction; 
     private float timeElapsed = 0f;
     private float timeNeeded = 1.5f;
@@ -19,6 +21,9 @@ public class CameraController : MonoBehaviour
     [SerializeField] private PolygonCollider2D normalPolygonCollider2D;
     [SerializeField] private PolygonCollider2D peekPolygonCollider2D;
 
+
+    bool isPeeking = false;
+
     private Vector3 velocity = Vector3.zero;
 
     void Awake()
@@ -28,9 +33,13 @@ public class CameraController : MonoBehaviour
         if (peekTransform == null) Debug.LogError("PEEK TRANSFORM IS NULL! Object: " + gameObject.name);
     }
 
-    void FixedUpdate()
+    void Start()
     {
-        ShiftCameraOnEdge();
+        peekTransform.position = virtualCamera.transform.position;
+    }
+    void Update()
+    {
+       ShiftCameraOnEdge();
     }
 
     public void OnPressUpOrDown(InputAction.CallbackContext ctx)
@@ -45,8 +54,10 @@ public class CameraController : MonoBehaviour
         {
             timeElapsed = 0f;  // Reset the timer when player is not moving or not grounded
             cinemachineConfiner2D.m_BoundingShape2D = normalPolygonCollider2D;
-            peekTransform.position = playerTransform.position;  // Reset peek position to player position
+            
             virtualCamera.Follow = playerTransform;
+
+            isPeeking = false;
             return;
         }
 
@@ -54,11 +65,17 @@ public class CameraController : MonoBehaviour
         if (timeElapsed >= timeNeeded)
         {
             cinemachineConfiner2D.m_BoundingShape2D = peekPolygonCollider2D;
-            Vector3 targetPos = playerTransform.position + new Vector3(0, -0.5f, 0);
-            peekTransform.position = Vector3.Lerp(peekTransform.position, targetPos, peekTimeElapsed/5f);
-            virtualCamera.Follow = peekTransform;
-
+            MoveCameraPos();
+            isPeeking = true;
             peekTimeElapsed += Time.deltaTime;
         }
+    }
+
+    void MoveCameraPos()
+    {
+        if (isPeeking) return;
+        Vector3 targetPos = playerTransform.position + new Vector3(0, -0.1f, 0);
+        peekTransform.position = Vector3.MoveTowards(peekTransform.position, targetPos, cameraSpeed * Time.deltaTime);
+        virtualCamera.Follow = peekTransform;
     }
 }

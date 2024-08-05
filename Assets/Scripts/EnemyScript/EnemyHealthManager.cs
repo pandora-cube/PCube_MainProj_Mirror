@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Search;
 using UnityEngine;
 
 public class EnemyHealthManager : MonoBehaviour, IDamageable
 {
 
-    public float maxHealth { get; set; }
+    [field: SerializeField] public float maxHealth { get; set; }
     public float currentHealth { get; set; }
 
     private void Start()
