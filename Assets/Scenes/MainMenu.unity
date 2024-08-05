@@ -1611,6 +1611,10 @@ PrefabInstance:
       value: bf2cb955-96f8-43d8-85e2-622d2aae3178
       objectReference: {fileID: 0}
     - target: {fileID: 6680292650503350826, guid: f25dcd618d3acd64795bf8bb32edb6c9, type: 3}
+      propertyPath: m_RebindOverlay
+      value: 
+      objectReference: {fileID: 1988101002}
+    - target: {fileID: 6680292650503350826, guid: f25dcd618d3acd64795bf8bb32edb6c9, type: 3}
       propertyPath: m_DisplayStringOptions
       value: -3
       objectReference: {fileID: 0}
@@ -3138,6 +3142,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1988101002 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 723199622616807248, guid: f25dcd618d3acd64795bf8bb32edb6c9, type: 3}
+  m_PrefabInstance: {fileID: 1062519065}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1993833659
 GameObject:
   m_ObjectHideFlags: 0
