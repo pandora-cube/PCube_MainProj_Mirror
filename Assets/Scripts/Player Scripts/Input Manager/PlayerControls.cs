@@ -98,15 +98,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Up Down"",
-                    ""type"": ""Button"",
-                    ""id"": ""8b449ff4-4ce6-4aa0-bf2d-f40a87b01824"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -274,39 +265,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""1D Axis"",
-                    ""id"": ""142cbf75-7390-4bd3-8be9-812909bc2642"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Up Down"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""d451e47c-e4b5-4253-9cc1-da03bf33940e"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Up Down"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""5bcf8983-e6b5-4519-acbf-08e4b7adb12a"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Up Down"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -345,7 +303,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_Teleport = m_PlayerActions.FindAction("Teleport", throwIfNotFound: true);
         m_PlayerActions_Dash = m_PlayerActions.FindAction("Dash", throwIfNotFound: true);
         m_PlayerActions_Smoke = m_PlayerActions.FindAction("Smoke", throwIfNotFound: true);
-        m_PlayerActions_UpDown = m_PlayerActions.FindAction("Up Down", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -415,7 +372,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Teleport;
     private readonly InputAction m_PlayerActions_Dash;
     private readonly InputAction m_PlayerActions_Smoke;
-    private readonly InputAction m_PlayerActions_UpDown;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -428,7 +384,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Teleport => m_Wrapper.m_PlayerActions_Teleport;
         public InputAction @Dash => m_Wrapper.m_PlayerActions_Dash;
         public InputAction @Smoke => m_Wrapper.m_PlayerActions_Smoke;
-        public InputAction @UpDown => m_Wrapper.m_PlayerActions_UpDown;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -462,9 +417,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Smoke.started += instance.OnSmoke;
             @Smoke.performed += instance.OnSmoke;
             @Smoke.canceled += instance.OnSmoke;
-            @UpDown.started += instance.OnUpDown;
-            @UpDown.performed += instance.OnUpDown;
-            @UpDown.canceled += instance.OnUpDown;
         }
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
@@ -493,9 +445,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Smoke.started -= instance.OnSmoke;
             @Smoke.performed -= instance.OnSmoke;
             @Smoke.canceled -= instance.OnSmoke;
-            @UpDown.started -= instance.OnUpDown;
-            @UpDown.performed -= instance.OnUpDown;
-            @UpDown.canceled -= instance.OnUpDown;
         }
 
         public void RemoveCallbacks(IPlayerActionsActions instance)
@@ -541,6 +490,5 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnTeleport(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnSmoke(InputAction.CallbackContext context);
-        void OnUpDown(InputAction.CallbackContext context);
     }
 }
