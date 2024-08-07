@@ -163,12 +163,15 @@ public class PlayerController : MonoBehaviour
         {
             ghostTransform.position = new Vector3(normalTransform.position.x, normalTransform.position.y + 5f, 0f);
             cameraTransform.transform.position = normalTransform.position; //set parent gameobject's transform pos.
+            gameObject.transform.position = normalTransform.position;
         }
 
         else if (isGhost && !isNormal)
         {
             normalTransform.position = ghostTransform.position;
             cameraTransform.transform.position = ghostTransform.position; //set parent gameobject's transform pos.
+            gameObject.transform.position = ghostTransform.position;
+
         }
     }
     void UpdateRbFrictionOnSlope(Rigidbody2D rb)
@@ -180,7 +183,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region jump functions
-    
+
     void GroundCheck()
     {
         if (isNormal) isGrounded = Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, groundLayer) || isOnSlope;
@@ -196,6 +199,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("JUMP!");
     }
     #endregion
+    
     public void OnInteract(InputAction.CallbackContext ctx)
     {
         if (isNormal) 
