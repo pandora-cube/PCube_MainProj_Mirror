@@ -98,6 +98,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UpAndDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""77f4ea84-b3c4-448b-876a-0777ea0f5ba1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -265,6 +274,39 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""d709e9ec-ce55-4e45-a1fb-0c7dc6a36f55"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UpAndDown"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""6176b0d6-033f-4117-9f7c-26d29b1c0027"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UpAndDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""d635c817-6995-4098-aa9f-dcb4b2e04946"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UpAndDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -303,6 +345,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_Teleport = m_PlayerActions.FindAction("Teleport", throwIfNotFound: true);
         m_PlayerActions_Dash = m_PlayerActions.FindAction("Dash", throwIfNotFound: true);
         m_PlayerActions_Smoke = m_PlayerActions.FindAction("Smoke", throwIfNotFound: true);
+        m_PlayerActions_UpAndDown = m_PlayerActions.FindAction("UpAndDown", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -372,6 +415,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Teleport;
     private readonly InputAction m_PlayerActions_Dash;
     private readonly InputAction m_PlayerActions_Smoke;
+    private readonly InputAction m_PlayerActions_UpAndDown;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -384,6 +428,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Teleport => m_Wrapper.m_PlayerActions_Teleport;
         public InputAction @Dash => m_Wrapper.m_PlayerActions_Dash;
         public InputAction @Smoke => m_Wrapper.m_PlayerActions_Smoke;
+        public InputAction @UpAndDown => m_Wrapper.m_PlayerActions_UpAndDown;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -417,6 +462,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Smoke.started += instance.OnSmoke;
             @Smoke.performed += instance.OnSmoke;
             @Smoke.canceled += instance.OnSmoke;
+            @UpAndDown.started += instance.OnUpAndDown;
+            @UpAndDown.performed += instance.OnUpAndDown;
+            @UpAndDown.canceled += instance.OnUpAndDown;
         }
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
@@ -445,6 +493,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Smoke.started -= instance.OnSmoke;
             @Smoke.performed -= instance.OnSmoke;
             @Smoke.canceled -= instance.OnSmoke;
+            @UpAndDown.started -= instance.OnUpAndDown;
+            @UpAndDown.performed -= instance.OnUpAndDown;
+            @UpAndDown.canceled -= instance.OnUpAndDown;
         }
 
         public void RemoveCallbacks(IPlayerActionsActions instance)
@@ -490,5 +541,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnTeleport(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnSmoke(InputAction.CallbackContext context);
+        void OnUpAndDown(InputAction.CallbackContext context);
     }
 }

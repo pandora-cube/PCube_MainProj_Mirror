@@ -1,19 +1,62 @@
 using System.Collections;
-using System.Collections.Generic;
+using Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
+using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private GameObject playerNormalObject;
-    [SerializeField] private GameObject playerGhostObject;
-    [SerializeField] private PlayerController playerController;
+    private float direction;    
+    [SerializeField] private float timeElapsed = 0f;
+    private float timeNeeded = 1.5f;
+    private bool isPeeking = false;
+
+    [SerializeField] private CinemachineVirtualCamera normalCamera;
+    [SerializeField] private CinemachineVirtualCamera peekCamera;
+
+    private Animator animator;
+    private PlayerController playerController;
+    
+    void Awake()
+    {
+       animator = GetComponent<Animator>();
+       playerController = FindAnyObjectByType<PlayerController>();
+    }
 
 
-    // Update is called once per frame
     void Update()
     {
-        if (playerController.isNormal) transform.position = new Vector3(playerNormalObject.transform.position.x, playerNormalObject.transform.position.y, transform.position.z);
-        else if (playerController.isGhost) transform.position = new Vector3(playerGhostObject.transform.position.x, playerGhostObject.transform.position.y, transform.position.z);
+        if (Mathf.Approximately(direction, 0f)) StopPeekOverEdge(direction);
+        else StartPeekOverEdge(direction);
+    }
 
+    public void OnPressUpOrDown(InputAction.CallbackContext ctx)
+    {
+        direction = ctx.ReadValue<float>();
+
+        Debug.Log("direction:" + direction);
+    }
+    
+    void StopPeekOverEdge(float peekDirection)
+    {
+        timeElapsed = 0f;
+        peekCamera.transform.position -= new Vector3(0f, -2f);
+        animator.Play("Default");
+    }
+    void StartPeekOverEdge(float peekDirection)
+    {
+        if (!playerController.isGrounded) return;
+
+        timeElapsed += Time.deltaTime;
+
+        if (timeElapsed >= timeNeeded)
+        {  
+            peekCamera.transform.position += new Vector3(0f, -2f);
+            animator.Play("Peeking");
+            
+            isPeeking = !isPeeking;
+            timeElapsed = 0f;
+        }
     }
 }

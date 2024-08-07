@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     protected float direction = 0;
     public float speed = 0;
-   
+
 
     #region crawling variables
     protected float crawlSpeedDecrease = 300f;
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     #region jump variables
     [Header("Jump Variables")]
     public float jumpForce = 5f;
-    [SerializeField] protected bool isGrounded = false;
+    public bool isGrounded = false;
     [SerializeField] protected LayerMask groundLayer;
     #endregion
 
@@ -46,6 +46,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float slopeCheckDistanceVert;
     [SerializeField] private float slopeCheckDistanceHori;
     #endregion
+
+    [Header("Common Variables")]
+    [SerializeField] private GameObject cameraTransform;
 
     [Header("Normal Variables")]
     [SerializeField] private GameObject normalGameObejct;
@@ -88,131 +91,115 @@ public class PlayerController : MonoBehaviour
     public bool UsingItem = false;
     [SerializeField] protected LayerMask itemLayer;
     #endregion
-    protected virtual void Awake()
-    {
-        InitializeVariables();
-    }
+
 
     private void Update()
     {
-        attackTimeCounter += Time.deltaTime;
+        //attackTimeCounter += Time.deltaTime;
     }
     private void FixedUpdate()
     {
+        if (isDashing) return;
+                
         GroundCheck();
-        if (isNormal) SlopeCheck(normalGroundCheckCollider.position);
-        if (isGhost) SlopeCheck(ghostGroundCheckCollider.position);
-    }
-    protected virtual void InitializeVariables()
-    {
- 
 
-        //input manager °¢ action¸Ê¿¡ ´ëÇÑ ±¸µ¶
-        #region input actions
-        //controls.PlayerActions.Attack.performed += ctx =>
-        //{
-        //    Attack();
-        //};
-        //controls.PlayerActions.Teleport.performed += ctx =>
-        //{
-        //    Teleport();
-        //};
-        //controls.PlayerActions.Smoke.performed += ctx =>
-        //{
-        //    Smoke();
-        //};
-
-        #endregion
+        if (isNormal && !isGhost)
+        {
+            SlopeCheck(normalGroundCheckCollider.position);
+            MovePlayer(normalRb, normalTransform, ghostTransform, normalGroundCheckCollider.position);
+        }
+        if (isGhost && !isNormal) 
+        {
+            SlopeCheck(ghostGroundCheckCollider.position);
+            MovePlayer(ghostRb, ghostTransform, normalTransform, ghostGroundCheckCollider.position);
+        }
     }
 
     #region common functions (normal && ghost)
+
+    #region movement functions
     public void OnMove(InputAction.CallbackContext ctx)
     {
         if (isDashing) return;
 
         direction = ctx.ReadValue<float>();
-        if (isNormal)
+    }
+
+    private void MovePlayer(Rigidbody2D rb, Transform currentTransform, Transform otherTransform, Vector2 groundCheckPosition)
+    {
+        if (!isCrawling && !isOnSlope) rb.velocity = new Vector2(direction * speed * Time.deltaTime, rb.velocity.y); // normal walk
+        else if (isOnSlope && !isCrawling) rb.velocity = new Vector2(-direction * speed * slopeNormalPrep.x * Time.deltaTime, speed * slopeNormalPrep.y * -direction * Time.deltaTime); // slope walk
+        else if (isOnSlope && isCrawling) rb.velocity = new Vector2(-direction * (speed - crawlSpeedDecrease) * slopeNormalPrep.x * Time.deltaTime, (speed - crawlSpeedDecrease) * slopeNormalPrep.y * -direction * Time.deltaTime);
+        else if (isCrawling) rb.velocity = new Vector2(direction * (speed - crawlSpeedDecrease) * Time.deltaTime, rb.velocity.y); // craw walk
+
+        FlipSpriteBasedOnDirection(currentTransform);
+        UpdateOtherTransformObjectPosition();
+        UpdateRbFrictionOnSlope(rb);
+        
+        ItemAvabileAreaCheck(ghostGroundCheckCollider.position);
+    }
+
+    void FlipSpriteBasedOnDirection(Transform transform)
+    {
+        if (direction > 0f)
         {
-            if (!isCrawling && !isOnSlope) normalRb.velocity = new Vector2(direction * speed * Time.deltaTime, normalRb.velocity.y); // normal walk
-            else if (isOnSlope &&!isCrawling) normalRb.velocity = new Vector2(-direction * speed * slopeNormalPrep.x * Time.deltaTime, speed * slopeNormalPrep.y * -direction * Time.deltaTime); // slope walk
-            else if (isOnSlope && isCrawling) normalRb.velocity = new Vector2(-direction * (speed- crawlSpeedDecrease) * slopeNormalPrep.x * Time.deltaTime, (speed-crawlSpeedDecrease) * slopeNormalPrep.y * -direction * Time.deltaTime);
-            else if (isCrawling) normalRb.velocity = new Vector2(direction * (speed - crawlSpeedDecrease) * Time.deltaTime, normalRb.velocity.y); // craw walk
-
-            //flip sprite based on direction of travel
-            if (direction > 0f)
-            {
-                Vector3 newScale = normalTransform.localScale;
-                newScale.x = 1;
-                normalTransform.localScale = newScale;
-            }
-            else if (direction < 0f)
-            {
-                Vector3 newScale = normalTransform.localScale;
-                newScale.x = -1;
-                normalTransform.localScale = newScale;
-            }
-            //update position of ghost object when normal
-            ghostTransform.position = new Vector3(normalTransform.position.x, normalTransform.position.y + 5f, 0f);
-
-            if (isOnSlope && Mathf.Approximately(direction, 0f)) normalRb.sharedMaterial = fullFiction;
-            else normalRb.sharedMaterial = noFiction;
-
-            ItemAvabileAreaCheck(normalGroundCheckCollider.position);
+            Vector3 newScale = transform.localScale;
+            newScale.x = 1;
+            transform.localScale = newScale;
         }
-
-        if (isGhost)
+        else if (direction < 0f)
         {
-            SlopeCheck(ghostGroundCheckCollider.position);
-
-            if (!isCrawling && !isOnSlope) ghostRb.velocity = new Vector2(direction * speed * Time.deltaTime, ghostRb.velocity.y);
-            else if (isOnSlope && !isCrawling) ghostRb.velocity = new Vector2(-direction * speed * slopeNormalPrep.x * Time.deltaTime, speed * slopeNormalPrep.y * Time.deltaTime); // slope walk
-            else if (isOnSlope && isCrawling) ghostRb.velocity = new Vector2(-direction * (speed-crawlSpeedDecrease) * slopeNormalPrep.x * Time.deltaTime, (speed-crawlSpeedDecrease) * slopeNormalPrep.y * Time.deltaTime);
-            else if (isCrawling) ghostRb.velocity = new Vector2(direction * (speed - crawlSpeedDecrease) * Time.deltaTime, ghostRb.velocity.y);
-
-            //flip sprite based on direction of travel
-            if (direction > 0f)
-            {
-                Vector3 newScale = ghostTransform.localScale;
-                newScale.x = 1;
-                ghostTransform.localScale = newScale;
-            }
-            else if (direction < 0f)
-            {
-                Vector3 newScale = ghostTransform.localScale;
-                newScale.x = -1;
-                ghostTransform.localScale = newScale;
-            }
-
-            //update position of ghost object when normal
-            normalTransform.position = ghostTransform.position;
-
-            if (isOnSlope && Mathf.Approximately(direction, 0f)) ghostRb.sharedMaterial = fullFiction;
-            else ghostRb.sharedMaterial = noFiction;
-
-            ItemAvabileAreaCheck(ghostGroundCheckCollider.position);
+            Vector3 newScale = transform.localScale;
+            newScale.x = -1;
+            transform.localScale = newScale;
         }
     }
+    /// <summary>
+    /// move position of inactive object and parent object
+    /// </summary>
+    void UpdateOtherTransformObjectPosition()
+    {
+        if (isNormal && !isGhost)
+        {
+            ghostTransform.position = new Vector3(normalTransform.position.x, normalTransform.position.y + 5f, 0f);
+            cameraTransform.transform.position = normalTransform.position; //set parent gameobject's transform pos.
+            gameObject.transform.position = normalTransform.position;
+        }
+
+        else if (isGhost && !isNormal)
+        {
+            normalTransform.position = ghostTransform.position;
+            cameraTransform.transform.position = ghostTransform.position; //set parent gameobject's transform pos.
+            gameObject.transform.position = ghostTransform.position;
+
+        }
+    }
+    void UpdateRbFrictionOnSlope(Rigidbody2D rb)
+    {
+        if (isOnSlope && Mathf.Approximately(direction, 0f)) rb.sharedMaterial = fullFiction;
+        else rb.sharedMaterial = noFiction;
+    }
+
+    #endregion
+
+    #region jump functions
 
     void GroundCheck()
     {
         if (isNormal) isGrounded = Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, groundLayer) || isOnSlope;
         if (isGhost) isGrounded = Physics2D.OverlapCircle(ghostGroundCheckCollider.position, 0.3f, groundLayer) || isOnSlope;
-
     }
     public void OnJump(InputAction.CallbackContext ctx)
     {
-        if (isGrounded)
-        {
-            if (isNormal)
-            {
-                Debug.Log("before:" + normalRb.velocity);
-                normalRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-                Debug.Log("after:" + normalRb.velocity);
-            }
+        if (!isGrounded) return;
 
-            else if (isGhost) ghostRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-        }
+        if (isNormal) normalRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+        else if (isGhost) ghostRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+
+        Debug.Log("JUMP!");
     }
+    #endregion
+    
     public void OnInteract(InputAction.CallbackContext ctx)
     {
         if (isNormal) 
@@ -350,7 +337,7 @@ public class PlayerController : MonoBehaviour
             canDash = false;
             isDashing = true;
 
-            //´ë½¬ Áß ¶³¾îÁöÁö ¾Ê°Ô gravity °ª º¯°æ
+            //ï¿½ë½¬ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ gravity ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             float originalGravity = ghostRb.gravityScale;
             ghostRb.gravityScale = 0f;
 
