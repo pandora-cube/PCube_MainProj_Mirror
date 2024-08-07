@@ -144,13 +144,15 @@ public class PlayerController : MonoBehaviour
         if (direction > 0f)
         {
             Vector3 newScale = transform.localScale;
-            newScale.x = 1;
+            if (isNormal) newScale.x = 1;
+            else newScale.x = 0.6f;
             transform.localScale = newScale;
         }
         else if (direction < 0f)
         {
             Vector3 newScale = transform.localScale;
-            newScale.x = -1;
+             if (isNormal) newScale.x = -1;
+            else newScale.x = -0.6f;
             transform.localScale = newScale;
         }
     }

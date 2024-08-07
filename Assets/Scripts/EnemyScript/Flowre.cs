@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Flowre : MonoBehaviour, IDamageable
@@ -8,7 +9,7 @@ public class Flowre : MonoBehaviour, IDamageable
     private CapsuleCollider2D openCapsuleCollider2D;
 
     [SerializeField] private bool isOpen = false;
-    private float playerDetectionRadius = 1f;
+    private float playerDetectionRadius = 5f;
     private float attackDelay = 1f;
 
     public float maxHealth { get; set;}
@@ -45,7 +46,7 @@ public class Flowre : MonoBehaviour, IDamageable
         openCapsuleCollider2D.enabled = true; //also allows Flowre to be attackable.
         RaycastHit2D circleCast = Physics2D.CircleCast(transform.position, playerDetectionRadius, Vector2.up);
 
-        if (circleCast.collider.gameObject.CompareTag("Player")) isOpen = true;
+        if (circleCast.collider != null && circleCast.collider.gameObject.CompareTag("Player")) isOpen = true;
     }
 
     IEnumerator AttackPlayer()
@@ -64,5 +65,12 @@ public class Flowre : MonoBehaviour, IDamageable
     {
         //TO-DO: ADD DEATH ANIM
         Destroy(gameObject);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+
+        Gizmos.DrawWireSphere(transform.position, playerDetectionRadius);
     }
 }
