@@ -5,9 +5,9 @@ using UnityEngine;
 public class Flowre : MonoBehaviour, IDamageable
 {
     private PlayerController playerController;
-    [SerializeField] private CapsuleCollider2D openCapsuleCollider2D;
+    private CapsuleCollider2D openCapsuleCollider2D;
 
-    private bool isOpen = false;
+    [SerializeField] private bool isOpen = false;
     private float playerDetectionRadius = 1f;
     private float attackDelay = 1f;
 
@@ -17,6 +17,7 @@ public class Flowre : MonoBehaviour, IDamageable
     void Awake()
     {
         playerController = FindAnyObjectByType<PlayerController>();
+        openCapsuleCollider2D = GetComponent<CapsuleCollider2D>();
     }
 
     void Update()
