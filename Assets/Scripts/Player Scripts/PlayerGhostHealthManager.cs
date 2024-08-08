@@ -6,8 +6,8 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
 {
     // Start is called before the first frame update
    
-    public float maxHealth { get; set; }
-    public float currentHealth { get; set; }
+    [field:SerializeField] public float maxHealth { get; set; }
+    [field:SerializeField] public float currentHealth { get; set; }
 
     [Header("Collision Detection")]
     [SerializeField] private LayerMask obstacleLayer;
@@ -27,7 +27,7 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damageAmount)
     {
-        
+        currentHealth -= damageAmount;
 
     }
 
