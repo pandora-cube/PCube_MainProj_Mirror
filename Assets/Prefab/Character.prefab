@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4280175023308433543}
   m_Layer: 0
   m_Name: Ghost Slope Check Raycast
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 8200236091063017191}
   m_Layer: 0
   m_Name: Ghost Ground Check Collider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 2006199944466533821}
   m_Layer: 0
   m_Name: Attack Transform
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1183,7 +1183,7 @@ GameObject:
   - component: {fileID: 1753921799878725986}
   m_Layer: 0
   m_Name: player camera transform
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1793,7 +1793,7 @@ GameObject:
   - component: {fileID: 599081873162328762}
   m_Layer: 0
   m_Name: Ghost
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
