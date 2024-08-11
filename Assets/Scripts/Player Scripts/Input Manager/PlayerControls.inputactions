@@ -93,7 +93,7 @@
                 {
                     "name": "",
                     "id": "d5f9632b-ead1-4cea-9049-3d804e7a501c",
-                    "path": "<XInputController>/buttonSouth",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
@@ -114,11 +114,33 @@
                 },
                 {
                     "name": "",
+                    "id": "508b1326-ea6d-4528-b92e-b6a38ea0fe5c",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Crawl",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "cdf95454-4f37-47e5-bfaa-07e4a8c2e297",
                     "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "PC",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ecc87154-590c-4525-89e6-6db1dd7b6473",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -136,6 +158,17 @@
                 },
                 {
                     "name": "",
+                    "id": "7ec04e4c-05a2-4d9c-b5b4-23566c1f73ce",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Teleport",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "02610a36-5dfd-4df8-9c39-7d792fa8ebfb",
                     "path": "<Keyboard>/z",
                     "interactions": "",
@@ -147,11 +180,33 @@
                 },
                 {
                     "name": "",
+                    "id": "104235a7-9b14-49da-93be-c2b5c656513e",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "b07e69fa-d905-482d-bf0b-dca94fe5ece2",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "PC",
+                    "action": "Smoke",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "33ff4704-b8f8-497f-ba70-06c3d903ffa2",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
                     "action": "Smoke",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -225,7 +280,7 @@
                 {
                     "name": "",
                     "id": "3e1e2971-d812-4a57-99c5-ecbcdde7c3d7",
-                    "path": "<XInputController>/buttonWest",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
