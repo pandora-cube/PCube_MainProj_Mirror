@@ -386,7 +386,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext ctx)
     {
-        if (!isGhost || attackTimeCounter < timeBetweenAttacks) return;
+        if (!isGhost) return;
 
         attackTimeCounter = 0f;
         inputReceived = true;
@@ -428,7 +428,7 @@ public class PlayerController : MonoBehaviour
     #region debugging functions
     private void OnDrawGizmos()
     {
-        //Gizmos.DrawWireSphere(attackTransform.position, attackRange);
+        Gizmos.DrawWireSphere(attackTransform.position, attackRange);
 
     }
     #endregion

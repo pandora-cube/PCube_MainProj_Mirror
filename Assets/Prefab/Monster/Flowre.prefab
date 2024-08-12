@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8360441023914462250}
   - component: {fileID: 6784851237198022212}
   - component: {fileID: 9116758770556256338}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Flowre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a0fb7024252cb64290fb2231c15860c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOpen: 0
 --- !u!114 &9116758770556256338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,4 +111,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d91356aa18f7744f9a0d801201fb683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <maxHealth>k__BackingField: 0
+  <maxHealth>k__BackingField: 5

@@ -50,6 +50,7 @@ public class Flowre : MonoBehaviour, IDamageable
         if (circleCast.collider != null && circleCast.collider.gameObject.CompareTag("Player")) 
         {
             isOpen = true;
+            Debug.Log("TOUCH");
             if (isAttacking) return;
             StartCoroutine(AttackPlayer(circleCast.collider));
         }
@@ -68,8 +69,9 @@ public class Flowre : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damageAmount)
     {
-        //TO-DO: ADD CLOSING ANIM
+        //TO-DO: ADD CLOSING ANIM AND DMG TAKE LOGIC
         isOpen = false;
+
     }
 
     public void Die()

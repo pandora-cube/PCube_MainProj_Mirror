@@ -820,7 +820,7 @@ MonoBehaviour:
   attackRange: 1.5
   attackableLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 4096
   damageAmount: 1
   timeBetweenAttacks: 0.2
   canReceiveInput: 1
@@ -828,7 +828,7 @@ MonoBehaviour:
   UsingItem: 0
   itemLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
 --- !u!114 &5226621595257410135
 MonoBehaviour:
   m_ObjectHideFlags: 0
