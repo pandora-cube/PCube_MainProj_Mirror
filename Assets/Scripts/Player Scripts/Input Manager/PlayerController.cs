@@ -374,7 +374,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext ctx)
     {
-        if (!isGhost || attackTimeCounter < timeBetweenAttacks) return;
+        if (!isGhost) return;
 
         attackTimeCounter = 0f;
         inputReceived = true;

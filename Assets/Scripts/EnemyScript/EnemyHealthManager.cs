@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyHealthManager : MonoBehaviour, IDamageable
 {
     [field: SerializeField] public float maxHealth { get; set; }
-    public float currentHealth { get; set; }
+    [field: SerializeField] public float currentHealth { get; set; }
 
     private void Start()
     {
