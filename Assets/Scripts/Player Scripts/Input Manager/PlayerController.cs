@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,12 +31,14 @@ public class PlayerController : MonoBehaviour
     [Header("Jump Variables")]
     public float jumpForce = 5f;
     public bool isGrounded = false;
-    [SerializeField] protected LayerMask groundLayer;
+    public bool isHoldingDown = false;
+    [SerializeField] private LayerMask platformLayer;
+    [SerializeField] private LayerMask bridgeLayer;
     #endregion
 
     #region slope variables
     [Header("Slope Variables")]
-    [SerializeField] protected bool isOnSlope = false;
+    [SerializeField] private bool isOnSlope = false;
     [SerializeField] private PhysicsMaterial2D noFiction;
     [SerializeField] private PhysicsMaterial2D fullFiction;
     private Vector2 slopeNormalPrep;
@@ -53,7 +56,7 @@ public class PlayerController : MonoBehaviour
     [Header("Normal Variables")]
     [SerializeField] private GameObject normalGameObejct;
     [SerializeField] private Rigidbody2D normalRb;
-    [SerializeField] private PolygonCollider2D normalCollider;
+    [SerializeField] private CapsuleCollider2D normalCollider;
     [SerializeField] private SpriteRenderer normalSprite;
     [SerializeField] private Transform normalTransform;
     [SerializeField] private Transform normalGroundCheckCollider;
@@ -63,7 +66,7 @@ public class PlayerController : MonoBehaviour
     [Header("Ghost Variables")]
     [SerializeField] private GameObject ghostGameObejct;
     [SerializeField] protected Rigidbody2D ghostRb;
-    [SerializeField] protected PolygonCollider2D ghostCollider;
+    [SerializeField] protected CapsuleCollider2D ghostCollider;
     [SerializeField] protected SpriteRenderer ghostSprite;
     [SerializeField] private Transform ghostTransform;
     [SerializeField] private Transform ghostGroundCheckCollider;
@@ -185,20 +188,43 @@ public class PlayerController : MonoBehaviour
 
     void GroundCheck()
     {
-        if (isNormal) isGrounded = Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, groundLayer) || isOnSlope;
-        if (isGhost) isGrounded = Physics2D.OverlapCircle(ghostGroundCheckCollider.position, 0.3f, groundLayer) || isOnSlope;
+        if (isNormal) isGrounded = Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, platformLayer) || Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, bridgeLayer) || isOnSlope;
+        if (isGhost) isGrounded = Physics2D.OverlapCircle(ghostGroundCheckCollider.position, 0.3f, platformLayer) || Physics2D.OverlapCircle(ghostGroundCheckCollider.position, 0.3f, bridgeLayer) || isOnSlope;
     }
     public void OnJump(InputAction.CallbackContext ctx)
     {
         if (!isGrounded) return;
 
-        if (isNormal) normalRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-        else if (isGhost) ghostRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+        if (isHoldingDown) StartCoroutine(JumpDownThroughPlatform());
+        else
+        {
+            if (isNormal) normalRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            else if (isGhost) ghostRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+        }
+    }
 
-        Debug.Log("JUMP!");
+    IEnumerator JumpDownThroughPlatform()
+    {
+        Debug.Log("JUMPING DOWN!");
+        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Bridge"), true);
+
+        if (isNormal) normalRb.AddForce(Vector2.down * 10f, ForceMode2D.Impulse);
+        else if (isGhost) ghostRb.AddForce(Vector2.down * 10f, ForceMode2D.Impulse);
+
+        yield return new WaitForSeconds(0.5f);
+
+        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Bridge"), false);
+        Debug.Log("FINISH!");
+    }
+
+    public void OnHoldDown(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started) isHoldingDown = true;
+        else if (ctx.canceled) isHoldingDown = false;
     }
     #endregion
     
+    #region interaction functions
     public void OnInteract(InputAction.CallbackContext ctx)
     {
         if (isNormal) 
@@ -255,7 +281,7 @@ public class PlayerController : MonoBehaviour
 
         normalGameObejct.SetActive(isNormal); ghostGameObejct.SetActive(isGhost);
     }
-
+    #endregion 
     #region slope check functions
     private void SlopeCheck(Vector2 checkPos)
     {
@@ -265,8 +291,8 @@ public class PlayerController : MonoBehaviour
 
     private void SlopeCheckHorizontal(Vector2 checkPos)
     {
-        RaycastHit2D slopeHitFront = Physics2D.Raycast(checkPos, transform.right, slopeCheckDistanceHori, groundLayer);
-        RaycastHit2D slopeHitBack = Physics2D.Raycast(checkPos, -transform.right, slopeCheckDistanceHori, groundLayer);
+        RaycastHit2D slopeHitFront = Physics2D.Raycast(checkPos, transform.right, slopeCheckDistanceHori, platformLayer);
+        RaycastHit2D slopeHitBack = Physics2D.Raycast(checkPos, -transform.right, slopeCheckDistanceHori, platformLayer);
 
         if (slopeHitFront)
         {
@@ -287,7 +313,7 @@ public class PlayerController : MonoBehaviour
 
     private void SlopeCheckVertical(Vector2 checkPos)
     {
-        RaycastHit2D hit = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckDistanceVert, groundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckDistanceVert, platformLayer);
         
         if (hit)
         {

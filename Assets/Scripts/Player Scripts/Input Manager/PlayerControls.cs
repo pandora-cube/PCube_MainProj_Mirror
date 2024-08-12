@@ -98,6 +98,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Move Down"",
+                    ""type"": ""Button"",
+                    ""id"": ""d9cb4397-1538-4077-9b57-303242af94d4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -320,6 +329,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b8995c7a-2333-49eb-b6d6-e6595aaf5d0e"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Move Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -358,6 +378,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_Teleport = m_PlayerActions.FindAction("Teleport", throwIfNotFound: true);
         m_PlayerActions_Dash = m_PlayerActions.FindAction("Dash", throwIfNotFound: true);
         m_PlayerActions_Smoke = m_PlayerActions.FindAction("Smoke", throwIfNotFound: true);
+        m_PlayerActions_MoveDown = m_PlayerActions.FindAction("Move Down", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -427,6 +448,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Teleport;
     private readonly InputAction m_PlayerActions_Dash;
     private readonly InputAction m_PlayerActions_Smoke;
+    private readonly InputAction m_PlayerActions_MoveDown;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -439,6 +461,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Teleport => m_Wrapper.m_PlayerActions_Teleport;
         public InputAction @Dash => m_Wrapper.m_PlayerActions_Dash;
         public InputAction @Smoke => m_Wrapper.m_PlayerActions_Smoke;
+        public InputAction @MoveDown => m_Wrapper.m_PlayerActions_MoveDown;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -472,6 +495,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Smoke.started += instance.OnSmoke;
             @Smoke.performed += instance.OnSmoke;
             @Smoke.canceled += instance.OnSmoke;
+            @MoveDown.started += instance.OnMoveDown;
+            @MoveDown.performed += instance.OnMoveDown;
+            @MoveDown.canceled += instance.OnMoveDown;
         }
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
@@ -500,6 +526,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Smoke.started -= instance.OnSmoke;
             @Smoke.performed -= instance.OnSmoke;
             @Smoke.canceled -= instance.OnSmoke;
+            @MoveDown.started -= instance.OnMoveDown;
+            @MoveDown.performed -= instance.OnMoveDown;
+            @MoveDown.canceled -= instance.OnMoveDown;
         }
 
         public void RemoveCallbacks(IPlayerActionsActions instance)
@@ -545,5 +574,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnTeleport(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnSmoke(InputAction.CallbackContext context);
+        void OnMoveDown(InputAction.CallbackContext context);
     }
 }

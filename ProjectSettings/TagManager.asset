@@ -10,7 +10,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Platform
@@ -18,7 +18,7 @@ TagManager:
   - UsingItem
   - Obstacle
   - Post Processing
-  - 
+  - Bridge
   - 
   - 
   - 
