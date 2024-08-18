@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
@@ -39,6 +40,18 @@ public class Inventory : MonoBehaviour
         else Debug.Log("슬롯이 가득 참");
     }
 
+    public bool FindItem(string itemName)
+    {
+        //아이템 name으로 찾은 후, 사용
+        for (int i = 0; i<items.Count; i++) 
+            if (slots[i].item.itemName == itemName)
+            {
+                UseItem(slots[i].item);
+                return true;
+            }
+        return false;
+    }
+
     public void UseItem(Item _item)
     {
         if (items.Contains(_item))
@@ -48,7 +61,10 @@ public class Inventory : MonoBehaviour
             FreshSlot();
 
             // 아이템 사용 로직 추가
-            if (_item.name == "keyItem") Exit.isTrigger = true;
+            if (_item.name == "keyItem")
+            {
+                Exit.isTrigger = true; // 출구 오픈
+            }
         }
         else Debug.Log("해당 아이템이 없음");
     }

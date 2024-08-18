@@ -5,14 +5,26 @@ using UnityEngine;
 public class TreePassage : MonoBehaviour, IInteractable
 {
     [SerializeField] private Transform Player;
+    private ParentTreePassage parentTree;
+
+    private void Start()
+    {
+        Transform parentTransform = transform.parent;
+        if (parentTransform != null ) parentTree = parentTransform.GetComponent<ParentTreePassage>();
+        //Debug.Log(parentTree.passageState);
+    }
     public void Interact(Transform interactorTransform)
     {
-        Transform MoveToExit = FindingExitPosition();
-        //Debug.Log(MoveToExit.gameObject.name);
-        if (MoveToExit != null)
+        if (parentTree.passageState == ParentTreePassage.Available.closed)
         {
-            Player.transform.position = MoveToExit.position;
-            //Debug.Log("Player Transform : " + Player.transform.position + " Exit Transform " + MoveToExit.transform.position);
+            if (parentTree.invetory.FindItem("keyItem")) parentTree.passageState = ParentTreePassage.Available.open;
+        }
+
+        if (parentTree.passageState == ParentTreePassage.Available.open ) // 통로 나무 상태가 open
+        {
+            Transform MoveToExit = FindingExitPosition();
+            
+            if (MoveToExit != null) Player.transform.position = MoveToExit.position; // 반대편 출구로 이동
         }
     }
 

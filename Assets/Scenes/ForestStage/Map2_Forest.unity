@@ -720,6 +720,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.6586082
       objectReference: {fileID: 0}
+    - target: {fileID: 4690814530239085745, guid: 0ba9a3e32659e054caa3b46385bdfb6f, type: 3}
+      propertyPath: invetory
+      value: 
+      objectReference: {fileID: 384328038}
     - target: {fileID: 5769874799862162669, guid: 0ba9a3e32659e054caa3b46385bdfb6f, type: 3}
       propertyPath: Player
       value: 
@@ -1035,6 +1039,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6576305952858119877, guid: ec4798897c0826344ad3f4fd79c5d504, type: 3}
   m_PrefabInstance: {fileID: 367042611}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &384328038 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6874673845299253127, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+  m_PrefabInstance: {fileID: 549941975}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b3542a8d2ce2e4d844c89cb1464795, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &474341342
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5121,6 +5136,14 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 549941976}
+    - target: {fileID: 4690814530239085745, guid: 0ba9a3e32659e054caa3b46385bdfb6f, type: 3}
+      propertyPath: invetory
+      value: 
+      objectReference: {fileID: 384328038}
+    - target: {fileID: 4690814530239085745, guid: 0ba9a3e32659e054caa3b46385bdfb6f, type: 3}
+      propertyPath: passageState
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5769874799862162669, guid: 0ba9a3e32659e054caa3b46385bdfb6f, type: 3}
       propertyPath: Player
       value: 
