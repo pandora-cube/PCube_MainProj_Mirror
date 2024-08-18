@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: ef5af04479535e643973163fc8de6cc3
+  - enabled: 1
+    path: Assets/Scenes/ForestStage/Map1_Forest.unity
+    guid: 3a2b622bdbdcd89448376d0964f7df29
+  - enabled: 1
+    path: Assets/Scenes/ForestStage/Map2_Forest.unity
+    guid: 929c6b60fe46e2943938392a7507eb9f
   m_configObjects: {}
