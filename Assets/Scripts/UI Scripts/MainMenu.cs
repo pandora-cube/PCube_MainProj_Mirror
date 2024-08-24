@@ -7,57 +7,46 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private CinemachineVirtualCamera virtualCamera;
-    [SerializeField] private Transform zoomTarget; // The position to zoom into
-    [SerializeField] private float targetFov = 30f; // Desired FOV when zoomed in
-    [SerializeField] private float zoomSpeed = 2f; // Speed of the zoom
-    [SerializeField] private Button zoomButton; // UI Button to trigger the zoom
-
-    private float originalFov;
-    private Transform originalFollow;
+   public RectTransform targetUIElement;
+    public float targetScale = 1.5f; // Scale factor when zoomed in
+    public float zoomSpeed = 5f; // Speed of the zoom
+    private Vector3 originalScale;
     private bool isZoomingIn = false;
 
     void Start()
     {
-        // Store the original FOV and follow target
-        originalFov = virtualCamera.m_Lens.FieldOfView;
-        originalFollow = virtualCamera.Follow;
+        if (targetUIElement == null)
+            Debug.LogError("Target UI Element is not assigned!");
 
-        // Add listener to the button
-        zoomButton.onClick.AddListener(OnZoomButtonClicked);
+        originalScale = targetUIElement.localScale;
     }
 
     void Update()
     {
         if (isZoomingIn)
         {
-            // Gradually adjust the FOV
-            virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(virtualCamera.m_Lens.FieldOfView, targetFov, Time.deltaTime * zoomSpeed);
-
-            // Gradually adjust the follow target position if required
-            virtualCamera.Follow.position = Vector3.Lerp(virtualCamera.Follow.position, zoomTarget.position, Time.deltaTime * zoomSpeed);
-
-            // Stop zooming once close enough to the target FOV
-            if (Mathf.Abs(virtualCamera.m_Lens.FieldOfView - targetFov) < 0.1f)
+            targetUIElement.localScale = Vector3.Lerp(targetUIElement.localScale, originalScale * targetScale, Time.deltaTime * zoomSpeed);
+            if (Vector3.Distance(targetUIElement.localScale, originalScale * targetScale) < 0.01f)
             {
-                virtualCamera.m_Lens.FieldOfView = targetFov;
+                targetUIElement.localScale = originalScale * targetScale;
                 isZoomingIn = false;
+                MoveToNextScene();
             }
         }
     }
 
-    void OnZoomButtonClicked()
+    public void OnZoomButtonClicked()
     {
-        // Start the zooming process
-        virtualCamera.Follow = zoomTarget;
         isZoomingIn = true;
     }
 
     public void ResetZoom()
     {
-        // Reset to the original FOV and follow target
-        virtualCamera.m_Lens.FieldOfView = originalFov;
-        virtualCamera.Follow = originalFollow;
-        isZoomingIn = false;
+        targetUIElement.localScale = originalScale;
+    }
+
+    private void MoveToNextScene()
+    {
+        
     }
 }
