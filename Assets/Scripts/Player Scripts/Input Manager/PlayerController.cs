@@ -50,9 +50,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float slopeCheckDistanceHori;
     #endregion
 
-    [Header("Common Variables")]
-    [SerializeField] private GameObject cameraTransform;
-
     [Header("Normal Variables")]
     [SerializeField] private GameObject normalGameObejct;
     [SerializeField] private Rigidbody2D normalRb;
@@ -136,7 +133,6 @@ public class PlayerController : MonoBehaviour
         else if (isCrawling) rb.velocity = new Vector2(direction * (speed - crawlSpeedDecrease) * Time.deltaTime, rb.velocity.y); // craw walk
 
         FlipSpriteBasedOnDirection(currentTransform);
-        UpdateOtherTransformObjectPosition();
         UpdateRbFrictionOnSlope(rb);
         
         ItemAvabileAreaCheck(ghostGroundCheckCollider.position);
@@ -157,23 +153,6 @@ public class PlayerController : MonoBehaviour
              if (isNormal) newScale.x = -1;
             else newScale.x = -0.6f;
             transform.localScale = newScale;
-        }
-    }
-    /// <summary>
-    /// move position of inactive object and parent object
-    /// </summary>
-    void UpdateOtherTransformObjectPosition()
-    {
-        if (isNormal && !isGhost)
-        {
-            ghostTransform.position = new Vector3(normalTransform.position.x, normalTransform.position.y + 5f, 0f);
-            cameraTransform.transform.position = normalTransform.position; 
-        }
-
-        else if (isGhost && !isNormal)
-        {
-            normalTransform.position = ghostTransform.position;
-            cameraTransform.transform.position = ghostTransform.position; 
         }
     }
     void UpdateRbFrictionOnSlope(Rigidbody2D rb)
