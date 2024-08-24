@@ -47,6 +47,6 @@ public class MainMenu : MonoBehaviour
 
     private void MoveToNextScene()
     {
-        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
