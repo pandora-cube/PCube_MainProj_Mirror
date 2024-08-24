@@ -767,7 +767,7 @@ Transform:
   - {fileID: 488549447599903303}
   - {fileID: 3472490331342985577}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2652426612113270752
 MonoBehaviour:
@@ -785,14 +785,19 @@ MonoBehaviour:
   trailRenderer: {fileID: 0}
   jumpForce: 5
   isGrounded: 0
-  groundLayer:
+  isHoldingDown: 0
+  platformLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
+  bridgeLayer:
+    serializedVersion: 2
+    m_Bits: 0
   isOnSlope: 0
   noFiction: {fileID: 6200000, guid: d426f8273b3a77149a657a2db620145d, type: 2}
   fullFiction: {fileID: 6200000, guid: 3ecda9b66513d7643831be5058244ac1, type: 2}
   slopeCheckDistanceVert: 1.5
   slopeCheckDistanceHori: 1.5
+  cameraTransform: {fileID: 0}
   normalGameObejct: {fileID: 6083986484843730980}
   normalRb: {fileID: 6031092596345988927}
   normalCollider: {fileID: 0}
@@ -1181,6 +1186,7 @@ GameObject:
   - component: {fileID: 1455752272669314600}
   - component: {fileID: 6031092596345988927}
   - component: {fileID: 3367467547188870502}
+  - component: {fileID: 4195761594226088202}
   m_Layer: 3
   m_Name: Normal
   m_TagString: Player
@@ -1300,6 +1306,41 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   gameOverPanel: {fileID: 0}
+--- !u!70 &4195761594226088202
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6083986484843730980}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 6.3160844, y: 15.509999}
+  m_Direction: 0
 --- !u!1 &6636038154849341944
 GameObject:
   m_ObjectHideFlags: 0
@@ -1494,6 +1535,7 @@ GameObject:
   - component: {fileID: 488549447599903303}
   - component: {fileID: 2592251769063754241}
   - component: {fileID: 4199188633483214984}
+  - component: {fileID: 2062450210932085133}
   m_Layer: 3
   m_Name: Ghost
   m_TagString: Untagged
@@ -1598,6 +1640,41 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!70 &2062450210932085133
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6787739559307351797}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.8397441, y: 0}
+  m_Size: {x: 11.280513, y: 19.93}
+  m_Direction: 0
 --- !u!1 &6869943870109066890
 GameObject:
   m_ObjectHideFlags: 0
