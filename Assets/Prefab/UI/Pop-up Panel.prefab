@@ -268,6 +268,7 @@ GameObject:
   - component: {fileID: 7862629361699230032}
   - component: {fileID: 3125376908674270808}
   - component: {fileID: 8399036685562665870}
+  - component: {fileID: 7399054851705907923}
   m_Layer: 5
   m_Name: Pop-up Panel
   m_TagString: Untagged
@@ -292,7 +293,7 @@ RectTransform:
   - {fileID: 8216848713463975352}
   - {fileID: 1644550100829513296}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -337,6 +338,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7399054851705907923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2653596664701163399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced6b9d2fabcaba4d8dd60f6c71bf8c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainTextUI: {fileID: 8070479293660345715}
+  subTextUI: {fileID: 213781130810497768}
+  mainText: Continue from last check point?
+  subText: If you want to restart, reset your data.
 --- !u!1 &6976510176961260578
 GameObject:
   m_ObjectHideFlags: 0
