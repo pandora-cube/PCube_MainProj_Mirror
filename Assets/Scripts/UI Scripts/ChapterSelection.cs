@@ -27,7 +27,7 @@ public class ChapterSelection : MonoBehaviour
 
     public void ShowNextImage()
     {
-        if (index > numberOfImages - 1)
+        if (index == numberOfImages - 1)
         {
             SceneManager.LoadScene("MainMenu");
         }  
