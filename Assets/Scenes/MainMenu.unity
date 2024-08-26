@@ -3380,17 +3380,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 521581179}
   m_CullTransparentMesh: 1
---- !u!114 &541377346 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8070479293660345715, guid: b67d2c8d721c53d4481247708955014e, type: 3}
-  m_PrefabInstance: {fileID: 6332545078133532432}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &565397808
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8531,22 +8520,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7862629361699230032, guid: b67d2c8d721c53d4481247708955014e, type: 3}
   m_PrefabInstance: {fileID: 6332545078133532432}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1147732403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1147732399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ced6b9d2fabcaba4d8dd60f6c71bf8c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainTextUI: {fileID: 541377346}
-  subTextUI: {fileID: 1315627777}
-  mainText: Continue from last check point?
-  subText: If you want to restart, reset your data.
 --- !u!1001 &1151257669
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9279,17 +9252,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1315627777 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 213781130810497768, guid: b67d2c8d721c53d4481247708955014e, type: 3}
-  m_PrefabInstance: {fileID: 6332545078133532432}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1321852777
 GameObject:
   m_ObjectHideFlags: 0
@@ -14779,11 +14741,9 @@ PrefabInstance:
       propertyPath: m_text
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4295007527753373863, guid: b67d2c8d721c53d4481247708955014e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2653596664701163399, guid: b67d2c8d721c53d4481247708955014e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1147732403}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b67d2c8d721c53d4481247708955014e, type: 3}
