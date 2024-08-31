@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Callbacks;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -10,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 0;
 
 
-    #region crawling variables
+    #region CRAWLING VARIABLES
     protected float crawlSpeedDecrease = 300f;
     protected Vector2 standColliderSize = new Vector2(1.0f, 1.0f);
     protected Vector2 crawlBoxcolliderSize = new Vector2(1f, 0.3f);
@@ -50,6 +51,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float slopeCheckDistanceHori;
     #endregion
 
+    #region NORMAL VARIABLES
     [Header("Normal Variables")]
     [SerializeField] private GameObject normalGameObejct;
     [SerializeField] private Rigidbody2D normalRb;
@@ -69,11 +71,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform ghostGroundCheckCollider;
     [SerializeField] private float ghostInteractRange = 1f;
 
-
+#endregion
     public bool isNormal = true;
     public bool isGhost = false;
 
-    #region attack variables
+    #region ATTACK VARIABLES
     [Header("Attack Variables")]
     [SerializeField] private Transform attackTransform;
     [SerializeField] private float attackRange = 1.5f;
@@ -87,11 +89,29 @@ public class PlayerController : MonoBehaviour
     public bool inputReceived;
     #endregion
 
-    #region Item variables
+    #region ITEM VARIABLES
     public bool UsingItem = false;
     [SerializeField] protected LayerMask itemLayer;
     #endregion
 
+    #region ANIMATION VARIABLES
+    private string currentState;
+
+    [SerializeField] private Animator normalAnimator;
+    [SerializeField] private Animator ghostAnimator;
+
+    enum NormalAnimationStates
+    {
+        normalIdle,
+        normalWalk,
+    }
+    enum GhostAnimationStates
+    {
+        ghostIdle,
+        ghostWalk,
+        ghostAttack
+    }
+    #endregion
 
     private void Update()
     {
@@ -106,26 +126,37 @@ public class PlayerController : MonoBehaviour
         if (isNormal && !isGhost)
         {
             SlopeCheck(normalGroundCheckCollider.position);
-            MovePlayer(normalRb, normalTransform, ghostTransform, normalGroundCheckCollider.position);
+            MovePlayer(normalRb, normalTransform);
         }
         if (isGhost && !isNormal) 
         {
             SlopeCheck(ghostGroundCheckCollider.position);
-            MovePlayer(ghostRb, ghostTransform, normalTransform, ghostGroundCheckCollider.position);
+            MovePlayer(ghostRb, ghostTransform);
         }
     }
 
     #region common functions (normal && ghost)
 
-    #region movement functions
+    #region MOVEMENT
     public void OnMove(InputAction.CallbackContext ctx)
     {
         if (isDashing) return;
 
         direction = ctx.ReadValue<float>();
+
+        if (isNormal) 
+        {
+            if (Mathf.Approximately(direction, 0f)) ChangeAnimationState(NormalAnimationStates.normalIdle);
+            else ChangeAnimationState(NormalAnimationStates.normalWalk);
+        }
+        else if (isGhost)
+        {
+            if (Mathf.Approximately(direction, 0f)) ChangeAnimationState(GhostAnimationStates.ghostIdle);
+            else ChangeAnimationState(GhostAnimationStates.ghostWalk);
+        }
     }
 
-    private void MovePlayer(Rigidbody2D rb, Transform currentTransform, Transform otherTransform, Vector2 groundCheckPosition)
+    private void MovePlayer(Rigidbody2D rb, Transform currentTransform)
     {
         if (!isCrawling && !isOnSlope) rb.velocity = new Vector2(direction * speed * Time.deltaTime, rb.velocity.y); // normal walk
         else if (isOnSlope && !isCrawling) rb.velocity = new Vector2(-direction * speed * slopeNormalPrep.x * Time.deltaTime, speed * slopeNormalPrep.y * -direction * Time.deltaTime); // slope walk
@@ -143,15 +174,13 @@ public class PlayerController : MonoBehaviour
         if (direction > 0f)
         {
             Vector3 newScale = transform.localScale;
-            if (isNormal) newScale.x = 1;
-            else newScale.x = 0.6f;
+            newScale.x = 1;
             transform.localScale = newScale;
         }
         else if (direction < 0f)
         {
             Vector3 newScale = transform.localScale;
-             if (isNormal) newScale.x = -1;
-            else newScale.x = -0.6f;
+            newScale.x = -1;
             transform.localScale = newScale;
         }
     }
@@ -163,7 +192,7 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
-    #region jump functions
+    #region JUMP
 
     void GroundCheck()
     {
@@ -184,7 +213,6 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator JumpDownThroughPlatform()
     {
-        Debug.Log("JUMPING DOWN!");
         Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Bridge"), true);
 
         if (isNormal) normalRb.AddForce(Vector2.down * 10f, ForceMode2D.Impulse);
@@ -193,7 +221,6 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Bridge"), false);
-        Debug.Log("FINISH!");
     }
 
     public void OnHoldDown(InputAction.CallbackContext ctx)
@@ -203,7 +230,7 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
     
-    #region interaction functions
+    #region INTERACTION
     public void OnInteract(InputAction.CallbackContext ctx)
     {
         if (isNormal) 
@@ -404,11 +431,36 @@ public class PlayerController : MonoBehaviour
         else UsingItem = false;
     }
 
+    #region ANIMATION
+    private void ChangeAnimationState (GhostAnimationStates animationStates)
+    {
+        string newState = EnumToString(animationStates);
+        if (currentState == newState) return;
+
+        ghostAnimator.Play(newState);
+    }
+    string EnumToString (GhostAnimationStates animationStates)
+    {
+        return animationStates.ToString();
+    }
+
+    private void ChangeAnimationState(NormalAnimationStates animationStates)
+    {
+        string newState = EnumToString(animationStates);
+        if (currentState == newState) return;
+
+        normalAnimator.Play(newState);
+    }
+    string EnumToString(NormalAnimationStates animationStates)
+    {
+        return animationStates.ToString();
+    }
+
+    #endregion
     #region debugging functions
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(attackTransform.position, attackRange);
-
     }
     #endregion
 }

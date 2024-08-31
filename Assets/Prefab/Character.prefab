@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1363549605767737251}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.8, z: 0}
+  m_LocalPosition: {x: 0, y: -7.8, z: 0}
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -781,33 +781,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 024d7d8440eb43540a330e89c6324cd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
+  speed: 500
   trailRenderer: {fileID: 0}
   jumpForce: 5
   isGrounded: 0
   isHoldingDown: 0
   platformLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   bridgeLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   isOnSlope: 0
   noFiction: {fileID: 6200000, guid: d426f8273b3a77149a657a2db620145d, type: 2}
   fullFiction: {fileID: 6200000, guid: 3ecda9b66513d7643831be5058244ac1, type: 2}
   slopeCheckDistanceVert: 1.5
   slopeCheckDistanceHori: 1.5
-  cameraTransform: {fileID: 0}
   normalGameObejct: {fileID: 6083986484843730980}
   normalRb: {fileID: 6031092596345988927}
-  normalCollider: {fileID: 0}
+  normalCollider: {fileID: 4195761594226088202}
   normalSprite: {fileID: 1455752272669314600}
   normalTransform: {fileID: 869793278093406168}
   normalGroundCheckCollider: {fileID: 7946822656432411550}
   normalInteractRange: 0.5
   ghostGameObejct: {fileID: 6787739559307351797}
   ghostRb: {fileID: 4199188633483214984}
-  ghostCollider: {fileID: 0}
+  ghostCollider: {fileID: 2062450210932085133}
   ghostSprite: {fileID: 2592251769063754241}
   ghostTransform: {fileID: 488549447599903303}
   ghostGroundCheckCollider: {fileID: 8200236091063017191}
@@ -827,6 +826,8 @@ MonoBehaviour:
   itemLayer:
     serializedVersion: 2
     m_Bits: 0
+  normalAnimator: {fileID: 6812376800535443980}
+  ghostAnimator: {fileID: 6940658161782897316}
 --- !u!96 &547016282715293714
 TrailRenderer:
   serializedVersion: 3
@@ -1187,6 +1188,7 @@ GameObject:
   - component: {fileID: 6031092596345988927}
   - component: {fileID: 3367467547188870502}
   - component: {fileID: 4195761594226088202}
+  - component: {fileID: 6812376800535443980}
   m_Layer: 3
   m_Name: Normal
   m_TagString: Player
@@ -1341,6 +1343,27 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 6.3160844, y: 15.509999}
   m_Direction: 0
+--- !u!95 &6812376800535443980
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6083986484843730980}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d2df0d8b1a8d2924bad82ba2dd60fc5f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6636038154849341944
 GameObject:
   m_ObjectHideFlags: 0
@@ -1536,6 +1559,7 @@ GameObject:
   - component: {fileID: 2592251769063754241}
   - component: {fileID: 4199188633483214984}
   - component: {fileID: 2062450210932085133}
+  - component: {fileID: 6940658161782897316}
   m_Layer: 3
   m_Name: Ghost
   m_TagString: Untagged
@@ -1602,7 +1626,7 @@ SpriteRenderer:
   m_SortingLayerID: -476203971
   m_SortingLayer: 6
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 0adc1366a8b3d554496befbf018b0388, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 347c6f405a3e1ae41bc6cf9cabea2ae7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1675,6 +1699,27 @@ CapsuleCollider2D:
   m_Offset: {x: -1.8397441, y: 0}
   m_Size: {x: 11.280513, y: 19.93}
   m_Direction: 0
+--- !u!95 &6940658161782897316
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6787739559307351797}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 94cd4e9566bcf7a44b6f6d070a1559ac, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6869943870109066890
 GameObject:
   m_ObjectHideFlags: 0
