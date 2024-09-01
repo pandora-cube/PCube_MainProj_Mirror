@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
-    #region jump variables
+    #region JUMP VARIABLES
     [Header("Jump Variables")]
     public float jumpForce = 5f;
     public bool isGrounded = false;
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask bridgeLayer;
     #endregion
 
-    #region slope variables
+    #region SLOPE VARIABLES
     [Header("Slope Variables")]
     [SerializeField] private bool isOnSlope = false;
     [SerializeField] private PhysicsMaterial2D noFiction;
@@ -81,12 +81,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float attackRange = 1.5f;
     [SerializeField] private LayerMask attackableLayer;
     [SerializeField] private float damageAmount = 1f;
-    [SerializeField] private float timeBetweenAttacks = 0.2f;
-    private float attackTimeCounter;
-    private RaycastHit2D[] hits;
 
-    public bool canReceiveInput;
-    public bool inputReceived;
+    [SerializeField] private float comboResetTime = 1f; // Time allowed between combo attacks
+    private float lastAttackTime;
+    private int comboAttackNumber = 0;
+
+    private RaycastHit2D[] hits;
     #endregion
 
     #region ITEM VARIABLES
@@ -109,7 +109,9 @@ public class PlayerController : MonoBehaviour
     {
         ghostIdle,
         ghostWalk,
-        ghostAttack
+        ghostAttack1,
+        ghostAttack2,
+        ghostAttack3
     }
     #endregion
 
@@ -392,32 +394,37 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext ctx)
     {
-        if (!isGhost) return;
+        if (!isGhost) return; 
 
-        attackTimeCounter = 0f;
-        inputReceived = true;
-        canReceiveInput = false;
+        if (Time.time - lastAttackTime > comboResetTime) comboAttackNumber = 0;
 
-        hits = Physics2D.CircleCastAll(attackTransform.position, attackRange, transform.right, 0f, attackableLayer);
+        lastAttackTime = Time.time;
 
-        Debug.Log(hits.Length);
-        for (int i = 0; i < hits.Length; ++i)
+        comboAttackNumber = Mathf.Clamp(comboAttackNumber, 0, 3);
+        switch (comboAttackNumber)
         {
-            IDamageable iDamageable = hits[i].collider.gameObject.GetComponent<IDamageable>();
-
-            if (iDamageable != null)
-            {
-                iDamageable.TakeDamage(damageAmount);
-                Debug.Log("DAMAGE!!");
-            }
+            case 0: ChangeAnimationState(GhostAnimationStates.ghostAttack1); break;
+            case 1: ChangeAnimationState(GhostAnimationStates.ghostAttack2); break;
+            case 2: ChangeAnimationState(GhostAnimationStates.ghostAttack2); break;
         }
+
+        comboAttackNumber++;
+        comboAttackNumber %= 3;
+
+        // hits = Physics2D.CircleCastAll(attackTransform.position, attackRange, transform.right, 0f, attackableLayer);
+
+        // for (int i = 0; i < hits.Length; ++i)
+        // {
+        //     IDamageable iDamageable = hits[i].collider.gameObject.GetComponent<IDamageable>();
+
+        //     if (iDamageable != null)
+        //     {
+        //         iDamageable.TakeDamage(damageAmount);
+        //         Debug.Log("DAMAGE!!");
+        //     }
+        // }
     }
 
-    public void InputManager()
-    {
-        if (!canReceiveInput) canReceiveInput = true;
-        else canReceiveInput = false;
-    }
     #endregion
 
     void ItemAvabileAreaCheck(Vector2 checkPos)
