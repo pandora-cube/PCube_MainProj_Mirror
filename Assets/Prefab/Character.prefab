@@ -819,9 +819,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   damageAmount: 1
-  timeBetweenAttacks: 0.2
-  canReceiveInput: 1
-  inputReceived: 0
+  comboResetTime: 1
+  lastAttackTime: 0
+  comboAttackNumber: 0
   UsingItem: 0
   itemLayer:
     serializedVersion: 2
@@ -1626,7 +1626,7 @@ SpriteRenderer:
   m_SortingLayerID: -476203971
   m_SortingLayer: 6
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 347c6f405a3e1ae41bc6cf9cabea2ae7, type: 3}
+  m_Sprite: {fileID: 1277106792, guid: 995c5ecee0d0c8b419b6ec2fb0a37e6f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1696,8 +1696,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.8397441, y: 0}
-  m_Size: {x: 11.280513, y: 19.93}
+  m_Offset: {x: -4.61, y: -6.33}
+  m_Size: {x: 9.47, y: 23.257965}
   m_Direction: 0
 --- !u!95 &6940658161782897316
 Animator:

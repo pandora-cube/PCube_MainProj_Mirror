@@ -83,8 +83,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float damageAmount = 1f;
 
     [SerializeField] private float comboResetTime = 1f; // Time allowed between combo attacks
-    private float lastAttackTime;
-    private int comboAttackNumber = 0;
+    [SerializeField] private float lastAttackTime;
+    [SerializeField] private int comboAttackNumber = 0;
 
     private RaycastHit2D[] hits;
     #endregion
@@ -399,13 +399,14 @@ public class PlayerController : MonoBehaviour
         if (Time.time - lastAttackTime > comboResetTime) comboAttackNumber = 0;
 
         lastAttackTime = Time.time;
-
+        
         comboAttackNumber = Mathf.Clamp(comboAttackNumber, 0, 3);
         switch (comboAttackNumber)
         {
-            case 0: ChangeAnimationState(GhostAnimationStates.ghostAttack1); break;
-            case 1: ChangeAnimationState(GhostAnimationStates.ghostAttack2); break;
+            case 0: ChangeAnimationState(GhostAnimationStates.ghostIdle); break;
+            case 1: ChangeAnimationState(GhostAnimationStates.ghostAttack1); break;
             case 2: ChangeAnimationState(GhostAnimationStates.ghostAttack2); break;
+            case 3: ChangeAnimationState(GhostAnimationStates.ghostAttack2); break;
         }
 
         comboAttackNumber++;
