@@ -394,21 +394,32 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext ctx)
     {
-        if (!isGhost) return; 
+        if (!isGhost || !ctx.started) return; 
 
-        if (Time.time - lastAttackTime > comboResetTime) comboAttackNumber = 0;
+        if (Time.time - lastAttackTime > comboResetTime) 
+        {
+            Debug.Log("resetting combo attack number");
+            comboAttackNumber = 0;
+        }
 
         lastAttackTime = Time.time;
 
+
         comboAttackNumber++;
-        
-        comboAttackNumber = Mathf.Clamp(comboAttackNumber, 1, 3);
+        Debug.Log("Combo attack number increased");
+        if (comboAttackNumber > 3) 
+        {
+            comboAttackNumber = 1;
+            Debug.Log("Combo attack number reset because it went over 3");
+        }
+
         switch (comboAttackNumber)
         {
-            case 1: ChangeAnimationState(GhostAnimationStates.ghostAttack1); break;
-            case 2: ChangeAnimationState(GhostAnimationStates.ghostAttack2); break;
-            case 3: ChangeAnimationState(GhostAnimationStates.ghostAttack2); break;
+            case 1: ChangeAnimationState(GhostAnimationStates.ghostAttack1); Debug.Log("Attack1"); break;
+            case 2: ChangeAnimationState(GhostAnimationStates.ghostAttack2); Debug.Log("Attack2"); break;
+            case 3: ChangeAnimationState(GhostAnimationStates.ghostAttack2); Debug.Log("Attack3"); break;
         }
+
 
         // hits = Physics2D.CircleCastAll(attackTransform.position, attackRange, transform.right, 0f, attackableLayer);
 
@@ -444,6 +455,7 @@ public class PlayerController : MonoBehaviour
         if (currentState == newState) return;
 
         ghostAnimator.Play(newState);
+        Debug.Log("new state: " + newState);
     }
     string EnumToString (GhostAnimationStates animationStates)
     {
