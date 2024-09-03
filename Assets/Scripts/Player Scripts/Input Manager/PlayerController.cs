@@ -399,18 +399,16 @@ public class PlayerController : MonoBehaviour
         if (Time.time - lastAttackTime > comboResetTime) comboAttackNumber = 0;
 
         lastAttackTime = Time.time;
+
+        comboAttackNumber++;
         
-        comboAttackNumber = Mathf.Clamp(comboAttackNumber, 0, 3);
+        comboAttackNumber = Mathf.Clamp(comboAttackNumber, 1, 3);
         switch (comboAttackNumber)
         {
-            case 0: ChangeAnimationState(GhostAnimationStates.ghostIdle); break;
             case 1: ChangeAnimationState(GhostAnimationStates.ghostAttack1); break;
             case 2: ChangeAnimationState(GhostAnimationStates.ghostAttack2); break;
             case 3: ChangeAnimationState(GhostAnimationStates.ghostAttack2); break;
         }
-
-        comboAttackNumber++;
-        comboAttackNumber %= 3;
 
         // hits = Physics2D.CircleCastAll(attackTransform.position, attackRange, transform.right, 0f, attackableLayer);
 
@@ -442,7 +440,7 @@ public class PlayerController : MonoBehaviour
     #region ANIMATION
     private void ChangeAnimationState (GhostAnimationStates animationStates)
     {
-        string newState = EnumToString(animationStates);
+        string newState = animationStates.ToString(); //EnumToString(animationStates);
         if (currentState == newState) return;
 
         ghostAnimator.Play(newState);
