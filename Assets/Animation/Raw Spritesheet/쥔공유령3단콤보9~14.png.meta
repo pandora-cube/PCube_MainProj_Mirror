@@ -155,12 +155,12 @@ TextureImporter:
       name: "\uC954\uACF5\uC720\uB8393\uB2E8\uCF64\uBCF49~14_2"
       rect:
         serializedVersion: 2
-        x: 6421
+        x: 6408
         y: 365
         width: 4097
         height: 2581
       alignment: 9
-      pivot: {x: 0.2633694, y: 0.7556199}
+      pivot: {x: 0.3867078, y: 0.6603048}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -202,7 +202,7 @@ TextureImporter:
         width: 3313
         height: 1803
       alignment: 9
-      pivot: {x: 0.2703477, y: 0.9485383}
+      pivot: {x: 0.2603477, y: 0.9485383}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
