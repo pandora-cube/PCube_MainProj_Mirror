@@ -417,7 +417,7 @@ public class PlayerController : MonoBehaviour
         {
             case 1: ChangeAnimationState(GhostAnimationStates.ghostAttack1); Debug.Log("Attack1"); break;
             case 2: ChangeAnimationState(GhostAnimationStates.ghostAttack2); Debug.Log("Attack2"); break;
-            case 3: ChangeAnimationState(GhostAnimationStates.ghostAttack2); Debug.Log("Attack3"); break;
+            case 3: ChangeAnimationState(GhostAnimationStates.ghostAttack3); Debug.Log("Attack3"); break;
         }
 
 
