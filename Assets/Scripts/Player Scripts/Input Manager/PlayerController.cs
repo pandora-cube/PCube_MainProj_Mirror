@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform ghostGroundCheckCollider;
     [SerializeField] private float ghostInteractRange = 1f;
 
-#endregion
+    #endregion
     public bool isNormal = true;
     public bool isGhost = false;
 
@@ -99,6 +99,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Animator normalAnimator;
     [SerializeField] private Animator ghostAnimator;
+    AnimatorStateInfo currentAnimation;
+    [SerializeField] private bool canComboAttack = true;
 
     enum NormalAnimationStates
     {
@@ -111,13 +113,20 @@ public class PlayerController : MonoBehaviour
         ghostWalk,
         ghostAttack1,
         ghostAttack2,
-        ghostAttack3
+        ghostAttack3,
+        tempGhostAttack3
     }
     #endregion
 
     private void Update()
     {
         //attackTimeCounter += Time.deltaTime;
+        if (Time.time - lastAttackTime > comboResetTime)  
+        {
+            comboAttackNumber = 0;
+            ChangeAnimationState(GhostAnimationStates.ghostIdle);
+            canComboAttack = false;
+        }
     }
     private void FixedUpdate()
     {
@@ -396,31 +405,21 @@ public class PlayerController : MonoBehaviour
     {
         if (!isGhost || !ctx.started) return; 
 
-        if (Time.time - lastAttackTime > comboResetTime) 
-        {
-            Debug.Log("resetting combo attack number");
-            comboAttackNumber = 0;
-        }
-
         lastAttackTime = Time.time;
 
-
         comboAttackNumber++;
-        Debug.Log("Combo attack number increased");
-        if (comboAttackNumber > 3) 
-        {
-            comboAttackNumber = 1;
-            Debug.Log("Combo attack number reset because it went over 3");
-        }
 
-        switch (comboAttackNumber)
-        {
-            case 1: ChangeAnimationState(GhostAnimationStates.ghostAttack1); Debug.Log("Attack1"); break;
-            case 2: ChangeAnimationState(GhostAnimationStates.ghostAttack2); Debug.Log("Attack2"); break;
-            case 3: ChangeAnimationState(GhostAnimationStates.ghostAttack3); Debug.Log("Attack3"); break;
-        }
+        currentAnimation = ghostAnimator.GetCurrentAnimatorStateInfo(0);
 
+        
+        if (comboAttackNumber > 3)  comboAttackNumber = 1;
 
+        
+        if (CheckIfAttackAnimationHasEnded()) TriggerAttackAnimation();
+        else comboAttackNumber--;
+        Debug.Log("has animation finished?: " + CheckIfAttackAnimationHasEnded());
+        
+        
         // hits = Physics2D.CircleCastAll(attackTransform.position, attackRange, transform.right, 0f, attackableLayer);
 
         // for (int i = 0; i < hits.Length; ++i)
@@ -435,6 +434,22 @@ public class PlayerController : MonoBehaviour
         // }
     }
 
+    private bool CheckIfAttackAnimationHasEnded()
+    {
+        currentAnimation = ghostAnimator.GetCurrentAnimatorStateInfo(0);
+        if (!(currentAnimation.IsName("ghostAttack1") || currentAnimation.IsName("ghostAttack2") || currentAnimation.IsName("ghostAttack3") || currentAnimation.IsName("tempGhostAttack3"))) return true;
+        if (currentAnimation.normalizedTime >= 1.0f && !ghostAnimator.IsInTransition(0)) return true;
+        else return false;
+    }
+    private void TriggerAttackAnimation()
+    {
+        switch (comboAttackNumber)
+        {
+            case 1: ChangeAnimationState(GhostAnimationStates.ghostAttack1); break;
+            case 2: ChangeAnimationState(GhostAnimationStates.ghostAttack2); break;  
+            case 3: ChangeAnimationState(GhostAnimationStates.tempGhostAttack3); break;
+        }     
+    }
     #endregion
 
     void ItemAvabileAreaCheck(Vector2 checkPos)
@@ -451,31 +466,24 @@ public class PlayerController : MonoBehaviour
     #region ANIMATION
     private void ChangeAnimationState (GhostAnimationStates animationStates)
     {
-        string newState = animationStates.ToString(); //EnumToString(animationStates);
+        string newState = animationStates.ToString(); 
         if (currentState == newState) return;
-
+        
         ghostAnimator.Play(newState);
-        Debug.Log("new state: " + newState);
-    }
-    string EnumToString (GhostAnimationStates animationStates)
-    {
-        return animationStates.ToString();
+        currentState = newState;
     }
 
     private void ChangeAnimationState(NormalAnimationStates animationStates)
     {
-        string newState = EnumToString(animationStates);
+        string newState = animationStates.ToString(); 
         if (currentState == newState) return;
 
         normalAnimator.Play(newState);
-    }
-    string EnumToString(NormalAnimationStates animationStates)
-    {
-        return animationStates.ToString();
+        currentState = newState;
     }
 
     #endregion
-    #region debugging functions
+    #region DEBUGGING
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(attackTransform.position, attackRange);
