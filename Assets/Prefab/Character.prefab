@@ -767,7 +767,7 @@ Transform:
   - {fileID: 488549447599903303}
   - {fileID: 3472490331342985577}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2652426612113270752
 MonoBehaviour:
@@ -800,14 +800,14 @@ MonoBehaviour:
   cameraTransform: {fileID: 0}
   normalGameObejct: {fileID: 6083986484843730980}
   normalRb: {fileID: 6031092596345988927}
-  normalCollider: {fileID: 0}
+  normalCollider: {fileID: 4195761594226088202}
   normalSprite: {fileID: 1455752272669314600}
   normalTransform: {fileID: 869793278093406168}
   normalGroundCheckCollider: {fileID: 7946822656432411550}
   normalInteractRange: 0.5
   ghostGameObejct: {fileID: 6787739559307351797}
   ghostRb: {fileID: 4199188633483214984}
-  ghostCollider: {fileID: 0}
+  ghostCollider: {fileID: 2062450210932085133}
   ghostSprite: {fileID: 2592251769063754241}
   ghostTransform: {fileID: 488549447599903303}
   ghostGroundCheckCollider: {fileID: 8200236091063017191}

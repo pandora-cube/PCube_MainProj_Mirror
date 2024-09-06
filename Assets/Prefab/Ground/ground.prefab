@@ -140,8 +140,8 @@ MonoBehaviour:
   m_StretchUV: 0
   m_WorldSpaceUV: 0
   m_CornerAngleThreshold: 30
-  m_ColliderDetail: 16
-  m_ColliderOffset: 0.5
+  m_ColliderDetail: 8
+  m_ColliderOffset: 0.136
   m_UpdateCollider: 1
   m_EnableTangents: 0
   m_GeometryCached: 0

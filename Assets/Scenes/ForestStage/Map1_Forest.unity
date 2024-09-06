@@ -502,11 +502,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8915622956229151209, guid: 7f6083e15aeac0b47a174dac9db14584, type: 3}
   m_PrefabInstance: {fileID: 284472149}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &353545224 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8601725018240774797, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
-  m_PrefabInstance: {fileID: 620220722}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &356884378 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6083986484843730980, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
@@ -1017,6 +1012,10 @@ PrefabInstance:
       propertyPath: speed
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 2652426612113270752, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 676797369}
     - target: {fileID: 2710728152213815392, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1262,7 +1261,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 676797369}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.7346048, y: -0.1667099, z: -10}
+  m_LocalPosition: {x: -3.7346058, y: -0.1667099, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2748,7 +2747,7 @@ MonoBehaviour:
   m_Priority: 0
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 353545224}
+  m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 12.5
@@ -3197,11 +3196,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7667339668293539226, guid: 391e7f47ad2545540829dd76fc9827b2, type: 3}
   m_PrefabInstance: {fileID: 1895926478}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1902395876 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1753921799878725986, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
-  m_PrefabInstance: {fileID: 620220722}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1941725528
 GameObject:
   m_ObjectHideFlags: 0
@@ -3399,7 +3393,7 @@ MonoBehaviour:
   m_Priority: 1
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 1902395876}
+  m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 12.5
