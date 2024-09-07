@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
 
     #region ATTACK VARIABLES
     [Header("Attack Variables")]
-    [SerializeField] private Transform attackTransform;
+    [SerializeField] private BoxCollider2D attackCollider;
     [SerializeField] private float attackRange = 1.5f;
     [SerializeField] private LayerMask attackableLayer;
     [SerializeField] private float damageAmount = 1f;
@@ -85,8 +85,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float comboResetTime = 1f; // Time allowed between combo attacks
     [SerializeField] private float lastAttackTime;
     [SerializeField] private int comboAttackNumber = 0;
+    private bool isAttacking;
 
-    private RaycastHit2D[] hits;
+    private Collider2D[] hits;
     #endregion
 
     #region ITEM VARIABLES
@@ -114,7 +115,6 @@ public class PlayerController : MonoBehaviour
         ghostAttack1,
         ghostAttack2,
         ghostAttack3,
-        tempGhostAttack3
     }
     #endregion
 
@@ -405,6 +405,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isGhost || !ctx.started) return; 
 
+        isAttacking = true;
         lastAttackTime = Time.time;
 
         comboAttackNumber++;
@@ -414,30 +415,27 @@ public class PlayerController : MonoBehaviour
         
         if (comboAttackNumber > 3)  comboAttackNumber = 1;
 
-        
         if (CheckIfAttackAnimationHasEnded()) TriggerAttackAnimation();
         else comboAttackNumber--;
-        Debug.Log("has animation finished?: " + CheckIfAttackAnimationHasEnded());
-        
-        
-        // hits = Physics2D.CircleCastAll(attackTransform.position, attackRange, transform.right, 0f, attackableLayer);
+    }
 
-        // for (int i = 0; i < hits.Length; ++i)
-        // {
-        //     IDamageable iDamageable = hits[i].collider.gameObject.GetComponent<IDamageable>();
-
-        //     if (iDamageable != null)
-        //     {
-        //         iDamageable.TakeDamage(damageAmount);
-        //         Debug.Log("DAMAGE!!");
-        //     }
-        // }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 12)
+        {
+            IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
+            if (damageable != null)
+            {
+                damageable.TakeDamage(1);
+                Debug.Log("Enemy hit for " + 1 + " damage!");
+            }
+        }
     }
 
     private bool CheckIfAttackAnimationHasEnded()
     {
         currentAnimation = ghostAnimator.GetCurrentAnimatorStateInfo(0);
-        if (!(currentAnimation.IsName("ghostAttack1") || currentAnimation.IsName("ghostAttack2") || currentAnimation.IsName("ghostAttack3") || currentAnimation.IsName("tempGhostAttack3"))) return true;
+        if (!(currentAnimation.IsName("ghostAttack1") || currentAnimation.IsName("ghostAttack2") || currentAnimation.IsName("ghostAttack3"))) return true;
         if (currentAnimation.normalizedTime >= 1.0f && !ghostAnimator.IsInTransition(0)) return true;
         else return false;
     }
@@ -447,7 +445,7 @@ public class PlayerController : MonoBehaviour
         {
             case 1: ChangeAnimationState(GhostAnimationStates.ghostAttack1); break;
             case 2: ChangeAnimationState(GhostAnimationStates.ghostAttack2); break;  
-            case 3: ChangeAnimationState(GhostAnimationStates.tempGhostAttack3); break;
+            case 3: ChangeAnimationState(GhostAnimationStates.ghostAttack3); break;
         }     
     }
     #endregion
@@ -486,7 +484,7 @@ public class PlayerController : MonoBehaviour
     #region DEBUGGING
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(attackTransform.position, attackRange);
+        
     }
     #endregion
 }
