@@ -116,6 +116,16 @@ public class PlayerController : MonoBehaviour
         ghostAttack3,
     }
     #endregion
+
+    private void Update()
+    {
+        //attackTimeCounter += Time.deltaTime;
+        if (Time.time - lastAttackTime > comboResetTime)  
+        {
+            comboAttackNumber = 0;
+            ChangeAnimationState(GhostAnimationStates.ghostWalk); //TO-DO: Change to Idle
+        }
+    }
     private void FixedUpdate()
     {
         if (isDashing) return;
