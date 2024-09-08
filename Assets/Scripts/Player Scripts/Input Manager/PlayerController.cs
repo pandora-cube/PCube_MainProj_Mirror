@@ -7,9 +7,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    protected float direction = 0;
+    [SerializeField] private float direction = 0;
     public float speed = 0;
-
 
     #region CRAWLING VARIABLES
     protected float crawlSpeedDecrease = 300f;
@@ -18,7 +17,7 @@ public class PlayerController : MonoBehaviour
     protected bool isCrawling = false;
     #endregion
 
-    #region dash variables
+    #region DASH VARIABLES
     private bool canDash = true;
     private bool isDashing;
     private float dashForce = 24f;
@@ -187,13 +186,13 @@ public class PlayerController : MonoBehaviour
         if (direction > 0f)
         {
             Vector3 newScale = transform.localScale;
-            newScale.x *= 1;
+            newScale.x = 1;
             transform.localScale = newScale;
         }
         else if (direction < 0f)
         {
             Vector3 newScale = transform.localScale;
-            newScale.x *= -1;
+            newScale.x = -1;
             transform.localScale = newScale;
         }
     }
