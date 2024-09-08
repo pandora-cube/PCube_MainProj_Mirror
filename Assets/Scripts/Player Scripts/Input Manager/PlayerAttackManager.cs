@@ -12,7 +12,6 @@ public class PlayerAttackManager : MonoBehaviour
             if (damageable != null)
             {
                 damageable.TakeDamage(1);
-                Debug.Log("Enemy hit for " + 1 + " damage!");
             }
         }
     }

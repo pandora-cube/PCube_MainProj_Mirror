@@ -187,13 +187,13 @@ public class PlayerController : MonoBehaviour
         if (direction > 0f)
         {
             Vector3 newScale = transform.localScale;
-            newScale.x = 1;
+            newScale.x *= 1;
             transform.localScale = newScale;
         }
         else if (direction < 0f)
         {
             Vector3 newScale = transform.localScale;
-            newScale.x = -1;
+            newScale.x *= -1;
             transform.localScale = newScale;
         }
     }
@@ -203,12 +203,12 @@ public class PlayerController : MonoBehaviour
     {
         if (isNormal && !isGhost)
         {
-            //gameObject.transform.position = normalTransform.position;
+            ghostTransform.position = normalTransform.position;
         }
 
         else if (isGhost && !isNormal)
         {
-           //gameObject.transform.position = ghostTransform.position;
+           normalTransform.position = ghostTransform.position;
         }
     }
     void UpdateRbFrictionOnSlope(Rigidbody2D rb)
