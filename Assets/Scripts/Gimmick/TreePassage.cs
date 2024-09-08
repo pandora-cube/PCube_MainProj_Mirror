@@ -23,8 +23,9 @@ public class TreePassage : MonoBehaviour, IInteractable
         if (parentTree.passageState == ParentTreePassage.Available.open ) // 통로 나무 상태가 open
         {
             Transform MoveToExit = FindingExitPosition();
-            
+
             if (MoveToExit != null) Player.transform.position = MoveToExit.position; // 반대편 출구로 이동
+            else Debug.Log("Exit is NULL");
         }
     }
 

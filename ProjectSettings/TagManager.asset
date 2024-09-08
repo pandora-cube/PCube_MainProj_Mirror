@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ItemAvailable
   - Obstacle
+  - CameraCollider
   layers:
   - Default
   - TransparentFX
