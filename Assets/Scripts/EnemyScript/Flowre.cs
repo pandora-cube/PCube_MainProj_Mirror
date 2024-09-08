@@ -14,8 +14,8 @@ public class Flowre : MonoBehaviour, IDamageable
     private float attackDelay = 1f;
     private float attackDamage = 1f;
 
-    public float maxHealth { get; set;}
-    public float currentHealth { get; set; }
+    [field: SerializeField] public float maxHealth { get; set;}
+    [field: SerializeField] public float currentHealth { get; set; }
 
     void Awake()
     {
@@ -23,16 +23,14 @@ public class Flowre : MonoBehaviour, IDamageable
         openCapsuleCollider2D = GetComponent<CapsuleCollider2D>();
     }
 
+    void Start()
+    {
+        currentHealth = maxHealth;
+    }
     void Update()
     {
-        if (!playerController.isGhost) CloseWhenPlayerIsNormal();
-
-            
-        else if (playerController.isGhost)
-        {
-            DetectPlayer();
-
-        }
+        if (!playerController.isGhost) CloseWhenPlayerIsNormal();  
+        else if (playerController.isGhost) DetectPlayer();
     }
     
     void CloseWhenPlayerIsNormal()
@@ -69,9 +67,10 @@ public class Flowre : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damageAmount)
     {
-        //TO-DO: ADD CLOSING ANIM AND DMG TAKE LOGIC
+        //TO-DO: ADD CLOSING ANIM
         isOpen = false;
-
+        currentHealth -= damageAmount;
+        Debug.Log("Damage taken!");
     }
 
     public void Die()

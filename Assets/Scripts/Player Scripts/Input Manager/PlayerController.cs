@@ -87,7 +87,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int comboAttackNumber = 0;
     private bool isAttacking;
 
-    private Collider2D[] hits;
     #endregion
 
     #region ITEM VARIABLES
@@ -417,19 +416,6 @@ public class PlayerController : MonoBehaviour
 
         if (CheckIfAttackAnimationHasEnded()) TriggerAttackAnimation();
         else comboAttackNumber--;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == 12)
-        {
-            IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
-            if (damageable != null)
-            {
-                damageable.TakeDamage(1);
-                Debug.Log("Enemy hit for " + 1 + " damage!");
-            }
-        }
     }
 
     private bool CheckIfAttackAnimationHasEnded()
