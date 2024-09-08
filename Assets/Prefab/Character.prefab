@@ -103,8 +103,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -476203971
+  m_SortingLayer: 6
   m_SortingOrder: 1
   m_Sprite: {fileID: 1053983203, guid: 8c78443511f44fc43b5168cf3b52f016, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -948,7 +948,7 @@ Transform:
   - {fileID: 3308553549901306974}
   - {fileID: 3472490331342985577}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2652426612113270752
 MonoBehaviour:
@@ -984,6 +984,7 @@ MonoBehaviour:
   normalSprite: {fileID: 1455752272669314600}
   normalTransform: {fileID: 869793278093406168}
   normalGroundCheckCollider: {fileID: 7946822656432411550}
+  normalSlopeCheckCollider: {fileID: 2256083166484181286}
   normalInteractRange: 0.5
   ghostGameObejct: {fileID: 6787739559307351797}
   ghostRb: {fileID: 4199188633483214984}
@@ -991,6 +992,7 @@ MonoBehaviour:
   ghostSprite: {fileID: 2592251769063754241}
   ghostTransform: {fileID: 488549447599903303}
   ghostGroundCheckCollider: {fileID: 8200236091063017191}
+  ghostSlopeCheckCollider: {fileID: 4280175023308433543}
   ghostInteractRange: 1
   isNormal: 1
   isGhost: 0

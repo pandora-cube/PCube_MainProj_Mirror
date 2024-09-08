@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private SpriteRenderer normalSprite;
     [SerializeField] private Transform normalTransform;
     [SerializeField] private Transform normalGroundCheckCollider;
+    [SerializeField] private Transform normalSlopeCheckCollider;
     [SerializeField] private float normalInteractRange = 0.5f;
 
 
@@ -69,6 +70,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] protected SpriteRenderer ghostSprite;
     [SerializeField] private Transform ghostTransform;
     [SerializeField] private Transform ghostGroundCheckCollider;
+    [SerializeField] private Transform ghostSlopeCheckCollider;
     [SerializeField] private float ghostInteractRange = 1f;
 
     #endregion
@@ -135,12 +137,12 @@ public class PlayerController : MonoBehaviour
 
         if (isNormal && !isGhost)
         {
-            SlopeCheck(normalGroundCheckCollider.position);
+            SlopeCheck(normalSlopeCheckCollider.position);
             MovePlayer(normalRb, normalTransform);
         }
         if (isGhost && !isNormal) 
         {
-            SlopeCheck(ghostGroundCheckCollider.position);
+            SlopeCheck(ghostSlopeCheckCollider.position);
             MovePlayer(ghostRb, ghostTransform);
         }
     }
@@ -314,11 +316,13 @@ public class PlayerController : MonoBehaviour
         {
             isOnSlope = true;
             slopeSideAngle = Vector2.Angle(slopeHitFront.normal, Vector2.up);
+            Debug.DrawRay(checkPos, transform.right, Color.red);
         }
         else if (slopeHitBack)
         {
             isOnSlope = true;
             slopeSideAngle = Vector2.Angle(slopeHitBack.normal, Vector2.up);
+            Debug.DrawRay(checkPos, -transform.right, Color.red);
         }
         else
         {
