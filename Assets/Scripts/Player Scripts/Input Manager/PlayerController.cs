@@ -101,7 +101,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator normalAnimator;
     [SerializeField] private Animator ghostAnimator;
     AnimatorStateInfo currentAnimation;
-    [SerializeField] private bool canComboAttack = true;
 
     enum NormalAnimationStates
     {
@@ -117,17 +116,6 @@ public class PlayerController : MonoBehaviour
         ghostAttack3,
     }
     #endregion
-
-    private void Update()
-    {
-        //attackTimeCounter += Time.deltaTime;
-        if (Time.time - lastAttackTime > comboResetTime)  
-        {
-            comboAttackNumber = 0;
-            ChangeAnimationState(GhostAnimationStates.ghostIdle);
-            canComboAttack = false;
-        }
-    }
     private void FixedUpdate()
     {
         if (isDashing) return;
