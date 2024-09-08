@@ -176,6 +176,7 @@ public class PlayerController : MonoBehaviour
         else if (isCrawling) rb.velocity = new Vector2(direction * (speed - crawlSpeedDecrease) * Time.deltaTime, rb.velocity.y); // craw walk
 
         FlipSpriteBasedOnDirection(currentTransform);
+        UpdateOtherTransformObjectPosition();
         UpdateRbFrictionOnSlope(rb);
         
         ItemAvabileAreaCheck(ghostGroundCheckCollider.position);
@@ -194,6 +195,20 @@ public class PlayerController : MonoBehaviour
             Vector3 newScale = transform.localScale;
             newScale.x = -1;
             transform.localScale = newScale;
+        }
+    }
+
+    //adjusts object positions for transform and cinemachine follow target.
+    void UpdateOtherTransformObjectPosition()
+    {
+        if (isNormal && !isGhost)
+        {
+            //gameObject.transform.position = normalTransform.position;
+        }
+
+        else if (isGhost && !isNormal)
+        {
+           //gameObject.transform.position = ghostTransform.position;
         }
     }
     void UpdateRbFrictionOnSlope(Rigidbody2D rb)
