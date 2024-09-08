@@ -380,7 +380,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3430430844043821422}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.24, y: -9.81, z: 0}
+  m_LocalPosition: {x: -2.24, y: -17.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -962,6 +962,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 024d7d8440eb43540a330e89c6324cd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction: 0
   speed: 500
   trailRenderer: {fileID: 0}
   jumpForce: 5
@@ -1011,7 +1012,6 @@ MonoBehaviour:
     m_Bits: 0
   normalAnimator: {fileID: 6812376800535443980}
   ghostAnimator: {fileID: 6940658161782897316}
-  canComboAttack: 0
 --- !u!96 &547016282715293714
 TrailRenderer:
   serializedVersion: 3
