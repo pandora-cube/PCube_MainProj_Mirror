@@ -60,8 +60,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform normalGroundCheckCollider;
     [SerializeField] private Transform normalSlopeCheckCollider;
     [SerializeField] private float normalInteractRange = 0.5f;
+    #endregion
 
-
+    #region GHOST VARIABLS
     [Header("Ghost Variables")]
     [SerializeField] private GameObject ghostGameObejct;
     [SerializeField] protected Rigidbody2D ghostRb;
@@ -126,6 +127,7 @@ public class PlayerController : MonoBehaviour
             ChangeAnimationState(GhostAnimationStates.ghostWalk); //TO-DO: Change to Idle
         }
     }
+
     private void FixedUpdate()
     {
         if (isDashing) return;
@@ -144,7 +146,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    #region common functions (normal && ghost)
+    #region COMMON
 
     #region MOVEMENT
     public void OnMove(InputAction.CallbackContext ctx)
