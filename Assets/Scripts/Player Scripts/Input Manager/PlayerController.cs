@@ -202,12 +202,12 @@ public class PlayerController : MonoBehaviour
     {
         if (isNormal && !isGhost)
         {
-            ghostTransform.position = normalTransform.position;
+            ghostTransform.position = new Vector2(normalTransform.position.x, normalTransform.position.y + 3f);
         }
 
         else if (isGhost && !isNormal)
         {
-           normalTransform.position = ghostTransform.position;
+           normalTransform.position = new Vector2(ghostTransform.position.x, ghostTransform.position.y - 3f);
         }
     }
     void UpdateRbFrictionOnSlope(Rigidbody2D rb)
@@ -257,19 +257,13 @@ public class PlayerController : MonoBehaviour
     #endregion
     
     #region INTERACTION
+
     public void OnInteract(InputAction.CallbackContext ctx)
     {
-        if (isNormal) 
-        {
-            Collider2D[] colldierArray = Physics2D.OverlapCircleAll(normalTransform.position, normalInteractRange);
-        }
-        else if (isGhost)
-        {
-            Collider2D[] colldierArray = Physics2D.OverlapCircleAll(ghostTransform.position, ghostInteractRange);
-        }
         IInteractable interactable = GetInteractableObject();
 
         if (interactable != null) interactable.Interact(transform);
+        else Debug.Log("interactable is null!");
     }
 
     /// <summary>
@@ -279,7 +273,15 @@ public class PlayerController : MonoBehaviour
     public IInteractable GetInteractableObject()
     {
         List<IInteractable> interactableList = new List<IInteractable>();
-        Collider2D[] colliderArray = Physics2D.OverlapCircleAll(normalTransform.position, normalInteractRange);
+        Collider2D[] colliderArray = null;
+        if (isNormal) 
+        {
+            colliderArray = Physics2D.OverlapCircleAll(normalTransform.position, normalInteractRange);
+        }
+        else if (isGhost)
+        {
+            colliderArray = Physics2D.OverlapCircleAll(ghostTransform.position, ghostInteractRange);
+        }
         foreach (Collider2D collider in colliderArray)
         {
             if (collider.gameObject.CompareTag("Player")) continue;
@@ -310,11 +312,13 @@ public class PlayerController : MonoBehaviour
     {
         isNormal = !isNormal;
         isGhost = !isGhost;
+        Debug.Log("isNormal: " + isNormal + ", isGhost: " + isGhost);
 
         normalGameObejct.SetActive(isNormal); ghostGameObejct.SetActive(isGhost);
     }
     #endregion 
-    #region slope check functions
+
+    #region SLOPE CHECK 
     private void SlopeCheck(Vector2 checkPos)
     {
         SlopeCheckVertical(checkPos);
@@ -488,7 +492,8 @@ public class PlayerController : MonoBehaviour
     #region DEBUGGING
     private void OnDrawGizmos()
     {
-        
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(ghostTransform.position, ghostInteractRange);
     }
     #endregion
 }

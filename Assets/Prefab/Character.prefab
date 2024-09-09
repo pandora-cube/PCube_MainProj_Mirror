@@ -176,7 +176,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1363549605767737251}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -7.8, z: 0}
+  m_LocalPosition: {x: 0, y: -11.76, z: 0}
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -994,7 +994,7 @@ MonoBehaviour:
   ghostTransform: {fileID: 488549447599903303}
   ghostGroundCheckCollider: {fileID: 8200236091063017191}
   ghostSlopeCheckCollider: {fileID: 4280175023308433543}
-  ghostInteractRange: 5
+  ghostInteractRange: 3
   isNormal: 1
   isGhost: 0
   attackCollider: {fileID: 0}
@@ -1524,7 +1524,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.21, y: -4.1}
   m_Size: {x: 6.3160844, y: 15.509999}
   m_Direction: 0
 --- !u!95 &6812376800535443980
