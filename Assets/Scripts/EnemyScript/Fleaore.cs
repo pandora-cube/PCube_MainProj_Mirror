@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fleaore : MonoBehaviour
+public class Fleaore : MonoBehaviour, IDamageable
 {
     [SerializeField] private Vine connectedVine;
 
@@ -23,6 +23,11 @@ public class Fleaore : MonoBehaviour
     {
         playerController = FindAnyObjectByType<PlayerController>();
         openCollider2D = GetComponent<BoxCollider2D>();
+    }
+
+    void Start()
+    {
+        currentHealth = maxHealth;
     }
 
     void Update()
@@ -96,6 +101,7 @@ public class Fleaore : MonoBehaviour
         }
 
         isStunned = false;
+        currentHealth = maxHealth;
         //TODO: Add anim for revival
     }
 

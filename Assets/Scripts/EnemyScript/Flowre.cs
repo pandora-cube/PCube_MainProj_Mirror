@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -16,6 +17,15 @@ public class Flowre : MonoBehaviour, IDamageable
 
     [field: SerializeField] public float maxHealth { get; set;}
     [field: SerializeField] public float currentHealth { get; set; }
+
+    [SerializeField] private Animator flowreAnimator;
+    private AnimatorStateInfo currentAnimation;
+    private string currentState;
+    enum FlowreAnimationStates
+    {
+        flowreIdle,
+        flowreAttack
+    }
 
     void Awake()
     {
@@ -59,9 +69,9 @@ public class Flowre : MonoBehaviour, IDamageable
         isAttacking = true;
         IDamageable player = collider.gameObject.GetComponent<IDamageable>();
         player.TakeDamage(attackDamage);
-        //TO-DO: ADD ANIM TRIGGER FOR ATTACK
+        ChangeAnimationState(FlowreAnimationStates.flowreAttack);
         yield return new WaitForSeconds(attackDelay);
-
+        ChangeAnimationState(FlowreAnimationStates.flowreIdle);
         isAttacking = false;
     }
 
@@ -70,7 +80,6 @@ public class Flowre : MonoBehaviour, IDamageable
         //TO-DO: ADD CLOSING ANIM
         isOpen = false;
         currentHealth -= damageAmount;
-        Debug.Log("Damage taken!");
     }
 
     public void Die()
@@ -79,6 +88,27 @@ public class Flowre : MonoBehaviour, IDamageable
         Destroy(gameObject);
     }
 
+     private void ChangeAnimationState (FlowreAnimationStates animationStates)
+    {
+        string newState = animationStates.ToString(); 
+        if (currentState == newState) return;
+        
+        flowreAnimator.Play(newState);
+        currentState = newState;
+    }
+
+    float GetAnimationStateLength(string stateName)
+    {
+        if (flowreAnimator == null) return 0f;
+
+        for (int i = 0; i < flowreAnimator.layerCount; i++)
+        {
+            AnimatorStateInfo stateInfo = flowreAnimator.GetCurrentAnimatorStateInfo(i);
+
+            if (stateInfo.IsName(stateName)) return stateInfo.length;
+        }
+        return 0f;
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;

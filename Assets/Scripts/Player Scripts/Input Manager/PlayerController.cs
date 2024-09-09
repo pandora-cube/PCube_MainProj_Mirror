@@ -8,7 +8,8 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float direction = 0;
-    public float speed = 0;
+    [SerializeField] private float normalSpeed;
+    [SerializeField] private float ghsotSpeed;
 
     #region CRAWLING VARIABLES
     protected float crawlSpeedDecrease = 300f;
@@ -169,11 +170,21 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer(Rigidbody2D rb, Transform currentTransform)
     {
-        if (!isCrawling && !isOnSlope) rb.velocity = new Vector2(direction * speed * Time.deltaTime, rb.velocity.y); // normal walk
-        else if (isOnSlope && !isCrawling) rb.velocity = new Vector2(-direction * speed * slopeNormalPrep.x * Time.deltaTime, speed * slopeNormalPrep.y * -direction * Time.deltaTime); // slope walk
-        else if (isOnSlope && isCrawling) rb.velocity = new Vector2(-direction * (speed - crawlSpeedDecrease) * slopeNormalPrep.x * Time.deltaTime, (speed - crawlSpeedDecrease) * slopeNormalPrep.y * -direction * Time.deltaTime);
-        else if (isCrawling) rb.velocity = new Vector2(direction * (speed - crawlSpeedDecrease) * Time.deltaTime, rb.velocity.y); // craw walk
-
+        if (isNormal)
+        {
+            if (!isCrawling && !isOnSlope) rb.velocity = new Vector2(direction * normalSpeed * Time.deltaTime, rb.velocity.y); // normal walk
+            else if (isOnSlope && !isCrawling) rb.velocity = new Vector2(-direction * normalSpeed * slopeNormalPrep.x * Time.deltaTime, normalSpeed * slopeNormalPrep.y * -direction * Time.deltaTime); // slope walk
+            else if (isOnSlope && isCrawling) rb.velocity = new Vector2(-direction * (normalSpeed - crawlSpeedDecrease) * slopeNormalPrep.x * Time.deltaTime, (normalSpeed - crawlSpeedDecrease) * slopeNormalPrep.y * -direction * Time.deltaTime);
+            else if (isCrawling) rb.velocity = new Vector2(direction * (normalSpeed - crawlSpeedDecrease) * Time.deltaTime, rb.velocity.y); // craw walk
+        }
+        else if (isGhost)
+        {
+            if (!isCrawling && !isOnSlope) rb.velocity = new Vector2(direction * ghsotSpeed * Time.deltaTime, rb.velocity.y); // normal walk
+            else if (isOnSlope && !isCrawling) rb.velocity = new Vector2(-direction * ghsotSpeed * slopeNormalPrep.x * Time.deltaTime, ghsotSpeed * slopeNormalPrep.y * -direction * Time.deltaTime); // slope walk
+            else if (isOnSlope && isCrawling) rb.velocity = new Vector2(-direction * (ghsotSpeed - crawlSpeedDecrease) * slopeNormalPrep.x * Time.deltaTime, (ghsotSpeed - crawlSpeedDecrease) * slopeNormalPrep.y * -direction * Time.deltaTime);
+            else if (isCrawling) rb.velocity = new Vector2(direction * (ghsotSpeed - crawlSpeedDecrease) * Time.deltaTime, rb.velocity.y); // craw walk
+        }
+        
         FlipSpriteBasedOnDirection(currentTransform);
         UpdateOtherTransformObjectPosition();
         UpdateRbFrictionOnSlope(rb);
@@ -312,7 +323,6 @@ public class PlayerController : MonoBehaviour
     {
         isNormal = !isNormal;
         isGhost = !isGhost;
-        Debug.Log("isNormal: " + isNormal + ", isGhost: " + isGhost);
 
         normalGameObejct.SetActive(isNormal); ghostGameObejct.SetActive(isGhost);
     }

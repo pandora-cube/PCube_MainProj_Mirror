@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9116758770556256338}
   - component: {fileID: 9036843248383304248}
   - component: {fileID: 5035200596238267951}
+  - component: {fileID: 2631276759909012142}
   m_Layer: 12
   m_Name: Flowre
   m_TagString: Untagged
@@ -101,8 +102,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpen: 0
-  <maxHealth>k__BackingField: 5
+  <maxHealth>k__BackingField: 2
   <currentHealth>k__BackingField: 0
+  flowreAnimator: {fileID: 2631276759909012142}
 --- !u!114 &9116758770556256338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,3 +181,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!95 &2631276759909012142
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838748155303041347}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 261350d8a01bb59448d876ebbd051732, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
