@@ -12,6 +12,8 @@ public class PlayerNormalHealthManager : MonoBehaviour, IDamageable
 
     [Header("Game Over")]
     [SerializeField] private GameObject gameOverPanel;
+
+    const int OBSTACLE_LAYER = 9;
     
     // Start is called before the first frame update
     void Start()
@@ -23,7 +25,7 @@ public class PlayerNormalHealthManager : MonoBehaviour, IDamageable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 9)
+        if (collision.gameObject.layer == OBSTACLE_LAYER)
         {
             Debug.Log("DAMAGE!!");
             TakeDamage(1f);

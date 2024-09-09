@@ -8,6 +8,7 @@ public class Fleaore : MonoBehaviour, IDamageable
 
     private PlayerController playerController;
     private BoxCollider2D openCollider2D;
+    private Animator fleaoreAnimator;
 
     [SerializeField] private bool isOpen = false;
     private bool isAttacking = false;
@@ -16,6 +17,13 @@ public class Fleaore : MonoBehaviour, IDamageable
     private float attackDelay = 1f;
     private float attackDamage = 1f;
 
+    private string currentState;
+    enum FleaoreAnimationStates
+    {
+        fleaoreIdle,
+        fleaoreAttack
+    }
+
     [field:SerializeField] public float maxHealth { get; set;}
     [field:SerializeField] public float currentHealth { get; set; }
 
@@ -23,6 +31,7 @@ public class Fleaore : MonoBehaviour, IDamageable
     {
         playerController = FindAnyObjectByType<PlayerController>();
         openCollider2D = GetComponent<BoxCollider2D>();
+        fleaoreAnimator = GetComponent<Animator>();
     }
 
     void Start()
@@ -103,6 +112,15 @@ public class Fleaore : MonoBehaviour, IDamageable
         isStunned = false;
         currentHealth = maxHealth;
         //TODO: Add anim for revival
+    }
+
+    private void ChangeAnimationState (FleaoreAnimationStates animationStates)
+    {
+        string newState = animationStates.ToString(); 
+        if (currentState == newState) return;
+        
+        fleaoreAnimator.Play(newState);
+        currentState = newState;
     }
 
     private void OnDrawGizmos()

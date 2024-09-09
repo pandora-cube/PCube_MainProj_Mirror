@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
     #region NORMAL VARIABLES
     [Header("Normal Variables")]
-    [SerializeField] private GameObject normalGameObejct;
+    [SerializeField] public GameObject normalGameObejct;
     [SerializeField] private Rigidbody2D normalRb;
     [SerializeField] private CapsuleCollider2D normalCollider;
     [SerializeField] private SpriteRenderer normalSprite;
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
 
     #region GHOST VARIABLS
     [Header("Ghost Variables")]
-    [SerializeField] private GameObject ghostGameObejct;
+    [SerializeField] public GameObject ghostGameObejct;
     [SerializeField] protected Rigidbody2D ghostRb;
     [SerializeField] protected CapsuleCollider2D ghostCollider;
     [SerializeField] protected SpriteRenderer ghostSprite;
