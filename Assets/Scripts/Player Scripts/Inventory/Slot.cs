@@ -39,6 +39,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     }
     public void OnPointerClick(PointerEventData eventData)
     {
+        Debug.Log("클릭");
         if (controller.UsingItem && _item != null) inventory.UseItem(item); // 아이템이 존재하고, 현재 사용 가능할 때
     }
 

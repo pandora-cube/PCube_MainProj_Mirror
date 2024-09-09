@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: keyItem
   m_EditorClassIdentifier: 
   itemName: Key
-  itemImage: {fileID: 21300000, guid: 1a0c85142b7fb4f4fa167a05a66b12ca, type: 3}
+  itemImage: {fileID: 21300000, guid: 98f5709fee6e093498c8c72f104243a5, type: 3}
   itemInfo: Possible to exit
