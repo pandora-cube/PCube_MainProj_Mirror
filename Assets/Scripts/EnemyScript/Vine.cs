@@ -9,7 +9,6 @@ public class Vine : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damageAmount)
     {
-        Debug.Log("VINE DMG TAKEN");
         Die();
     }
 

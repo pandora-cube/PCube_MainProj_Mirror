@@ -398,7 +398,7 @@ GameObject:
   - component: {fileID: 2006199944466533821}
   - component: {fileID: 1238336566175937545}
   - component: {fileID: 6772371009387974392}
-  m_Layer: 3
+  m_Layer: 13
   m_Name: Attack Transform
   m_TagString: Untagged
   m_Icon: {fileID: 0}

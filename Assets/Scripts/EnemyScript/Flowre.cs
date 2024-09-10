@@ -12,7 +12,7 @@ public class Flowre : MonoBehaviour, IDamageable
     [SerializeField] private bool isOpen = false;
     private bool isAttacking = false;
     private float playerDetectionRadius = 5f;
-    private float attackDelay = 1f;
+    [SerializeField] private float attackDelay = 1f;
     private float attackDamage = 1f;
 
     [field: SerializeField] public float maxHealth { get; set;}

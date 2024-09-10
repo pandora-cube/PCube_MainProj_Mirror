@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Fleaore : MonoBehaviour, IDamageable
@@ -14,7 +15,7 @@ public class Fleaore : MonoBehaviour, IDamageable
     private bool isAttacking = false;
     [SerializeField] private bool isStunned = false;
     private float playerDetectionRadius = 5f;
-    private float attackDelay = 1f;
+    [SerializeField] private float attackDelay = 1f;
     private float attackDamage = 1f;
 
     private string currentState;
@@ -73,8 +74,9 @@ public class Fleaore : MonoBehaviour, IDamageable
         isAttacking = true;
         IDamageable player = collider.gameObject.GetComponent<IDamageable>();
         player.TakeDamage(attackDamage);
-        //TO-DO: ADD ANIM TRIGGER FOR ATTACK
+        ChangeAnimationState(FleaoreAnimationStates.fleaoreAttack);
         yield return new WaitForSeconds(attackDelay);
+        ChangeAnimationState(FleaoreAnimationStates.fleaoreIdle);
 
         isAttacking = false;
     }
