@@ -1,51 +1,63 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Fleaore : MonoBehaviour
+public class Fleaore : MonoBehaviour, IDamageable
 {
-    [SerializeField] private Radix connectedRadix;
+    [SerializeField] private Vine connectedVine;
 
     private PlayerController playerController;
-    private CapsuleCollider2D openCapsuleCollider2D;
+    private BoxCollider2D openCollider2D;
+    private Animator fleaoreAnimator;
 
     [SerializeField] private bool isOpen = false;
     private bool isAttacking = false;
+    [SerializeField] private bool isStunned = false;
     private float playerDetectionRadius = 5f;
-    private float attackDelay = 1f;
+    [SerializeField] private float attackDelay = 1f;
     private float attackDamage = 1f;
 
-    public float maxHealth { get; set;}
-    public float currentHealth { get; set; }
+    private string currentState;
+    enum FleaoreAnimationStates
+    {
+        fleaoreIdle,
+        fleaoreAttack
+    }
+
+    [field:SerializeField] public float maxHealth { get; set;}
+    [field:SerializeField] public float currentHealth { get; set; }
 
     void Awake()
     {
         playerController = FindAnyObjectByType<PlayerController>();
-        openCapsuleCollider2D = GetComponent<CapsuleCollider2D>();
+        openCollider2D = GetComponent<BoxCollider2D>();
+        fleaoreAnimator = GetComponent<Animator>();
+    }
+
+    void Start()
+    {
+        currentHealth = maxHealth;
     }
 
     void Update()
     {
+        if (isStunned) return;
+
         if (!playerController.isGhost) CloseWhenPlayerIsNormal();
-
-            
-        else if (playerController.isGhost)
-        {
-            DetectPlayer();
-
-        }
+        else if (playerController.isGhost) DetectPlayer();
     }
     
     void CloseWhenPlayerIsNormal()
     {
-        openCapsuleCollider2D.enabled = false;
+        openCollider2D.enabled = false;
         isOpen = false;
     }
 
     void DetectPlayer()
     {
         //TO-DO: ADD ANIM TRIGGER FOR OPENING
-        openCapsuleCollider2D.enabled = true; //also allows Flowre to be attackable.
+        openCollider2D.enabled = true; //also allows Floaore to be attackable.
         RaycastHit2D circleCast = Physics2D.CircleCast(transform.position, playerDetectionRadius, Vector2.up);
 
         if (circleCast.collider != null && circleCast.collider.gameObject.CompareTag("Player")) 
@@ -62,8 +74,9 @@ public class Fleaore : MonoBehaviour
         isAttacking = true;
         IDamageable player = collider.gameObject.GetComponent<IDamageable>();
         player.TakeDamage(attackDamage);
-        //TO-DO: ADD ANIM TRIGGER FOR ATTACK
+        ChangeAnimationState(FleaoreAnimationStates.fleaoreAttack);
         yield return new WaitForSeconds(attackDelay);
+        ChangeAnimationState(FleaoreAnimationStates.fleaoreIdle);
 
         isAttacking = false;
     }
@@ -72,6 +85,13 @@ public class Fleaore : MonoBehaviour
     {
         //TO-DO: ADD CLOSING ANIM AND DMG TAKE LOGIC
         isOpen = false;
+        currentHealth -=damageAmount;
+
+        if (currentHealth <= 0)
+        {
+            if (connectedVine == null) Die();
+            else StartCoroutine(Revive());
+        }
 
     }
 
@@ -79,6 +99,30 @@ public class Fleaore : MonoBehaviour
     {
         //TO-DO: ADD DEATH ANIM
         Destroy(gameObject);
+    }
+
+    IEnumerator Revive()
+    {
+        isStunned = true;
+        yield return new WaitForSeconds(5);
+        if (connectedVine == null) 
+        {
+            Die();
+            yield break;
+        }
+
+        isStunned = false;
+        currentHealth = maxHealth;
+        //TODO: Add anim for revival
+    }
+
+    private void ChangeAnimationState (FleaoreAnimationStates animationStates)
+    {
+        string newState = animationStates.ToString(); 
+        if (currentState == newState) return;
+        
+        fleaoreAnimator.Play(newState);
+        currentState = newState;
     }
 
     private void OnDrawGizmos()

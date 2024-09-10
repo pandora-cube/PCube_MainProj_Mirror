@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 6709156460315151056}
   - component: {fileID: 5281237216462481153}
   m_Layer: 3
-  m_Name: Mascot
+  m_Name: Glasya
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,7 +176,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1363549605767737251}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -7.8, z: 0}
+  m_LocalPosition: {x: 0, y: -11.76, z: 0}
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -398,7 +398,7 @@ GameObject:
   - component: {fileID: 2006199944466533821}
   - component: {fileID: 1238336566175937545}
   - component: {fileID: 6772371009387974392}
-  m_Layer: 3
+  m_Layer: 13
   m_Name: Attack Transform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -948,7 +948,7 @@ Transform:
   - {fileID: 3308553549901306974}
   - {fileID: 3472490331342985577}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2652426612113270752
 MonoBehaviour:
@@ -963,7 +963,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 0
-  speed: 500
+  normalSpeed: 500
+  ghsotSpeed: 750
   trailRenderer: {fileID: 0}
   jumpForce: 5
   isGrounded: 0
@@ -994,7 +995,7 @@ MonoBehaviour:
   ghostTransform: {fileID: 488549447599903303}
   ghostGroundCheckCollider: {fileID: 8200236091063017191}
   ghostSlopeCheckCollider: {fileID: 4280175023308433543}
-  ghostInteractRange: 1
+  ghostInteractRange: 3
   isNormal: 1
   isGhost: 0
   attackCollider: {fileID: 0}
@@ -1524,7 +1525,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.21, y: -4.1}
   m_Size: {x: 6.3160844, y: 15.509999}
   m_Direction: 0
 --- !u!95 &6812376800535443980
@@ -1747,7 +1748,7 @@ GameObject:
   - component: {fileID: 964529266230998606}
   m_Layer: 3
   m_Name: Ghost
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

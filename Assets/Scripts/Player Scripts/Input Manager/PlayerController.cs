@@ -8,7 +8,8 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float direction = 0;
-    public float speed = 0;
+    [SerializeField] private float normalSpeed;
+    [SerializeField] private float ghsotSpeed;
 
     #region CRAWLING VARIABLES
     protected float crawlSpeedDecrease = 300f;
@@ -52,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
     #region NORMAL VARIABLES
     [Header("Normal Variables")]
-    [SerializeField] private GameObject normalGameObejct;
+    [SerializeField] public GameObject normalGameObejct;
     [SerializeField] private Rigidbody2D normalRb;
     [SerializeField] private CapsuleCollider2D normalCollider;
     [SerializeField] private SpriteRenderer normalSprite;
@@ -60,10 +61,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform normalGroundCheckCollider;
     [SerializeField] private Transform normalSlopeCheckCollider;
     [SerializeField] private float normalInteractRange = 0.5f;
+    #endregion
 
-
+    #region GHOST VARIABLS
     [Header("Ghost Variables")]
-    [SerializeField] private GameObject ghostGameObejct;
+    [SerializeField] public GameObject ghostGameObejct;
     [SerializeField] protected Rigidbody2D ghostRb;
     [SerializeField] protected CapsuleCollider2D ghostCollider;
     [SerializeField] protected SpriteRenderer ghostSprite;
@@ -126,6 +128,7 @@ public class PlayerController : MonoBehaviour
             ChangeAnimationState(GhostAnimationStates.ghostWalk); //TO-DO: Change to Idle
         }
     }
+
     private void FixedUpdate()
     {
         if (isDashing) return;
@@ -144,7 +147,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    #region common functions (normal && ghost)
+    #region COMMON
 
     #region MOVEMENT
     public void OnMove(InputAction.CallbackContext ctx)
@@ -167,11 +170,21 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer(Rigidbody2D rb, Transform currentTransform)
     {
-        if (!isCrawling && !isOnSlope) rb.velocity = new Vector2(direction * speed * Time.deltaTime, rb.velocity.y); // normal walk
-        else if (isOnSlope && !isCrawling) rb.velocity = new Vector2(-direction * speed * slopeNormalPrep.x * Time.deltaTime, speed * slopeNormalPrep.y * -direction * Time.deltaTime); // slope walk
-        else if (isOnSlope && isCrawling) rb.velocity = new Vector2(-direction * (speed - crawlSpeedDecrease) * slopeNormalPrep.x * Time.deltaTime, (speed - crawlSpeedDecrease) * slopeNormalPrep.y * -direction * Time.deltaTime);
-        else if (isCrawling) rb.velocity = new Vector2(direction * (speed - crawlSpeedDecrease) * Time.deltaTime, rb.velocity.y); // craw walk
-
+        if (isNormal)
+        {
+            if (!isCrawling && !isOnSlope) rb.velocity = new Vector2(direction * normalSpeed * Time.deltaTime, rb.velocity.y); // normal walk
+            else if (isOnSlope && !isCrawling) rb.velocity = new Vector2(-direction * normalSpeed * slopeNormalPrep.x * Time.deltaTime, normalSpeed * slopeNormalPrep.y * -direction * Time.deltaTime); // slope walk
+            else if (isOnSlope && isCrawling) rb.velocity = new Vector2(-direction * (normalSpeed - crawlSpeedDecrease) * slopeNormalPrep.x * Time.deltaTime, (normalSpeed - crawlSpeedDecrease) * slopeNormalPrep.y * -direction * Time.deltaTime);
+            else if (isCrawling) rb.velocity = new Vector2(direction * (normalSpeed - crawlSpeedDecrease) * Time.deltaTime, rb.velocity.y); // craw walk
+        }
+        else if (isGhost)
+        {
+            if (!isCrawling && !isOnSlope) rb.velocity = new Vector2(direction * ghsotSpeed * Time.deltaTime, rb.velocity.y); // normal walk
+            else if (isOnSlope && !isCrawling) rb.velocity = new Vector2(-direction * ghsotSpeed * slopeNormalPrep.x * Time.deltaTime, ghsotSpeed * slopeNormalPrep.y * -direction * Time.deltaTime); // slope walk
+            else if (isOnSlope && isCrawling) rb.velocity = new Vector2(-direction * (ghsotSpeed - crawlSpeedDecrease) * slopeNormalPrep.x * Time.deltaTime, (ghsotSpeed - crawlSpeedDecrease) * slopeNormalPrep.y * -direction * Time.deltaTime);
+            else if (isCrawling) rb.velocity = new Vector2(direction * (ghsotSpeed - crawlSpeedDecrease) * Time.deltaTime, rb.velocity.y); // craw walk
+        }
+        
         FlipSpriteBasedOnDirection(currentTransform);
         UpdateOtherTransformObjectPosition();
         UpdateRbFrictionOnSlope(rb);
@@ -200,12 +213,12 @@ public class PlayerController : MonoBehaviour
     {
         if (isNormal && !isGhost)
         {
-            ghostTransform.position = normalTransform.position;
+            ghostTransform.position = new Vector2(normalTransform.position.x, normalTransform.position.y + 3f);
         }
 
         else if (isGhost && !isNormal)
         {
-           normalTransform.position = ghostTransform.position;
+           normalTransform.position = new Vector2(ghostTransform.position.x, ghostTransform.position.y - 3f);
         }
     }
     void UpdateRbFrictionOnSlope(Rigidbody2D rb)
@@ -255,19 +268,13 @@ public class PlayerController : MonoBehaviour
     #endregion
     
     #region INTERACTION
+
     public void OnInteract(InputAction.CallbackContext ctx)
     {
-        if (isNormal) 
-        {
-            Collider2D[] colldierArray = Physics2D.OverlapCircleAll(normalTransform.position, normalInteractRange);
-        }
-        else if (isGhost)
-        {
-            Collider2D[] colldierArray = Physics2D.OverlapCircleAll(ghostTransform.position, ghostInteractRange);
-        }
         IInteractable interactable = GetInteractableObject();
 
         if (interactable != null) interactable.Interact(transform);
+        else Debug.Log("interactable is null!");
     }
 
     /// <summary>
@@ -277,7 +284,15 @@ public class PlayerController : MonoBehaviour
     public IInteractable GetInteractableObject()
     {
         List<IInteractable> interactableList = new List<IInteractable>();
-        Collider2D[] colliderArray = Physics2D.OverlapCircleAll(normalTransform.position, normalInteractRange);
+        Collider2D[] colliderArray = null;
+        if (isNormal) 
+        {
+            colliderArray = Physics2D.OverlapCircleAll(normalTransform.position, normalInteractRange);
+        }
+        else if (isGhost)
+        {
+            colliderArray = Physics2D.OverlapCircleAll(ghostTransform.position, ghostInteractRange);
+        }
         foreach (Collider2D collider in colliderArray)
         {
             if (collider.gameObject.CompareTag("Player")) continue;
@@ -312,7 +327,8 @@ public class PlayerController : MonoBehaviour
         normalGameObejct.SetActive(isNormal); ghostGameObejct.SetActive(isGhost);
     }
     #endregion 
-    #region slope check functions
+
+    #region SLOPE CHECK 
     private void SlopeCheck(Vector2 checkPos)
     {
         SlopeCheckVertical(checkPos);
@@ -486,7 +502,8 @@ public class PlayerController : MonoBehaviour
     #region DEBUGGING
     private void OnDrawGizmos()
     {
-        
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(ghostTransform.position, ghostInteractRange);
     }
     #endregion
 }
