@@ -78,7 +78,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Move Down",
+                    "name": "Hold Down",
                     "type": "Button",
                     "id": "d9cb4397-1538-4077-9b57-303242af94d4",
                     "expectedControlType": "Button",
@@ -315,7 +315,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "PC",
-                    "action": "Move Down",
+                    "action": "Hold Down",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -326,7 +326,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
-                    "action": "Move Down",
+                    "action": "Hold Down",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
