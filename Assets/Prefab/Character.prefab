@@ -1245,9 +1245,9 @@ MonoBehaviour:
     m_ActionName: PlayerActions/Smoke[/Keyboard/s]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
-        m_MethodName: OnPressUpOrDown
+      - m_Target: {fileID: 2652426612113270752}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnHoldDown
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
