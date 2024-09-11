@@ -262,6 +262,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnHoldDown(InputAction.CallbackContext ctx)
     {
+        Debug.Log("하향점프");
         if (ctx.started) isHoldingDown = true;
         else if (ctx.canceled) isHoldingDown = false;
     }
@@ -440,8 +441,6 @@ public class PlayerController : MonoBehaviour
         lastAttackTime = Time.time;
 
         comboAttackNumber++;
-
-        currentAnimation = ghostAnimator.GetCurrentAnimatorStateInfo(0);
 
         
         if (comboAttackNumber > 3)  comboAttackNumber = 1;
