@@ -440,9 +440,6 @@ public class PlayerController : MonoBehaviour
         lastAttackTime = Time.time;
 
         comboAttackNumber++;
-
-        currentAnimation = ghostAnimator.GetCurrentAnimatorStateInfo(0);
-
         
         if (comboAttackNumber > 3)  comboAttackNumber = 1;
 
