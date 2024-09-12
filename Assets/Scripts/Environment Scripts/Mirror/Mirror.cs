@@ -6,7 +6,7 @@ public class Mirror : MonoBehaviour, IInteractable
 {
     [SerializeField] private string interactText;
     public InteractableObject interactableObject;
-    public void Interact(Transform interactorTransform)
+    public void Interact()
     {
         PlayerController player = FindAnyObjectByType<PlayerController>();
 

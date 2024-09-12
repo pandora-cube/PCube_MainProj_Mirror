@@ -1011,6 +1011,9 @@ MonoBehaviour:
   itemLayer:
     serializedVersion: 2
     m_Bits: 0
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 16384
   normalAnimator: {fileID: 6812376800535443980}
   ghostAnimator: {fileID: 6940658161782897316}
 --- !u!96 &547016282715293714

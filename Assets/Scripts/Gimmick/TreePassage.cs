@@ -13,7 +13,7 @@ public class TreePassage : MonoBehaviour, IInteractable
         if (parentTransform != null ) parentTree = parentTransform.GetComponent<ParentTreePassage>();
         //Debug.Log(parentTree.passageState);
     }
-    public void Interact(Transform interactorTransform)
+    public void Interact()
     {
         if (parentTree.passageState == ParentTreePassage.Available.closed)
         {

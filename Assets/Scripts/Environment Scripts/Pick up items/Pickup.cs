@@ -8,7 +8,7 @@ public class Pickup : MonoBehaviour, IInteractable
     [SerializeField] private string interactText;
     [SerializeField] private Item item;
     // Start is called before the first frame update
-    public void Interact(Transform interactorTransform)
+    public void Interact()
     {
         Inventory inventory = FindObjectOfType<Inventory>();
 

@@ -8,7 +8,7 @@ public interface IInteractable
     /// function for handling interaction
     /// </summary>
     /// <param name="interactorTransform"></param>
-    void Interact(Transform interactorTransform);
+    void Interact();
 
     /// <summary>
     /// Function that sets the interaction UI text

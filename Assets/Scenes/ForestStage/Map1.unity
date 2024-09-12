@@ -15094,6 +15094,10 @@ PrefabInstance:
       value: OnPressUpOrDown
       objectReference: {fileID: 0}
     - target: {fileID: 2652426612113270752, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: UsingItem
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2652426612113270752, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
       propertyPath: comboResetTime
       value: 0.5
       objectReference: {fileID: 0}
