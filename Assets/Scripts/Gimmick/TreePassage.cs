@@ -16,6 +16,8 @@ public class TreePassage : MonoBehaviour, IInteractable
     }
     public void Interact()
     {
+        Debug.Log("current state : " + parentTree.passageState);
+
         if (parentTree.passageState == ParentTreePassage.Available.closed && parentTree.invetory != null)
         {
             if (parentTree.invetory.FindItem(item))

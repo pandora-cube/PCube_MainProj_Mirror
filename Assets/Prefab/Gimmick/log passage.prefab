@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1476895988303990639}
   - component: {fileID: 4307503945609686314}
   - component: {fileID: 4690814530239085745}
+  - component: {fileID: 9211578317584184441}
   m_Layer: 0
   m_Name: log passage
   m_TagString: Untagged
@@ -100,6 +101,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   passageState: 0
+  invetory: {fileID: 0}
+--- !u!61 &9211578317584184441
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244256017655087404}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &2972398335844929063
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,7 +159,7 @@ GameObject:
   - component: {fileID: 6582126021675820224}
   - component: {fileID: 2921688552705987869}
   - component: {fileID: 316076064986937280}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: top hole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,6 +246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
+  item: {fileID: 11400000, guid: 0c9ee4c11dc495b40adc469c8b5881bb, type: 2}
 --- !u!58 &316076064986937280
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -246,7 +294,7 @@ GameObject:
   - component: {fileID: 4655241304120282922}
   - component: {fileID: 5769874799862162669}
   - component: {fileID: 7484631841399265421}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: bottom hole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,6 +381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
+  item: {fileID: 11400000, guid: 0c9ee4c11dc495b40adc469c8b5881bb, type: 2}
 --- !u!58 &7484631841399265421
 CircleCollider2D:
   m_ObjectHideFlags: 0

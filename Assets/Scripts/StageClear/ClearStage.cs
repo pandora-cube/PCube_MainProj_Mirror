@@ -17,7 +17,6 @@ public class ClearStage : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        Debug.Log("µ¢±¼´õ¹Ì");
         if (inventory == null) return;
 
         if (inventory.FindItem(item))

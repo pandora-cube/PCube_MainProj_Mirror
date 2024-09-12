@@ -891,7 +891,7 @@ MonoBehaviour:
   normalTransform: {fileID: 869793278093406168}
   normalGroundCheckCollider: {fileID: 7946822656432411550}
   normalSlopeCheckCollider: {fileID: 2256083166484181286}
-  normalInteractRange: 0.5
+  normalInteractRange: 2
   ghostGameObejct: {fileID: 6787739559307351797}
   ghostRb: {fileID: 4199188633483214984}
   ghostCollider: {fileID: 2062450210932085133}
@@ -1452,10 +1452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37b3542a8d2ce2e4d844c89cb1464795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items:
-  - {fileID: 11400000, guid: 8e162294161940c4d858d3aca38e5a75, type: 2}
-  - {fileID: 11400000, guid: 97bc94ddd4377b64d80c8437c676e01f, type: 2}
-  - {fileID: 11400000, guid: ea41279489e0f8b459a1c88050e0dac7, type: 2}
+  items: []
   slotParent: {fileID: 8197000859236343073}
   slots:
   - {fileID: 7192006961366880943}
