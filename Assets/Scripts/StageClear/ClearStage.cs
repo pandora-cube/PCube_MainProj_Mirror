@@ -3,16 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ClearStage : MonoBehaviour
+public class ClearStage : MonoBehaviour, IInteractable
 {
+    [SerializeField] private string interactText;
+    [SerializeField] private Inventory inventory;
+    [SerializeField] private Item item;
     private BoxCollider2D collid;
-    [SerializeField] string nextScnene;
+
     private void Start()
     {
         collid = GetComponent<BoxCollider2D>();
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    public void Interact()
     {
-        if (collid.isTrigger && collision.CompareTag("Player")) SceneManager.LoadScene(nextScnene);
+        Debug.Log("µ¢±¼´õ¹Ì");
+        if (inventory == null) return;
+
+        if (inventory.FindItem(item))
+        {
+            inventory.UseItem(item);
+            collid.isTrigger = true;
+            Debug.Log("stage clear");
+        }
+    }
+    public string GetInteractText()
+    {
+        return interactText;
+    }
+
+    public Transform GetTransform()
+    {
+        return transform;
     }
 }

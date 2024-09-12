@@ -10,8 +10,6 @@ public class Inventory : MonoBehaviour
     [SerializeField] private Transform slotParent;
     [SerializeField] public Slot[] slots;
 
-    [SerializeField] private BoxCollider2D Exit;
-
 #if UNITY_EDITOR
     private void OnValidate()
     {
@@ -37,18 +35,12 @@ public class Inventory : MonoBehaviour
             items.Add(_item);
             FreshSlot();
         }
-        else Debug.Log("슬롯이 가득 참");
+        else Debug.Log("slot is full");
     }
 
-    public bool FindItem(string itemName)
+    public bool FindItem(Item _item)
     {
-        //아이템 name으로 찾은 후, 사용
-        for (int i = 0; i<items.Count; i++) 
-            if (slots[i].item.itemName == itemName)
-            {
-                UseItem(slots[i].item);
-                return true;
-            }
+        if (items.Contains(_item)) return true;
         return false;
     }
 
@@ -57,17 +49,9 @@ public class Inventory : MonoBehaviour
         if (items.Contains(_item))
         {
             Debug.Log(_item.name);
-
-            // 아이템 사용 로직 추가
-            if (_item.name == "keyItem")
-            {
-                Debug.Log("열쇠 사용");
-                Exit.isTrigger = true; // 출구 오픈
-            }
-
             items.Remove(_item);
             FreshSlot();
         }
-        else Debug.Log("해당 아이템이 없음");
+        else Debug.Log("item is null");
     }
 }

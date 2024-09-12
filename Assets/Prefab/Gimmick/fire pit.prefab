@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4420254485227568108}
   - component: {fileID: 8268744461962294434}
   - component: {fileID: 4339173545000905924}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: fire pit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,9 +138,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9101453671709254216}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1240105ae1038346a7c3ec55e143fb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScnene: Map2_Forest
+  interactText: 
+  inventory: {fileID: 0}
+  item: {fileID: 11400000, guid: 0c9ee4c11dc495b40adc469c8b5881bb, type: 2}

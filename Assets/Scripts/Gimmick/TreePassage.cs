@@ -5,6 +5,7 @@ using UnityEngine;
 public class TreePassage : MonoBehaviour, IInteractable
 {
     [SerializeField] private Transform Player;
+    [SerializeField] private Item item;
     private ParentTreePassage parentTree;
 
     private void Start()
@@ -15,12 +16,17 @@ public class TreePassage : MonoBehaviour, IInteractable
     }
     public void Interact()
     {
-        if (parentTree.passageState == ParentTreePassage.Available.closed)
+        if (parentTree.passageState == ParentTreePassage.Available.closed && parentTree.invetory != null)
         {
-            if (parentTree.invetory.FindItem("keyItem")) parentTree.passageState = ParentTreePassage.Available.open;
+            if (parentTree.invetory.FindItem(item))
+            {
+                parentTree.invetory.UseItem(item);
+                parentTree.passageState = ParentTreePassage.Available.open;
+                Debug.Log("now tree passage is open");
+            }
         }
 
-        if (parentTree.passageState == ParentTreePassage.Available.open ) // 통로 나무 상태가 open
+        if (parentTree.passageState == ParentTreePassage.Available.open) // 통로 나무 상태가 open
         {
             Transform MoveToExit = FindingExitPosition();
 
