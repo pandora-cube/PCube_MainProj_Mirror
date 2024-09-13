@@ -7,11 +7,10 @@ public class Pickup : MonoBehaviour, IInteractable
 {
     [SerializeField] private string interactText;
     [SerializeField] private Item item;
-    // Start is called before the first frame update
-    public void Interact(Transform interactorTransform)
+    [SerializeField] private Inventory inventory;
+    
+    public void Interact()
     {
-        Inventory inventory = FindObjectOfType<Inventory>();
-
         if (inventory.items.Count < inventory.slots.Length)
         {
             inventory.AddItem(item);

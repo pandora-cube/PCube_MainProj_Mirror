@@ -95,6 +95,7 @@ public class PlayerController : MonoBehaviour
     #region ITEM VARIABLES
     public bool UsingItem = false;
     [SerializeField] protected LayerMask itemLayer;
+    [SerializeField] private LayerMask interactableLayer;
     #endregion
 
     #region ANIMATION VARIABLES
@@ -273,7 +274,7 @@ public class PlayerController : MonoBehaviour
     {
         IInteractable interactable = GetInteractableObject();
 
-        if (interactable != null) interactable.Interact(transform);
+        if (interactable != null) interactable.Interact();
         else Debug.Log("interactable is null!");
     }
 
@@ -287,11 +288,11 @@ public class PlayerController : MonoBehaviour
         Collider2D[] colliderArray = null;
         if (isNormal) 
         {
-            colliderArray = Physics2D.OverlapCircleAll(normalTransform.position, normalInteractRange);
+            colliderArray = Physics2D.OverlapCircleAll(normalTransform.position, normalInteractRange, interactableLayer);
         }
         else if (isGhost)
         {
-            colliderArray = Physics2D.OverlapCircleAll(ghostTransform.position, ghostInteractRange);
+            colliderArray = Physics2D.OverlapCircleAll(ghostTransform.position, ghostInteractRange, interactableLayer);
         }
         foreach (Collider2D collider in colliderArray)
         {
