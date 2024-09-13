@@ -11,6 +11,7 @@ public class BoobyTrap : MonoBehaviour
     [SerializeField] private GameObject arrow;
     [SerializeField] private float spawnInterval = 1f;
     [SerializeField] private float arrowSpeed = 3f;
+    [SerializeField] private Transform player;
 
     private Vector3 spawnDirection;
     void Start()
