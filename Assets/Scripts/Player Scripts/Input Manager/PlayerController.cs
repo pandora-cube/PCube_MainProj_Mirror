@@ -236,9 +236,11 @@ public class PlayerController : MonoBehaviour
         if (isNormal) isGrounded = Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, platformLayer) || Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, bridgeLayer) || isOnSlope;
         if (isGhost) isGrounded = Physics2D.OverlapCircle(ghostGroundCheckCollider.position, 0.3f, platformLayer) || Physics2D.OverlapCircle(ghostGroundCheckCollider.position, 0.3f, bridgeLayer) || isOnSlope;
     }
+
+
     public void OnJump(InputAction.CallbackContext ctx)
     {
-        if (!isGrounded) return;
+        if (!isGrounded || !ctx.performed) return;
 
         if (isHoldingDown) StartCoroutine(JumpDownThroughPlatform());
         else
@@ -247,6 +249,7 @@ public class PlayerController : MonoBehaviour
             else if (isGhost) ghostRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
     }
+
 
     IEnumerator JumpDownThroughPlatform()
     {
