@@ -227,7 +227,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &10893537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13786,11 +13786,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9057263577163046606, guid: 405acaa1baa2ffb4790f146812314403, type: 3}
   m_PrefabInstance: {fileID: 1962845071}
   m_PrefabAsset: {fileID: 0}
---- !u!61 &1962845074 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 8268744461962294434, guid: 405acaa1baa2ffb4790f146812314403, type: 3}
-  m_PrefabInstance: {fileID: 1962845071}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1994260542
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16664,18 +16659,6 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 849888124}
-    - target: {fileID: 2623866325261710830, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnPressUpOrDown
-      objectReference: {fileID: 0}
-    - target: {fileID: 2652426612113270752, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
-      propertyPath: UsingItem
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2652426612113270752, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
-      propertyPath: comboResetTime
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 2710728152213815392, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -16724,14 +16707,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character
       objectReference: {fileID: 0}
-    - target: {fileID: 6031092596345988927, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
-      propertyPath: m_GravityScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6874673845299253127, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
-      propertyPath: Exit
-      value: 
-      objectReference: {fileID: 1962845074}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
