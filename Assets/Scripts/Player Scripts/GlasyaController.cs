@@ -11,8 +11,6 @@ public class GlasyaController : MonoBehaviour
     [SerializeField] private float lastMoveTime;
     [SerializeField] private float timeElapsed;
     [SerializeField] private float movementDelayTime;
-    [SerializeField] private float baseSpeed = 2f; 
-    [SerializeField] private float maxSpeed = 5f; 
     [SerializeField] private float slowDownDistance = 2f; 
     [SerializeField] private float dynamicSpeed;
 
@@ -45,9 +43,21 @@ public class GlasyaController : MonoBehaviour
 
     void FollowPlayer(GameObject targetPlayer)
     {
+        bool isPlayerFacingLeft = targetPlayer.transform.localScale.x < 0;
+
         float distance = Vector3.Distance(gameObject.transform.position, targetPlayer.transform.position);
         
-        Vector3 targetPosition = targetPlayer.transform.position + new Vector3(-PLAYER_TO_GLASYA_DISTANCE, 0f, 0f);
+
+        Vector3 targetPosition;
+        
+        if (isPlayerFacingLeft) 
+        {
+            targetPosition = targetPlayer.transform.position + new Vector3(-PLAYER_TO_GLASYA_DISTANCE, 0f, 0f);
+        }
+        else
+        {
+            targetPosition = targetPlayer.transform.position + new Vector3(PLAYER_TO_GLASYA_DISTANCE, 0f, 0f);
+        }
 
         dynamicSpeed = distance - PLAYER_TO_GLASYA_DISTANCE;
         
