@@ -49,11 +49,8 @@ public class GlasyaController : MonoBehaviour
         
         Vector3 targetPosition = targetPlayer.transform.position + new Vector3(-PLAYER_TO_GLASYA_DISTANCE, 0f, 0f);
 
-        dynamicSpeed = dynamicSpeed * Mathf.Sin(distance);
-        Debug.Log("Dynamic speed: " + dynamicSpeed);
+        dynamicSpeed = distance - PLAYER_TO_GLASYA_DISTANCE;
         
-        //dynamicSpeed = Mathf.Clamp(dynamicSpeed, baseSpeed, maxSpeed);
-
         gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, targetPosition, dynamicSpeed * Time.deltaTime);
     }
 }
