@@ -41,7 +41,7 @@ public class PlayerNormalHealthManager : MonoBehaviour, IDamageable
 
     public void Die()
     {
-        gameOverPanel.SetActive(true);
+        //gameOverPanel.SetActive(true);
         Time.timeScale = 0f;
     }
 }

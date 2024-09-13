@@ -22,8 +22,8 @@ public class CameraController : MonoBehaviour
 
     void Awake()
     {
-       animator = GetComponent<Animator>();
-       playerController = FindAnyObjectByType<PlayerController>();
+        animator = GetComponent<Animator>();
+        playerController = FindAnyObjectByType<PlayerController>();
     }
 
     void Update()
@@ -35,8 +35,6 @@ public class CameraController : MonoBehaviour
     public void OnPressUpOrDown(InputAction.CallbackContext ctx)
     {
         direction = ctx.ReadValue<float>();
-
-        Debug.Log("direction:" + direction);
     }
 
     void StartPeekOverEdge(float peekDirection)
@@ -46,7 +44,7 @@ public class CameraController : MonoBehaviour
         timeElapsed += Time.deltaTime;
 
         if (timeElapsed >= timeNeeded)
-        {  
+        {
             peekCamera.transform.position = normalCamera.transform.position;
             peekCamera.transform.position += new Vector3(0f, -2f);
             animator.Play("Peeking");
@@ -56,16 +54,28 @@ public class CameraController : MonoBehaviour
             Debug.Log("PEEKING");
         }
     }
+
     void StopPeekOverEdge(float peekDirection)
     {
         if (!isPeeking) return;
 
         timeElapsed = 0f;
-        peekCamera.transform.position -= new Vector3(normalCamera.transform.position.x, -2f);
-        if (playerController.isNormal) animator.Play("NormalDefault");
-        else animator.Play("GhostDefault");
+        normalCamera.transform.position = peekCamera.transform.position;
+        peekCamera.transform.position -= new Vector3(normalCamera.transform.position.x, -2f * Time.deltaTime);
+
+        if (playerController.isNormal)
+        {
+            animator.Play("NormalDefault");
+        }
+        else
+        {
+            animator.Play("GhostDefault");
+        }
         isPeeking = false;
+
+#if UNITY_EDITOR
         Debug.Log("STOPPING");
+#endif
     }
-    
+
 }
