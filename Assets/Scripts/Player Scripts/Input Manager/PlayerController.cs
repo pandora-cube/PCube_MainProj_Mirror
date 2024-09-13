@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
     [Header("Ghost Variables")]
     [SerializeField] public GameObject ghostGameObejct;
     [SerializeField] protected Rigidbody2D ghostRb;
-    [SerializeField] protected CapsuleCollider2D ghostCollider;
+    [SerializeField] protected BoxCollider2D ghostCollider;
     [SerializeField] protected SpriteRenderer ghostSprite;
     [SerializeField] private Transform ghostTransform;
     [SerializeField] private Transform ghostGroundCheckCollider;
