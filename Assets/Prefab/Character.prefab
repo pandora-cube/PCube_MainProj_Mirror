@@ -896,7 +896,7 @@ MonoBehaviour:
   normalTransform: {fileID: 869793278093406168}
   normalGroundCheckCollider: {fileID: 7946822656432411550}
   normalSlopeCheckCollider: {fileID: 2256083166484181286}
-  normalInteractRange: 0.5
+  normalInteractRange: 1.5
   ghostGameObejct: {fileID: 6787739559307351797}
   ghostRb: {fileID: 4199188633483214984}
   ghostCollider: {fileID: 0}
