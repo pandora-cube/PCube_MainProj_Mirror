@@ -53,14 +53,15 @@ public class Flowre : MonoBehaviour, IDamageable
     {
         //TO-DO: ADD ANIM TRIGGER FOR OPENING
         openCapsuleCollider2D.enabled = true; //also allows Flowre to be attackable.
-        RaycastHit2D circleCast = Physics2D.CircleCast(transform.position, playerDetectionRadius, Vector2.up);
+        Collider2D circleCast = Physics2D.OverlapCircle(transform.position, playerDetectionRadius);
 
-        if (circleCast.collider != null && circleCast.collider.gameObject.CompareTag("Player")) 
+        if (circleCast != null && circleCast.gameObject.CompareTag("Player")) 
         {
+            Debug.Log("Circle cast: " + circleCast.gameObject.name);
             isOpen = true;
             Debug.Log("TOUCH");
             if (isAttacking) return;
-            StartCoroutine(AttackPlayer(circleCast.collider));
+            StartCoroutine(AttackPlayer(circleCast));
         }
     }
 
