@@ -333,6 +333,7 @@ MonoBehaviour:
   SpeakerUI:
   - {fileID: 253045749}
   - {fileID: 313897222}
+  DialogUI: {fileID: 1844018589}
 --- !u!1001 &19863284
 PrefabInstance:
   m_ObjectHideFlags: 0
