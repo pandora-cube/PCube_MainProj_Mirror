@@ -23,6 +23,7 @@ public class DialogSystem : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI[] textUI;
     [SerializeField] GameObject[] SpeakerUI;
+    [SerializeField] GameObject DialogUI;
 
     private List<Dialog> dialog_Lists = new List<Dialog>();
 
@@ -32,7 +33,6 @@ public class DialogSystem : MonoBehaviour
     private Speaker prevSpeaker;
     private int currentIndex = 0;
 
-    private bool isActive = false;
 
     private void Start()
     {
@@ -45,35 +45,36 @@ public class DialogSystem : MonoBehaviour
 
     void AddTextList(int id, string dialogText, Speaker speaker)
     {
-        Debug.Log(speaker);
-        dialog_Lists.Add(new Dialog(id, dialogText, speaker));
+        dialog_Lists.Add(new Dialog(id, dialogText, speaker)); // 대화 텍스트 추가
     }
 
     IEnumerator DialogProgress()
     {
-        while (currentIndex < dialog_Lists.Count)
+        while (currentIndex < dialog_Lists.Count) // 다음 진행되는 텍스트가 없을 때까지 표시
         {
-            Debug.Log(currentIndex + currentSpeaker);
+            //current 리스트 저장
             currentText = dialog_Lists[currentIndex].dialogText;
             currentID = dialog_Lists[currentIndex].id;
             currentSpeaker = dialog_Lists[currentIndex].speaker;
 
+            //current 발화자 UI ON
             SetActiveDialogUI();
 
+            //대사 표시 연출 & 마우스 입력 처리
             yield return StartCoroutine(DialogTypingEffect());
 
             prevSpeaker = currentSpeaker;
-            if (!isActive) currentIndex++;
+            currentIndex++;
         }
 
         SpeakerUI[(int)currentSpeaker].SetActive(false);
-        yield return null;
+        DialogUI.SetActive(false);
     }
 
     IEnumerator DialogTypingEffect()
     {
         string showText = "";
-        isActive = true;
+
         for (int i = 0; i< currentText.Length; i++)
         {
             showText += currentText[i];
@@ -82,18 +83,24 @@ public class DialogSystem : MonoBehaviour
             if (Input.GetMouseButton(0))
             {
                 textUI[(int)currentSpeaker].text = currentText;
+                Debug.Log("클릭");
                 break;
             }
 
             yield return new WaitForSeconds(0.1f);
         }
 
+        yield return new WaitForSeconds(0.1f);
+
         while (true)
         {
-            if (Input.GetMouseButton(0)) break;
-            yield return new WaitForSeconds(0.1f);
+            if (Input.GetMouseButton(0))
+            {
+                yield return new WaitForSeconds(0.1f);
+                break;
+            }
+            yield return null;
         }
-        isActive = false;
     }
 
     void SetActiveDialogUI()
