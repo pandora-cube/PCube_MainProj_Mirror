@@ -1,0 +1,24 @@
+{
+    "dialog": [
+        {
+            "id": 0,
+            "dialogText": "Hello Player Hello Player Hello Player",
+            "speakerID": 1
+        },
+        {
+            "id": 1,
+            "dialogText": "Hello Glasya Hello Glasya Hello Glasya",
+            "speakerID": 0
+        },
+        {
+            "id": 2,
+            "dialogText": "i want go home i want go home i want go home",
+            "speakerID": 1
+        },
+        {
+            "id": 3,
+            "dialogText": "yeah me too me too me too me too",
+            "speakeriD": 0
+        }
+    ]
+}
