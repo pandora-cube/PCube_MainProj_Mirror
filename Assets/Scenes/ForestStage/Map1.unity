@@ -228,7 +228,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &10893537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,10 +330,17 @@ MonoBehaviour:
   textUI:
   - {fileID: 722927654}
   - {fileID: 1597188080}
+  NameUI:
+  - {fileID: 2098096273}
+  - {fileID: 838982096}
   SpeakerUI:
   - {fileID: 253045749}
   - {fileID: 313897222}
   DialogUI: {fileID: 1844018589}
+  Speaker:
+  - Player
+  - Glasya
+  filePath: /Scripts/Json/DialogTexts.json
 --- !u!1001 &19863284
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2551,7 +2558,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &313897223
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12752,7 +12759,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1844018590
 RectTransform:
   m_ObjectHideFlags: 0
