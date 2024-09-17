@@ -199,6 +199,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cameraSize (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 6754695660308620812, guid: 8923987b7cde66943b5d27f878b34aa6, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -347,11 +351,11 @@ PrefabInstance:
       objectReference: {fileID: 1548172460}
     - target: {fileID: 4032162363293629390, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -22.708694
+      value: -26.398695
       objectReference: {fileID: 0}
     - target: {fileID: 4032162363293629390, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.594508
+      value: -10.394508
       objectReference: {fileID: 0}
     - target: {fileID: 4192908959834844874, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
       propertyPath: m_BoundingShape2D
@@ -530,7 +534,7 @@ GameObject:
   m_Component:
   - component: {fileID: 69793569}
   - component: {fileID: 69793568}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Map Confiner for Cinemachine
   m_TagString: CameraCollider
   m_Icon: {fileID: 0}
@@ -1092,6 +1096,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cameraSize (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6754695660308620812, guid: 8923987b7cde66943b5d27f878b34aa6, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1379,6 +1387,10 @@ PrefabInstance:
     - target: {fileID: 6754695660308620812, guid: 8923987b7cde66943b5d27f878b34aa6, type: 3}
       propertyPath: m_Name
       value: cameraSize (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6754695660308620812, guid: 8923987b7cde66943b5d27f878b34aa6, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2304,6 +2316,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cameraSize (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 6754695660308620812, guid: 8923987b7cde66943b5d27f878b34aa6, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2412,6 +2428,10 @@ PrefabInstance:
     - target: {fileID: 6754695660308620812, guid: 8923987b7cde66943b5d27f878b34aa6, type: 3}
       propertyPath: m_Name
       value: cameraSize (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6754695660308620812, guid: 8923987b7cde66943b5d27f878b34aa6, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2642,6 +2662,10 @@ PrefabInstance:
     - target: {fileID: 6754695660308620812, guid: 8923987b7cde66943b5d27f878b34aa6, type: 3}
       propertyPath: m_Name
       value: cameraSize (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6754695660308620812, guid: 8923987b7cde66943b5d27f878b34aa6, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3272,6 +3296,10 @@ PrefabInstance:
     - target: {fileID: 6754695660308620812, guid: 8923987b7cde66943b5d27f878b34aa6, type: 3}
       propertyPath: m_Name
       value: cameraSize (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6754695660308620812, guid: 8923987b7cde66943b5d27f878b34aa6, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4465,6 +4493,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cameraSize (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 6754695660308620812, guid: 8923987b7cde66943b5d27f878b34aa6, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4918,6 +4950,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cameraSize (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 6754695660308620812, guid: 8923987b7cde66943b5d27f878b34aa6, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5233,6 +5269,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cameraSize (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 6754695660308620812, guid: 8923987b7cde66943b5d27f878b34aa6, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5453,6 +5493,10 @@ PrefabInstance:
     - target: {fileID: 6754695660308620812, guid: 8923987b7cde66943b5d27f878b34aa6, type: 3}
       propertyPath: m_Name
       value: cameraSize (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6754695660308620812, guid: 8923987b7cde66943b5d27f878b34aa6, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6305,6 +6349,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cameraSize (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 6754695660308620812, guid: 8923987b7cde66943b5d27f878b34aa6, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6446,7 +6494,7 @@ GameObject:
   m_Component:
   - component: {fileID: 968407908}
   - component: {fileID: 968407909}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Map1_backgroundSize
   m_TagString: CameraCollider
   m_Icon: {fileID: 0}
@@ -11113,6 +11161,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cameraSize (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6754695660308620812, guid: 8923987b7cde66943b5d27f878b34aa6, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11366,7 +11418,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1548172456}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.69, y: -3.9, z: -10}
+  m_LocalPosition: {x: 0.009552349, y: -4.69999, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11780,13 +11832,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5035200596238267951, guid: e19fc831294a0154dbe10220ad3c5e1b, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
+      propertyPath: m_SleepingMode
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8360441023914462250, guid: e19fc831294a0154dbe10220ad3c5e1b, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -1700011820, guid: 95666df3b6991c743bcbccae30f80288, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13126,6 +13174,10 @@ PrefabInstance:
     - target: {fileID: 6754695660308620812, guid: 8923987b7cde66943b5d27f878b34aa6, type: 3}
       propertyPath: m_Name
       value: cameraSize (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6754695660308620812, guid: 8923987b7cde66943b5d27f878b34aa6, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16281,6 +16333,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cameraSize (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6754695660308620812, guid: 8923987b7cde66943b5d27f878b34aa6, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16482,6 +16538,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cameraSize
       objectReference: {fileID: 0}
+    - target: {fileID: 6754695660308620812, guid: 8923987b7cde66943b5d27f878b34aa6, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16500,6 +16560,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 488549447599903303, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 869793278093406168, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 869793278093406168, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -9.4
+      objectReference: {fileID: 0}
     - target: {fileID: 2623866325261710830, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
       propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -16510,11 +16582,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2710728152213815392, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.69
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2710728152213815392, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2710728152213815392, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -16548,9 +16620,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3308553549901306974, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -9.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3609746959419466173, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 5824343611764768133, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
       propertyPath: m_Name
       value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787739559307351797, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

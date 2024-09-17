@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8761523637480671342}
   - component: {fileID: -6979057559948284103}
   - component: {fileID: 1267137803089641362}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: booby trap
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -147,3 +147,4 @@ MonoBehaviour:
   arrow: {fileID: 4837513465732603085, guid: a56c9bb489c66e14a9871e192ab20a1a, type: 3}
   spawnInterval: 1.5
   arrowSpeed: 15
+  player: {fileID: 0}
