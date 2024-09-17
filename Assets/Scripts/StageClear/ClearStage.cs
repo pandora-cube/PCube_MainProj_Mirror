@@ -23,6 +23,9 @@ public class ClearStage : MonoBehaviour, IInteractable
         {
             inventory.UseItem(item);
             collid.isTrigger = true;
+
+            ProgressData.Instance.playerData.currentStage += 1;
+            ProgressData.Instance.SaveData();
             Debug.Log("stage clear");
         }
     }

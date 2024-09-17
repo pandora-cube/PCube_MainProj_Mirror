@@ -15,7 +15,7 @@ public class ProgressData : MonoBehaviour
 {
     public static ProgressData Instance;
 
-    PlayerData playerData = new PlayerData();
+    public PlayerData playerData = new PlayerData();
     string path;
     string fileName = "mirrorSaveFile";
 

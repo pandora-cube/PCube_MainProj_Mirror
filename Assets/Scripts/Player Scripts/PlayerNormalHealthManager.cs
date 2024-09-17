@@ -12,6 +12,7 @@ public class PlayerNormalHealthManager : MonoBehaviour, IDamageable
 
     [Header("Game Over")]
     [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] SavePoints savePoints;
 
     const int OBSTACLE_LAYER = 9;
     
@@ -42,6 +43,13 @@ public class PlayerNormalHealthManager : MonoBehaviour, IDamageable
     public void Die()
     {
         //gameOverPanel.SetActive(true);
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
+        Invoke(nameof(ReadyToRestart), 1f);
+    }
+
+    public void ReadyToRestart()
+    {
+        savePoints.PlayerRespawn();
+        //Time.timeScale = 1f;
     }
 }
