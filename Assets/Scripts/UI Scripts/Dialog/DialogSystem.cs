@@ -1,108 +1,154 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using UnityEngine;
 
-public enum Speaker { Player, Glasya }
+//public enum Speaker { Player, Glasya }
 
-public struct Dialog 
+[System.Serializable]
+public class Dialog 
 {
     public int id;
     public string dialogText;
-    public Speaker speaker;
+    public int speakerID;
 
-    public Dialog(int id, string dialogText, Speaker speaker)
+    public Dialog(int id, string dialogText, int speakerID)
     {
         this.id = id;
         this.dialogText = dialogText;
-        this.speaker = speaker;
+        this.speakerID = speakerID;
+    }
+
+}
+
+[System.Serializable]
+public class DialogList
+{
+    public List<Dialog> dialog;
+
+    public DialogList()
+    {
+        dialog = new List<Dialog>();
     }
 }
 
 public class DialogSystem : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI[] textUI;
+    [SerializeField] TextMeshProUGUI[] NameUI;
     [SerializeField] GameObject[] SpeakerUI;
-
-    private List<Dialog> dialog_Lists = new List<Dialog>();
+    [SerializeField] GameObject DialogUI;
+    [SerializeField] string[] Speaker;
 
     private string currentText;
-    private int currentID;
-    private Speaker currentSpeaker;
-    private Speaker prevSpeaker;
-    private int currentIndex = 0;
+    private int currentID = 0;
+    private int prevSpeaker, currentSpeaker;
 
-    private bool isActive = false;
+    private bool firstDialog = true;
+
+    [SerializeField] string filePath = "/Scripts/Json/DialogTexts.json";
+    private DialogList dialogLists = new DialogList();
 
     private void Start()
     {
-        AddTextList(0, "Hello Wolrd Hello Wolrd Hello Wolrd Hello Wolrd", Speaker.Glasya);
-        AddTextList(1, "My name is James", Speaker.Player);
-        AddTextList(2, "You died", Speaker.Glasya);
-
-        StartCoroutine(DialogProgress());
+        JsonLoad();
     }
 
-    void AddTextList(int id, string dialogText, Speaker speaker)
+    void JsonSaveText(int id, string dialogText, int speakerID)
     {
-        Debug.Log(speaker);
-        dialog_Lists.Add(new Dialog(id, dialogText, speaker));
+        //dialogLists.dialog.Add(new Dialog(id, dialogText, speaker)); // 대화 텍스트 추가
+        string path = Application.dataPath + filePath;
+        string json = JsonUtility.ToJson(dialogLists, true);
+        File.WriteAllText(path, json);
+    }
+
+    void JsonLoad()
+    {
+        string path = Application.dataPath + filePath;
+
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            dialogLists = JsonUtility.FromJson<DialogList>(json);
+
+            if (dialogLists != null) StartCoroutine(DialogProgress());
+            else Debug.Log("text Load failed");
+        }
+        else Debug.Log("Not found json file");
     }
 
     IEnumerator DialogProgress()
     {
-        while (currentIndex < dialog_Lists.Count)
+        firstDialog = true;
+
+        while (currentID < dialogLists.dialog.Count) // 다음 진행되는 텍스트가 없을 때까지 표시
         {
-            Debug.Log(currentIndex + currentSpeaker);
-            currentText = dialog_Lists[currentIndex].dialogText;
-            currentID = dialog_Lists[currentIndex].id;
-            currentSpeaker = dialog_Lists[currentIndex].speaker;
+            //current 리스트 저장
+            currentText = dialogLists.dialog[currentID].dialogText;
+            currentSpeaker = dialogLists.dialog[currentID].speakerID;
 
-            SetActiveDialogUI();
+            //current 발화자 UI ON
+            SetDialogUI();
 
+            //대사 표시 연출 & 마우스 입력 처리
             yield return StartCoroutine(DialogTypingEffect());
 
             prevSpeaker = currentSpeaker;
-            if (!isActive) currentIndex++;
+            currentID++;
         }
 
-        SpeakerUI[(int)currentSpeaker].SetActive(false);
-        yield return null;
+        SpeakerUI[currentSpeaker].SetActive(false);
+        DialogUI.SetActive(false);
     }
 
     IEnumerator DialogTypingEffect()
     {
         string showText = "";
-        isActive = true;
+
         for (int i = 0; i< currentText.Length; i++)
         {
             showText += currentText[i];
-            textUI[(int)currentSpeaker].text = showText;
+            textUI[currentSpeaker].text = showText;
 
             if (Input.GetMouseButton(0))
             {
-                textUI[(int)currentSpeaker].text = currentText;
+                textUI[currentSpeaker].text = currentText;
                 break;
             }
 
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.08f);
         }
+
+        yield return new WaitForSeconds(0.15f);
 
         while (true)
         {
-            if (Input.GetMouseButton(0)) break;
-            yield return new WaitForSeconds(0.1f);
+            if (Input.GetMouseButton(0))
+            {
+                yield return new WaitForSeconds(0.15f);
+                break;
+            }
+            yield return null;
         }
-        isActive = false;
     }
 
-    void SetActiveDialogUI()
+    void SetDialogUI()
     {
-        if (prevSpeaker != currentSpeaker)
+        if (firstDialog)
         {
-            Debug.Log(currentSpeaker);
-            SpeakerUI[(int)prevSpeaker].SetActive(false);
-            SpeakerUI[(int)currentSpeaker].SetActive(true);
+            NameUI[currentSpeaker].text = Speaker[currentSpeaker];
+            DialogUI.SetActive(true);
+            SpeakerUI[currentSpeaker].SetActive(true);
+
+            firstDialog = false;
+        }
+        else if (prevSpeaker != currentSpeaker)
+        {
+            NameUI[currentSpeaker].text = Speaker[currentSpeaker];
+
+            SpeakerUI[prevSpeaker].SetActive(false);
+            SpeakerUI[currentSpeaker].SetActive(true);
         }
     }
 }
