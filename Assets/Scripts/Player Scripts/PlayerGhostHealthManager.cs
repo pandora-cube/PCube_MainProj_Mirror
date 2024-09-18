@@ -7,6 +7,7 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
 {
     [field:SerializeField] public float maxHealth { get; set; }
     [field:SerializeField] public float currentHealth { get; set; }
+    [Header("Damage Effects")]
     [SerializeField] private float damageDelay;
     [SerializeField] private int numberOfBlinks;
     [SerializeField] private float blinkInterval;
@@ -17,10 +18,17 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
 
     [Header("Game Over")]
     [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] SavePoints savePoints;
+    [SerializeField] private float ghostTimer;
+    [SerializeField] private float ghostTimeLimit;
 
     private SpriteRenderer spriteRenderer;
     [SerializeField] private bool isTakingDamage = false;
 
+    void OnEnable()
+    {
+        ghostTimer = 0f;
+    }
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -29,10 +37,27 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
     {
         maxHealth = 5f;
         currentHealth = maxHealth;
+        ghostTimer = 0f;
+    }
+
+    void Update()
+    {
+        ghostTimer += Time.deltaTime;
+
+        if (ghostTimer >= ghostTimeLimit) Die();
     }
     public void Die()
     {
-        
+        gameOverPanel.SetActive(true);
+        Time.timeScale = 0f;
+        //Invoke(nameof(ReadyToRestart), 1f);
+    }
+
+    public void ReadyToRestart()
+    {
+        savePoints.PlayerRespawn();
+        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
     }
 
     public void TakeDamage(float damageAmount)
@@ -48,8 +73,8 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
 
     IEnumerator BlinkAfterTakingDamage()
     {
-        if (isTakingDamage) yield break;
-
+        if (!isTakingDamage) yield break;
+        Debug.Log("1");
         Color spriteColor = spriteRenderer.color;
         for (int i = 0; i < numberOfBlinks; ++i)
         {

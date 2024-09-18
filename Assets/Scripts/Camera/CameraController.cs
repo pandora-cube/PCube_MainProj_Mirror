@@ -25,7 +25,7 @@ public class CameraController : MonoBehaviour
     void Awake()
     {
         animator = GetComponent<Animator>();
-        playerController = FindAnyObjectByType<PlayerController>();
+        playerController = FindObjectOfType<PlayerController>();
     }
 
     void Update()

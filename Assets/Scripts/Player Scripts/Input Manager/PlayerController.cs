@@ -278,7 +278,6 @@ public class PlayerController : MonoBehaviour
         IInteractable interactable = GetInteractableObject();
 
         if (interactable != null) interactable.Interact();
-        else Debug.Log("interactable is null!");
     }
 
     /// <summary>

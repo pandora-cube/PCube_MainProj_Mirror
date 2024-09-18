@@ -30,7 +30,7 @@ public class Fleaore : MonoBehaviour, IDamageable
 
     void Awake()
     {
-        playerController = FindAnyObjectByType<PlayerController>();
+        playerController = FindObjectOfType<PlayerController>();
         openCollider2D = GetComponent<BoxCollider2D>();
         fleaoreAnimator = GetComponent<Animator>();
     }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerAttackManager : MonoBehaviour
 {
     const int ATTACKABLE_LAYER = 12;
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == ATTACKABLE_LAYER)

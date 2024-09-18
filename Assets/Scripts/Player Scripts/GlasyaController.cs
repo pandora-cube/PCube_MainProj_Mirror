@@ -16,7 +16,7 @@ public class GlasyaController : MonoBehaviour
 
     void Awake()
     {
-        playerController = FindAnyObjectByType<PlayerController>();
+        playerController = FindObjectOfType<PlayerController>();
     }
 
     void Start()
