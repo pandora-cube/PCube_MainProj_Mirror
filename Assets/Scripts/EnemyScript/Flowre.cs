@@ -11,6 +11,7 @@ public class Flowre : MonoBehaviour, IDamageable
 
     [SerializeField] private bool isOpen = false;
     private bool isAttacking = false;
+    private bool isAttacked = false;
     private float playerDetectionRadius = 5f;
     [SerializeField] private float attackDelay = 1f;
     private float attackDamage = 1f;
@@ -31,7 +32,7 @@ public class Flowre : MonoBehaviour, IDamageable
 
     void Awake()
     {
-        playerController = FindAnyObjectByType<PlayerController>();
+        playerController = FindObjectOfType<PlayerController>();
         openCapsuleCollider2D = GetComponent<CapsuleCollider2D>();
     }
 
@@ -41,11 +42,11 @@ public class Flowre : MonoBehaviour, IDamageable
     }
     void Update()
     {
-        if (!playerController.isGhost) CloseWhenPlayerIsNormal();  
+        if (!playerController.isGhost || isAttacked) Close();  
         else if (playerController.isGhost) DetectPlayer();
     }
     
-    void CloseWhenPlayerIsNormal()
+    void Close()
     {
         openCapsuleCollider2D.enabled = false;
         isOpen = false;
@@ -84,7 +85,9 @@ public class Flowre : MonoBehaviour, IDamageable
     {
         //TO-DO: ADD CLOSING ANIM
         isOpen = false;
+        isAttacked = true;
         currentHealth -= damageAmount;
+        if (currentHealth <= 0) Die();
     }
 
     public void Die()

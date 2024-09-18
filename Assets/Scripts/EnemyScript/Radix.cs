@@ -29,7 +29,7 @@ public class Radix : MonoBehaviour, IDamageable
         boxCollider2D = GetComponent<BoxCollider2D>();
         radixAnimator = GetComponent<Animator>();
         boxCollider2D.enabled = false;
-        playerController = FindAnyObjectByType<PlayerController>();
+        playerController = FindObjectOfType<PlayerController>();
 
         maxHealth = 5;
         currentHealth = maxHealth;

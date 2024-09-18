@@ -8,7 +8,7 @@ public class Mirror : MonoBehaviour, IInteractable
     public InteractableObject interactableObject;
     public void Interact()
     {
-        PlayerController player = FindAnyObjectByType<PlayerController>();
+        PlayerController player = FindObjectOfType<PlayerController>();
 
         player.Transform();
     }
