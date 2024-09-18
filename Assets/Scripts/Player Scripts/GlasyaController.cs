@@ -45,22 +45,21 @@ public class GlasyaController : MonoBehaviour
     {
         bool isPlayerFacingLeft = targetPlayer.transform.localScale.x < 0;
 
-        float distance = Vector3.Distance(gameObject.transform.position, targetPlayer.transform.position);
-        
-
+        float distance = Vector3.Distance(gameObject.transform.localPosition, targetPlayer.transform.localPosition);
+    
         Vector3 targetPosition;
         
         if (isPlayerFacingLeft) 
         {
-            targetPosition = targetPlayer.transform.position + new Vector3(-PLAYER_TO_GLASYA_DISTANCE, 0f, 0f);
+            targetPosition = new Vector3(targetPlayer.transform.localPosition.x - PLAYER_TO_GLASYA_DISTANCE, targetPlayer.transform.localPosition.y, gameObject.transform.localPosition.z);
         }
         else
         {
-            targetPosition = targetPlayer.transform.position + new Vector3(PLAYER_TO_GLASYA_DISTANCE, 0f, 0f);
+            targetPosition = new Vector3(targetPlayer.transform.localPosition.x + PLAYER_TO_GLASYA_DISTANCE, targetPlayer.transform.localPosition.y, gameObject.transform.localPosition.z);
         }
 
         dynamicSpeed = distance - PLAYER_TO_GLASYA_DISTANCE;
         
-        gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, targetPosition, dynamicSpeed * Time.deltaTime);
+        gameObject.transform.localPosition = Vector3.MoveTowards(gameObject.transform.localPosition, targetPosition, dynamicSpeed * Time.deltaTime);
     }
 }
