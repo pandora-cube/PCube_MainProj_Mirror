@@ -42,13 +42,13 @@ public class PlayerNormalHealthManager : MonoBehaviour, IDamageable
     {
         gameOverPanel.SetActive(true);
         Time.timeScale = 0f;
-        //Invoke(nameof(ReadyToRestart), 1f);
     }
 
     public void ReadyToRestart()
     {
-        savePoints.PlayerRespawn();
+        currentHealth = maxHealth;
+        gameOverPanel.SetActive(false);
         Time.timeScale = 1f;
-        //Time.timeScale = 1f;
+        savePoints.PlayerRespawn();
     }
 }

@@ -50,14 +50,14 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
     {
         gameOverPanel.SetActive(true);
         Time.timeScale = 0f;
-        //Invoke(nameof(ReadyToRestart), 1f);
     }
 
     public void ReadyToRestart()
     {
-        savePoints.PlayerRespawn();
+        currentHealth = maxHealth;
+        gameOverPanel.SetActive(false);
         Time.timeScale = 1f;
-        //Time.timeScale = 1f;
+        savePoints.PlayerRespawn();
     }
 
     public void TakeDamage(float damageAmount)
@@ -69,12 +69,13 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
 
         StartCoroutine(BlinkAfterTakingDamage());
         StartCoroutine(ResetIsTakingDamageBool());
+
     }
+
 
     IEnumerator BlinkAfterTakingDamage()
     {
         if (!isTakingDamage) yield break;
-        Debug.Log("1");
         Color spriteColor = spriteRenderer.color;
         for (int i = 0; i < numberOfBlinks; ++i)
         {
@@ -89,10 +90,14 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
             yield return new WaitForSeconds(blinkInterval);
         }
     }
+
+
     IEnumerator ResetIsTakingDamageBool()
     {
+        Debug.Log("1");
         yield return new WaitForSeconds(damageDelay);
 
         isTakingDamage = false;
+        Debug.Log("2");
     }
 }

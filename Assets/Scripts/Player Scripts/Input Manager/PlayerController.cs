@@ -81,30 +81,26 @@ public class PlayerController : MonoBehaviour
     #region ATTACK VARIABLES
     [Header("Attack Variables")]
     [SerializeField] private BoxCollider2D attackCollider;
-    [SerializeField] private float attackRange = 1.5f;
     [SerializeField] private LayerMask attackableLayer;
-    [SerializeField] private float damageAmount = 1f;
 
     [SerializeField] private float comboResetTime = 1f; // Time allowed between combo attacks
     [SerializeField] private float lastAttackTime;
     [SerializeField] private int comboAttackNumber = 0;
-    private bool isAttacking;
-
     #endregion
 
     #region ITEM VARIABLES
+    [Header("Item Variables")]
     public bool UsingItem = false;
     [SerializeField] protected LayerMask itemLayer;
     [SerializeField] private LayerMask interactableLayer;
     #endregion
 
     #region ANIMATION VARIABLES
+    [Header("Animation Variables")]
     private string currentState;
-
     [SerializeField] private Animator normalAnimator;
     [SerializeField] private Animator ghostAnimator;
     AnimatorStateInfo currentAnimation;
-
     enum NormalAnimationStates
     {
         normalIdle,
@@ -120,14 +116,25 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
+    #region OTHER VARIABLES
+    [Header("Other Variables")]
+    [SerializeField] private DialogSystem dialogSystem;
+    private PlayerInput playerInput;
+    #endregion
+
+    private void Awake()
+    {
+        playerInput = GetComponent<PlayerInput>();
+    }
     private void Update()
     {
-        //attackTimeCounter += Time.deltaTime;
         if (Time.time - lastAttackTime > comboResetTime)  
         {
             comboAttackNumber = 0;
             ChangeAnimationState(GhostAnimationStates.ghostWalk); //TO-DO: Change to Idle
         }
+
+        playerInput.enabled = !dialogSystem.isDialog; //disable player input when dialog is happening
     }
 
     private void FixedUpdate()
@@ -381,9 +388,9 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    #endregion
+    #endregion //COMMON
 
-    #region player only functions
+    #region PLAYER ONLY
     public void OnCrawl(InputAction.CallbackContext ctx)
     {
         isCrawling = !isCrawling;
@@ -396,16 +403,17 @@ public class PlayerController : MonoBehaviour
         {
             //boxCollider.size = standColliderSize;
         }
-        Debug.Log(isCrawling);
     }
 
-    #endregion
+    #endregion //PLAYER ONLY
 
-    #region ghost only functions
+    #region GHOST ONLY
     public void Teleport()
     {
 
     }
+
+
     private IEnumerator Dash()
     {
         if (canDash)
@@ -430,6 +438,8 @@ public class PlayerController : MonoBehaviour
             canDash = true;
         }
     }
+
+
     void Smoke()
     {
 
@@ -439,7 +449,6 @@ public class PlayerController : MonoBehaviour
     {
         if (!isGhost || !ctx.started) return; 
 
-        isAttacking = true;
         lastAttackTime = Time.time;
 
         comboAttackNumber++;
@@ -466,7 +475,7 @@ public class PlayerController : MonoBehaviour
             case 3: ChangeAnimationState(GhostAnimationStates.ghostAttack3); break;
         }     
     }
-    #endregion
+    #endregion //GHOST ONLY
 
     void ItemAvabileAreaCheck(Vector2 checkPos)
     {
@@ -502,8 +511,7 @@ public class PlayerController : MonoBehaviour
     #region DEBUGGING
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(ghostTransform.position, ghostInteractRange);
+       
     }
     #endregion
 }

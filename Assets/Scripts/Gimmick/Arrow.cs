@@ -6,7 +6,6 @@ public class Arrow : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //if (collision != null) Debug.Log(collision.name + collision.tag);
         if (collision != null && !collision.gameObject.CompareTag("Obstacle") && !collision.gameObject.CompareTag("CameraCollider")) Destroy(gameObject);
     }
 }

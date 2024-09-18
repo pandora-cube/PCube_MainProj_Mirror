@@ -63,7 +63,6 @@ public class Fleaore : MonoBehaviour, IDamageable
         if (circleCast.collider != null && circleCast.collider.gameObject.CompareTag("Player")) 
         {
             isOpen = true;
-            Debug.Log("TOUCH");
             if (isAttacking) return;
             StartCoroutine(AttackPlayer(circleCast.collider));
         }

@@ -50,6 +50,7 @@ public class DialogSystem : MonoBehaviour
     private int prevSpeaker, currentSpeaker;
 
     private bool firstDialog = true;
+    public bool isDialog = false;
 
     [SerializeField] string filePath = "/Scripts/Json/DialogTexts.json";
     private DialogList dialogLists = new DialogList();
@@ -61,7 +62,7 @@ public class DialogSystem : MonoBehaviour
 
     void JsonSaveText(int id, string dialogText, int speakerID)
     {
-        //dialogLists.dialog.Add(new Dialog(id, dialogText, speaker)); // ´ëÈ­ ÅØ½ºÆ® Ãß°¡
+        //dialogLists.dialog.Add(new Dialog(id, dialogText, speaker)); // ï¿½ï¿½È­ ï¿½Ø½ï¿½Æ® ï¿½ß°ï¿½
         string path = Application.dataPath + filePath;
         string json = JsonUtility.ToJson(dialogLists, true);
         File.WriteAllText(path, json);
@@ -89,10 +90,11 @@ public class DialogSystem : MonoBehaviour
     IEnumerator DialogProgress()
     {
         firstDialog = true;
+        isDialog = true;
 
         currentDialogNum = dialogLists.dialog[currentID].dialogNum;
 
-        while (currentDialogNum == dialogLists.dialog[currentID].dialogNum) // ´ÙÀ½ ÁøÇàµÇ´Â ÅØ½ºÆ®°¡ ¾øÀ» ¶§±îÁö Ç¥½Ã
+        while (currentDialogNum == dialogLists.dialog[currentID].dialogNum) // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½Ø½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½
         {
             currentSpeaker = dialogLists.dialog[currentID].speakerID;
             SetDialogUI();
@@ -102,7 +104,7 @@ public class DialogSystem : MonoBehaviour
             {
                 currentText = dialogLists.dialog[currentID].dialogText[index];
 
-                //´ë»ç Ç¥½Ã ¿¬Ãâ & ¸¶¿ì½º ÀÔ·Â Ã³¸®
+                //ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ & ï¿½ï¿½ï¿½ì½º ï¿½Ô·ï¿½ Ã³ï¿½ï¿½
                 yield return StartCoroutine(DialogTypingEffect());
                 index++;
             }
@@ -110,7 +112,7 @@ public class DialogSystem : MonoBehaviour
             prevSpeaker = currentSpeaker;
             currentID++;
         }
-
+        isDialog = false;
         SpeakerUI[currentSpeaker].SetActive(false);
         DialogUI.SetActive(false);
     }
