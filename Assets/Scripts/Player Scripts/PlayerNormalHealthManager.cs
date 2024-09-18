@@ -21,6 +21,8 @@ public class PlayerNormalHealthManager : MonoBehaviour, IDamageable
     {
         maxHealth = 1f;
         currentHealth = maxHealth;
+
+        savePoints.PlayerRespawn();
     }
 
 
