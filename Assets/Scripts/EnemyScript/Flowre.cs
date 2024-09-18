@@ -20,8 +20,6 @@ public class Flowre : MonoBehaviour, IDamageable
 
     [SerializeField] private Animator flowreAnimator;
     private AnimatorStateInfo currentAnimation;
-
-    const int PLAYER_LAYER = 3;
     private string currentState;
     enum FlowreAnimationStates
     {
@@ -51,24 +49,22 @@ public class Flowre : MonoBehaviour, IDamageable
         isOpen = false;
     }
 
-   void DetectPlayer()
+    void DetectPlayer()
     {
-        openCapsuleCollider2D.enabled = true;
+        //TO-DO: ADD ANIM TRIGGER FOR OPENING
+        openCapsuleCollider2D.enabled = true; //also allows Flowre to be attackable.
+        Collider2D circleCast = Physics2D.OverlapCircle(transform.position, playerDetectionRadius);
 
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, playerDetectionRadius, 1 << PLAYER_LAYER);
-
-        foreach (Collider2D hitCollider in hitColliders)
+        if (circleCast != null && circleCast.gameObject.CompareTag("Player")) 
         {
-            if (hitCollider != null && hitCollider.CompareTag("Player"))
-            {
-                isOpen = true;
-
-                if (isAttacking) return;
-
-                StartCoroutine(AttackPlayer(hitCollider));
-            }
+            Debug.Log("Circle cast: " + circleCast.gameObject.name);
+            isOpen = true;
+            Debug.Log("TOUCH");
+            if (isAttacking) return;
+            StartCoroutine(AttackPlayer(circleCast));
         }
     }
+
     IEnumerator AttackPlayer(Collider2D collider)
     {
         isAttacking = true;
@@ -115,21 +111,9 @@ public class Flowre : MonoBehaviour, IDamageable
         return 0f;
     }
     private void OnDrawGizmos()
-{
-    // Visualize detection radius as a wire sphere at the object's position
-    Gizmos.color = Color.yellow;
-    Gizmos.DrawWireSphere(transform.position, playerDetectionRadius);
+    {
+        Gizmos.color = Color.yellow;
 
-    // Visualize the direction of the CircleCast (upwards in your case)
-    Vector3 castDirection = Vector3.up; // You can change this to any direction you're casting
-    float castDistance = 1f; // This is the distance of your CircleCast, adjust as needed
-
-    // Draw a line to show the cast direction
-    Gizmos.color = Color.red;
-    Gizmos.DrawLine(transform.position, transform.position + castDirection * castDistance);
-
-    // Draw a wire sphere at the end of the cast to show where the circle would be
-    Gizmos.color = Color.blue;
-    Gizmos.DrawWireSphere(transform.position + castDirection * castDistance, playerDetectionRadius);
-}
+        Gizmos.DrawWireSphere(transform.position, playerDetectionRadius);
+    }
 }

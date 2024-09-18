@@ -899,7 +899,7 @@ MonoBehaviour:
   normalInteractRange: 1.5
   ghostGameObejct: {fileID: 6787739559307351797}
   ghostRb: {fileID: 4199188633483214984}
-  ghostCollider: {fileID: 7215862154241327996}
+  ghostCollider: {fileID: 0}
   ghostSprite: {fileID: 2592251769063754241}
   ghostTransform: {fileID: 488549447599903303}
   ghostGroundCheckCollider: {fileID: 8200236091063017191}
@@ -907,7 +907,7 @@ MonoBehaviour:
   ghostInteractRange: 3
   isNormal: 1
   isGhost: 0
-  attackCollider: {fileID: 1238336566175937545}
+  attackCollider: {fileID: 0}
   attackRange: 1.5
   attackableLayer:
     serializedVersion: 2
@@ -1591,7 +1591,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!95 &6940658161782897316
 Animator:
