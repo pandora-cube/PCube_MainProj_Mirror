@@ -11,10 +11,10 @@ public class Pickup : MonoBehaviour, IInteractable
     
     public void Interact()
     {
-        if (inventory.items.Count < inventory.slots.Length)
+        if (inventory.items.Count < inventory.slots.Length && !inventory.FindItem(item))
         {
             inventory.AddItem(item);
-            Destroy(gameObject);
+            //Destroy(gameObject);
             Debug.Log("Interacted");
         }
     
