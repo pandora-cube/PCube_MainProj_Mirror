@@ -9,12 +9,15 @@ using UnityEngine;
 [System.Serializable]
 public class Dialog 
 {
+    public int dialogNum;
     public int id;
-    public string dialogText;
+    public string[] dialogText;
     public int speakerID;
 
-    public Dialog(int id, string dialogText, int speakerID)
+    public Dialog(int dialogNum, int id, string[] dialogText, int speakerID)
     {
+
+        this.dialogNum = dialogNum;
         this.id = id;
         this.dialogText = dialogText;
         this.speakerID = speakerID;
@@ -43,6 +46,7 @@ public class DialogSystem : MonoBehaviour
 
     private string currentText;
     private int currentID = 0;
+    private int currentDialogNum = 0;
     private int prevSpeaker, currentSpeaker;
 
     private bool firstDialog = true;
@@ -72,7 +76,11 @@ public class DialogSystem : MonoBehaviour
             string json = File.ReadAllText(path);
             dialogLists = JsonUtility.FromJson<DialogList>(json);
 
-            if (dialogLists != null) StartCoroutine(DialogProgress());
+            if (dialogLists != null)
+            {
+                currentID = 0;
+                StartCoroutine(DialogProgress());
+            }
             else Debug.Log("text Load failed");
         }
         else Debug.Log("Not found json file");
@@ -82,18 +90,23 @@ public class DialogSystem : MonoBehaviour
     {
         firstDialog = true;
 
-        while (currentID < dialogLists.dialog.Count) // 다음 진행되는 텍스트가 없을 때까지 표시
-        {
-            //current 리스트 저장
-            currentText = dialogLists.dialog[currentID].dialogText;
-            currentSpeaker = dialogLists.dialog[currentID].speakerID;
+        currentDialogNum = dialogLists.dialog[currentID].dialogNum;
 
-            //current 발화자 UI ON
+        while (currentDialogNum == dialogLists.dialog[currentID].dialogNum) // 다음 진행되는 텍스트가 없을 때까지 표시
+        {
+            currentSpeaker = dialogLists.dialog[currentID].speakerID;
             SetDialogUI();
 
-            //대사 표시 연출 & 마우스 입력 처리
-            yield return StartCoroutine(DialogTypingEffect());
+            int index = 0;
+            while (index < dialogLists.dialog[currentID].dialogText.Length)
+            {
+                currentText = dialogLists.dialog[currentID].dialogText[index];
 
+                //대사 표시 연출 & 마우스 입력 처리
+                yield return StartCoroutine(DialogTypingEffect());
+                index++;
+            }
+            
             prevSpeaker = currentSpeaker;
             currentID++;
         }

@@ -1,23 +1,37 @@
 {
     "dialog": [
         {
+            "dialogNum": 0,
             "id": 0,
-            "dialogText": "Hello Player Hello Player Hello Player",
+            "dialogText": [
+                "**시연을 위한 임시 튜토리얼입니다**",
+                "방향키로 이동할 수 있어! 방향키를 이용해 왼쪽으로 가보자!"
+                ],
             "speakerID": 1
         },
         {
+            "dialogNum": 0,
             "id": 1,
-            "dialogText": "Hello Glasya Hello Glasya Hello Glasya",
-            "speakerID": 0
-        },
-        {
-            "id": 2,
-            "dialogText": "i want go home i want go home i want go home",
+            "dialogText": [
+                "꽃밭 가운데에 있는 저 거울을 통해 내 힘을 사용할 수 있어! 어서 거울로 가보자"
+            ],
             "speakerID": 1
         },
         {
+            "dialogNum": 0,
+            "id": 2,
+            "dialogText": [
+              "2거울 근처에서 Alt키를 눌러 거울과 상호작용할 수 있어! 어서 사용해봐!"
+            ],
+            "speakerID": 1
+        },
+        {
+            "dialogNum": 1,
             "id": 3,
-            "dialogText": "yeah me too me too me too me too",
+            "dialogText": [
+                "3멋진 모습이네!",
+                "3내 힘은 오래 사용하면 너가 도리어 잡아 먹힐 수도 있어. 그러니 반드시 제한 시간 안에 거울 안으로 다시 되돌려놓도록 해!"
+            ],
             "speakeriD": 0
         }
     ]
