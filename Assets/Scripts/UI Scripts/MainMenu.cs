@@ -7,9 +7,10 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-   public RectTransform targetUIElement;
+    public RectTransform targetUIElement;
     public float targetScale = 1.5f; // Scale factor when zoomed in
     public float zoomSpeed = 5f; // Speed of the zoom
+    public float zoomTime;
     private Vector3 originalScale;
     private bool isZoomingIn = false;
 
@@ -26,12 +27,7 @@ public class MainMenu : MonoBehaviour
         if (isZoomingIn)
         {
             targetUIElement.localScale = Vector3.Lerp(targetUIElement.localScale, originalScale * targetScale, Time.deltaTime * zoomSpeed);
-            if (Vector3.Distance(targetUIElement.localScale, originalScale * targetScale) < 0.01f)
-            {
-                targetUIElement.localScale = originalScale * targetScale;
-                isZoomingIn = false;
-                MoveToNextScene();
-            }
+            StartCoroutine(StartZoomIn());
         }
     }
 
@@ -45,6 +41,12 @@ public class MainMenu : MonoBehaviour
         targetUIElement.localScale = originalScale;
     }
 
+    IEnumerator StartZoomIn()
+    {
+        yield return new WaitForSeconds(zoomTime);
+        isZoomingIn = false;
+        MoveToNextScene();
+    }
     private void MoveToNextScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
