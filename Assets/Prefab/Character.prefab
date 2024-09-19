@@ -1217,7 +1217,7 @@ Transform:
   - {fileID: 3308553549901306974}
   - {fileID: 3472490331342985577}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2652426612113270752
 MonoBehaviour:
@@ -1577,7 +1577,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6083986484843730980}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -9.4, z: 0}
+  m_LocalPosition: {x: 0, y: -1.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1716,8 +1716,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.21, y: -4.1}
-  m_Size: {x: 6.3160844, y: 15.509999}
+  m_Offset: {x: -0.5592499, y: -4.6238675}
+  m_Size: {x: 3.6967468, y: 15.160754}
   m_Direction: 0
 --- !u!95 &6812376800535443980
 Animator:
@@ -2172,9 +2172,9 @@ MonoBehaviour:
   <maxHealth>k__BackingField: 5
   <currentHealth>k__BackingField: 0
   damageDelay: 1
-  numberOfBlinks: 3
+  numberOfBlinks: 1
   blinkInterval: 0.3
-  alphaValue: 0.242
+  alphaValue: 0.809
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 512
