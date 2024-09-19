@@ -94,10 +94,8 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
 
     IEnumerator ResetIsTakingDamageBool()
     {
-        Debug.Log("1");
         yield return new WaitForSeconds(damageDelay);
 
         isTakingDamage = false;
-        Debug.Log("2");
     }
 }

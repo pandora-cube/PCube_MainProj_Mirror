@@ -13,6 +13,7 @@ public class Fleaore : MonoBehaviour, IDamageable
 
     [SerializeField] private bool isOpen = false;
     private bool isAttacking = false;
+     private bool isAttacked = false;
     [SerializeField] private bool isStunned = false;
     private float playerDetectionRadius = 5f;
     [SerializeField] private float attackDelay = 1f;
@@ -44,11 +45,11 @@ public class Fleaore : MonoBehaviour, IDamageable
     {
         if (isStunned) return;
 
-        if (!playerController.isGhost) CloseWhenPlayerIsNormal();
+        if (!playerController.isGhost|| isAttacked) Close();
         else if (playerController.isGhost) DetectPlayer();
     }
     
-    void CloseWhenPlayerIsNormal()
+    void Close()
     {
         openCollider2D.enabled = false;
         isOpen = false;
@@ -84,6 +85,7 @@ public class Fleaore : MonoBehaviour, IDamageable
     {
         //TO-DO: ADD CLOSING ANIM AND DMG TAKE LOGIC
         isOpen = false;
+        isAttacked = true;
         currentHealth -=damageAmount;
 
         if (currentHealth <= 0)

@@ -11,7 +11,6 @@ public class Flowre : MonoBehaviour, IDamageable
 
     [SerializeField] private bool isOpen = false;
     private bool isAttacking = false;
-    private bool isAttacked = false;
     private float playerDetectionRadius = 5f;
     [SerializeField] private float attackDelay = 1f;
     private float attackDamage = 1f;
@@ -26,6 +25,7 @@ public class Flowre : MonoBehaviour, IDamageable
     private string currentState;
     enum FlowreAnimationStates
     {
+        flowreClosed,
         flowreIdle,
         flowreAttack
     }
@@ -38,11 +38,12 @@ public class Flowre : MonoBehaviour, IDamageable
 
     void Start()
     {
+        ChangeAnimationState(FlowreAnimationStates.flowreClosed);
         currentHealth = maxHealth;
     }
     void Update()
     {
-        if (!playerController.isGhost || isAttacked) Close();  
+        if (!playerController.isGhost) Close();  
         else if (playerController.isGhost) DetectPlayer();
     }
     
@@ -84,8 +85,6 @@ public class Flowre : MonoBehaviour, IDamageable
     public void TakeDamage(float damageAmount)
     {
         //TO-DO: ADD CLOSING ANIM
-        isOpen = false;
-        isAttacked = true;
         currentHealth -= damageAmount;
         if (currentHealth <= 0) Die();
     }
