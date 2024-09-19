@@ -39,6 +39,19 @@ public class GlasyaController : MonoBehaviour
                 FollowPlayer(playerGhostObject);
             }
         }
+
+        if (playerNormalObject.transform.localScale.x < 0 || playerGhostObject.transform.localScale.x < 0)
+        {
+            Vector3 newScale = transform.localScale;
+            newScale.x = -1;
+            transform.localScale = newScale;
+        }
+        else
+        {
+            Vector3 newScale = transform.localScale;
+            newScale.x = 1;
+            transform.localScale = newScale;
+        }
     }
 
     void FollowPlayer(GameObject targetPlayer)

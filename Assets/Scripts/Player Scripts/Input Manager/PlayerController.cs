@@ -120,12 +120,15 @@ public class PlayerController : MonoBehaviour
     [Header("Other Variables")]
     [SerializeField] private DialogSystem dialogSystem;
     private PlayerInput playerInput;
+    [HideInInspector] public bool canMove = true;
     #endregion
 
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
     }
+
+
     private void Update()
     {
         if (Time.time - lastAttackTime > comboResetTime)  
@@ -134,7 +137,7 @@ public class PlayerController : MonoBehaviour
             ChangeAnimationState(GhostAnimationStates.ghostWalk); //TO-DO: Change to Idle
         }
 
-        playerInput.enabled = !dialogSystem.isDialog; //disable player input when dialog is happening
+        playerInput.enabled = canMove; //disable player input when dialog is happening
     }
 
     private void FixedUpdate()
