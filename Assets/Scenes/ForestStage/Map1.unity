@@ -340,6 +340,7 @@ MonoBehaviour:
   Speaker:
   - Player
   - Glasya
+  isDialog: 0
   filePath: /Scripts/Json/DialogTexts.json
 --- !u!1001 &19863284
 PrefabInstance:
@@ -355,11 +356,11 @@ PrefabInstance:
       objectReference: {fileID: 1548172460}
     - target: {fileID: 4032162363293629390, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -22.708694
+      value: -22.398695
       objectReference: {fileID: 0}
     - target: {fileID: 4032162363293629390, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -14.294508
+      value: -10.694508
       objectReference: {fileID: 0}
     - target: {fileID: 4192908959834844874, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
       propertyPath: m_BoundingShape2D
@@ -11668,7 +11669,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1548172456}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.6888058, y: -5.8961897, z: -10}
+  m_LocalPosition: {x: 4, y: -5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16917,6 +16918,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 869793278093406168, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.6199999
+      objectReference: {fileID: 0}
+    - target: {fileID: 869793278093406168, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.1999998
+      objectReference: {fileID: 0}
     - target: {fileID: 964529266230998606, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
       propertyPath: savePoints
       value: 
@@ -16925,6 +16934,10 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 849888124}
+    - target: {fileID: 2652426612113270752, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: dialogSystem
+      value: 
+      objectReference: {fileID: 10893541}
     - target: {fileID: 2710728152213815392, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
       propertyPath: m_RootOrder
       value: 9

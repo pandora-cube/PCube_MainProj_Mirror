@@ -9,18 +9,20 @@ using UnityEngine;
 [System.Serializable]
 public class Dialog 
 {
-    public int dialogNum;
+    public int dialogScene;
     public int id;
     public string[] dialogText;
     public int speakerID;
+    public string playFunc;
 
-    public Dialog(int dialogNum, int id, string[] dialogText, int speakerID)
+    public Dialog(int dialogScene, int id, string[] dialogText, int speakerID, string playFunc)
     {
 
-        this.dialogNum = dialogNum;
+        this.dialogScene = dialogScene;
         this.id = id;
         this.dialogText = dialogText;
         this.speakerID = speakerID;
+        this.playFunc = playFunc;
     }
 
 }
@@ -92,9 +94,9 @@ public class DialogSystem : MonoBehaviour
         firstDialog = true;
         isDialog = true;
 
-        currentDialogNum = dialogLists.dialog[currentID].dialogNum;
+        currentDialogNum = dialogLists.dialog[currentID].dialogScene;
 
-        while (currentDialogNum == dialogLists.dialog[currentID].dialogNum) // ���� ����Ǵ� �ؽ�Ʈ�� ���� ������ ǥ��
+        while (currentDialogNum == dialogLists.dialog[currentID].dialogScene) // ���� ����Ǵ� �ؽ�Ʈ�� ���� ������ ǥ��
         {
             currentSpeaker = dialogLists.dialog[currentID].speakerID;
             SetDialogUI();
@@ -113,6 +115,10 @@ public class DialogSystem : MonoBehaviour
             currentID++;
         }
         isDialog = false;
+
+        string playFunc = dialogLists.dialog[currentID - 1].playFunc;
+        if (playFunc != "None") Invoke(playFunc, 0f);
+
         SpeakerUI[currentSpeaker].SetActive(false);
         DialogUI.SetActive(false);
     }
