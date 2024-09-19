@@ -55,6 +55,7 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
     public void ReadyToRestart()
     {
         currentHealth = maxHealth;
+        ghostTimer = 0f;
         gameOverPanel.SetActive(false);
         Time.timeScale = 1f;
         savePoints.PlayerRespawn();
@@ -94,10 +95,8 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
 
     IEnumerator ResetIsTakingDamageBool()
     {
-        Debug.Log("1");
         yield return new WaitForSeconds(damageDelay);
 
         isTakingDamage = false;
-        Debug.Log("2");
     }
 }

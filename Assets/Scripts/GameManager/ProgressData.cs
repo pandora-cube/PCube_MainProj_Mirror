@@ -8,7 +8,6 @@ public class PlayerData
     public int currentChapter;
     public int currentStage;
     public int[] clearChapter;
-    //public int setting; // ¾ð¾î, »ç¿îµå, Å°¼¼ÆÃ µîµî..
 }
 
 public class ProgressData : MonoBehaviour
@@ -21,7 +20,7 @@ public class ProgressData : MonoBehaviour
 
     private void Awake()
     {
-        #region ½Ì±ÛÅæ
+        #region ï¿½Ì±ï¿½ï¿½ï¿½
         if (Instance == null) Instance = this;
         else if (Instance != this) Destroy(Instance.gameObject);
 
@@ -43,7 +42,6 @@ public class ProgressData : MonoBehaviour
     public void SaveData()
     {
         string data = JsonUtility.ToJson(playerData, true);
-        print(data);
         File.WriteAllText(path + fileName, data);
     }
 

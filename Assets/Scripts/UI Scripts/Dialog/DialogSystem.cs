@@ -52,11 +52,15 @@ public class DialogSystem : MonoBehaviour
     private int prevSpeaker, currentSpeaker;
 
     private bool firstDialog = true;
-    public bool isDialog = false;
 
     [SerializeField] string filePath = "/Scripts/Json/DialogTexts.json";
     private DialogList dialogLists = new DialogList();
+    private PlayerController playerController;
 
+    private void Awake()
+    {
+        playerController = FindObjectOfType<PlayerController>();
+    }
     private void Start()
     {
         JsonLoad();
@@ -92,9 +96,8 @@ public class DialogSystem : MonoBehaviour
     IEnumerator DialogProgress()
     {
         firstDialog = true;
-        isDialog = true;
-
-        currentDialogNum = dialogLists.dialog[currentID].dialogScene;
+        playerController.canMove = false;
+        currentDialogNum = dialogLists.dialog[currentID].dialogNum;
 
         while (currentDialogNum == dialogLists.dialog[currentID].dialogScene) // ���� ����Ǵ� �ؽ�Ʈ�� ���� ������ ǥ��
         {
@@ -114,11 +117,12 @@ public class DialogSystem : MonoBehaviour
             prevSpeaker = currentSpeaker;
             currentID++;
         }
-        isDialog = false;
 
         string playFunc = dialogLists.dialog[currentID - 1].playFunc;
         if (playFunc != "None") Invoke(playFunc, 0f);
 
+        playerController.canMove = true;
+        
         SpeakerUI[currentSpeaker].SetActive(false);
         DialogUI.SetActive(false);
     }

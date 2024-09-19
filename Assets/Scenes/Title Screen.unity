@@ -1257,7 +1257,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetUIElement: {fileID: 744643945}
   targetScale: 10
-  zoomSpeed: 2
+  zoomSpeed: 0.1
+  zoomTime: 2
 --- !u!4 &2073901860
 Transform:
   m_ObjectHideFlags: 0

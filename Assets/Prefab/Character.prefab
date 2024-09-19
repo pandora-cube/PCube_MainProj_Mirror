@@ -462,7 +462,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1363549605767737251}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -11.76, z: 0}
+  m_LocalPosition: {x: 0, y: -12, z: 0}
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1268,11 +1268,9 @@ MonoBehaviour:
   isNormal: 1
   isGhost: 0
   attackCollider: {fileID: 1238336566175937545}
-  attackRange: 1.5
   attackableLayer:
     serializedVersion: 2
     m_Bits: 4096
-  damageAmount: 1
   comboResetTime: 0.5
   lastAttackTime: 0
   comboAttackNumber: 0
@@ -1285,6 +1283,8 @@ MonoBehaviour:
     m_Bits: 16384
   normalAnimator: {fileID: 6812376800535443980}
   ghostAnimator: {fileID: 6940658161782897316}
+  dialogSystem: {fileID: 0}
+  canMove: 1
 --- !u!96 &547016282715293714
 TrailRenderer:
   serializedVersion: 3
@@ -1677,6 +1677,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ed4cb3a04fca0f4fa676a10081ccdef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <maxHealth>k__BackingField: 0
+  <currentHealth>k__BackingField: 0
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -2179,7 +2181,7 @@ MonoBehaviour:
   gameOverPanel: {fileID: 4102675401255510411}
   savePoints: {fileID: 0}
   ghostTimer: 0
-  ghostTimeLimit: 20
+  ghostTimeLimit: 60
   isTakingDamage: 0
 --- !u!1 &6869943870109066890
 GameObject:
