@@ -8,7 +8,6 @@ public class PlayerData
     public int currentChapter;
     public int currentStage;
     public int[] clearChapter;
-    //public int setting; // ���, ����, Ű���� ���..
 }
 
 public class ProgressData : MonoBehaviour

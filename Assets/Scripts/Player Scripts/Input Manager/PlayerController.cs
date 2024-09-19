@@ -341,7 +341,8 @@ public class PlayerController : MonoBehaviour
     }
     #endregion 
 
-    #region SLOPE CHECK 
+    #region SLOPE CHECK
+
     private void SlopeCheck(Vector2 checkPos)
     {
         SlopeCheckVertical(checkPos);
@@ -514,7 +515,8 @@ public class PlayerController : MonoBehaviour
     #region DEBUGGING
     private void OnDrawGizmos()
     {
-       
+       Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(normalGroundCheckCollider.position, 0.1f);
     }
     #endregion
 }

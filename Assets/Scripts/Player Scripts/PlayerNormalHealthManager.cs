@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerNormalHealthManager : MonoBehaviour, IDamageable
 {
-    public float maxHealth { get ; set ; }
-    public float currentHealth { get ; set; }
+    [field: SerializeField] public float maxHealth { get ; set ; }
+    [field: SerializeField] public float currentHealth { get ; set; }
 
     [Header("Collision Detection")]
     [SerializeField] private LayerMask obstacleLayer;

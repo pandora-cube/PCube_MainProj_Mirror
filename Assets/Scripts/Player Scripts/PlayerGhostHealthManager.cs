@@ -55,6 +55,7 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
     public void ReadyToRestart()
     {
         currentHealth = maxHealth;
+        ghostTimer = 0f;
         gameOverPanel.SetActive(false);
         Time.timeScale = 1f;
         savePoints.PlayerRespawn();
