@@ -48,7 +48,7 @@ public class DialogSystem : MonoBehaviour
 
     private string currentText;
     private int currentID = 0;
-    private int currentDialogNum = 0;
+    private int currentDialogScene = 0;
     private int prevSpeaker, currentSpeaker;
 
     private bool firstDialog = true;
@@ -97,9 +97,9 @@ public class DialogSystem : MonoBehaviour
     {
         firstDialog = true;
         playerController.canMove = false;
-        currentDialogNum = dialogLists.dialog[currentID].dialogNum;
+        currentDialogScene = dialogLists.dialog[currentID].dialogScene;
 
-        while (currentDialogNum == dialogLists.dialog[currentID].dialogScene) // ���� ����Ǵ� �ؽ�Ʈ�� ���� ������ ǥ��
+        while (currentDialogScene == dialogLists.dialog[currentID].dialogScene) // ���� ����Ǵ� �ؽ�Ʈ�� ���� ������ ǥ��
         {
             currentSpeaker = dialogLists.dialog[currentID].speakerID;
             SetDialogUI();
