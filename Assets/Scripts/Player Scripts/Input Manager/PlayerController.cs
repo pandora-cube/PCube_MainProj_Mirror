@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Time.time - lastAttackTime > comboResetTime)  
+        if (isGhost && (Time.time - lastAttackTime > comboResetTime))  
         {
             comboAttackNumber = 0;
             ChangeAnimationState(GhostAnimationStates.ghostWalk); //TO-DO: Change to Idle
