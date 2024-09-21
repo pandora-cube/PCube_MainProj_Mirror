@@ -533,6 +533,7 @@ MonoBehaviour:
   direction: 0
   timeElapsed: 0
   normalCamera: {fileID: 6492213904395321440}
+  ghostCamera: {fileID: 7345085046030002597}
   peekCamera: {fileID: 6360333183879639443}
 --- !u!1 &9072843913300191791
 GameObject:

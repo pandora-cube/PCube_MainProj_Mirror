@@ -442,8 +442,20 @@ PrefabInstance:
       value: Normal Virtual Camera
       objectReference: {fileID: 0}
     - target: {fileID: 7345085046030002597, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 731491686}
+    - target: {fileID: 7345085046030002597, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
       propertyPath: m_Priority
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372419705349540198, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -22.708694
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372419705349540198, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -9.594508
       objectReference: {fileID: 0}
     - target: {fileID: 8478264256086608593, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
       propertyPath: m_Name
@@ -452,8 +464,33 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5845271883963409288, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 19863290}
   m_SourcePrefab: {fileID: 100100000, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
+--- !u!1 &19863285 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5845271883963409288, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
+  m_PrefabInstance: {fileID: 19863284}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &19863290
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19863285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 1
+  m_FrequencyGain: 1
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &22208288
 GameObject:
   m_ObjectHideFlags: 0
@@ -5865,6 +5902,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 728281636}
   m_CullTransparentMesh: 1
+--- !u!1 &731491684 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6787739559307351797, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+  m_PrefabInstance: {fileID: 8454282323713298053}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &731491686 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 488549447599903303, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+  m_PrefabInstance: {fileID: 8454282323713298053}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &731491691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731491684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0cc9480b4eeb0442bc8c751d8d7dd5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ghostCamera: {fileID: 680386239}
+  shakeAmplitude: 5
+  shakeFrequency: 1
+  shakeDuration: 0.1
 --- !u!1001 &779117963
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6818,7 +6881,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &919333717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18477,7 +18540,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6787739559307351797, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 731491691}
   m_SourcePrefab: {fileID: 100100000, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
 --- !u!114 &8454282323713298054 stripped
 MonoBehaviour:
