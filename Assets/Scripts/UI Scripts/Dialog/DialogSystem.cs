@@ -108,7 +108,7 @@ public class DialogSystem : MonoBehaviour
             while (index < dialogLists.dialog[currentID].dialogText.Length)
             {
                 currentText = dialogLists.dialog[currentID].dialogText[index];
-
+                
                 //��� ǥ�� ���� & ���콺 �Է� ó��
                 yield return StartCoroutine(DialogTypingEffect());
                 index++;
@@ -131,7 +131,7 @@ public class DialogSystem : MonoBehaviour
     {
         string showText = "";
 
-        for (int i = 0; i< currentText.Length; i++)
+        for (int i = 0; i < currentText.Length; i++)
         {
             showText += currentText[i];
             textUI[currentSpeaker].text = showText;
@@ -144,6 +144,7 @@ public class DialogSystem : MonoBehaviour
 
             yield return new WaitForSeconds(0.08f);
         }
+
 
         yield return new WaitForSeconds(0.15f);
 

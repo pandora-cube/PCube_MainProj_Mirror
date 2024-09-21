@@ -18,7 +18,7 @@ public class SavePoints : MonoBehaviour
     {
         if (controller.isGhost) controller.Transform();
 
-            currentStage = ProgressData.Instance.playerData.currentStage - 1;
+        currentStage = ProgressData.Instance.playerData.currentStage - 1;
         normalPlayer.position = new Vector3(savePoints[currentStage].position.x, savePoints[currentStage].position.y, normalPlayer.position.z);
     }
 }
