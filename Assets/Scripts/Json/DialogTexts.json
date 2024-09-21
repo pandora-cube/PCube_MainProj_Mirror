@@ -8,13 +8,13 @@
                 "방향키로 이동할 수 있어! 방향키를 이용해 왼쪽으로 가보자!"
                 ],
             "speakerID": 1,
-            "playFunc": "None"
+            "playFunc": "SetTextforKey"
         },
         {
             "dialogScene": 0,
             "id": 1,
             "dialogText": [
-                "꽃밭 가운데에 있는 저 거울을 통해 내 힘을 사용할 수 있어! 어서 거울로 가보자"
+                "꽃밭 가운데에 있는 저 거울을 통해 내 힘을 사용할 수 있어! 어서 거울로 가보자!"
             ],
             "speakerID": 1,
             "playFunc": "None"
@@ -23,10 +23,10 @@
             "dialogScene": 0,
             "id": 2,
             "dialogText": [
-              "2거울 근처에서 Alt키를 눌러 거울과 상호작용할 수 있어! 어서 사용해봐!"
+              "2거울 근처에서 {interact}키를 눌러 거울과 상호작용할 수 있어! 어서 사용해봐!"
             ],
             "speakerID": 1,
-            "playFunc": "None"
+            "playFunc": "SetTextforKey"
         },
         {
             "dialogScene": 1,

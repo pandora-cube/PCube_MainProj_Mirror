@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 //public enum Speaker { Player, Glasya }
 
@@ -57,9 +58,14 @@ public class DialogSystem : MonoBehaviour
     private DialogList dialogLists = new DialogList();
     private PlayerController playerController;
 
+    private PlayerInput playerInput;
+    string attackKey, moveKey, interactKey;
+
     private void Awake()
     {
         playerController = FindObjectOfType<PlayerController>();
+        playerInput = GetComponent<PlayerInput>();
+        GetKey();
     }
     private void Start()
     {
@@ -108,7 +114,10 @@ public class DialogSystem : MonoBehaviour
             while (index < dialogLists.dialog[currentID].dialogText.Length)
             {
                 currentText = dialogLists.dialog[currentID].dialogText[index];
-                
+
+                string playFunc = dialogLists.dialog[currentID].playFunc;
+                if (playFunc != "None") yield return StartCoroutine(playFunc);
+
                 //��� ǥ�� ���� & ���콺 �Է� ó��
                 yield return StartCoroutine(DialogTypingEffect());
                 index++;
@@ -117,9 +126,6 @@ public class DialogSystem : MonoBehaviour
             prevSpeaker = currentSpeaker;
             currentID++;
         }
-
-        string playFunc = dialogLists.dialog[currentID - 1].playFunc;
-        if (playFunc != "None") Invoke(playFunc, 0f);
 
         playerController.canMove = true;
         
@@ -176,5 +182,24 @@ public class DialogSystem : MonoBehaviour
             SpeakerUI[prevSpeaker].SetActive(false);
             SpeakerUI[currentSpeaker].SetActive(true);
         }
+    }
+
+    void GetKey()
+    {
+        if (playerInput != null)
+        {
+            attackKey = playerInput.actions["Attack"].GetBindingDisplayString();
+            moveKey = playerInput.actions["Movement"].GetBindingDisplayString();
+            interactKey = playerInput.actions["Interact"].GetBindingDisplayString();
+        }
+    }
+
+    IEnumerator SetTextforKey()
+    {
+        if (currentText.Contains("{move}")) currentText = currentText.Replace("{move}", moveKey); 
+        else if (currentText.Contains("{attack}")) currentText = currentText.Replace("{attack}", attackKey);
+        else if (currentText.Contains("{interact}")) currentText = currentText.Replace("{interact}", interactKey);
+
+        yield return null;
     }
 }

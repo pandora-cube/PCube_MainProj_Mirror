@@ -253,7 +253,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6620739716063841034}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -26.398695, y: -5.694508, z: -9.782238}
+  m_LocalPosition: {x: -22.708694, y: -10.244509, z: -9.782238}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -464,16 +464,16 @@ MonoBehaviour:
   m_LayerIndex: 0
   m_ShowDebugText: 0
   m_ChildCameras:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 6492213904395321440}
+  - {fileID: 7345085046030002597}
+  - {fileID: 6360333183879639443}
   m_Instructions:
   - m_FullHash: 1335687422
     m_VirtualCamera: {fileID: 6492213904395321440}
     m_ActivateAfter: 0
     m_MinDuration: 0
   - m_FullHash: 57509620
-    m_VirtualCamera: {fileID: 0}
+    m_VirtualCamera: {fileID: 7345085046030002597}
     m_ActivateAfter: 0
     m_MinDuration: 0
   - m_FullHash: -619888154
@@ -533,6 +533,7 @@ MonoBehaviour:
   direction: 0
   timeElapsed: 0
   normalCamera: {fileID: 6492213904395321440}
+  ghostCamera: {fileID: 7345085046030002597}
   peekCamera: {fileID: 6360333183879639443}
 --- !u!1 &9072843913300191791
 GameObject:

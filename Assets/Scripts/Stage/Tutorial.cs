@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Tutorial : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] DialogSystem dialogSystem;
+
+    IEnumerator Tuto1_flower()
     {
-        
+        yield return null;
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator Tuto2_mirror()
     {
-        
+        yield return null;
     }
 }
