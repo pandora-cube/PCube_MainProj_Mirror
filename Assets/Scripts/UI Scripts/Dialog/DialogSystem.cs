@@ -99,13 +99,13 @@ public class DialogSystem : MonoBehaviour
         else Debug.Log("Not found json file");
     }
 
-    IEnumerator DialogProgress()
+    public IEnumerator DialogProgress()
     {
         firstDialog = true;
         playerController.canMove = false;
         currentDialogScene = dialogLists.dialog[currentID].dialogScene;
 
-        while (currentDialogScene == dialogLists.dialog[currentID].dialogScene) // ���� ����Ǵ� �ؽ�Ʈ�� ���� ������ ǥ��
+        while (currentID < dialogLists.dialog.Count && currentDialogScene == dialogLists.dialog[currentID].dialogScene) // ���� ����Ǵ� �ؽ�Ʈ�� ���� ������ ǥ��
         {
             currentSpeaker = dialogLists.dialog[currentID].speakerID;
             SetDialogUI();
@@ -128,7 +128,7 @@ public class DialogSystem : MonoBehaviour
         }
 
         playerController.canMove = true;
-        
+        firstDialog = false;
         SpeakerUI[currentSpeaker].SetActive(false);
         DialogUI.SetActive(false);
     }
