@@ -349,6 +349,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4032162363293629390, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -22.708694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4032162363293629390, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -10.244509
+      objectReference: {fileID: 0}
     - target: {fileID: 4192908959834844874, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
       propertyPath: m_BoundingShape2D
       value: 
@@ -405,6 +413,18 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 1491362489}
+    - target: {fileID: 7345085046030002597, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 630176618}
+    - target: {fileID: 7372419705349540198, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -22.708694
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372419705349540198, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -9.594508
+      objectReference: {fileID: 0}
     - target: {fileID: 8478264256086608593, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
       propertyPath: m_Name
       value: State-Driven Cinemachine Camera
@@ -5060,6 +5080,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 432701064209738098, guid: 8923987b7cde66943b5d27f878b34aa6, type: 3}
   m_PrefabInstance: {fileID: 601155314}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &630176618 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 488549447599903303, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+  m_PrefabInstance: {fileID: 8454282323713298053}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &633851495
 GameObject:
@@ -11896,7 +11921,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 10
+  m_Priority: 0
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
@@ -12875,7 +12900,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1548172456}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 46, y: -4, z: -87.248055}
+  m_LocalPosition: {x: 3.69, y: -4.55, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18691,6 +18716,10 @@ PrefabInstance:
       propertyPath: savePoints
       value: 
       objectReference: {fileID: 919333717}
+    - target: {fileID: 3367467547188870502, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: <maxHealth>k__BackingField
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5824343611764768133, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
       propertyPath: m_Name
       value: Character
