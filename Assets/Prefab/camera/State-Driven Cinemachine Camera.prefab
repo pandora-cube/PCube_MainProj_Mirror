@@ -242,8 +242,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 1
-  m_FrequencyGain: 1
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 0
   mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &6620739716063841034
 GameObject:
@@ -271,7 +271,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6620739716063841034}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -88.9387, y: -16.544508, z: -9.782238}
+  m_LocalPosition: {x: -36.398697, y: -6.344508, z: -9.782238}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -434,9 +434,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0cc9480b4eeb0442bc8c751d8d7dd5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakeAmplitude: 0
-  shakeFrequency: 0
-  shakeDuration: 0
+  shakeAmplitude: 1
+  shakeFrequency: 1
+  shakeDuration: 0.5
+  playerInput: {fileID: 0}
 --- !u!1 &8478264256086608593
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,6 +450,7 @@ GameObject:
   - component: {fileID: 5207025013068540810}
   - component: {fileID: 2465962817529703972}
   - component: {fileID: 3884148509844823867}
+  - component: {fileID: 319733641932186557}
   m_Layer: 0
   m_Name: State-Driven Cinemachine Camera
   m_TagString: Untagged
@@ -507,7 +509,7 @@ MonoBehaviour:
     m_ActivateAfter: 0
     m_MinDuration: 0
   - m_FullHash: 57509620
-    m_VirtualCamera: {fileID: 0}
+    m_VirtualCamera: {fileID: 7345085046030002597}
     m_ActivateAfter: 0
     m_MinDuration: 0
   - m_FullHash: -619888154
@@ -569,6 +571,22 @@ MonoBehaviour:
   normalCamera: {fileID: 6492213904395321440}
   ghostCamera: {fileID: 7345085046030002597}
   peekCamera: {fileID: 6360333183879639443}
+--- !u!114 &319733641932186557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8478264256086608593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 138d8b4d00aab0d4abbb39f74491822b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  confiner2D:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &9072843913300191791
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,6 @@ public class GlasyaController : MonoBehaviour
     [SerializeField] private float lastMoveTime;
     [SerializeField] private float timeElapsed;
     [SerializeField] private float movementDelayTime;
-    [SerializeField] private float slowDownDistance = 2f; 
     [SerializeField] private float dynamicSpeed;
 
     void Awake()
@@ -39,15 +38,6 @@ public class GlasyaController : MonoBehaviour
             {
                 FollowPlayer(playerGhostObject);
             }
-        }
-
-        if (playerNormalObject.transform.localScale.x < 0 || playerGhostObject.transform.localScale.x < 0)
-        {
-            
-        }
-        else
-        {
-           
         }
     }
 
