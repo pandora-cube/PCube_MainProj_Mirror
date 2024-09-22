@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
 {
-    [field:SerializeField] public float maxHealth { get; set; }
-    [field:SerializeField] public float currentHealth { get; set; }
+    [field: SerializeField] public float maxHealth { get; set; }
+    [field: SerializeField] public float currentHealth { get; set; }
     [Header("Damage Effects")]
     [SerializeField] private float damageDelay;
     [SerializeField] private int numberOfBlinks;
@@ -46,11 +46,6 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
 
         if (ghostTimer >= ghostTimeLimit) Die();
     }
-    public void Die()
-    {
-        gameOverPanel.SetActive(true);
-        Time.timeScale = 0f;
-    }
 
     public void ReadyToRestart()
     {
@@ -73,6 +68,11 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
         StartCoroutine(ResetIsTakingDamageBool());
     }
 
+    public void Die()
+    {
+        gameOverPanel.SetActive(true);
+        Time.timeScale = 0f;
+    }
 
     IEnumerator BlinkAfterTakingDamage()
     {
