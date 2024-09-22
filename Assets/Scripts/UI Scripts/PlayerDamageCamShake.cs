@@ -7,13 +7,14 @@ public class PlayerDamageCamShake : MonoBehaviour
 {
     public static PlayerDamageCamShake Instance {get; private set;}
 
-    [SerializeField] private CinemachineVirtualCamera ghostCamera;
+    private CinemachineVirtualCamera ghostCamera;
     [SerializeField] private float shakeAmplitude;
     [SerializeField] private float shakeFrequency;
     [SerializeField] private float shakeDuration;
 
     private void Awake()
     {
+        ghostCamera = GetComponent<CinemachineVirtualCamera>();
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);

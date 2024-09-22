@@ -150,6 +150,7 @@ GameObject:
   - component: {fileID: 3012786605339864793}
   - component: {fileID: 2806610731208198434}
   - component: {fileID: 6766585227809071274}
+  - component: {fileID: 853377213594416943}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -227,6 +228,23 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
+--- !u!114 &853377213594416943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5845271883963409288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 1
+  m_FrequencyGain: 1
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &6620739716063841034
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,7 +271,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6620739716063841034}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -26.398695, y: -5.694508, z: -9.782238}
+  m_LocalPosition: {x: -88.9387, y: -16.544508, z: -9.782238}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -326,6 +344,7 @@ GameObject:
   - component: {fileID: 7372419705349540198}
   - component: {fileID: 7345085046030002597}
   - component: {fileID: 1429104432049369549}
+  - component: {fileID: 5593011729254563589}
   m_Layer: 0
   m_Name: Ghost Virtual Camera
   m_TagString: Untagged
@@ -341,7 +360,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6678314664485013040}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -26.398695, y: -5.694508, z: -9.782238}
+  m_LocalPosition: {x: -88.9387, y: -15.894508, z: -9.782238}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -403,6 +422,21 @@ MonoBehaviour:
   m_BoundingShape2D: {fileID: 0}
   m_Damping: 1
   m_MaxWindowSize: -1
+--- !u!114 &5593011729254563589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6678314664485013040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0cc9480b4eeb0442bc8c751d8d7dd5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeAmplitude: 0
+  shakeFrequency: 0
+  shakeDuration: 0
 --- !u!1 &8478264256086608593
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,9 +498,9 @@ MonoBehaviour:
   m_LayerIndex: 0
   m_ShowDebugText: 0
   m_ChildCameras:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 6492213904395321440}
+  - {fileID: 7345085046030002597}
+  - {fileID: 6360333183879639443}
   m_Instructions:
   - m_FullHash: 1335687422
     m_VirtualCamera: {fileID: 6492213904395321440}

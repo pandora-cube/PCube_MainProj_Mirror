@@ -140,6 +140,7 @@ public class PlayerController : MonoBehaviour
         }
 
         playerInput.enabled = canMove; //disable player input when dialog is happening
+        if (!canMove) direction = 0f;
     }
 
     private void FixedUpdate()
