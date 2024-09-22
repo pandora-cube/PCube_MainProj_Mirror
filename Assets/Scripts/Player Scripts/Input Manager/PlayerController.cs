@@ -172,6 +172,7 @@ public class PlayerController : MonoBehaviour
 
         if (isNormal)
         {
+            Debug.Log("1");
             if (Mathf.Approximately(direction, 0f)) ChangeAnimationState(NormalAnimationStates.normalIdle);
             else ChangeAnimationState(NormalAnimationStates.normalWalk);
         }
