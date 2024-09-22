@@ -6,6 +6,7 @@ public class TreePassage : MonoBehaviour, IInteractable
 {
     [SerializeField] private Transform Player;
     [SerializeField] private Item item;
+    [SerializeField] private GameObject spiderWeb;
     private ParentTreePassage parentTree;
 
     private void Start()
@@ -24,11 +25,11 @@ public class TreePassage : MonoBehaviour, IInteractable
             {
                 parentTree.invetory.UseItem(item);
                 parentTree.passageState = ParentTreePassage.Available.open;
+                spiderWeb.SetActive(false);
                 Debug.Log("now tree passage is open");
             }
         }
-
-        if (parentTree.passageState == ParentTreePassage.Available.open) // 통로 나무 상태가 open
+        else if (parentTree.passageState == ParentTreePassage.Available.open) // 통로 나무 상태가 open
         {
             Transform MoveToExit = FindingExitPosition();
 
