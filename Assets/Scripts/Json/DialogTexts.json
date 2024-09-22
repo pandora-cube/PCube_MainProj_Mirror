@@ -11,7 +11,7 @@
             "playFunc": "SetTextforKey"
         },
         {
-            "dialogScene": 0,
+            "dialogScene": 1,
             "id": 1,
             "dialogText": [
                 "꽃밭 가운데에 있는 저 거울을 통해 내 힘을 사용할 수 있어! 어서 거울로 가보자!"
@@ -20,16 +20,16 @@
             "playFunc": "None"
         },
         {
-            "dialogScene": 0,
+            "dialogScene": 2,
             "id": 2,
             "dialogText": [
-              "2거울 근처에서 {interact}키를 눌러 거울과 상호작용할 수 있어! 어서 사용해봐!"
+              "거울 근처에서 {interact}키를 눌러 거울과 상호작용할 수 있어! 어서 사용해봐!"
             ],
             "speakerID": 1,
             "playFunc": "SetTextforKey"
         },
         {
-            "dialogScene": 1,
+            "dialogScene": 3,
             "id": 3,
             "dialogText": [
                 "3멋진 모습이네!",
