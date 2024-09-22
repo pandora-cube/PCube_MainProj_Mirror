@@ -26,7 +26,7 @@ public class ClearStage : MonoBehaviour, IInteractable
 
             ProgressData.Instance.playerData.currentStage += 1;
             ProgressData.Instance.SaveData();
-            Debug.Log("stage clear");
+            Debug.Log($"stage clear + {ProgressData.Instance.playerData.currentStage}");
         }
     }
     public string GetInteractText()

@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a0fb7024252cb64290fb2231c15860c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOpen: 0
+  playerDetectionRadius: 5
   attackDelay: 1
   <maxHealth>k__BackingField: 2
   <currentHealth>k__BackingField: 0

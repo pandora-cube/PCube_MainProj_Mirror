@@ -28,10 +28,7 @@ public class ProgressData : MonoBehaviour
         #endregion
 
         path = Application.persistentDataPath + "/";
-    }
 
-    private void Start()
-    {
         playerData.currentChapter = 1;
         playerData.currentStage = 1;
 

@@ -196,6 +196,7 @@ public class DialogSystem : MonoBehaviour
 
     IEnumerator SetTextforKey()
     {
+        Debug.Log($"{interactKey} + {moveKey} + {attackKey}");
         if (currentText.Contains("{move}")) currentText = currentText.Replace("{move}", moveKey); 
         else if (currentText.Contains("{attack}")) currentText = currentText.Replace("{attack}", attackKey);
         else if (currentText.Contains("{interact}")) currentText = currentText.Replace("{interact}", interactKey);

@@ -32,11 +32,62 @@
             "dialogScene": 3,
             "id": 3,
             "dialogText": [
-                "3멋진 모습이네!",
-                "3내 힘은 오래 사용하면 너가 도리어 잡아 먹힐 수도 있어. 그러니 반드시 제한 시간 안에 거울 안으로 다시 되돌려놓도록 해!"
+                "멋진 모습이네!",
+                "내 힘은 오래 사용하면 너가 도리어 잡아 먹힐 수도 있어. 그러니 반드시 제한 시간 안에 거울 안으로 다시 되돌려놓도록 해!"
             ],
-            "speakeriD": 0,
+            "speakerID": 1,
             "playFunc": "None"
+        },
+        {
+            "dialogScene": 4,
+            "id": 4,
+            "dialogText": [
+                "저런, 내 힘이 잠든 꽃들을 자극했나 봐.",
+                "꽃들 근처에서 {attack}키를 눌러 내 힘을 사용해 꽃들을 진정시키자."
+            ],
+            "speakerID": 1,
+            "playFunc": "SetTextforKey"
+        },
+        {
+            "dialogScene": 5,
+            "id": 5,
+            "dialogText": [
+                "잘했어!",
+                "내 힘을 사용한 상태에서는 저 꽃들의 공격을 몇 번 버틸 수 있겠지만, 인간 상태의 너는 한 번이라도 맞으면 위험할 테니 조심하도록 해.",
+                "그럼 이제 다시 앞으로 가보자. 저 앞의 울타리는 내 힘을 사용해 몇 번 공격하면 통과할 수 있을 것 같아 보이네."
+            ],
+            "speakerID": 1,
+            "playFunc": "None"
+        },
+        {
+            "dialogScene": 6,
+            "id": 6,
+            "dialogText": [
+                "내 힘을 조금 오래 사용한 것 같네. 힘에 잠식당하기 전에, 다시 거울 앞에서 {interact}키를 눌러 되돌려놓자."
+            ],
+            "speakerID": 1,
+            "playFunc": "SetTextforKey"
+        },
+        {
+            "dialogScene": 7,
+            "id": 7,
+            "dialogText": [
+                "내 힘은 언제든지 거울 앞에서 빌릴 수 있으니까 욕심 부리지 말고 적당히 사용하도록 해!"
+            ],
+            "speakerID": 1,
+            "playFunc": "None"
+        },
+        {
+            "dialogScene": 8,
+            "id": 8,
+            "dialogText": [
+                "으 불이다!",
+                "화톳불 앞에서 {interact}키를 누르면 횃불을 얻을 수 있어.",
+                "하지만 내 힘을 사용한 상태에서는 얻을 수 없어. 게다가 횃불을 들고 있을 때 내 힘을 사용하고 싶다면 횃불을 버려야 해.",
+                "난 불이 무서워... 너무 뜨겁단 말이야!!!"
+            ],
+            "speakerID": 1,
+            "playFunc": "SetTextforKey"
         }
     ]
 }

@@ -10,7 +10,7 @@ public class Flowre : MonoBehaviour, IDamageable
     private CapsuleCollider2D openCapsuleCollider2D;
 
     private bool isAttacking = false;
-    private float playerDetectionRadius = 5f;
+    [SerializeField] private float playerDetectionRadius = 5f;
     [SerializeField] private float attackDelay = 1f;
     private float attackDamage = 1f;
 

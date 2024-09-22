@@ -6,12 +6,12 @@ public class PlayerTutorial : MonoBehaviour
 {
     [SerializeField] Tutorial tuto;
     [SerializeField] string funcName;
-    private bool canPlaying = true;
+    private bool tutoPlay = true;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (canPlaying && collision.CompareTag("Player"))
+        if (tutoPlay && collision.CompareTag("Player"))
         {
-            canPlaying = false;
+            tutoPlay = false;
             tuto.StartCoroutine(funcName);
         }
     }
