@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (isGhost && (Time.time - lastAttackTime > comboResetTime))  
+        if (isGhost && (Time.time - lastAttackTime > comboResetTime))
         {
             comboAttackNumber = 0;
             ChangeAnimationState(GhostAnimationStates.ghostWalk); //TO-DO: Change to Idle
@@ -146,7 +146,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         if (isDashing) return;
-                
+
         GroundCheck();
 
         if (isNormal && !isGhost)
@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour
             SlopeCheck(normalSlopeCheckCollider.position);
             MovePlayer(normalRb, normalTransform);
         }
-        if (isGhost && !isNormal) 
+        if (isGhost && !isNormal)
         {
             SlopeCheck(ghostSlopeCheckCollider.position);
             MovePlayer(ghostRb, ghostTransform);
@@ -170,7 +170,7 @@ public class PlayerController : MonoBehaviour
 
         direction = ctx.ReadValue<float>();
 
-        if (isNormal) 
+        if (isNormal)
         {
             if (Mathf.Approximately(direction, 0f)) ChangeAnimationState(NormalAnimationStates.normalIdle);
             else ChangeAnimationState(NormalAnimationStates.normalWalk);
@@ -198,11 +198,11 @@ public class PlayerController : MonoBehaviour
             else if (isOnSlope && isCrawling) rb.velocity = new Vector2(-direction * (ghsotSpeed - crawlSpeedDecrease) * slopeNormalPrep.x * Time.deltaTime, (ghsotSpeed - crawlSpeedDecrease) * slopeNormalPrep.y * -direction * Time.deltaTime);
             else if (isCrawling) rb.velocity = new Vector2(direction * (ghsotSpeed - crawlSpeedDecrease) * Time.deltaTime, rb.velocity.y); // craw walk
         }
-        
+
         FlipSpriteBasedOnDirection(currentTransform);
         UpdateOtherTransformObjectPosition();
         UpdateRbFrictionOnSlope(rb);
-        
+
         ItemAvabileAreaCheck(ghostGroundCheckCollider.position);
     }
 
@@ -232,7 +232,7 @@ public class PlayerController : MonoBehaviour
 
         else if (isGhost && !isNormal)
         {
-           normalTransform.position = new Vector2(ghostTransform.position.x, ghostTransform.position.y - 3f);
+            normalTransform.position = new Vector2(ghostTransform.position.x, ghostTransform.position.y - 3f);
         }
     }
     void UpdateRbFrictionOnSlope(Rigidbody2D rb)
@@ -283,14 +283,17 @@ public class PlayerController : MonoBehaviour
         else if (ctx.canceled) isHoldingDown = false;
     }
     #endregion
-    
+
     #region INTERACTION
 
     public void OnInteract(InputAction.CallbackContext ctx)
     {
-        IInteractable interactable = GetInteractableObject();
+        if (ctx.started)
+        {
+            IInteractable interactable = GetInteractableObject();
 
-        if (interactable != null) interactable.Interact();
+            if (interactable != null) interactable.Interact();
+        }
     }
 
     /// <summary>
@@ -301,7 +304,7 @@ public class PlayerController : MonoBehaviour
     {
         List<IInteractable> interactableList = new List<IInteractable>();
         Collider2D[] colliderArray = null;
-        if (isNormal) 
+        if (isNormal)
         {
             colliderArray = Physics2D.OverlapCircleAll(normalTransform.position, normalInteractRange, interactableLayer);
         }
@@ -379,7 +382,7 @@ public class PlayerController : MonoBehaviour
     private void SlopeCheckVertical(Vector2 checkPos)
     {
         RaycastHit2D hit = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckDistanceVert, platformLayer);
-        
+
         if (hit)
         {
             slopeNormalPrep = Vector2.Perpendicular(hit.normal).normalized;
@@ -454,13 +457,13 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext ctx)
     {
-        if (!isGhost || !ctx.started) return; 
+        if (!isGhost || !ctx.started) return;
 
         lastAttackTime = Time.time;
 
         comboAttackNumber++;
-        
-        if (comboAttackNumber > 3)  comboAttackNumber = 1;
+
+        if (comboAttackNumber > 3) comboAttackNumber = 1;
 
         if (CheckIfAttackAnimationHasEnded()) TriggerAttackAnimation();
         else comboAttackNumber--;
@@ -478,9 +481,9 @@ public class PlayerController : MonoBehaviour
         switch (comboAttackNumber)
         {
             case 1: ChangeAnimationState(GhostAnimationStates.ghostAttack1); break;
-            case 2: ChangeAnimationState(GhostAnimationStates.ghostAttack2); break;  
+            case 2: ChangeAnimationState(GhostAnimationStates.ghostAttack2); break;
             case 3: ChangeAnimationState(GhostAnimationStates.ghostAttack3); break;
-        }     
+        }
     }
     #endregion //GHOST ONLY
 
@@ -496,18 +499,18 @@ public class PlayerController : MonoBehaviour
     }
 
     #region ANIMATION
-    private void ChangeAnimationState (GhostAnimationStates animationStates)
+    private void ChangeAnimationState(GhostAnimationStates animationStates)
     {
-        string newState = animationStates.ToString(); 
+        string newState = animationStates.ToString();
         if (currentState == newState) return;
-        
+
         ghostAnimator.Play(newState);
         currentState = newState;
     }
 
     private void ChangeAnimationState(NormalAnimationStates animationStates)
     {
-        string newState = animationStates.ToString(); 
+        string newState = animationStates.ToString();
         if (currentState == newState) return;
 
         normalAnimator.Play(newState);
@@ -518,7 +521,7 @@ public class PlayerController : MonoBehaviour
     #region DEBUGGING
     private void OnDrawGizmos()
     {
-       Gizmos.color = Color.green;
+        Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(normalGroundCheckCollider.position, 0.1f);
     }
     #endregion
