@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
@@ -138,6 +140,7 @@ public class PlayerController : MonoBehaviour
         }
 
         playerInput.enabled = canMove; //disable player input when dialog is happening
+        if (!canMove) direction = 0f;
     }
 
     private void FixedUpdate()

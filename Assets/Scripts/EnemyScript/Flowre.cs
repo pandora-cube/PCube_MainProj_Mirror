@@ -9,7 +9,6 @@ public class Flowre : MonoBehaviour, IDamageable
     private PlayerController playerController;
     private CapsuleCollider2D openCapsuleCollider2D;
 
-    [SerializeField] private bool isOpen = false;
     private bool isAttacking = false;
     private float playerDetectionRadius = 5f;
     [SerializeField] private float attackDelay = 1f;
@@ -19,7 +18,6 @@ public class Flowre : MonoBehaviour, IDamageable
     [field: SerializeField] public float currentHealth { get; set; }
 
     [SerializeField] private Animator flowreAnimator;
-    private AnimatorStateInfo currentAnimation;
 
     const int PLAYER_LAYER = 3;
     private string currentState;
@@ -50,7 +48,6 @@ public class Flowre : MonoBehaviour, IDamageable
     void Close()
     {
         openCapsuleCollider2D.enabled = false;
-        isOpen = false;
     }
 
    void DetectPlayer()
@@ -63,8 +60,6 @@ public class Flowre : MonoBehaviour, IDamageable
         {
             if (hitCollider != null && hitCollider.CompareTag("Player"))
             {
-                isOpen = true;
-
                 if (isAttacking) return;
 
                 StartCoroutine(AttackPlayer(hitCollider));

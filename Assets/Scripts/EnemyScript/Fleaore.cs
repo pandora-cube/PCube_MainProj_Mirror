@@ -11,13 +11,13 @@ public class Fleaore : MonoBehaviour, IDamageable
     private BoxCollider2D openCollider2D;
     private Animator fleaoreAnimator;
 
-    [SerializeField] private bool isOpen = false;
     private bool isAttacking = false;
-     private bool isAttacked = false;
+    private bool isAttacked = false;
     [SerializeField] private bool isStunned = false;
     private float playerDetectionRadius = 5f;
     [SerializeField] private float attackDelay = 1f;
     private float attackDamage = 1f;
+    const int PLAYER_LAYER = 3;
 
     private string currentState;
     enum FleaoreAnimationStates
@@ -26,8 +26,8 @@ public class Fleaore : MonoBehaviour, IDamageable
         fleaoreAttack
     }
 
-    [field:SerializeField] public float maxHealth { get; set;}
-    [field:SerializeField] public float currentHealth { get; set; }
+    [field: SerializeField] public float maxHealth { get; set; }
+    [field: SerializeField] public float currentHealth { get; set; }
 
     void Awake()
     {
@@ -45,27 +45,29 @@ public class Fleaore : MonoBehaviour, IDamageable
     {
         if (isStunned) return;
 
-        if (!playerController.isGhost|| isAttacked) Close();
+        if (!playerController.isGhost || isAttacked) Close();
         else if (playerController.isGhost) DetectPlayer();
     }
-    
+
     void Close()
     {
         openCollider2D.enabled = false;
-        isOpen = false;
     }
 
     void DetectPlayer()
     {
         //TO-DO: ADD ANIM TRIGGER FOR OPENING
         openCollider2D.enabled = true; //also allows Floaore to be attackable.
-        RaycastHit2D circleCast = Physics2D.CircleCast(transform.position, playerDetectionRadius, Vector2.up);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, playerDetectionRadius, 1 << PLAYER_LAYER);
 
-        if (circleCast.collider != null && circleCast.collider.gameObject.CompareTag("Player")) 
+        foreach (Collider2D hitCollider in hitColliders)
         {
-            isOpen = true;
-            if (isAttacking) return;
-            StartCoroutine(AttackPlayer(circleCast.collider));
+            if (hitCollider != null && hitCollider.CompareTag("Player"))
+            {
+                if (isAttacking) return;
+
+                StartCoroutine(AttackPlayer(hitCollider));
+            }
         }
     }
 
@@ -77,16 +79,17 @@ public class Fleaore : MonoBehaviour, IDamageable
         ChangeAnimationState(FleaoreAnimationStates.fleaoreAttack);
         yield return new WaitForSeconds(attackDelay);
         ChangeAnimationState(FleaoreAnimationStates.fleaoreIdle);
-
+        
         isAttacking = false;
     }
 
     public void TakeDamage(float damageAmount)
     {
+        Debug.Log("Fleaore takes damage");
         //TO-DO: ADD CLOSING ANIM AND DMG TAKE LOGIC
-        isOpen = false;
         isAttacked = true;
-        currentHealth -=damageAmount;
+        StartCoroutine(Reopen());
+        currentHealth -= damageAmount;
 
         if (currentHealth <= 0)
         {
@@ -95,10 +98,16 @@ public class Fleaore : MonoBehaviour, IDamageable
         }
 
     }
-
+    
+    IEnumerator Reopen()
+    {
+        yield return new WaitForSeconds(5f);
+        isAttacked = false;
+    }
     public void Die()
     {
         //TO-DO: ADD DEATH ANIM
+        Debug.Log("Fleaore dies");
         Destroy(gameObject);
     }
 
@@ -106,7 +115,7 @@ public class Fleaore : MonoBehaviour, IDamageable
     {
         isStunned = true;
         yield return new WaitForSeconds(5);
-        if (connectedVine == null) 
+        if (connectedVine == null)
         {
             Die();
             yield break;
@@ -117,11 +126,11 @@ public class Fleaore : MonoBehaviour, IDamageable
         //TODO: Add anim for revival
     }
 
-    private void ChangeAnimationState (FleaoreAnimationStates animationStates)
+    private void ChangeAnimationState(FleaoreAnimationStates animationStates)
     {
-        string newState = animationStates.ToString(); 
+        string newState = animationStates.ToString();
         if (currentState == newState) return;
-        
+
         fleaoreAnimator.Play(newState);
         currentState = newState;
     }

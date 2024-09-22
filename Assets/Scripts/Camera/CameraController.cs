@@ -32,6 +32,12 @@ public class CameraController : MonoBehaviour
     {
         if (Mathf.Approximately(direction, 0f)) StopPeekOverEdge(direction);
         else StartPeekOverEdge(direction);
+
+        if (!isPeeking)
+        {
+            if (playerController.isNormal) animator.Play("NormalDefault");
+            else animator.Play("GhostDefault");
+        }
     }
 
     public void OnPressUpOrDown(InputAction.CallbackContext ctx)
