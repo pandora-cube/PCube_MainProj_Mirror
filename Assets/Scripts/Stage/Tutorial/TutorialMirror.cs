@@ -18,7 +18,6 @@ public class TutorialMirror : MonoBehaviour, IInteractable
     {
         PlayerController player = FindObjectOfType<PlayerController>();
         player.Transform();
-        playerGhostHealthManager.ghostTimeLimit = Mathf.Infinity;
 
         if (tutoPlay)
         {

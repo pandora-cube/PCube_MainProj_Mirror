@@ -10,7 +10,7 @@ public class PauseMenuController : MonoBehaviour
     private PlayerInput playerInput;
     private InputActionMap gameplayActionMap;
     private InputActionMap UIActionMap;
-    private bool isPaused = false;
+    [SerializeField] private bool isPaused = false;
 
     void Awake()
     {
@@ -21,12 +21,14 @@ public class PauseMenuController : MonoBehaviour
     
     public void OnPause(InputAction.CallbackContext ctx)
     {
-        TooglePause();
+        if (ctx.performed) TooglePause();
     }
 
     public void TooglePause()
     {
-        if (isPaused)
+        isPaused = !isPaused;
+
+        if (!isPaused)
         {
             Time.timeScale = 1f;
             pausePanel.SetActive(false);
@@ -40,13 +42,17 @@ public class PauseMenuController : MonoBehaviour
             gameplayActionMap.Disable();
             UIActionMap.Enable();
         }
-
-        isPaused = !isPaused;
     }
 
     public void RestartCurrentMap()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void QuitToMainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
     }
 }
