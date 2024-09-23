@@ -10,7 +10,8 @@ using UnityEngine.InputSystem;
 public class CinemachineConfinerManager : MonoBehaviour
 {
     [SerializeField] private BoxCollider2D[] confiner2D;
-
+    [SerializeField] private PlayerController playerController;
+    
     int currentStage;
     int newStage;
 
