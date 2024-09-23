@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 9036843248383304248}
   - component: {fileID: 5035200596238267951}
   - component: {fileID: 2631276759909012142}
+  - component: {fileID: 1679287528738106216}
   m_Layer: 12
   m_Name: Flowre
   m_TagString: Untagged
@@ -120,6 +121,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <maxHealth>k__BackingField: 5
   <currentHealth>k__BackingField: 0
+  flashMaterial: {fileID: 2100000, guid: 7d1f2937c3bfd064ead2ccdf22e3a052, type: 2}
+  duration: 0.15
 --- !u!70 &9036843248383304248
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -203,3 +206,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1679287528738106216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838748155303041347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca59b652b1b6ace43b36bbfc7fcc909f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: 7d1f2937c3bfd064ead2ccdf22e3a052, type: 2}
+  duration: 0.15
