@@ -65,7 +65,7 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
         currentHealth -= damageAmount;
         if (currentHealth <= 0) Die();
 
-        CinemachineShake.Instance.ShakeCamera();
+        PlayerDamageEffects.Instance.TriggerDamageEffects();
         StartCoroutine(BlinkAfterTakingDamage());
         StartCoroutine(ResetIsTakingDamageBool());
     }
