@@ -1,11 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using Cinemachine;
-using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.Animations;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class CinemachineConfinerManager : MonoBehaviour
 {
