@@ -54,4 +54,15 @@ public class Inventory : MonoBehaviour
         }
         else Debug.Log("item is null");
     }
+
+    public void ClearInventory()
+    {
+        items.Clear();
+
+        foreach(var item in slots)
+        {
+            item.item = null;
+        }
+        FreshSlot();
+    }
 }

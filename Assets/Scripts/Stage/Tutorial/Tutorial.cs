@@ -8,7 +8,7 @@ public class Tutorial : MonoBehaviour
 {
     [SerializeField] DialogSystem dialogSystem;
     CinemachineStateDrivenCamera stateCam;
-    [SerializeField] CinemachineVirtualCamera tuto1Cam;
+    [SerializeField] GameObject CamCollider;
     int dieFlowre = 0;
     [SerializeField] TutorialFlowre[] tutorialFlowres;
     [SerializeField] private PlayerGhostHealthManager playerGhostHealthManager;
@@ -24,9 +24,9 @@ public class Tutorial : MonoBehaviour
     }
     public IEnumerator Tuto1_flower()
     {
-        stateCam.Priority = 15; tuto1Cam.Priority = 10;
+        stateCam.Priority = 15;
         yield return dialogSystem.StartCoroutine(dialogSystem.DialogProgress());
-        stateCam.Priority = 0; tuto1Cam.Priority = 0;
+        stateCam.Priority = 0; 
     }
 
     public IEnumerator Tuto2_mirror()
@@ -36,7 +36,7 @@ public class Tutorial : MonoBehaviour
 
     public IEnumerator Tuto3_ghost()
     {
-        stateCam.Priority = 15; tuto1Cam.Priority = 10;
+        stateCam.Priority = 15; CamCollider.SetActive(true);
         yield return dialogSystem.StartCoroutine(dialogSystem.DialogProgress());
         // ghost infinity
         playerGhostHealthManager.SetGhostTimeLimit(Mathf.Infinity);
@@ -52,7 +52,7 @@ public class Tutorial : MonoBehaviour
         if (dieFlowre == 6 && dialogSystem != null)
         {
             dialogSystem.StartCoroutine(dialogSystem.DialogProgress());
-            stateCam.Priority = 0; tuto1Cam.Priority = 0;
+            stateCam.Priority = 0; CamCollider.SetActive(false);
         }
     }
 
@@ -62,6 +62,7 @@ public class Tutorial : MonoBehaviour
         // ghost 60f
         playerGhostHealthManager.SetGhostTimeLimit(60f);
         yield return new WaitForSeconds(20f);
+        playerGhostHealthManager.Die();
         //isGhost�� die
     }
 

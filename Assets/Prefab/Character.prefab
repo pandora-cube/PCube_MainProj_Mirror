@@ -1360,6 +1360,7 @@ MonoBehaviour:
   normalAnimator: {fileID: 6812376800535443980}
   ghostAnimator: {fileID: 6940658161782897316}
   dialogSystem: {fileID: 0}
+  inventory: {fileID: 6874673845299253127}
   canMove: 1
 --- !u!96 &547016282715293714
 TrailRenderer:

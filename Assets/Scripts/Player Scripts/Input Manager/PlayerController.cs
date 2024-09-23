@@ -118,6 +118,7 @@ public class PlayerController : MonoBehaviour
     #region OTHER VARIABLES
     [Header("Other Variables")]
     [SerializeField] private DialogSystem dialogSystem;
+    [SerializeField] private Inventory inventory;
     private PlayerInput playerInput;
     [HideInInspector] public bool canMove = true;
     #endregion
@@ -369,6 +370,7 @@ public class PlayerController : MonoBehaviour
         isGhost = !isGhost;
 
         normalGameObejct.SetActive(isNormal); ghostGameObejct.SetActive(isGhost);
+        if (isGhost) inventory.ClearInventory();
     }
     #endregion 
 

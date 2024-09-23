@@ -8,10 +8,11 @@ public class Pickup : MonoBehaviour, IInteractable
     [SerializeField] private string interactText;
     [SerializeField] private Item item;
     [SerializeField] private Inventory inventory;
+    [SerializeField] private PlayerController playerController;
     
     public void Interact()
     {
-        if (inventory.items.Count < inventory.slots.Length && !inventory.FindItem(item))
+        if (inventory.items.Count < inventory.slots.Length && !inventory.FindItem(item) && !playerController.isGhost)
         {
             inventory.AddItem(item);
             //Destroy(gameObject);
