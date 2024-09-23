@@ -20,7 +20,7 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] SavePoints savePoints;
     [SerializeField] private float ghostTimer;
-    [SerializeField] private float ghostTimeLimit;
+    [SerializeField] public float ghostTimeLimit;
 
     private SpriteRenderer spriteRenderer;
     [SerializeField] private bool isTakingDamage = false;
@@ -28,6 +28,8 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
     void OnEnable()
     {
         ghostTimer = 0f;
+        maxHealth = 5f;
+        currentHealth = maxHealth;
     }
     private void Awake()
     {

@@ -155,7 +155,6 @@ MonoBehaviour:
   lastMoveTime: 0
   timeElapsed: 0
   movementDelayTime: 2
-  slowDownDistance: 2
   dynamicSpeed: 0
 --- !u!1 &789928501719112532
 GameObject:
@@ -2170,7 +2169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <maxHealth>k__BackingField: 5
-  <currentHealth>k__BackingField: 0
+  <currentHealth>k__BackingField: 5
   damageDelay: 1
   numberOfBlinks: 1
   blinkInterval: 0.3
