@@ -10,6 +10,7 @@ public class Tutorial : MonoBehaviour
     CinemachineStateDrivenCamera stateCam;
     [SerializeField] CinemachineVirtualCamera tuto1Cam;
     int dieFlowre = 0;
+    [SerializeField] TutorialFlowre[] tutorialFlowres;
 
     private void Awake()
     {
@@ -35,15 +36,21 @@ public class Tutorial : MonoBehaviour
     {
         stateCam.Priority = 15; tuto1Cam.Priority = 10;
         yield return dialogSystem.StartCoroutine(dialogSystem.DialogProgress());
-        //플로레 개화시키기
+    
+        foreach (var flowre in tutorialFlowres) flowre.OpenFlowre = true;
+        yield return new WaitForSeconds(2f);
+
         yield return dialogSystem.StartCoroutine(dialogSystem.DialogProgress());
     }
 
     public void Tuto4_flowre()
     {
         dieFlowre++;
-        if(dieFlowre == 6) dialogSystem.StartCoroutine(dialogSystem.DialogProgress());
-        stateCam.Priority = 0; tuto1Cam.Priority = 0;
+        if (dieFlowre == 6 && dialogSystem != null)
+        {
+            dialogSystem.StartCoroutine(dialogSystem.DialogProgress());
+            stateCam.Priority = 0; tuto1Cam.Priority = 0;
+        }
     }
 
     public IEnumerator Tuto5_ghost()

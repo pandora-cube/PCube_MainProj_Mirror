@@ -2170,7 +2170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <maxHealth>k__BackingField: 5
-  <currentHealth>k__BackingField: 0
+  <currentHealth>k__BackingField: 5
   damageDelay: 1
   numberOfBlinks: 1
   blinkInterval: 0.3

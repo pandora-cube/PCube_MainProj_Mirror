@@ -6,18 +6,18 @@ using UnityEngine;
 
 public class Flowre : MonoBehaviour, IDamageable
 {
-    private PlayerController playerController;
+    protected PlayerController playerController;
     private CapsuleCollider2D openCapsuleCollider2D;
 
     private bool isAttacking = false;
     [SerializeField] private float playerDetectionRadius = 5f;
     [SerializeField] private float attackDelay = 1f;
-    private float attackDamage = 1f;
+    protected float attackDamage = 1f;
 
     [field: SerializeField] public float maxHealth { get; set;}
     [field: SerializeField] public float currentHealth { get; set; }
 
-    [SerializeField] private Animator flowreAnimator;
+    private Animator flowreAnimator;
 
     const int PLAYER_LAYER = 3;
     private string currentState;
@@ -32,20 +32,21 @@ public class Flowre : MonoBehaviour, IDamageable
     {
         playerController = FindObjectOfType<PlayerController>();
         openCapsuleCollider2D = GetComponent<CapsuleCollider2D>();
+        flowreAnimator = GetComponent<Animator>();
     }
 
-    void Start()
+    protected virtual void Start()
     {
         ChangeAnimationState(FlowreAnimationStates.flowreClosed);
         currentHealth = maxHealth;
     }
-    void Update()
+    protected virtual void Update()
     {
         if (!playerController.isGhost) Close();  
         else if (playerController.isGhost) DetectPlayer();
     }
-    
-    void Close()
+
+    protected void Close()
     {
         openCapsuleCollider2D.enabled = false;
     }
