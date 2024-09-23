@@ -4428,10 +4428,26 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 134832906}
+    - target: {fileID: 933795797990498848, guid: e7f6cf6976b4b5f40bee388735c0b547, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2354235679654988304, guid: e7f6cf6976b4b5f40bee388735c0b547, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 446782951}
+    - target: {fileID: 2539284678432420287, guid: e7f6cf6976b4b5f40bee388735c0b547, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2539284678432420287, guid: e7f6cf6976b4b5f40bee388735c0b547, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2539284678432420287, guid: e7f6cf6976b4b5f40bee388735c0b547, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3296285608699240127, guid: e7f6cf6976b4b5f40bee388735c0b547, type: 3}
       propertyPath: m_Camera
       value: 
@@ -4439,6 +4455,26 @@ PrefabInstance:
     - target: {fileID: 3447337061517725603, guid: e7f6cf6976b4b5f40bee388735c0b547, type: 3}
       propertyPath: m_Name
       value: Settings Page
+      objectReference: {fileID: 0}
+    - target: {fileID: 3601557572514436395, guid: e7f6cf6976b4b5f40bee388735c0b547, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3601557572514436395, guid: e7f6cf6976b4b5f40bee388735c0b547, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3821084088728497113, guid: e7f6cf6976b4b5f40bee388735c0b547, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3821084088728497113, guid: e7f6cf6976b4b5f40bee388735c0b547, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3821084088728497113, guid: e7f6cf6976b4b5f40bee388735c0b547, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3901481509349039518, guid: e7f6cf6976b4b5f40bee388735c0b547, type: 3}
       propertyPath: m_RootOrder
@@ -4488,6 +4524,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 134832906}
+    - target: {fileID: 5015658515262804432, guid: e7f6cf6976b4b5f40bee388735c0b547, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5078622069085139507, guid: e7f6cf6976b4b5f40bee388735c0b547, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -4496,6 +4536,22 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 134832906}
+    - target: {fileID: 6577151844334543795, guid: e7f6cf6976b4b5f40bee388735c0b547, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8839960927194598517, guid: e7f6cf6976b4b5f40bee388735c0b547, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8839960927194598517, guid: e7f6cf6976b4b5f40bee388735c0b547, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8839960927194598517, guid: e7f6cf6976b4b5f40bee388735c0b547, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -0.00012207031
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

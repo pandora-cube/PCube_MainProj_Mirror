@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 10893538}
   - component: {fileID: 10893537}
   - component: {fileID: 10893541}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Dialog System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,7 +290,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: -2
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &10893540
 RectTransform:
@@ -2077,7 +2077,7 @@ GameObject:
   - component: {fileID: 253045750}
   - component: {fileID: 253045752}
   - component: {fileID: 253045751}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Player Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2665,7 +2665,7 @@ GameObject:
   - component: {fileID: 313897223}
   - component: {fileID: 313897225}
   - component: {fileID: 313897224}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: NPC image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3057,7 +3057,7 @@ GameObject:
   - component: {fileID: 396758233}
   - component: {fileID: 396758235}
   - component: {fileID: 396758234}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Next
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5465,7 +5465,7 @@ GameObject:
   - component: {fileID: 722927653}
   - component: {fileID: 722927655}
   - component: {fileID: 722927654}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Player text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6351,7 +6351,7 @@ GameObject:
   - component: {fileID: 838982095}
   - component: {fileID: 838982097}
   - component: {fileID: 838982096}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: NPC name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12042,8 +12042,7 @@ MonoBehaviour:
   m_AnimatedTarget: {fileID: 1429179742}
   m_LayerIndex: 0
   m_ShowDebugText: 0
-  m_ChildCameras:
-  - {fileID: 117532203}
+  m_ChildCameras: []
   m_Instructions:
   - m_FullHash: 0
     m_VirtualCamera: {fileID: 0}
@@ -13280,7 +13279,7 @@ GameObject:
   - component: {fileID: 1597188079}
   - component: {fileID: 1597188081}
   - component: {fileID: 1597188080}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: NPC text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14839,7 +14838,7 @@ GameObject:
   - component: {fileID: 1844018590}
   - component: {fileID: 1844018592}
   - component: {fileID: 1844018591}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17916,7 +17915,7 @@ GameObject:
   - component: {fileID: 2098096272}
   - component: {fileID: 2098096274}
   - component: {fileID: 2098096273}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Player name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18932,6 +18931,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character
       objectReference: {fileID: 0}
+    - target: {fileID: 6874673845299253127, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: items.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6874673845299253127, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: items.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0c9ee4c11dc495b40adc469c8b5881bb, type: 2}
     - target: {fileID: 7585541639480684553, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
       propertyPath: m_IsActive
       value: 0

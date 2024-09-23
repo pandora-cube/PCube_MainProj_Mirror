@@ -4227,7 +4227,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 507266674907152114}
         m_TargetAssemblyTypeName: GraphicsOption, Assembly-CSharp
-        m_MethodName: DropboxOptionChange
+        m_MethodName: SetResolution
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4480,7 +4480,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resolutionDropdown: {fileID: 1005463688709237886}
-  fullScreenButton: {fileID: 3477658701679902399}
 --- !u!1 &5531648962237192313
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,64 +1,61 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class GraphicsOption : MonoBehaviour
 {
-    FullScreenMode screenMode;
-    public TMP_Dropdown resolutionDropdown;
-    public Toggle fullScreenButton;
-    List<Resolution> resolutions = new List<Resolution>();
+    [SerializeField] private TMP_Dropdown resolutionDropdown;
 
-    int resolutionNum;
-    int optionNum = 0;
+    private Resolution[] resolutions;
+    private List<Resolution> filteredResolutions;
+
+    private float currentRefreshRate;
+    private int currentResolutionIndex = 0;
 
     void Start()
     {
-        InitUI();
-    }
-    
-    void InitUI()
-    {
-        foreach (Resolution res in Screen.resolutions)
+        resolutions = Screen.resolutions;
+        filteredResolutions = new List<Resolution>();
+
+        resolutionDropdown.ClearOptions();
+        currentRefreshRate = (float)Screen.currentResolution.refreshRateRatio.value;
+
+        for (int i = 0; i < resolutions.Length; i++)
         {
-            float refreshRate = (float)res.refreshRateRatio.numerator / res.refreshRateRatio.denominator;
-            if (Mathf.Approximately(refreshRate, 60f) && !resolutions.Contains(res))
-                resolutions.Add(res);
-        }
-        resolutionDropdown.options.Clear();
-
-        int optionNum = 0;
-        foreach(Resolution item in resolutions)
-        {
-            TMP_Dropdown.OptionData option = new TMP_Dropdown.OptionData();
-            option.text = item.width + " x " + item.height;
-            resolutionDropdown.options.Add(option);
-
-            if (item.width == Screen.width && item.height == Screen.height)
-                resolutionDropdown.value = optionNum;
-
-            optionNum++;
+            if ((float)resolutions[i].refreshRateRatio.value == currentRefreshRate) 
+            {
+                filteredResolutions.Add(resolutions[i]);
+            }
         }
 
+        filteredResolutions.Sort((a, b) => {
+            if (a.width != b.width)
+                return b.width.CompareTo(a.width);
+            else
+                return b.height.CompareTo(a.height);
+        });
+
+        List<string> options = new List<string>();
+        for (int i = 0; i < filteredResolutions.Count; i++)
+        {
+            string resolutionOption = filteredResolutions[i].width + "x" + filteredResolutions[i].height + " " + filteredResolutions[i].refreshRateRatio.value.ToString("0.##") + " Hz"; // Ondalık basamak sınırlandı
+            options.Add(resolutionOption);
+            if (filteredResolutions[i].width == Screen.width && filteredResolutions[i].height == Screen.height && (float)filteredResolutions[i].refreshRateRatio.value == currentRefreshRate) // double'dan float'a dönüştürüldü
+            {
+                currentResolutionIndex = i;
+            }
+        }
+
+        resolutionDropdown.AddOptions(options);
+        resolutionDropdown.value = currentResolutionIndex = 0;
         resolutionDropdown.RefreshShownValue();
-
-        fullScreenButton.isOn = Screen.fullScreenMode.Equals(FullScreenMode.FullScreenWindow) ? true : false;
+        SetResolution(currentResolutionIndex);
     }
 
-    public void DropboxOptionChange(int x)
+    public void SetResolution(int resolutionIndex)
     {
-        resolutionNum = x;
-    }
-
-    public void OnFullScreenButtonToggled(bool isFull)
-    {
-        screenMode = isFull ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed;
-    }
-    public void OnApplyButtonClicked()
-    {
-        Screen.SetResolution(resolutions[resolutionNum].width, resolutions[resolutionNum].height, screenMode);
-        //TO-DO: Save settings in JSON or PlayerPrefs
+        Resolution resolution = filteredResolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, true);
     }
 }

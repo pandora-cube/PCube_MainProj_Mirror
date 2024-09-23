@@ -64,7 +64,7 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
         isTakingDamage = true;
         currentHealth -= damageAmount;
         if (currentHealth <= 0) Die();
-
+        
         PlayerDamageEffects.Instance.TriggerDamageEffects();
         StartCoroutine(BlinkAfterTakingDamage());
         StartCoroutine(ResetIsTakingDamageBool());
