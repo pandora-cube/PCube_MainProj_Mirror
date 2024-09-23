@@ -11,15 +11,13 @@ public class Tutorial : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera tuto1Cam;
     int dieFlowre = 0;
     [SerializeField] TutorialFlowre[] tutorialFlowres;
+    [SerializeField] private PlayerGhostHealthManager playerGhostHealthManager;
 
     private void Awake()
     {
         stateCam = GetComponent<CinemachineStateDrivenCamera>();
     }
-    private void Start()
-    {
-        
-    }
+
     public IEnumerator Tuto1_flower()
     {
         stateCam.Priority = 15; tuto1Cam.Priority = 10;
@@ -37,6 +35,7 @@ public class Tutorial : MonoBehaviour
         stateCam.Priority = 15; tuto1Cam.Priority = 10;
         yield return dialogSystem.StartCoroutine(dialogSystem.DialogProgress());
         // ghost infinity
+        playerGhostHealthManager.SetGhostTimeLimit(Mathf.Infinity);
         foreach (var flowre in tutorialFlowres) flowre.OpenFlowre = true;
         yield return new WaitForSeconds(2f);
 
@@ -57,8 +56,9 @@ public class Tutorial : MonoBehaviour
     {
         yield return dialogSystem.StartCoroutine(dialogSystem.DialogProgress());
         // ghost 60f
+        playerGhostHealthManager.SetGhostTimeLimit(60f);
         yield return new WaitForSeconds(20f);
-        //isGhost¸é die
+        //isGhostï¿½ï¿½ die
     }
 
     public IEnumerator Tuto6_normal()
