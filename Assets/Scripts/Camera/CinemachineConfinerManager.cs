@@ -1,8 +1,5 @@
 using Cinemachine;
-<<<<<<< HEAD
-=======
 using UnityEditor;
->>>>>>> main
 using UnityEngine;
 
 public class CinemachineConfinerManager : MonoBehaviour

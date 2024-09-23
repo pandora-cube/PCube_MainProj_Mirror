@@ -25,7 +25,7 @@ public class TreePassage : MonoBehaviour, IInteractable
             {
                 parentTree.invetory.UseItem(item);
                 parentTree.passageState = ParentTreePassage.Available.open;
-                spiderWeb.SetActive(false);
+                if (spiderWeb != null) spiderWeb.SetActive(false);
                 Debug.Log("now tree passage is open");
             }
         }
