@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float direction = 0;
     [SerializeField] private float normalSpeed;
     [SerializeField] private float ghsotSpeed;
+    [HideInInspector] public PolygonCollider2D currentConfinerCollider;
 
     #region CRAWLING VARIABLES
     protected float crawlSpeedDecrease = 300f;
@@ -136,7 +137,7 @@ public class PlayerController : MonoBehaviour
         }
 
         playerInput.enabled = canMove; //disable player input when dialog is happening
-        if (!canMove) 
+        if (!canMove)
         {
             direction = 0f;
             ChangeAnimationState(NormalAnimationStates.normalIdle);
@@ -153,11 +154,14 @@ public class PlayerController : MonoBehaviour
         {
             SlopeCheck(normalSlopeCheckCollider.position);
             MovePlayer(normalRb, normalTransform);
+            ConfinePlayerMovement();
+
         }
         if (isGhost && !isNormal)
         {
             SlopeCheck(ghostSlopeCheckCollider.position);
             MovePlayer(ghostRb, ghostTransform);
+            ConfinePlayerMovement();
         }
     }
 
@@ -172,7 +176,6 @@ public class PlayerController : MonoBehaviour
 
         if (isNormal)
         {
-            Debug.Log("1");
             if (Mathf.Approximately(direction, 0f)) ChangeAnimationState(NormalAnimationStates.normalIdle);
             else ChangeAnimationState(NormalAnimationStates.normalWalk);
         }
@@ -240,6 +243,27 @@ public class PlayerController : MonoBehaviour
     {
         if (isOnSlope && Mathf.Approximately(direction, 0f)) rb.sharedMaterial = fullFiction;
         else rb.sharedMaterial = noFiction;
+    }
+
+    void ConfinePlayerMovement()
+    {
+        Vector3 playerPosition = Vector3.zero;
+        if (isNormal)
+        {
+            playerPosition = normalGameObejct.transform.position;
+        }
+        else if (isGhost)
+        {
+            playerPosition = ghostGameObejct.transform.position;
+        }
+
+        Bounds bounds = currentConfinerCollider.bounds;
+
+        playerPosition.x = Mathf.Clamp(playerPosition.x, bounds.min.x, bounds.max.x);
+        playerPosition.y = Mathf.Clamp(playerPosition.y, bounds.min.y, bounds.max.y);
+
+        normalGameObejct.transform.position = playerPosition;
+        ghostGameObejct.transform.position = playerPosition;
     }
 
     #endregion
@@ -522,8 +546,26 @@ public class PlayerController : MonoBehaviour
     #region DEBUGGING
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(normalGroundCheckCollider.position, 0.1f);
+        if (currentConfinerCollider == null)
+        {
+            Debug.LogWarning("Collider not assigned in the Inspector!");
+            return;
+        }
+
+        // Get the bounds of the confiner collider
+        Bounds bounds = currentConfinerCollider.bounds;
+
+        // Debug log to check bounds in the console
+        Debug.Log($"Bounds min: {bounds.min}, max: {bounds.max}");
+
+        // Set the color for the gizmos
+        Gizmos.color = Color.red;
+
+        // Draw the bounding box of the collider
+        Gizmos.DrawLine(new Vector3(bounds.min.x, bounds.min.y, 0), new Vector3(bounds.max.x, bounds.min.y, 0)); // Bottom side
+        Gizmos.DrawLine(new Vector3(bounds.max.x, bounds.min.y, 0), new Vector3(bounds.max.x, bounds.max.y, 0)); // Right side
+        Gizmos.DrawLine(new Vector3(bounds.max.x, bounds.max.y, 0), new Vector3(bounds.min.x, bounds.max.y, 0)); // Top side
+        Gizmos.DrawLine(new Vector3(bounds.min.x, bounds.max.y, 0), new Vector3(bounds.min.x, bounds.min.y, 0)); // Left side
     }
     #endregion
 }

@@ -498,9 +498,9 @@ MonoBehaviour:
   m_LayerIndex: 0
   m_ShowDebugText: 0
   m_ChildCameras:
-  - {fileID: 6492213904395321440}
-  - {fileID: 7345085046030002597}
-  - {fileID: 6360333183879639443}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   m_Instructions:
   - m_FullHash: 1335687422
     m_VirtualCamera: {fileID: 6492213904395321440}
@@ -585,6 +585,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  playerController: {fileID: 0}
 --- !u!1 &9072843913300191791
 GameObject:
   m_ObjectHideFlags: 0
