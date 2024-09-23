@@ -18,6 +18,10 @@ public class Tutorial : MonoBehaviour
         stateCam = GetComponent<CinemachineStateDrivenCamera>();
     }
 
+    void Start()
+    {
+        if (playerGhostHealthManager == null) Debug.LogError("playerGhostHealthManager is null! GameObject: " + gameObject.name);
+    }
     public IEnumerator Tuto1_flower()
     {
         stateCam.Priority = 15; tuto1Cam.Priority = 10;

@@ -546,26 +546,7 @@ public class PlayerController : MonoBehaviour
     #region DEBUGGING
     private void OnDrawGizmos()
     {
-        if (currentConfinerCollider == null)
-        {
-            Debug.LogWarning("Collider not assigned in the Inspector!");
-            return;
-        }
-
-        // Get the bounds of the confiner collider
-        Bounds bounds = currentConfinerCollider.bounds;
-
-        // Debug log to check bounds in the console
-        Debug.Log($"Bounds min: {bounds.min}, max: {bounds.max}");
-
-        // Set the color for the gizmos
-        Gizmos.color = Color.red;
-
-        // Draw the bounding box of the collider
-        Gizmos.DrawLine(new Vector3(bounds.min.x, bounds.min.y, 0), new Vector3(bounds.max.x, bounds.min.y, 0)); // Bottom side
-        Gizmos.DrawLine(new Vector3(bounds.max.x, bounds.min.y, 0), new Vector3(bounds.max.x, bounds.max.y, 0)); // Right side
-        Gizmos.DrawLine(new Vector3(bounds.max.x, bounds.max.y, 0), new Vector3(bounds.min.x, bounds.max.y, 0)); // Top side
-        Gizmos.DrawLine(new Vector3(bounds.min.x, bounds.max.y, 0), new Vector3(bounds.min.x, bounds.min.y, 0)); // Left side
+        
     }
     #endregion
 }
