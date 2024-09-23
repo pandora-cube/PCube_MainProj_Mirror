@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
 {
-    [field:SerializeField] public float maxHealth { get; set; }
-    [field:SerializeField] public float currentHealth { get; set; }
+    [field: SerializeField] public float maxHealth { get; set; }
+    [field: SerializeField] public float currentHealth { get; set; }
     [Header("Damage Effects")]
     [SerializeField] private float damageDelay;
     [SerializeField] private int numberOfBlinks;
@@ -20,7 +20,7 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] SavePoints savePoints;
     [SerializeField] private float ghostTimer;
-    [SerializeField] private float ghostTimeLimit;
+    [SerializeField] public float ghostTimeLimit;
 
     private SpriteRenderer spriteRenderer;
     [SerializeField] private bool isTakingDamage = false;
@@ -28,6 +28,8 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
     void OnEnable()
     {
         ghostTimer = 0f;
+        maxHealth = 5f;
+        currentHealth = maxHealth;
     }
     private void Awake()
     {
@@ -46,11 +48,6 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
 
         if (ghostTimer >= ghostTimeLimit) Die();
     }
-    public void Die()
-    {
-        gameOverPanel.SetActive(true);
-        Time.timeScale = 0f;
-    }
 
     public void ReadyToRestart()
     {
@@ -68,11 +65,16 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
         currentHealth -= damageAmount;
         if (currentHealth <= 0) Die();
 
-        PlayerDamageCamShake.Instance.TriggerCameraShake();
+        CinemachineShake.Instance.ShakeCamera();
         StartCoroutine(BlinkAfterTakingDamage());
         StartCoroutine(ResetIsTakingDamageBool());
     }
 
+    public void Die()
+    {
+        gameOverPanel.SetActive(true);
+        Time.timeScale = 0f;
+    }
 
     IEnumerator BlinkAfterTakingDamage()
     {
