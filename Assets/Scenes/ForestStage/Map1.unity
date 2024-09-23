@@ -10866,6 +10866,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 428830855}
     m_Modifications:
+    - target: {fileID: 934212369854620872, guid: b3717393feed45a4691cd2d0daf2f557, type: 3}
+      propertyPath: playerGhostHealthManager
+      value: 
+      objectReference: {fileID: 8454282323713298055}
     - target: {fileID: 6681431396476874125, guid: b3717393feed45a4691cd2d0daf2f557, type: 3}
       propertyPath: m_RootOrder
       value: -1

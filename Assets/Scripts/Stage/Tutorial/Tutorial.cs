@@ -36,7 +36,7 @@ public class Tutorial : MonoBehaviour
     {
         stateCam.Priority = 15; tuto1Cam.Priority = 10;
         yield return dialogSystem.StartCoroutine(dialogSystem.DialogProgress());
-    
+        // ghost infinity
         foreach (var flowre in tutorialFlowres) flowre.OpenFlowre = true;
         yield return new WaitForSeconds(2f);
 
@@ -56,7 +56,7 @@ public class Tutorial : MonoBehaviour
     public IEnumerator Tuto5_ghost()
     {
         yield return dialogSystem.StartCoroutine(dialogSystem.DialogProgress());
-
+        // ghost 60f
         yield return new WaitForSeconds(20f);
         //isGhost¸é die
     }
