@@ -18714,9 +18714,29 @@ PrefabInstance:
       propertyPath: savePoints
       value: 
       objectReference: {fileID: 919333717}
+    - target: {fileID: 4102675401255510411, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5824343611764768133, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
       propertyPath: m_Name
       value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564227215895729798, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 676449567}
+    - target: {fileID: 8564227215895729798, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuitToMainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564227215895729798, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenuController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564227215895729798, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

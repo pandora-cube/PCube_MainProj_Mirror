@@ -25,7 +25,7 @@ public class PauseMenuController : MonoBehaviour
 
     public void OnPause(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed)
+        if (ctx.started)
         {
              if (isPaused && menuStack.Count > 0)
             {
