@@ -729,12 +729,28 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 1491362489}
+    - target: {fileID: 2921688552705987869, guid: 0ba9a3e32659e054caa3b46385bdfb6f, type: 3}
+      propertyPath: ghostPlayerGameObject
+      value: 
+      objectReference: {fileID: 1116406447}
+    - target: {fileID: 2921688552705987869, guid: 0ba9a3e32659e054caa3b46385bdfb6f, type: 3}
+      propertyPath: normalPlayerGameObject
+      value: 
+      objectReference: {fileID: 1491362489}
     - target: {fileID: 4307503945609686314, guid: 0ba9a3e32659e054caa3b46385bdfb6f, type: 3}
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5769874799862162669, guid: 0ba9a3e32659e054caa3b46385bdfb6f, type: 3}
       propertyPath: Player
+      value: 
+      objectReference: {fileID: 1491362489}
+    - target: {fileID: 5769874799862162669, guid: 0ba9a3e32659e054caa3b46385bdfb6f, type: 3}
+      propertyPath: ghostPlayerGameObject
+      value: 
+      objectReference: {fileID: 1116406447}
+    - target: {fileID: 5769874799862162669, guid: 0ba9a3e32659e054caa3b46385bdfb6f, type: 3}
+      propertyPath: normalPlayerGameObject
       value: 
       objectReference: {fileID: 1491362489}
     - target: {fileID: 6582126021675820224, guid: 0ba9a3e32659e054caa3b46385bdfb6f, type: 3}
@@ -1584,12 +1600,28 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 1491362489}
+    - target: {fileID: 2921688552705987869, guid: 0ba9a3e32659e054caa3b46385bdfb6f, type: 3}
+      propertyPath: ghostPlayerGameObject
+      value: 
+      objectReference: {fileID: 1116406447}
+    - target: {fileID: 2921688552705987869, guid: 0ba9a3e32659e054caa3b46385bdfb6f, type: 3}
+      propertyPath: normalPlayerGameObject
+      value: 
+      objectReference: {fileID: 1491362489}
     - target: {fileID: 4307503945609686314, guid: 0ba9a3e32659e054caa3b46385bdfb6f, type: 3}
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5769874799862162669, guid: 0ba9a3e32659e054caa3b46385bdfb6f, type: 3}
       propertyPath: Player
+      value: 
+      objectReference: {fileID: 1491362489}
+    - target: {fileID: 5769874799862162669, guid: 0ba9a3e32659e054caa3b46385bdfb6f, type: 3}
+      propertyPath: ghostPlayerGameObject
+      value: 
+      objectReference: {fileID: 1116406447}
+    - target: {fileID: 5769874799862162669, guid: 0ba9a3e32659e054caa3b46385bdfb6f, type: 3}
+      propertyPath: normalPlayerGameObject
       value: 
       objectReference: {fileID: 1491362489}
     - target: {fileID: 6860398821995747220, guid: 0ba9a3e32659e054caa3b46385bdfb6f, type: 3}
@@ -1990,12 +2022,28 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 1491362489}
+    - target: {fileID: 2921688552705987869, guid: 0ba9a3e32659e054caa3b46385bdfb6f, type: 3}
+      propertyPath: ghostPlayerGameObject
+      value: 
+      objectReference: {fileID: 1116406447}
+    - target: {fileID: 2921688552705987869, guid: 0ba9a3e32659e054caa3b46385bdfb6f, type: 3}
+      propertyPath: normalPlayerGameObject
+      value: 
+      objectReference: {fileID: 1491362489}
     - target: {fileID: 4307503945609686314, guid: 0ba9a3e32659e054caa3b46385bdfb6f, type: 3}
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5769874799862162669, guid: 0ba9a3e32659e054caa3b46385bdfb6f, type: 3}
       propertyPath: Player
+      value: 
+      objectReference: {fileID: 1491362489}
+    - target: {fileID: 5769874799862162669, guid: 0ba9a3e32659e054caa3b46385bdfb6f, type: 3}
+      propertyPath: ghostPlayerGameObject
+      value: 
+      objectReference: {fileID: 1116406447}
+    - target: {fileID: 5769874799862162669, guid: 0ba9a3e32659e054caa3b46385bdfb6f, type: 3}
+      propertyPath: normalPlayerGameObject
       value: 
       objectReference: {fileID: 1491362489}
     - target: {fileID: 6860398821995747220, guid: 0ba9a3e32659e054caa3b46385bdfb6f, type: 3}
@@ -19359,6 +19407,10 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 2652426612113270752, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: ghostInteractRange
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2710728152213815392, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -19422,6 +19474,14 @@ PrefabInstance:
     - target: {fileID: 7585541639480684553, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564227215895729798, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 676449567}
+    - target: {fileID: 8564227215895729798, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuitToMainMenu
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19518,6 +19578,14 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 1491362489}
+    - target: {fileID: 2386545007817827774, guid: c196fdd6e4f23cd46b29ce641de7b804, type: 3}
+      propertyPath: ghostPlayerGameObject
+      value: 
+      objectReference: {fileID: 1116406447}
+    - target: {fileID: 2386545007817827774, guid: c196fdd6e4f23cd46b29ce641de7b804, type: 3}
+      propertyPath: normalPlayerGameObject
+      value: 
+      objectReference: {fileID: 1491362489}
     - target: {fileID: 3126527619582687081, guid: c196fdd6e4f23cd46b29ce641de7b804, type: 3}
       propertyPath: m_LocalScale.x
       value: -0.2
@@ -19536,6 +19604,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6451385332744590414, guid: c196fdd6e4f23cd46b29ce641de7b804, type: 3}
       propertyPath: Player
+      value: 
+      objectReference: {fileID: 1491362489}
+    - target: {fileID: 6451385332744590414, guid: c196fdd6e4f23cd46b29ce641de7b804, type: 3}
+      propertyPath: ghostPlayerGameObject
+      value: 
+      objectReference: {fileID: 1116406447}
+    - target: {fileID: 6451385332744590414, guid: c196fdd6e4f23cd46b29ce641de7b804, type: 3}
+      propertyPath: normalPlayerGameObject
       value: 
       objectReference: {fileID: 1491362489}
     - target: {fileID: 7279316957780014386, guid: c196fdd6e4f23cd46b29ce641de7b804, type: 3}

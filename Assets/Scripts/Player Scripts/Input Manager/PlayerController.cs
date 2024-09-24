@@ -331,35 +331,36 @@ public class PlayerController : MonoBehaviour
     public IInteractable GetInteractableObject()
     {
         List<IInteractable> interactableList = new List<IInteractable>();
-        Collider2D[] colliderArray = null;
+        Collider2D collider = null;
         if (isNormal)
         {
-            colliderArray = Physics2D.OverlapCircleAll(normalTransform.position, normalInteractRange, interactableLayer);
+            collider = Physics2D.OverlapCircle(normalTransform.position, normalInteractRange, interactableLayer);
         }
         else if (isGhost)
         {
-            colliderArray = Physics2D.OverlapCircleAll(ghostTransform.position, ghostInteractRange, interactableLayer);
+            collider = Physics2D.OverlapCircle(ghostTransform.position, ghostInteractRange, interactableLayer);
         }
-        foreach (Collider2D collider in colliderArray)
-        {
-            if (collider.gameObject.CompareTag("Player")) continue;
 
-            if (collider.TryGetComponent(out IInteractable interactable))
-            {
-                interactableList.Add(interactable);
-            }
+        if (collider == null) return null;
+
+        if (collider.gameObject.CompareTag("Player")) return null;
+
+        if (collider.TryGetComponent(out IInteractable interactable))
+        {
+            interactableList.Add(interactable);
         }
+
 
         IInteractable closestInteractable = null;
-        foreach (IInteractable interactable in interactableList)
+        foreach (IInteractable I in interactableList)
         {
-            if (closestInteractable == null) closestInteractable = interactable;
+            if (closestInteractable == null) closestInteractable = I;
             else
             {
-                if (Vector2.Distance(normalTransform.position, interactable.GetTransform().position) <
+                if (Vector2.Distance(normalTransform.position, I.GetTransform().position) <
                     Vector2.Distance(normalTransform.position, closestInteractable.GetTransform().position))
                 {
-                    closestInteractable = interactable;
+                    closestInteractable = I;
                 }
             }
         }
@@ -530,6 +531,8 @@ public class PlayerController : MonoBehaviour
     #region ANIMATION
     private void ChangeAnimationState(GhostAnimationStates animationStates)
     {
+        if (!ghostGameObject.activeSelf) return; 
+
         string newState = animationStates.ToString();
         if (currentState == newState) return;
 
@@ -539,6 +542,7 @@ public class PlayerController : MonoBehaviour
 
     private void ChangeAnimationState(NormalAnimationStates animationStates)
     {
+        if (!normalGameObject.activeSelf) return;
         string newState = animationStates.ToString();
         if (currentState == newState) return;
 
@@ -550,7 +554,7 @@ public class PlayerController : MonoBehaviour
     #region DEBUGGING
     private void OnDrawGizmos()
     {
-        
+
     }
     #endregion
 }
