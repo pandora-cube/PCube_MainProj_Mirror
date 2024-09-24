@@ -28,7 +28,7 @@ public class Tutorial : MonoBehaviour
     {
         stateCam.Priority = 15; mirrorCam.m_Lens.OrthographicSize = 8f;
         yield return dialogSystem.StartCoroutine(dialogSystem.DialogProgress());
-        stateCam.Priority = 0; mirrorCam.m_Lens.OrthographicSize = 18f;
+        stateCam.Priority = 0;
     }
 
     public IEnumerator Tuto2_mirror()
@@ -38,6 +38,7 @@ public class Tutorial : MonoBehaviour
 
     public IEnumerator Tuto3_ghost()
     {
+        mirrorCam.m_Lens.OrthographicSize = 18f;
         stateCam.Priority = 15; CamCollider.SetActive(true);
         yield return dialogSystem.StartCoroutine(dialogSystem.DialogProgress());
         playerGhostHealthManager.SetGhostTimeLimit(Mathf.Infinity);
