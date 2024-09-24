@@ -2368,6 +2368,15 @@ MonoBehaviour:
   ghostTimer: 0
   ghostTimeLimit: 60
   isTakingDamage: 0
+  cinemachineVirtualCamera: {fileID: 0}
+  shakeIntensity: 10
+  shakeTime: 0.5
+  damageEffectImages:
+  - {fileID: 856698992718940018}
+  - {fileID: 731961575608571750}
+  - {fileID: 788760144658231425}
+  - {fileID: 5256426769193062493}
+  damageEffectDuration: 0.1
 --- !u!1 &6869943870109066890
 GameObject:
   m_ObjectHideFlags: 0

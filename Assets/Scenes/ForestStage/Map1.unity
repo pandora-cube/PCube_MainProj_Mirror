@@ -2870,6 +2870,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 313897222}
   m_CullTransparentMesh: 1
+--- !u!114 &320514186 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7345085046030002597, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
+  m_PrefabInstance: {fileID: 19863284}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &354659634
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19502,6 +19513,10 @@ PrefabInstance:
       propertyPath: savePoints
       value: 
       objectReference: {fileID: 919333717}
+    - target: {fileID: 964529266230998606, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: cinemachineVirtualCamera
+      value: 
+      objectReference: {fileID: 320514186}
     - target: {fileID: 1349248219051989259, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
       propertyPath: m_SizeDelta.x
       value: 1100
