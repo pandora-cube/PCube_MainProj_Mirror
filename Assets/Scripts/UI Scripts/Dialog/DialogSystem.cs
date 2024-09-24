@@ -43,6 +43,7 @@ public class DialogSystem : MonoBehaviour
     [SerializeField] string[] Speaker;
 
     [SerializeField] private TextAsset dialogJSONFile;
+    //[SerializeField] private string filePath = "/Resources/DialogTexts.json";
 
     private string currentText;
     private int currentID = 0;

@@ -201,6 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   item: {fileID: 11400000, guid: 0c9ee4c11dc495b40adc469c8b5881bb, type: 2}
+  spiderWeb: {fileID: 0}
 --- !u!58 &316076064986937280
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -336,6 +337,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   item: {fileID: 11400000, guid: 0c9ee4c11dc495b40adc469c8b5881bb, type: 2}
+  spiderWeb: {fileID: 0}
 --- !u!58 &7484631841399265421
 CircleCollider2D:
   m_ObjectHideFlags: 0
