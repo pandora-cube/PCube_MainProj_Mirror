@@ -27,7 +27,7 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
 
     private SpriteRenderer spriteRenderer;
     [SerializeField] private bool isTakingDamage = false;
-    bool isBlinked = false;
+    bool hasShownTimerEffect = false;
 
     [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
     private float shakeTimer;
@@ -38,15 +38,19 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
     [SerializeField] float shakeTime;
 
     [Header("Damage Effects")]
-    [SerializeField] private Image[] damageEffectImages;
-    [SerializeField] private float damageEffectDuration;
+    [SerializeField] private Image[] timerEffectImages;
+    [SerializeField] private float timerEffectDuration;
+    [SerializeField] private float timerEffectRepeatRate;
+    [SerializeField] private float minAlpha;
+    private bool isEffectRunning = false;
 
     void OnEnable()
     {
         ghostTimer = 0f;
         maxHealth = 5f;
         currentHealth = maxHealth;
-        isBlinked = false;
+        hasShownTimerEffect = false;
+        isEffectRunning = false;
     }
 
     private void Awake()
@@ -72,19 +76,15 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
 
             float newAmplitude = Mathf.Lerp(startingIntensity, 0f, 1 - shakeTimer / shakeTimerTotal);
             cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = newAmplitude;
-
-            // Debug statements to check shake progress
-            Debug.Log($"Shaking: Timer = {shakeTimer}, Amplitude = {newAmplitude}");
-
-            if (shakeTimer <= 0)
-                Debug.Log("Shake complete");
         }
 
         if (gameObject.activeSelf)
         {
             ghostTimer += Time.deltaTime;
-            if (!isBlinked && (ghostTimer >= ghostTimeLimit - 15f))
-                StartCoroutine(TriggerTimerEffect());
+            if (!hasShownTimerEffect && (ghostTimer >= ghostTimeLimit - 15f))
+            {
+                InvokeRepeating("StartTriggerTimerEffect", 0, timerEffectRepeatRate);
+            }
             if (ghostTimer >= ghostTimeLimit)
                 Die();
         }
@@ -94,7 +94,6 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
     #region DAMAGE EFFECTS
     public void TriggerDamageEffects()
     {
-        Debug.Log("Triggering damage effects, starting camera shake...");
         ShakeCamera();
     }
 
@@ -110,27 +109,29 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
             shakeTimer = shakeTime;
 
             cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = shakeIntensity;
-
-            // Debug when the shake starts
-            Debug.Log($"Shake started with intensity {shakeIntensity} for duration {shakeTime}");
-        }
-        else
-        {
-            Debug.LogError("Cinemachine Perlin component not found.");
         }
     }
 
+
+    #endregion
+
+    void StartTriggerTimerEffect()
+    {
+        if (isEffectRunning) return;
+        StartCoroutine(TriggerTimerEffect());
+    }
     IEnumerator TriggerTimerEffect()
     {
-        float halfDuration = damageEffectDuration / 2f;
+        isEffectRunning = true;
+        float halfDuration = timerEffectDuration / 2f;
         float elapsedTime = 0f;
         float targetAlpha = 1f; // Maximum alpha (fully visible)
 
         // Set initial alpha to 0 (fully transparent)
-        foreach (Image e in damageEffectImages)
+        foreach (Image e in timerEffectImages)
         {
             Color color = e.color;
-            color.a = 0f;
+            color.a = minAlpha;
             e.color = color;
             e.enabled = true; // Enable the images to start the effect
         }
@@ -139,9 +140,9 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
         while (elapsedTime < halfDuration)
         {
             elapsedTime += Time.deltaTime;
-            float alpha = Mathf.Lerp(0f, targetAlpha, elapsedTime / halfDuration);
+            float alpha = Mathf.Lerp(minAlpha, targetAlpha, elapsedTime / halfDuration);
 
-            foreach (Image e in damageEffectImages)
+            foreach (Image e in timerEffectImages)
             {
                 Color color = e.color;
                 color.a = alpha;
@@ -157,9 +158,9 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
         while (elapsedTime < halfDuration)
         {
             elapsedTime += Time.deltaTime;
-            float alpha = Mathf.Lerp(targetAlpha, 0f, elapsedTime / halfDuration);
+            float alpha = Mathf.Lerp(targetAlpha, minAlpha, elapsedTime / halfDuration);
 
-            foreach (Image e in damageEffectImages)
+            foreach (Image e in timerEffectImages)
             {
                 Color color = e.color;
                 color.a = alpha;
@@ -169,13 +170,13 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
         }
 
         // After fading out, disable the images
-        foreach (Image e in damageEffectImages)
+        foreach (Image e in timerEffectImages)
         {
             e.enabled = false;
         }
-    }
 
-    #endregion
+        isEffectRunning = false;
+    }
 
     public void ReadyToRestart()
     {
@@ -207,7 +208,7 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
     IEnumerator BlinkAfterTakingDamage()
     {
         if (isTakingDamage) yield break;
-        isBlinked = true;
+        hasShownTimerEffect = true;
         Color spriteColor = spriteRenderer.color;
         for (int i = 0; i < numberOfBlinks; ++i)
         {
