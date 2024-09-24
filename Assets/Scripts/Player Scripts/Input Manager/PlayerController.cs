@@ -191,17 +191,17 @@ public class PlayerController : MonoBehaviour
     {
         if (isNormal)
         {
-            if (!isCrawling && !isOnSlope) rb.velocity = new Vector2(direction * normalSpeed, rb.velocity.y); // normal walk
-            else if (isOnSlope && !isCrawling) rb.velocity = new Vector2(-direction * normalSpeed * slopeNormalPrep.x, normalSpeed * slopeNormalPrep.y * -direction); // slope walk
-            else if (isOnSlope && isCrawling) rb.velocity = new Vector2(-direction * (normalSpeed - crawlSpeedDecrease) * slopeNormalPrep.x, (normalSpeed - crawlSpeedDecrease) * slopeNormalPrep.y * -direction);
-            else if (isCrawling) rb.velocity = new Vector2(direction * (normalSpeed - crawlSpeedDecrease), rb.velocity.y); // craw walk
+            if (!isCrawling && !isOnSlope) rb.velocity = new Vector2(direction * normalSpeed * Time.deltaTime, rb.velocity.y); // normal walk
+            else if (isOnSlope && !isCrawling) rb.velocity = new Vector2(-direction * normalSpeed * slopeNormalPrep.x * Time.deltaTime, normalSpeed * slopeNormalPrep.y * -direction * Time.deltaTime); // slope walk
+            else if (isOnSlope && isCrawling) rb.velocity = new Vector2(-direction * (normalSpeed - crawlSpeedDecrease) * slopeNormalPrep.x * Time.deltaTime, (normalSpeed - crawlSpeedDecrease) * slopeNormalPrep.y * -direction * Time.deltaTime);
+            else if (isCrawling) rb.velocity = new Vector2(direction * (normalSpeed - crawlSpeedDecrease) * Time.deltaTime, rb.velocity.y); // craw walk
         }
         else if (isGhost)
         {
-            if (!isCrawling && !isOnSlope) rb.velocity = new Vector2(direction * ghsotSpeed, rb.velocity.y); // normal walk
-            else if (isOnSlope && !isCrawling) rb.velocity = new Vector2(-direction * ghsotSpeed * slopeNormalPrep.x, ghsotSpeed * slopeNormalPrep.y * -direction); // slope walk
-            else if (isOnSlope && isCrawling) rb.velocity = new Vector2(-direction * (ghsotSpeed - crawlSpeedDecrease) * slopeNormalPrep.x, (ghsotSpeed - crawlSpeedDecrease) * slopeNormalPrep.y * -direction);
-            else if (isCrawling) rb.velocity = new Vector2(direction * (ghsotSpeed - crawlSpeedDecrease), rb.velocity.y); // craw walk
+            if (!isCrawling && !isOnSlope) rb.velocity = new Vector2(direction * ghsotSpeed * Time.deltaTime, rb.velocity.y); // normal walk
+            else if (isOnSlope && !isCrawling) rb.velocity = new Vector2(-direction * ghsotSpeed * slopeNormalPrep.x * Time.deltaTime, ghsotSpeed * slopeNormalPrep.y * -direction * Time.deltaTime); // slope walk
+            else if (isOnSlope && isCrawling) rb.velocity = new Vector2(-direction * (ghsotSpeed - crawlSpeedDecrease) * slopeNormalPrep.x * Time.deltaTime, (ghsotSpeed - crawlSpeedDecrease) * slopeNormalPrep.y * -direction * Time.deltaTime);
+            else if (isCrawling) rb.velocity = new Vector2(direction * (ghsotSpeed - crawlSpeedDecrease) * Time.deltaTime, rb.velocity.y); // craw walk
         }
 
         FlipSpriteBasedOnDirection(currentTransform);
@@ -210,6 +210,8 @@ public class PlayerController : MonoBehaviour
 
         ItemAvabileAreaCheck(ghostGroundCheckCollider.position);
     }
+
+
 
     void FlipSpriteBasedOnDirection(Transform transform)
     {

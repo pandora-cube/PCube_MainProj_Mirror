@@ -449,6 +449,10 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 1491362489}
+    - target: {fileID: 6492213904395321440, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7345085046030002597, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
       propertyPath: m_Follow
       value: 
@@ -12893,7 +12897,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 12.5
+  orthographic size: 20
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
