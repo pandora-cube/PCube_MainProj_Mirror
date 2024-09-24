@@ -1292,7 +1292,7 @@ Transform:
   - {fileID: 3308553549901306974}
   - {fileID: 3472490331342985577}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2652426612113270752
 MonoBehaviour:
@@ -1325,7 +1325,7 @@ MonoBehaviour:
   fullFiction: {fileID: 6200000, guid: 3ecda9b66513d7643831be5058244ac1, type: 2}
   slopeCheckDistanceVert: 1.5
   slopeCheckDistanceHori: 1.5
-  normalGameObejct: {fileID: 6083986484843730980}
+  normalGameObject: {fileID: 6083986484843730980}
   normalRb: {fileID: 6031092596345988927}
   normalCollider: {fileID: 4195761594226088202}
   normalSprite: {fileID: 1455752272669314600}
@@ -1333,7 +1333,7 @@ MonoBehaviour:
   normalGroundCheckCollider: {fileID: 7946822656432411550}
   normalSlopeCheckCollider: {fileID: 2256083166484181286}
   normalInteractRange: 1.5
-  ghostGameObejct: {fileID: 6787739559307351797}
+  ghostGameObject: {fileID: 6787739559307351797}
   ghostRb: {fileID: 4199188633483214984}
   ghostCollider: {fileID: 7215862154241327996}
   ghostSprite: {fileID: 2592251769063754241}
@@ -1620,6 +1620,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d9cb4397-1538-4077-9b57-303242af94d4
     m_ActionName: PlayerActions/Move Down[/Keyboard/downArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
+        m_MethodName: OnPause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 05470aa5-9674-4895-88ae-fc2ed56e8ee3
+    m_ActionName: UI Actions/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
+        m_MethodName: OnPause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 78f69579-76aa-4c55-8943-25efff318e5c
+    m_ActionName: PlayerActions/Pause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerActions
@@ -2211,10 +2243,10 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 14.96, y: 19.93}
+  m_Size: {x: 21.909286, y: 31.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &4199188633483214984
@@ -2302,7 +2334,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.4872981, y: 0.5230014}
     oldSize: {x: 17.78, y: 32.681145}
-    newSize: {x: 14.96, y: 19.93}
+    newSize: {x: 17.78, y: 32.681145}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -2936,7 +2968,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5189027888715124509
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3210,7 +3242,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -750, y: 0}
-  m_SizeDelta: {x: 900, y: 420}
+  m_SizeDelta: {x: 1100, y: 420}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3152864056169733370
 CanvasRenderer:
