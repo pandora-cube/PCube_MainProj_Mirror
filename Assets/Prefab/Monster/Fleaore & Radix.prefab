@@ -186,6 +186,7 @@ GameObject:
   - component: {fileID: 4981264581360602448}
   - component: {fileID: 5609659425340114987}
   - component: {fileID: 7183242153207730373}
+  - component: {fileID: 8344940920946321074}
   m_Layer: 12
   m_Name: Fleaore
   m_TagString: Untagged
@@ -350,6 +351,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!95 &8344940920946321074
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543794118804809294}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6998186238bf9fe4b881de5430c5860c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2487054772050407889
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,9 +596,9 @@ MonoBehaviour:
   <maxHealth>k__BackingField: 0
   <currentHealth>k__BackingField: 0
   isEmerged: 0
-  speed: 2
+  speed: 4
   attackDelay: 0
-  emergeDelay: 3
+  emergeDelay: 1.5
 --- !u!212 &7887781373187730685
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -684,7 +706,7 @@ Animator:
   m_GameObject: {fileID: 2791436064172687120}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 17e26162329173647a76ac5197787856, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
