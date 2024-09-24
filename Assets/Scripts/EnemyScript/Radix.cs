@@ -21,6 +21,7 @@ public class Radix : MonoBehaviour, IDamageable
     private float attackDamage = 1f;
     const int PLAYER_LAYER = 3;
     [SerializeField] private float attackDelay;
+    [SerializeField] private float emergeDelay;
 
     private string currentState;
     enum RadixAnimationStates
@@ -47,7 +48,7 @@ public class Radix : MonoBehaviour, IDamageable
     {
         if (!isEmerged && IsFleaoresAllDestroyed())
         {
-            Emerge();
+            StartCoroutine(Emerge());
         }
 
         if (isEmerged)
@@ -63,8 +64,9 @@ public class Radix : MonoBehaviour, IDamageable
 
         return true;
     }
-    private void Emerge()
+    private IEnumerator Emerge()
     {
+        yield return new WaitForSeconds(emergeDelay);
         isEmerged = true;
         boxCollider2D.enabled = true;
         //
