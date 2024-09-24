@@ -90,9 +90,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47320120d12da134f8115c8a77e9d753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDetectionRadius: 5
+  playerDetectionRadius: 40
   attackDelay: 1
   <maxHealth>k__BackingField: 0
   <currentHealth>k__BackingField: 0
   tutorial: {fileID: 0}
   tutorialAttackDamage: 0
+  OpenFlowre: 0
