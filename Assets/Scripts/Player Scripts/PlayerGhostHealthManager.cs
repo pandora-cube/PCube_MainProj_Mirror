@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
 {
@@ -24,12 +25,13 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
 
     private SpriteRenderer spriteRenderer;
     [SerializeField] private bool isTakingDamage = false;
-
+    bool isBlinked = false;
     void OnEnable()
     {
         ghostTimer = 0f;
         maxHealth = 5f;
         currentHealth = maxHealth;
+        isBlinked = false;
     }
     private void Awake()
     {
@@ -47,7 +49,7 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
         if (!gameObject.activeSelf) return;
 
         ghostTimer += Time.deltaTime;
-
+        if (!isBlinked && (ghostTimer >= ghostTimeLimit - 15f)) StartCoroutine(BlinkAfterTakingDamage());
         if (ghostTimer >= ghostTimeLimit) Die();
     }
 
@@ -81,6 +83,7 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
     IEnumerator BlinkAfterTakingDamage()
     {
         if (!isTakingDamage) yield break;
+        isBlinked = true;
         Color spriteColor = spriteRenderer.color;
         for (int i = 0; i < numberOfBlinks; ++i)
         {
