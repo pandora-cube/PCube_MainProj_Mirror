@@ -108,6 +108,7 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
     public void SetGhostTimeLimit(float newTime)
     {
         ghostTimeLimit = newTime;
+        ghostTimer = 0f;
     }
     #endregion //GETTERS AND SETTERS
 }

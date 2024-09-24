@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
 
     #region NORMAL VARIABLES
     [Header("Normal Variables")]
-    [SerializeField] public GameObject normalGameObejct;
+    [SerializeField] public GameObject normalGameObject;
     [SerializeField] private Rigidbody2D normalRb;
     [SerializeField] private CapsuleCollider2D normalCollider;
     [SerializeField] private SpriteRenderer normalSprite;
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
 
     #region GHOST VARIABLS
     [Header("Ghost Variables")]
-    [SerializeField] public GameObject ghostGameObejct;
+    [SerializeField] public GameObject ghostGameObject;
     [SerializeField] protected Rigidbody2D ghostRb;
     [SerializeField] protected BoxCollider2D ghostCollider;
     [SerializeField] protected SpriteRenderer ghostSprite;
@@ -211,6 +211,8 @@ public class PlayerController : MonoBehaviour
         ItemAvabileAreaCheck(ghostGroundCheckCollider.position);
     }
 
+
+
     void FlipSpriteBasedOnDirection(Transform transform)
     {
         if (direction > 0f)
@@ -251,11 +253,11 @@ public class PlayerController : MonoBehaviour
         Vector3 playerPosition = Vector3.zero;
         if (isNormal)
         {
-            playerPosition = normalGameObejct.transform.position;
+            playerPosition = normalGameObject.transform.position;
         }
         else if (isGhost)
         {
-            playerPosition = ghostGameObejct.transform.position;
+            playerPosition = ghostGameObject.transform.position;
         }
 
         Bounds bounds = currentConfinerCollider.bounds;
@@ -263,8 +265,8 @@ public class PlayerController : MonoBehaviour
         playerPosition.x = Mathf.Clamp(playerPosition.x, bounds.min.x, bounds.max.x);
         playerPosition.y = Mathf.Clamp(playerPosition.y, bounds.min.y, bounds.max.y);
 
-        normalGameObejct.transform.position = playerPosition;
-        ghostGameObejct.transform.position = playerPosition;
+        normalGameObject.transform.position = playerPosition;
+        ghostGameObject.transform.position = playerPosition;
     }
 
     #endregion
@@ -369,7 +371,7 @@ public class PlayerController : MonoBehaviour
         isNormal = !isNormal;
         isGhost = !isGhost;
 
-        normalGameObejct.SetActive(isNormal); ghostGameObejct.SetActive(isGhost);
+        normalGameObject.SetActive(isNormal); ghostGameObject.SetActive(isGhost);
         if (isGhost) inventory.ClearInventory();
     }
     #endregion 

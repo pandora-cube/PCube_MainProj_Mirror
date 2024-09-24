@@ -40,7 +40,6 @@ public class Tutorial : MonoBehaviour
     {
         stateCam.Priority = 15; CamCollider.SetActive(true);
         yield return dialogSystem.StartCoroutine(dialogSystem.DialogProgress());
-        // ghost infinity
         playerGhostHealthManager.SetGhostTimeLimit(Mathf.Infinity);
         foreach (var flowre in tutorialFlowres) flowre.OpenFlowre = true;
         yield return new WaitForSeconds(2f);
