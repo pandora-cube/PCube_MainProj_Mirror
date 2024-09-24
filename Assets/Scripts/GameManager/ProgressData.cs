@@ -32,8 +32,8 @@ public class ProgressData : MonoBehaviour
         playerData.currentChapter = 1;
         playerData.currentStage = 1;
 
-        SaveData();
-        LoadData();
+        //SaveData();
+        //LoadData();
     }
 
     public void SaveData()

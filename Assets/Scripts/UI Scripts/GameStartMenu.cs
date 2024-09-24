@@ -11,4 +11,10 @@ public class GameStartMenu : MonoBehaviour
     {
         SceneManager.LoadScene(FORST_STAGE_MAP1);
     }
+
+    public void StartToContinue()
+    {
+        ProgressData.Instance.LoadData();
+        SceneManager.LoadScene(FORST_STAGE_MAP1);
+    }
 }
