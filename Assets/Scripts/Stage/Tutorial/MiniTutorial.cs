@@ -11,7 +11,13 @@ public class MiniTutorial : MonoBehaviour
     [SerializeField] Item item;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !inventory.FindItem(item))
+        if (collision.CompareTag("Player") && item == null)
+        {
+            textUI.gameObject.SetActive(true);
+            textUI.text = text;
+            Invoke(nameof(OnOFFUI), 5f);
+        }
+        else if (inventory != null && collision.CompareTag("Player") && !inventory.FindItem(item))
         {
             textUI.gameObject.SetActive(true);
             textUI.text = text;
