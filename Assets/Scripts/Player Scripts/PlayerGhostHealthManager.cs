@@ -44,6 +44,8 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
 
     void Update()
     {
+        if (!gameObject.activeSelf) return;
+
         ghostTimer += Time.deltaTime;
 
         if (ghostTimer >= ghostTimeLimit) Die();
