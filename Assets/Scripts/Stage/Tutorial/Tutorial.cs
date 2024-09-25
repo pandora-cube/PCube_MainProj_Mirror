@@ -7,11 +7,12 @@ using UnityEngine;
 public class Tutorial : MonoBehaviour
 {
     [SerializeField] DialogSystem dialogSystem;
-    CinemachineStateDrivenCamera stateCam;
-    [SerializeField] CinemachineVirtualCamera mirrorCam;
-    [SerializeField] CinemachineVirtualCamera radixCam;
     [SerializeField] GameObject CamCollider;
+    [SerializeField] CinemachineVirtualCamera mirrorCam;
     [SerializeField] PlayerController playerController;
+    CinemachineStateDrivenCamera stateCam;
+    Animator animator;
+    
     int dieFlowre = 0;
     [SerializeField] TutorialFlowre[] tutorialFlowres;
     [SerializeField] private PlayerGhostHealthManager playerGhostHealthManager;
@@ -19,6 +20,7 @@ public class Tutorial : MonoBehaviour
     private void Awake()
     {
         stateCam = GetComponent<CinemachineStateDrivenCamera>();
+        animator = GetComponent<Animator>();
     }
 
     void Start()
@@ -27,7 +29,10 @@ public class Tutorial : MonoBehaviour
     }
     public IEnumerator Tuto1_flower()
     {
-        stateCam.Priority = 15; mirrorCam.m_Lens.OrthographicSize = 8f;
+        stateCam.Priority = 15;
+        animator.Play("Mirror");
+        mirrorCam.m_Lens.OrthographicSize = 8f;
+
         yield return dialogSystem.StartCoroutine(dialogSystem.DialogProgress());
         stateCam.Priority = 0;
     }
@@ -41,11 +46,13 @@ public class Tutorial : MonoBehaviour
     {
         mirrorCam.m_Lens.OrthographicSize = 18f;
         stateCam.Priority = 15; CamCollider.SetActive(true);
+
         yield return dialogSystem.StartCoroutine(dialogSystem.DialogProgress());
-        // ghost infinity
+
         playerController.canMove = false;
         playerGhostHealthManager.SetGhostTimeLimit(Mathf.Infinity);
         foreach (var flowre in tutorialFlowres) flowre.OpenFlowre = true;
+
         yield return new WaitForSeconds(2f);
 
         yield return dialogSystem.StartCoroutine(dialogSystem.DialogProgress());
@@ -57,18 +64,18 @@ public class Tutorial : MonoBehaviour
         if (dieFlowre == 6 && dialogSystem != null)
         {
             dialogSystem.StartCoroutine(dialogSystem.DialogProgress());
-            stateCam.Priority = 0; CamCollider.SetActive(false);
+            stateCam.Priority = 0; mirrorCam.Priority = 0; CamCollider.SetActive(false);
         }
     }
 
     public IEnumerator Tuto5_ghost()
     {
         yield return dialogSystem.StartCoroutine(dialogSystem.DialogProgress());
-        // ghost 60f
+        
         playerGhostHealthManager.SetGhostTimeLimit(60f);
         yield return new WaitForSeconds(20f);
-        //if(playerController.isGhost) playerGhostHealthManager.Die();
-        //isGhost�� die
+        
+        //if ghost -> die
     }
 
     public IEnumerator Tuto6_normal()
@@ -84,9 +91,15 @@ public class Tutorial : MonoBehaviour
     public IEnumerator Tuto8_radix()
     {
         playerController.canMove = false;
+        animator.Play("Radix");
+
         yield return new WaitForSeconds(0.5f);
-        stateCam.Priority = 15; radixCam.Priority = 20;
+
+        stateCam.Priority = 15;
+
+        yield return new WaitForSeconds(1.5f);
+
         yield return dialogSystem.StartCoroutine(dialogSystem.DialogProgress());
-        stateCam.Priority = 0; radixCam.Priority = 0;
+        stateCam.Priority = 0;
     }
 }
