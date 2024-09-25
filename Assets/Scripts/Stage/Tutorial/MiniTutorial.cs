@@ -15,13 +15,13 @@ public class MiniTutorial : MonoBehaviour
         {
             textUI.gameObject.SetActive(true);
             textUI.text = text;
-            Invoke(nameof(OnOFFUI), 5f);
+            Invoke(nameof(OnOFFUI), 3f);
         }
         else if (inventory != null && collision.CompareTag("Player") && !inventory.FindItem(item))
         {
             textUI.gameObject.SetActive(true);
             textUI.text = text;
-            Invoke(nameof(OnOFFUI), 5f);
+            Invoke(nameof(OnOFFUI), 3f);
         }
     }
 

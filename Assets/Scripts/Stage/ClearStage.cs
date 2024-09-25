@@ -24,11 +24,22 @@ public class ClearStage : MonoBehaviour, IInteractable
             inventory.UseItem(item);
             collid.isTrigger = true;
 
-            ProgressData.Instance.playerData.currentStage += 1;
-            ProgressData.Instance.SaveData();
-            Debug.Log($"stage clear + {ProgressData.Instance.playerData.currentStage}");
+            ClearStageSave();
         }
     }
+
+    void ClearStageSave()
+    {
+        ProgressData.Instance.playerData.currentStage += 1;
+        ProgressData.Instance.SaveData();
+        Debug.Log($"stage clear + {ProgressData.Instance.playerData.currentStage}");
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(item == null && collision.CompareTag("Player")) ClearStageSave();
+    }
+
     public string GetInteractText()
     {
         return interactText;
