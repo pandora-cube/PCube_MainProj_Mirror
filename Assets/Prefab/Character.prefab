@@ -2135,7 +2135,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6766785769586561036}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -2371,12 +2371,14 @@ MonoBehaviour:
   cinemachineVirtualCamera: {fileID: 0}
   shakeIntensity: 10
   shakeTime: 0.5
-  damageEffectImages:
+  timerEffectImages:
   - {fileID: 856698992718940018}
   - {fileID: 731961575608571750}
   - {fileID: 788760144658231425}
   - {fileID: 5256426769193062493}
-  damageEffectDuration: 0.1
+  timerEffectDuration: 3
+  timerEffectRepeatRate: 5
+  minAlpha: 0.3
 --- !u!1 &6869943870109066890
 GameObject:
   m_ObjectHideFlags: 0
@@ -2989,7 +2991,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5189027888715124509
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3280,7 +3282,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8677753861806595989}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -3461,7 +3463,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9144034828771540960}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
