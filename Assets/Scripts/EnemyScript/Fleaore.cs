@@ -19,6 +19,17 @@ public class Fleaore : MonoBehaviour, IDamageable
     private float attackDamage = 1f;
     const int PLAYER_LAYER = 3;
 
+    [Header("Damage Effects")]
+    [Tooltip("Material to switch to during the flash.")]
+    [SerializeField] private Material flashMaterial;
+
+    [Tooltip("Duration of the flash.")]
+    [SerializeField] private float duration;
+
+    private SpriteRenderer spriteRenderer;
+    private Material originalMaterial;
+    private Coroutine flashRoutine;
+
     private string currentState;
     enum FleaoreAnimationStates
     {
@@ -34,6 +45,8 @@ public class Fleaore : MonoBehaviour, IDamageable
         playerController = FindObjectOfType<PlayerController>();
         openCollider2D = GetComponent<BoxCollider2D>();
         fleaoreAnimator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalMaterial = spriteRenderer.material;
     }
 
     void Start()
@@ -88,6 +101,7 @@ public class Fleaore : MonoBehaviour, IDamageable
         Debug.Log("Fleaore takes damage");
         //TO-DO: ADD CLOSING ANIM AND DMG TAKE LOGIC
         isAttacked = true;
+        if (!isStunned) Flash();
         StartCoroutine(Reopen());
         currentHealth -= damageAmount;
 
@@ -99,6 +113,27 @@ public class Fleaore : MonoBehaviour, IDamageable
 
     }
     
+     public void Flash()
+    {
+        if (flashRoutine != null)
+        {
+            StopCoroutine(flashRoutine);
+        }
+
+        flashRoutine = StartCoroutine(FlashRoutine());
+    }
+
+    private IEnumerator FlashRoutine()
+    {
+        spriteRenderer.material = flashMaterial;
+
+        yield return new WaitForSeconds(duration);
+
+        spriteRenderer.material = originalMaterial;
+
+        flashRoutine = null;
+    }
+
     IEnumerator Reopen()
     {
         yield return new WaitForSeconds(5f);

@@ -3,20 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Radix : MonoBehaviour, IDamageable
+public class Radix : MonoBehaviour
 {
     [SerializeField] private Fleaore[] connectedFleaore;
     private BoxCollider2D boxCollider2D;
     private Animator radixAnimator;
     private PlayerController playerController;
 
-    [field: SerializeField] public float maxHealth { get; set; }
-    [field: SerializeField] public float currentHealth { get; set; }
-
     [SerializeField] private bool isEmerged = false;
     [SerializeField] private float speed = 2f;
 
-    private float playerDetectionRadius = 5f;
+    [SerializeField]private float playerDetectionRadius = 5f;
     private bool isAttacking = false;
     private float attackDamage = 1f;
     const int PLAYER_LAYER = 3;
@@ -37,9 +34,6 @@ public class Radix : MonoBehaviour, IDamageable
         radixAnimator = GetComponent<Animator>();
         boxCollider2D.enabled = false;
         playerController = FindObjectOfType<PlayerController>();
-
-        maxHealth = 5;
-        currentHealth = maxHealth;
 
         ChangeAnimationState(RadixAnimationStates.radixIdle);
 
@@ -69,7 +63,6 @@ public class Radix : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(emergeDelay);
         isEmerged = true;
         boxCollider2D.enabled = true;
-        //
     }
     private void MoveTowardsPlayer()
     {
@@ -130,18 +123,6 @@ public class Radix : MonoBehaviour, IDamageable
         isAttacking = false;
     }
 
-    public void TakeDamage(float damageAmount)
-    {
-        currentHealth -= damageAmount;
-
-        if (currentHealth <= 0) Die();
-    }
-
-    public void Die()
-    {
-        Destroy(gameObject);
-    }
-
     private void ChangeAnimationState(RadixAnimationStates animationStates)
     {
         string newState = animationStates.ToString();
@@ -156,7 +137,6 @@ public class Radix : MonoBehaviour, IDamageable
     /// </summary>
     /// <param name="stateName">name of the animation state in the animation controller</param>
     /// <returns>length of animation state in float</returns>
-
     float GetAnimationStateLength(string stateName)
     {
         if (radixAnimator == null || radixAnimator.runtimeAnimatorController == null)
@@ -173,6 +153,12 @@ public class Radix : MonoBehaviour, IDamageable
         }
 
         return 0f;
+    }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+
+        Gizmos.DrawWireSphere(transform.position, playerDetectionRadius);
     }
 }

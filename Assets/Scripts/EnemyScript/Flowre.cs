@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Flowre : MonoBehaviour, IDamageable
+public class Flowre : MonoBehaviour
 {
     protected PlayerController playerController;
     private CapsuleCollider2D openCapsuleCollider2D;
@@ -13,9 +13,6 @@ public class Flowre : MonoBehaviour, IDamageable
     [SerializeField] private float playerDetectionRadius = 5f;
     [SerializeField] private float attackDelay = 1f;
     protected float attackDamage = 1f;
-
-    [field: SerializeField] public float maxHealth { get; set;}
-    [field: SerializeField] public float currentHealth { get; set; }
 
     private Animator flowreAnimator;
 
@@ -38,7 +35,6 @@ public class Flowre : MonoBehaviour, IDamageable
     protected virtual void Start()
     {
         ChangeAnimationState(FlowreAnimationStates.flowreClosed);
-        currentHealth = maxHealth;
     }
     protected virtual void Update()
     {
@@ -77,19 +73,6 @@ public class Flowre : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(attackDelay);
         ChangeAnimationState(FlowreAnimationStates.flowreIdle);
         isAttacking = false;
-    }
-
-    public void TakeDamage(float damageAmount)
-    {
-        //TO-DO: ADD CLOSING ANIM
-        currentHealth -= damageAmount;
-        if (currentHealth <= 0) Die();
-    }
-
-    public void Die()
-    {
-        //TO-DO: ADD DEATH ANIM
-        Destroy(gameObject);
     }
 
      private void ChangeAnimationState (FlowreAnimationStates animationStates)
