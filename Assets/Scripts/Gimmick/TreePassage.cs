@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class TreePassage : MonoBehaviour, IInteractable
 {
-    [SerializeField] private Transform Player;
+    [SerializeField] private Transform normalPlayerGameObject;
+    [SerializeField] private Transform ghostPlayerGameObject;
+
     [SerializeField] private Item item;
     [SerializeField] private GameObject spiderWeb;
     private ParentTreePassage parentTree;
@@ -29,12 +31,14 @@ public class TreePassage : MonoBehaviour, IInteractable
                 Debug.Log("now tree passage is open");
             }
         }
-        else if (parentTree.passageState == ParentTreePassage.Available.open) // Åë·Î ³ª¹« »óÅÂ°¡ open
+        else if (parentTree.passageState == ParentTreePassage.Available.open) // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â°ï¿½ open
         {
             Transform MoveToExit = FindingExitPosition();
 
-            if (MoveToExit != null) Player.transform.position = MoveToExit.position; // ¹Ý´ëÆí Ãâ±¸·Î ÀÌµ¿
-            else Debug.Log("Exit is NULL");
+            if (MoveToExit == null) return;
+            
+            normalPlayerGameObject.transform.position = MoveToExit.position; // ï¿½Ý´ï¿½ï¿½ï¿½ ï¿½â±¸ï¿½ï¿½ ï¿½Ìµï¿½
+            ghostPlayerGameObject.transform.position = MoveToExit.position;
         }
     }
 

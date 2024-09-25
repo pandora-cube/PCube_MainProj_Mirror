@@ -51,7 +51,7 @@ public class Flowre : MonoBehaviour, IDamageable
         openCapsuleCollider2D.enabled = false;
     }
 
-   void DetectPlayer()
+    void DetectPlayer()
     {
         openCapsuleCollider2D.enabled = true;
 
@@ -67,6 +67,7 @@ public class Flowre : MonoBehaviour, IDamageable
             }
         }
     }
+    
     IEnumerator AttackPlayer(Collider2D collider)
     {
         isAttacking = true;

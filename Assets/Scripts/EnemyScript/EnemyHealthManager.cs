@@ -27,7 +27,7 @@ public class EnemyHealthManager : MonoBehaviour, IDamageable
     public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
-
+        Flash();
         if (currentHealth <= 0) Die();
     }
     public void Die()

@@ -46,7 +46,7 @@ public class Fleaore : MonoBehaviour, IDamageable
         if (isStunned) return;
 
         if (!playerController.isGhost || isAttacked) Close();
-        else if (playerController.isGhost) DetectPlayer();
+        DetectPlayer();
     }
 
     void Close()

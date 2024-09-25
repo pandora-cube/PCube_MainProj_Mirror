@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 9036843248383304248}
   - component: {fileID: 5035200596238267951}
   - component: {fileID: 2631276759909012142}
-  - component: {fileID: 1679287528738106216}
   m_Layer: 12
   m_Name: Flowre
   m_TagString: Untagged
@@ -84,7 +83,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 6.64, y: 10.8}
+  m_Size: {x: 3.32, y: 6.77}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -106,7 +105,6 @@ MonoBehaviour:
   attackDelay: 1
   <maxHealth>k__BackingField: 2
   <currentHealth>k__BackingField: 0
-  flowreAnimator: {fileID: 2631276759909012142}
 --- !u!114 &9116758770556256338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,17 +204,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1679287528738106216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 838748155303041347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca59b652b1b6ace43b36bbfc7fcc909f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flashMaterial: {fileID: 2100000, guid: 7d1f2937c3bfd064ead2ccdf22e3a052, type: 2}
-  duration: 0.15
