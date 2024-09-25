@@ -9,6 +9,7 @@ public class Tutorial : MonoBehaviour
     [SerializeField] DialogSystem dialogSystem;
     CinemachineStateDrivenCamera stateCam;
     [SerializeField] CinemachineVirtualCamera mirrorCam;
+    [SerializeField] CinemachineVirtualCamera radixCam;
     [SerializeField] GameObject CamCollider;
     [SerializeField] PlayerController playerController;
     int dieFlowre = 0;
@@ -42,6 +43,7 @@ public class Tutorial : MonoBehaviour
         stateCam.Priority = 15; CamCollider.SetActive(true);
         yield return dialogSystem.StartCoroutine(dialogSystem.DialogProgress());
         // ghost infinity
+        playerController.canMove = false;
         playerGhostHealthManager.SetGhostTimeLimit(Mathf.Infinity);
         foreach (var flowre in tutorialFlowres) flowre.OpenFlowre = true;
         yield return new WaitForSeconds(2f);
@@ -77,5 +79,14 @@ public class Tutorial : MonoBehaviour
     public IEnumerator Tuto7_torch()
     {
         yield return dialogSystem.StartCoroutine(dialogSystem.DialogProgress());
+    }
+
+    public IEnumerator Tuto8_radix()
+    {
+        playerController.canMove = false;
+        yield return new WaitForSeconds(0.5f);
+        stateCam.Priority = 15; radixCam.Priority = 20;
+        yield return dialogSystem.StartCoroutine(dialogSystem.DialogProgress());
+        stateCam.Priority = 0; radixCam.Priority = 0;
     }
 }

@@ -88,6 +88,17 @@
             ],
             "speakerID": 1,
             "playFunc": "SetTextforKey"
+        },
+        {
+            "dialogScene": 9,
+            "id": 9,
+            "dialogText": [
+                "저기 저 나무는 조심하는 게 좋을거야.",
+                "평소에는 얌전하지만 나무의 덩굴을 다 자르면... 무서운 일이 일어날지도 몰라",
+                "저 나무와 연결되어있는 꽃들도 평소와는 다르니 조심해!"
+            ],
+            "speakerID": 1,
+            "playFunc": "None"
         }
     ]
 }
