@@ -392,14 +392,18 @@ public class PlayerController : MonoBehaviour
 
         if (slopeHitFront)
         {
-            isOnSlope = true;
             slopeSideAngle = Vector2.Angle(slopeHitFront.normal, Vector2.up);
+            Debug.Log("slopeSideAngle : " + slopeSideAngle);
+
+            if (slopeSideAngle <= 45) isOnSlope = true;
             Debug.DrawRay(checkPos, transform.right, Color.red);
         }
         else if (slopeHitBack)
         {
-            isOnSlope = true;
             slopeSideAngle = Vector2.Angle(slopeHitBack.normal, Vector2.up);
+            Debug.Log("slopeSideAngle : " + slopeSideAngle);
+
+            if (slopeSideAngle <= 45) isOnSlope = true;
             Debug.DrawRay(checkPos, -transform.right, Color.red);
         }
         else
@@ -419,6 +423,8 @@ public class PlayerController : MonoBehaviour
             slopeDownAngle = Vector2.Angle(hit.normal, Vector2.up);
 
             if (slopeDownAngle != lastSlopeAngle) isOnSlope = true;
+
+            //Debug.Log("slopeDownAnlge : " + slopeDownAngle);
 
             lastSlopeAngle = slopeDownAngle;
 
