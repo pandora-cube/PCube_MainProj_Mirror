@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8813506637014449709}
   - component: {fileID: 1724818698520731942}
   - component: {fileID: 5074481915322472954}
+  - component: {fileID: -7877238196516540929}
   m_Layer: 9
   m_Name: short vine
   m_TagString: Untagged
@@ -118,5 +119,40 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.0000038146973, y: -0.76}
+  m_Size: {x: 2.33, y: 0.0001}
+  m_Direction: 0
+--- !u!70 &-7877238196516540929
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991087365918782562}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.000003814697, y: -0.76}
   m_Size: {x: 2.33, y: 0.0001}
   m_Direction: 0

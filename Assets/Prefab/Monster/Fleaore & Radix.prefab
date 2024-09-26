@@ -602,7 +602,7 @@ MonoBehaviour:
   - {fileID: 5797394277621547311}
   isEmerged: 0
   speed: 4
-  playerDetectionRadius: 7
+  playerDetectionRadius: 1
   attackDelay: 2
   emergeDelay: 1.5
 --- !u!114 &5510450018117082710
@@ -619,6 +619,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <maxHealth>k__BackingField: 10
   <currentHealth>k__BackingField: 0
+  <isAttacked>k__BackingField: 0
   flashMaterial: {fileID: 2100000, guid: 594b1dda9dac4f54087db2461cff3365, type: 2}
   duration: 0.15
 --- !u!212 &7887781373187730685
@@ -705,7 +706,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0617404, y: -2.7918158}
+  m_Offset: {x: 0.0617404, y: -6.234974}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5043686, y: 0.6467655}
@@ -716,7 +717,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10.343383, y: 20.883177}
+  m_Size: {x: 10.343383, y: 13.870504}
   m_EdgeRadius: 0
 --- !u!95 &8292056893250977077
 Animator:
@@ -1147,7 +1148,7 @@ Transform:
   - {fileID: 1531309210955793477}
   - {fileID: 3289412248946769654}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6420326142571818097
 GameObject:
