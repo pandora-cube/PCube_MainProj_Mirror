@@ -11590,7 +11590,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6681431396476874125, guid: b3717393feed45a4691cd2d0daf2f557, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 88.1
+      value: 84.81
       objectReference: {fileID: 0}
     - target: {fileID: 6681431396476874125, guid: b3717393feed45a4691cd2d0daf2f557, type: 3}
       propertyPath: m_LocalPosition.y
@@ -13457,7 +13457,9 @@ MonoBehaviour:
   m_AnimatedTarget: {fileID: 1429179742}
   m_LayerIndex: 0
   m_ShowDebugText: 0
-  m_ChildCameras: []
+  m_ChildCameras:
+  - {fileID: 117532203}
+  - {fileID: 1169539729}
   m_Instructions:
   - m_FullHash: 1597550655
     m_VirtualCamera: {fileID: 117532203}
@@ -20808,7 +20810,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2156000858563952588, guid: c196fdd6e4f23cd46b29ce641de7b804, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 102.782974
+      value: 101.5
       objectReference: {fileID: 0}
     - target: {fileID: 2156000858563952588, guid: c196fdd6e4f23cd46b29ce641de7b804, type: 3}
       propertyPath: m_LocalPosition.y
