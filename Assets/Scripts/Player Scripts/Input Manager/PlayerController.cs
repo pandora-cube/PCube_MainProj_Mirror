@@ -284,13 +284,34 @@ public class PlayerController : MonoBehaviour
     {
         if (!isGrounded || !ctx.performed) return;
 
-        if (isHoldingDown) StartCoroutine(JumpDownThroughPlatform());
+        if (isHoldingDown)
+        {
+
+            StartCoroutine(JumpDownThroughPlatform());
+        }
+        else if (isOnSlope)
+        {
+            // slope일때 점프 수정 필요
+
+            //Debug.Log("slopeJump");
+            //Vector2 jumpDirection = (slopeNormalPrep + Vector2.up).normalized;
+            //if (isNormal)
+            //{
+            //    normalRb.sharedMaterial = noFiction;
+            //    normalRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            //}
+            //else if (isGhost)
+            //{
+            //    ghostRb.sharedMaterial = noFiction;
+            //    ghostRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            //}
+        }
         else
         {
             if (isNormal) normalRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
             else if (isGhost) ghostRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
-    }
+        }
 
 
     IEnumerator JumpDownThroughPlatform()
@@ -393,21 +414,22 @@ public class PlayerController : MonoBehaviour
         if (slopeHitFront)
         {
             slopeSideAngle = Vector2.Angle(slopeHitFront.normal, Vector2.up);
-            Debug.Log("slopeSideAngle : " + slopeSideAngle);
+            //Debug.Log("slopeSideAngle : " + slopeSideAngle);
 
-            if (slopeSideAngle <= 45) isOnSlope = true;
+            if (slopeSideAngle <= 60) isOnSlope = true;
             Debug.DrawRay(checkPos, transform.right, Color.red);
         }
         else if (slopeHitBack)
         {
             slopeSideAngle = Vector2.Angle(slopeHitBack.normal, Vector2.up);
-            Debug.Log("slopeSideAngle : " + slopeSideAngle);
+            //Debug.Log("slopeSideAngle : " + slopeSideAngle);
 
-            if (slopeSideAngle <= 45) isOnSlope = true;
+            if (slopeSideAngle <= 60) isOnSlope = true;
             Debug.DrawRay(checkPos, -transform.right, Color.red);
         }
         else
         {
+            Debug.Log("Not Found Slope");
             isOnSlope = false;
             slopeSideAngle = 0f;
         }
