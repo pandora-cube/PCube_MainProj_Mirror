@@ -11,9 +11,10 @@ public class BoobyTrap : MonoBehaviour
     [SerializeField] private GameObject arrow;
     [SerializeField] private float spawnInterval = 1f;
     [SerializeField] private float arrowSpeed = 3f;
-    [SerializeField] private Transform player;
 
+    [SerializeField] private bool isAttacking = false;
     private Vector3 spawnDirection;
+
     void Start()
     {
         if (direction == Direction.Up) spawnDirection = Vector3.up;
@@ -22,23 +23,23 @@ public class BoobyTrap : MonoBehaviour
         else spawnDirection = Vector3.left;
     }
 
-    IEnumerator SpawnArrowRoutine()
+    void SpawnArrowRoutine()
     {
-        while (true) { 
-            GameObject spawnArraow = Instantiate(arrow, transform.position, Quaternion.identity);
-            Rigidbody2D rigid = spawnArraow.GetComponent<Rigidbody2D>();
-            if (rigid != null) rigid.velocity = spawnDirection.normalized * arrowSpeed;
-
-            yield return new WaitForSeconds(spawnInterval);
-        }
+        isAttacking = true;
+        GameObject spawnArraow = Instantiate(arrow, transform.position, Quaternion.identity);
+        Rigidbody2D rigid = spawnArraow.GetComponent<Rigidbody2D>();
+        if (rigid != null) rigid.velocity = spawnDirection.normalized * arrowSpeed;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player")) StartCoroutine(SpawnArrowRoutine());
+        if (isAttacking) return;
+        if (collision.gameObject.CompareTag("Player")) InvokeRepeating("SpawnArrowRoutine", 0f, spawnInterval);
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player")) StopAllCoroutines();
+        if (!isAttacking) return;
+        CancelInvoke();
+        isAttacking = false;
     }
 }

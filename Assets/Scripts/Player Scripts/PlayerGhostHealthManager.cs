@@ -207,7 +207,6 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
 
     IEnumerator BlinkAfterTakingDamage()
     {
-        if (isTakingDamage) yield break;
         hasShownTimerEffect = true;
         Color spriteColor = spriteRenderer.color;
         for (int i = 0; i < numberOfBlinks; ++i)

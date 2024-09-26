@@ -250,6 +250,7 @@ public class PlayerController : MonoBehaviour
 
     void ConfinePlayerMovement()
     {
+        if (currentConfinerCollider == null) return;
         Vector3 playerPosition = Vector3.zero;
         if (isNormal)
         {
@@ -429,7 +430,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not Found Slope");
+            //Debug.Log("Not Found Slope");
             isOnSlope = false;
             slopeSideAngle = 0f;
         }
