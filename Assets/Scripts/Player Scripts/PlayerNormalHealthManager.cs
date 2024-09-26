@@ -6,10 +6,7 @@ public class PlayerNormalHealthManager : MonoBehaviour, IDamageable
 {
     [field: SerializeField] public float maxHealth { get ; set ; }
     [field: SerializeField] public float currentHealth { get ; set; }
-
-    [Header("Collision Detection")]
-    [SerializeField] private LayerMask obstacleLayer;
-
+    public bool isAttacked {get; set;}
     [Header("Game Over")]
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] SavePoints savePoints;

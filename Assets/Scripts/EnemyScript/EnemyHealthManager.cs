@@ -6,6 +6,7 @@ public class EnemyHealthManager : MonoBehaviour, IDamageable
 {
     [field: SerializeField] public float maxHealth { get; set; }
     [field: SerializeField] public float currentHealth { get; set; }
+    [field: SerializeField] public bool isAttacked {get; set;}
 
     [Tooltip("Material to switch to during the flash.")]
     [SerializeField] private Material flashMaterial;
@@ -27,6 +28,7 @@ public class EnemyHealthManager : MonoBehaviour, IDamageable
     public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
+        isAttacked = true;
         Flash();
         if (currentHealth <= 0) Die();
     }

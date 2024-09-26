@@ -10,6 +10,8 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
 {
     [field: SerializeField] public float maxHealth { get; set; }
     [field: SerializeField] public float currentHealth { get; set; }
+    public bool isAttacked {get; set;}
+
     [Header("Damage Effects")]
     [SerializeField] private float damageDelay;
     [SerializeField] private int numberOfBlinks;
@@ -43,6 +45,8 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
     [SerializeField] private float timerEffectRepeatRate;
     [SerializeField] private float minAlpha;
     private bool isEffectRunning = false;
+
+    const int OBSTACLE_LAYER = 9;
 
     void OnEnable()
     {
@@ -223,12 +227,19 @@ public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
         }
     }
 
-
     IEnumerator ResetIsTakingDamageBool()
     {
         yield return new WaitForSeconds(damageDelay);
 
         isTakingDamage = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == OBSTACLE_LAYER)
+        {
+            TakeDamage(1f);
+        }
     }
 
     #region GETTERS AND SETTERS

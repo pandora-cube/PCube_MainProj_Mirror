@@ -13,7 +13,7 @@ public class Radix : MonoBehaviour
     [SerializeField] private bool isEmerged = false;
     [SerializeField] private float speed = 2f;
 
-    [SerializeField]private float playerDetectionRadius = 5f;
+    [SerializeField] private float playerDetectionRadius = 5f;
     private bool isAttacking = false;
     private float attackDamage = 1f;
     const int PLAYER_LAYER = 3;
