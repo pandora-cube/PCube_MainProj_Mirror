@@ -6,7 +6,8 @@ public class SavePoints : MonoBehaviour
 {
     public Transform[] savePoints;
     [SerializeField] private Transform normalPlayer;
-    [SerializeField] private PlayerController controller;
+    [SerializeField] private PlayerStateMachine playerStateMachine;
+    [SerializeField] private PlayerInteractionController playerInteractionController;
     int currentStage = 0;
 
     void Start()
@@ -16,7 +17,7 @@ public class SavePoints : MonoBehaviour
 
     public void PlayerRespawn()
     {
-        if (controller.isGhost) controller.Transform();
+        if (playerStateMachine.isGhost) playerInteractionController.Transform();
 
         currentStage = ProgressData.Instance.playerData.currentStage - 1;
         normalPlayer.position = new Vector3(savePoints[currentStage].position.x, savePoints[currentStage].position.y, normalPlayer.position.z);

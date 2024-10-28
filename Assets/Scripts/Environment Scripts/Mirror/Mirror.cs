@@ -13,7 +13,7 @@ public class Mirror : MonoBehaviour, IInteractable
     }
     public void Interact()
     {
-        PlayerController player = FindObjectOfType<PlayerController>();
+        PlayerInteractionController player = FindObjectOfType<PlayerInteractionController>();
 
         player.Transform();
     }

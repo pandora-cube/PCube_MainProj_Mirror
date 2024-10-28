@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Flowre : MonoBehaviour, IDamageable
 {
-    protected PlayerController playerController;
+    protected PlayerStateMachine playerStateMachine;
     private CapsuleCollider2D openCapsuleCollider2D;
 
     private bool isAttacking = false;
@@ -30,7 +30,7 @@ public class Flowre : MonoBehaviour, IDamageable
 
     void Awake()
     {
-        playerController = FindObjectOfType<PlayerController>();
+        playerStateMachine = FindObjectOfType<PlayerStateMachine>();
         openCapsuleCollider2D = GetComponent<CapsuleCollider2D>();
         flowreAnimator = GetComponent<Animator>();
     }
@@ -42,8 +42,8 @@ public class Flowre : MonoBehaviour, IDamageable
     }
     protected virtual void Update()
     {
-        if (!playerController.isGhost) Close();  
-        else if (playerController.isGhost) DetectPlayer();
+        if (!playerStateMachine.isGhost) Close();  
+        else if (playerStateMachine.isGhost) DetectPlayer();
     }
 
     protected void Close()

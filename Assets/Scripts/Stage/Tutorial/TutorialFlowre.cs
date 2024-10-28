@@ -11,7 +11,7 @@ public class TutorialFlowre : Flowre
     protected override void Start()
     {
         attackDamage = tutorialAttackDamage;
-        if (!playerController.isGhost) Close();
+        if (!playerStateMachine.isGhost) Close();
     }
 
     protected override void Update()

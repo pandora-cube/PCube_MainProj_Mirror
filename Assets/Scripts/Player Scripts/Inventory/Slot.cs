@@ -18,7 +18,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     RectTransform slotRect;
 
     private Item _item;
-    [SerializeField] PlayerController controller;
+    [SerializeField] PlayerStateMachine playerStateMachine;
     public Item item {
         get { return _item; }
         set
@@ -39,8 +39,8 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     }
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Å¬¸¯");
-        if (controller.UsingItem && _item != null) inventory.UseItem(item); // ¾ÆÀÌÅÛÀÌ Á¸ÀçÇÏ°í, ÇöÀç »ç¿ë °¡´ÉÇÒ ¶§
+        Debug.Log("Å¬ï¿½ï¿½");
+        if (playerStateMachine.UsingItem && _item != null) inventory.UseItem(item); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
     }
 
     public void OnPointerEnter(PointerEventData eventData)

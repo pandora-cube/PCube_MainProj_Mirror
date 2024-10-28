@@ -8,7 +8,7 @@ public class Radix : MonoBehaviour, IDamageable
     [SerializeField] private Fleaore[] connectedFleaore;
     private BoxCollider2D boxCollider2D;
     private Animator radixAnimator;
-    private PlayerController playerController;
+    private PlayerStateMachine playerStateMachine;
 
     [field: SerializeField] public float maxHealth { get; set; }
     [field: SerializeField] public float currentHealth { get; set; }
@@ -36,7 +36,7 @@ public class Radix : MonoBehaviour, IDamageable
         boxCollider2D = GetComponent<BoxCollider2D>();
         radixAnimator = GetComponent<Animator>();
         boxCollider2D.enabled = false;
-        playerController = FindObjectOfType<PlayerController>();
+        playerStateMachine = FindObjectOfType<PlayerStateMachine>();
 
         maxHealth = 5;
         currentHealth = maxHealth;
@@ -75,8 +75,8 @@ public class Radix : MonoBehaviour, IDamageable
     {
         Vector3 currentPosition = transform.position;
         Vector3 targetPosition = new Vector3(0f, 0f);
-        if (playerController.isNormal) targetPosition = playerController.normalGameObject.transform.position;
-        else targetPosition = playerController.ghostGameObject.transform.position;
+        if (playerStateMachine.isNormal) targetPosition = playerStateMachine.normalGameObject.transform.position;
+        else targetPosition = playerStateMachine.ghostGameObject.transform.position;
 
         float direction = Mathf.Sign(targetPosition.x - currentPosition.x);
         if (Mathf.Approximately(direction, 1)) 

@@ -7,7 +7,7 @@ public class Fleaore : MonoBehaviour, IDamageable
 {
     [SerializeField] private Vine connectedVine;
 
-    private PlayerController playerController;
+    private PlayerStateMachine playerStateMachine;
     private BoxCollider2D openCollider2D;
     private Animator fleaoreAnimator;
 
@@ -31,7 +31,7 @@ public class Fleaore : MonoBehaviour, IDamageable
 
     void Awake()
     {
-        playerController = FindObjectOfType<PlayerController>();
+        playerStateMachine = FindObjectOfType<PlayerStateMachine>();
         openCollider2D = GetComponent<BoxCollider2D>();
         fleaoreAnimator = GetComponent<Animator>();
     }
@@ -45,7 +45,7 @@ public class Fleaore : MonoBehaviour, IDamageable
     {
         if (isStunned) return;
 
-        if (!playerController.isGhost || isAttacked) Close();
+        if (!playerStateMachine.isGhost || isAttacked) Close();
         DetectPlayer();
     }
 

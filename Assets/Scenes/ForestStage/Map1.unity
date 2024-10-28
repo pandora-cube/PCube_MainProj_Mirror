@@ -7913,7 +7913,8 @@ MonoBehaviour:
   - {fileID: 1348370657}
   - {fileID: 1706457137}
   normalPlayer: {fileID: 1491362489}
-  controller: {fileID: 1280092452}
+  playerStateMachine: {fileID: 0}
+  playerInteractionController: {fileID: 0}
 --- !u!4 &919333718
 Transform:
   m_ObjectHideFlags: 0
@@ -13362,7 +13363,7 @@ MonoBehaviour:
   dialogSystem: {fileID: 10893541}
   CamCollider: {fileID: 1151412380}
   mirrorCam: {fileID: 117532203}
-  playerController: {fileID: 1280092452}
+  playerStateMachine: {fileID: 0}
   tutorialFlowres:
   - {fileID: 1627054316}
   - {fileID: 453884915}
@@ -20583,7 +20584,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6558871467797732639, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3367467547188870502, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+    - {fileID: 5281237216462481153, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
