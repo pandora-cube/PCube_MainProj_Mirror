@@ -598,7 +598,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3157958922227393664}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1368,8 +1368,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 0
-  normalSpeed: 0
-  ghostSpeed: 0
+  normalSpeed: 5
+  ghostSpeed: 10
   currentConfinerCollider: {fileID: 0}
   trailRenderer: {fileID: 547016282715293714}
 --- !u!114 &8317366783203270412
@@ -1384,7 +1384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 654e1347bc6751349991878c148817c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 5
+  jumpForce: 20
 --- !u!114 &6516753302129434071
 MonoBehaviour:
   m_ObjectHideFlags: 0

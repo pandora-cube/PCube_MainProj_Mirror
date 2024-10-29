@@ -4,7 +4,7 @@ using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CameraController : MonoBehaviour
+public class PlayerCameraController : MonoBehaviour
 {
     [SerializeField] private float direction;
     [SerializeField] private float timeElapsed = 0f;
@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera peekCamera;
 
     private Animator animator;
-    private PlayerGroundChecker playerGroundChecker;
+    private PlayerStateMachine PlayerState => PlayerStateMachine.instance;
     private Vector3 peekCameraFinalPosition;
 
     void Awake()
@@ -31,7 +31,7 @@ public class CameraController : MonoBehaviour
 
         if (!isPeeking)
         {
-            if (PlayerStateMachine.instance.isNormal) animator.Play("NormalDefault");
+            if (PlayerState.isNormal) animator.Play("NormalDefault");
             else animator.Play("GhostDefault");
         }
     }
@@ -43,14 +43,14 @@ public class CameraController : MonoBehaviour
 
      void StartPeekOverEdge(float peekDirection)
     {
-        if (!playerGroundChecker.isGrounded) return;
+        if (!PlayerState.isGrounded) return;
 
         timeElapsed += Time.deltaTime;
 
         if (timeElapsed >= timeNeeded)
         {
-            if (PlayerStateMachine.instance.isNormal) peekCamera.transform.position = normalCamera.transform.position;
-            else if (PlayerStateMachine.instance.isGhost) peekCamera.transform.position = ghostCamera.transform.position;
+            if (PlayerState.isNormal) peekCamera.transform.position = normalCamera.transform.position;
+            else if (PlayerState.isGhost) peekCamera.transform.position = ghostCamera.transform.position;
             peekCamera.transform.position += new Vector3(0f, -2f);
 
             peekCameraFinalPosition = peekCamera.transform.position;
@@ -68,18 +68,18 @@ public class CameraController : MonoBehaviour
 
         timeElapsed = 0f;
 
-        if (PlayerStateMachine.instance.isNormal)
+        if (PlayerState.isNormal)
         {
             normalCamera.transform.position = peekCameraFinalPosition;
         }
-        else if (PlayerStateMachine.instance.isGhost)
+        else if (PlayerState.isGhost)
         {
             ghostCamera.transform.position = peekCameraFinalPosition;
         }
 
         peekCamera.transform.position = peekCameraFinalPosition;
 
-        if (PlayerStateMachine.instance.isNormal)
+        if (PlayerState.isNormal)
         {
             animator.Play("NormalDefault");
         }

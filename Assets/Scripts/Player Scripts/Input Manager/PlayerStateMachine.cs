@@ -12,6 +12,7 @@ public class PlayerStateMachine : MonoBehaviour
     public bool isCrawling;
     public bool isOnSlope;
     public bool canDash;
+    public bool isGrounded;
 
     public static PlayerStateMachine instance;
     void Awake()

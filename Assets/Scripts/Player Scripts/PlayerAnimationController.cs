@@ -10,7 +10,6 @@ public class PlayerAnimationController : MonoBehaviour
     [SerializeField] private Animator ghostAnimator;
     [HideInInspector] private AnimatorStateInfo currentAnimation;
 
-    PlayerStateMachine PlayerState => PlayerStateMachine.instance;
     PlayerComponents playerComponents;
 
     public enum NormalAnimationStates

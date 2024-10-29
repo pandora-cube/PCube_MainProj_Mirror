@@ -24,7 +24,7 @@ public class PlayerJumpController : MonoBehaviour
     public void OnJump(InputValue value)
     {
         float input = value.Get<float>();
-        if (!playerGroundChecker.isGrounded || input <= 0) return;
+        if (!PlayerState.isGrounded || input <= 0) return;
 
         if (isHoldingDown)
         {
@@ -54,10 +54,9 @@ public class PlayerJumpController : MonoBehaviour
         }
     }
 
-    public void OnHoldDown(InputAction.CallbackContext ctx)
+    public void OnHoldDown(InputValue value)
     {
-        if (ctx.started) isHoldingDown = true;
-        else if (ctx.canceled) isHoldingDown = false;
+        isHoldingDown = value.isPressed;
     }
 
     IEnumerator JumpDownThroughPlatform()

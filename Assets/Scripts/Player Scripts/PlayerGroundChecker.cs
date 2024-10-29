@@ -19,8 +19,6 @@ public class PlayerGroundChecker : MonoBehaviour
     public LayerMask platformLayer;
     public LayerMask bridgeLayer;
 
-    public bool isGrounded = false;
-
     [SerializeField] private Transform normalGroundCheckCollider;
     [SerializeField] private Transform normalSlopeCheckCollider;
 
@@ -45,8 +43,8 @@ public class PlayerGroundChecker : MonoBehaviour
     }
     void GroundCheck()
     {
-        if (PlayerState.isNormal) isGrounded = Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, platformLayer) || Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, bridgeLayer) || PlayerState.isOnSlope;
-        if (PlayerState.isGhost) isGrounded = Physics2D.OverlapCircle(ghostGroundCheckCollider.position, 0.3f, platformLayer) || Physics2D.OverlapCircle(ghostGroundCheckCollider.position, 0.3f, bridgeLayer) || PlayerState.isOnSlope;
+        if (PlayerState.isNormal) PlayerState.isGrounded = Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, platformLayer) || Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, bridgeLayer) || PlayerState.isOnSlope;
+        if (PlayerState.isGhost) PlayerState.isGrounded = Physics2D.OverlapCircle(ghostGroundCheckCollider.position, 0.3f, platformLayer) || Physics2D.OverlapCircle(ghostGroundCheckCollider.position, 0.3f, bridgeLayer) || PlayerState.isOnSlope;
     }
 
     #region SLOPE CHECK

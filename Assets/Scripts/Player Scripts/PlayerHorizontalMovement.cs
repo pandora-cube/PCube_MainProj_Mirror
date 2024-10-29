@@ -39,6 +39,7 @@ public class PlayerHorizontalMovement : MonoBehaviour
         playerComponents = GetComponent<PlayerComponents>();
     }
 
+
     void Update()
     {
         if (!PlayerState.canMove)
@@ -53,12 +54,12 @@ public class PlayerHorizontalMovement : MonoBehaviour
     {
         if (isDashing) return;
 
-        if (PlayerState.isNormal && !PlayerState.isGhost)
+        if (PlayerState.isNormal)
         {
             MovePlayer(playerComponents.normalRb, playerComponents.normalTransform);
             ConfinePlayerMovement();
         }
-        else if (PlayerState.isGhost && PlayerState.isNormal)
+        else if (PlayerState.isGhost)
         {
             MovePlayer(playerComponents.ghostRb, playerComponents.ghostTransform);
             ConfinePlayerMovement();
@@ -85,6 +86,10 @@ public class PlayerHorizontalMovement : MonoBehaviour
 
     private void MovePlayer(Rigidbody2D rb, Transform currentTransform)
     {
+        float speed = DecidePlayerSpeed();
+
+        Vector2 moveDirection = Vector2.right * direction * speed * Time.deltaTime;
+
         if (PlayerState.isNormal)
         {
             if (!PlayerState.isCrawling && PlayerState.isOnSlope) rb.velocity = new Vector2(direction * normalSpeed * Time.deltaTime, rb.velocity.y); // normal walk
@@ -94,10 +99,8 @@ public class PlayerHorizontalMovement : MonoBehaviour
         }
         else if (PlayerState.isGhost)
         {
-            if (!PlayerState.isCrawling && !PlayerState.isOnSlope) rb.velocity = new Vector2(direction * ghostSpeed * Time.deltaTime, rb.velocity.y); // normal walk
-            else if (PlayerState.isOnSlope && !PlayerState.isCrawling) rb.velocity = new Vector2(-direction * ghostSpeed * playerGroundChecker.slopeNormalPrep.x * Time.deltaTime, ghostSpeed * playerGroundChecker.slopeNormalPrep.y * -direction * Time.deltaTime); // slope walk
-            else if (PlayerState.isOnSlope && PlayerState.isCrawling) rb.velocity = new Vector2(-direction * (ghostSpeed - crawlSpeedDecrease) * playerGroundChecker.slopeNormalPrep.x * Time.deltaTime, (ghostSpeed - crawlSpeedDecrease) * playerGroundChecker.slopeNormalPrep.y * -direction * Time.deltaTime);
-            else if (PlayerState.isCrawling) rb.velocity = new Vector2(direction * (ghostSpeed - crawlSpeedDecrease) * Time.deltaTime, rb.velocity.y); // craw walk
+            if (!PlayerState.isOnSlope) rb.velocity = new Vector2(direction * ghostSpeed * Time.deltaTime, rb.velocity.y); // normal walk
+            else if (PlayerState.isOnSlope) rb.velocity = new Vector2(-direction * ghostSpeed * playerGroundChecker.slopeNormalPrep.x * Time.deltaTime, ghostSpeed * playerGroundChecker.slopeNormalPrep.y * -direction * Time.deltaTime); // slope walk
         }
 
         FlipSpriteBasedOnDirection(currentTransform);
@@ -106,7 +109,18 @@ public class PlayerHorizontalMovement : MonoBehaviour
 
         //ItemAvabileAreaCheck(playerGroundChecker.ghostGroundCheckCollider.position);
     }
-
+    
+    //Decide player speed based on current player state (normal, crawling, or ghost)
+    private float DecidePlayerSpeed()
+    {
+        //only normal player can crawl.
+        if (PlayerState.isNormal)
+        {
+            if (PlayerState.isCrawling) return normalSpeed - crawlSpeedDecrease;
+            else return normalSpeed;
+        }
+        else return ghostSpeed; 
+    }
 
     void FlipSpriteBasedOnDirection(Transform transform)
     {
