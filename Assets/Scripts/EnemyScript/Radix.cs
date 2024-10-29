@@ -8,7 +8,7 @@ public class Radix : MonoBehaviour, IDamageable
     [SerializeField] private Fleaore[] connectedFleaore;
     private BoxCollider2D boxCollider2D;
     private Animator radixAnimator;
-    private PlayerStateMachine playerStateMachine;
+    private PlayerComponents playerComponents;
 
     [field: SerializeField] public float maxHealth { get; set; }
     [field: SerializeField] public float currentHealth { get; set; }
@@ -31,12 +31,18 @@ public class Radix : MonoBehaviour, IDamageable
         radixMove,
         radixAttack
     }
-    void Start()
+
+    void Awake()
     {
         boxCollider2D = GetComponent<BoxCollider2D>();
         radixAnimator = GetComponent<Animator>();
         boxCollider2D.enabled = false;
-        playerStateMachine = FindObjectOfType<PlayerStateMachine>();
+
+        playerComponents = FindObjectOfType<PlayerComponents>();
+    }
+    void Start()
+    {
+
 
         maxHealth = 5;
         currentHealth = maxHealth;
@@ -75,11 +81,11 @@ public class Radix : MonoBehaviour, IDamageable
     {
         Vector3 currentPosition = transform.position;
         Vector3 targetPosition = new Vector3(0f, 0f);
-        if (playerStateMachine.isNormal) targetPosition = playerStateMachine.normalGameObject.transform.position;
-        else targetPosition = playerStateMachine.ghostGameObject.transform.position;
+        if (PlayerStateMachine.instance.isNormal) targetPosition = playerComponents.normalGameObject.transform.position;
+        else targetPosition = playerComponents.ghostGameObject.transform.position;
 
         float direction = Mathf.Sign(targetPosition.x - currentPosition.x);
-        if (Mathf.Approximately(direction, 1)) 
+        if (Mathf.Approximately(direction, 1))
         {
             Vector3 newScale = transform.localScale;
             newScale.x = 1;

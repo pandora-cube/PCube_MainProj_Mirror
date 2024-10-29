@@ -22,7 +22,7 @@ public class TutorialMirror : MonoBehaviour, IInteractable
         if (tutoPlay)
         {
             tutoPlay = false;
-            if(player.isGhost) tutorial.StartCoroutine(tutorial.Tuto3_ghost());
+            if(PlayerStateMachine.instance.isGhost) tutorial.StartCoroutine(tutorial.Tuto3_ghost());
             else tutorial.StartCoroutine(tutorial.Tuto6_normal());
         }
     }

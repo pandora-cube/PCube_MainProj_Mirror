@@ -369,6 +369,10 @@ PrefabInstance:
       propertyPath: confiner2D.Array.data[2]
       value: 
       objectReference: {fileID: 1827000293}
+    - target: {fileID: 319733641932186557, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
+      propertyPath: playerHorizontalMovement
+      value: 
+      objectReference: {fileID: 8454282323713298064}
     - target: {fileID: 1429104432049369549, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
       propertyPath: m_BoundingShape2D
       value: 
@@ -1370,7 +1374,7 @@ PrefabInstance:
     - target: {fileID: 3636163711732141235, guid: 862137e0f10039545a365255e375e5e0, type: 3}
       propertyPath: inventory
       value: 
-      objectReference: {fileID: 8454282323713298054}
+      objectReference: {fileID: 0}
     - target: {fileID: 3636163711732141235, guid: 862137e0f10039545a365255e375e5e0, type: 3}
       propertyPath: playerController
       value: 
@@ -2106,7 +2110,7 @@ PrefabInstance:
     - target: {fileID: 3636163711732141235, guid: 862137e0f10039545a365255e375e5e0, type: 3}
       propertyPath: inventory
       value: 
-      objectReference: {fileID: 8454282323713298054}
+      objectReference: {fileID: 0}
     - target: {fileID: 3636163711732141235, guid: 862137e0f10039545a365255e375e5e0, type: 3}
       propertyPath: playerController
       value: 
@@ -9862,7 +9866,7 @@ PrefabInstance:
     - target: {fileID: 4339173545000905924, guid: 405acaa1baa2ffb4790f146812314403, type: 3}
       propertyPath: inventory
       value: 
-      objectReference: {fileID: 8454282323713298054}
+      objectReference: {fileID: 0}
     - target: {fileID: 9057263577163046606, guid: 405acaa1baa2ffb4790f146812314403, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -13321,9 +13325,7 @@ MonoBehaviour:
   m_AnimatedTarget: {fileID: 1429179742}
   m_LayerIndex: 0
   m_ShowDebugText: 0
-  m_ChildCameras:
-  - {fileID: 117532203}
-  - {fileID: 1169539729}
+  m_ChildCameras: []
   m_Instructions:
   - m_FullHash: 1597550655
     m_VirtualCamera: {fileID: 117532203}
@@ -16151,7 +16153,7 @@ PrefabInstance:
     - target: {fileID: 2640745649553109254, guid: 7126809196152d34d9fee7f73d3938da, type: 3}
       propertyPath: inventory
       value: 
-      objectReference: {fileID: 8454282323713298054}
+      objectReference: {fileID: 0}
     - target: {fileID: 6150847025064527043, guid: 7126809196152d34d9fee7f73d3938da, type: 3}
       propertyPath: m_Name
       value: MiniTutorialCollider
@@ -17086,7 +17088,7 @@ PrefabInstance:
     - target: {fileID: 4339173545000905924, guid: 405acaa1baa2ffb4790f146812314403, type: 3}
       propertyPath: inventory
       value: 
-      objectReference: {fileID: 8454282323713298054}
+      objectReference: {fileID: 0}
     - target: {fileID: 9057263577163046606, guid: 405acaa1baa2ffb4790f146812314403, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -19511,7 +19513,7 @@ PrefabInstance:
     - target: {fileID: 3636163711732141235, guid: 862137e0f10039545a365255e375e5e0, type: 3}
       propertyPath: inventory
       value: 
-      objectReference: {fileID: 8454282323713298054}
+      objectReference: {fileID: 0}
     - target: {fileID: 3636163711732141235, guid: 862137e0f10039545a365255e375e5e0, type: 3}
       propertyPath: playerController
       value: 
@@ -20314,7 +20316,7 @@ PrefabInstance:
     - target: {fileID: 2640745649553109254, guid: 7126809196152d34d9fee7f73d3938da, type: 3}
       propertyPath: inventory
       value: 
-      objectReference: {fileID: 8454282323713298054}
+      objectReference: {fileID: 0}
     - target: {fileID: 6150847025064527043, guid: 7126809196152d34d9fee7f73d3938da, type: 3}
       propertyPath: m_Name
       value: MiniTutorialCollider
@@ -20520,6 +20522,14 @@ PrefabInstance:
       propertyPath: cinemachineVirtualCamera
       value: 
       objectReference: {fileID: 1800809210}
+    - target: {fileID: 1836431479995073259, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2623866325261710830, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: m_NotificationBehavior
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2623866325261710830, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
       propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -20532,6 +20542,10 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 676449567}
+    - target: {fileID: 2652426612113270752, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2710728152213815392, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -20588,24 +20602,31 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7192006961366880943, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 8454282323713298060}
+    - target: {fileID: 8159355029487188009, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: ghostSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159355029487188009, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: normalSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8656799385544903197, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3367467547188870502, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
     - {fileID: 5281237216462481153, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+    - {fileID: 6874673845299253127, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+    - {fileID: 6772371009387974392, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
---- !u!114 &8454282323713298054 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6874673845299253127, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
-  m_PrefabInstance: {fileID: 8454282323713298053}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37b3542a8d2ce2e4d844c89cb1464795, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8454282323713298055 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 964529266230998606, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
@@ -20615,6 +20636,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 821e41bfe937adf44a6fd568027908cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8454282323713298060 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2918511752632775971, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+  m_PrefabInstance: {fileID: 8454282323713298053}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b3542a8d2ce2e4d844c89cb1464795, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8454282323713298064 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8159355029487188009, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+  m_PrefabInstance: {fileID: 8454282323713298053}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0298c0aadbd888440a6256e522fb58dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &8801561353522442932
@@ -20692,7 +20735,7 @@ PrefabInstance:
     - target: {fileID: 5227628851798936594, guid: c196fdd6e4f23cd46b29ce641de7b804, type: 3}
       propertyPath: invetory
       value: 
-      objectReference: {fileID: 8454282323713298054}
+      objectReference: {fileID: 0}
     - target: {fileID: 5903037971693617488, guid: c196fdd6e4f23cd46b29ce641de7b804, type: 3}
       propertyPath: m_SortingOrder
       value: 3

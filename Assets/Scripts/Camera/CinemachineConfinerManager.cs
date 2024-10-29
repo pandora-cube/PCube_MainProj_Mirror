@@ -10,6 +10,10 @@ public class CinemachineConfinerManager : MonoBehaviour
     int currentStage;
     int newStage;
 
+    void Awake()
+    {
+
+    }
     void Start()
     {
         currentStage = ProgressData.Instance.playerData.currentStage;

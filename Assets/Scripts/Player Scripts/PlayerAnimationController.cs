@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAnimationController : PlayerStateMachine
+public class PlayerAnimationController : MonoBehaviour
 {
     [Header("Animation Variables")]
     private string currentState;
     [SerializeField] private Animator normalAnimator;
     [SerializeField] private Animator ghostAnimator;
     [HideInInspector] private AnimatorStateInfo currentAnimation;
+
+    PlayerStateMachine PlayerState => PlayerStateMachine.instance;
+    PlayerComponents playerComponents;
 
     public enum NormalAnimationStates
     {
@@ -24,10 +27,15 @@ public class PlayerAnimationController : PlayerStateMachine
         ghostAttack2,
         ghostAttack3,
     }    
+
+    void Awake()
+    {
+        playerComponents = GetComponent<PlayerComponents>();
+    }
     
     public void ChangeAnimationState(GhostAnimationStates animationStates)
     {
-        if (!ghostGameObject.activeSelf) return; 
+        if (!playerComponents.ghostGameObject.activeSelf) return; 
 
         string newState = animationStates.ToString();
         if (currentState == newState) return;
@@ -38,7 +46,8 @@ public class PlayerAnimationController : PlayerStateMachine
 
     public void ChangeAnimationState(NormalAnimationStates animationStates)
     {
-        if (!normalGameObject.activeSelf) return;
+        if (!playerComponents.normalGameObject.activeSelf) return;
+        
         string newState = animationStates.ToString();
         if (currentState == newState) return;
 

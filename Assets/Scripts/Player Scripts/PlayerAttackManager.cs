@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerAttackManager : PlayerStateMachine
+public class PlayerAttackManager : MonoBehaviour
 {
     const int ATTACKABLE_LAYER = 12;
 
@@ -19,6 +19,7 @@ public class PlayerAttackManager : PlayerStateMachine
     #endregion
 
     private PlayerAnimationController playerAnimationController;
+    private PlayerStateMachine PlayerState => PlayerStateMachine.instance;
 
     void Awake()
     {
@@ -27,7 +28,7 @@ public class PlayerAttackManager : PlayerStateMachine
 
     void Update()
     {
-        if (isGhost && (Time.time - lastAttackTime > comboResetTime))
+        if (PlayerState.isGhost && (Time.time - lastAttackTime > comboResetTime))
         {
             comboAttackNumber = 0;
             playerAnimationController.ChangeAnimationState(PlayerAnimationController.GhostAnimationStates.ghostWalk); //TO-DO: Change to Idle
@@ -37,7 +38,7 @@ public class PlayerAttackManager : PlayerStateMachine
 
     public void OnAttack(InputAction.CallbackContext ctx)
     {
-        if (!isGhost || !ctx.started) return;
+        if (!PlayerState.isGhost || !ctx.started) return;
 
         lastAttackTime = Time.time;
 
@@ -61,7 +62,7 @@ public class PlayerAttackManager : PlayerStateMachine
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void HandleAttackCollision(Collider2D collision)
     {
         if (collision.gameObject.layer == ATTACKABLE_LAYER)
         {

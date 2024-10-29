@@ -18,7 +18,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     RectTransform slotRect;
 
     private Item _item;
-    [SerializeField] PlayerStateMachine playerStateMachine;
+    [SerializeField] PlayerComponents playerStateMachine;
     public Item item {
         get { return _item; }
         set

@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerGroundChecker : PlayerStateMachine
+public class PlayerGroundChecker : MonoBehaviour
 {
     #region SLOPE VARIABLES
     [Header("Slope Variables")]
-    public bool isOnSlope = false;
     public PhysicsMaterial2D noFriction;
     public PhysicsMaterial2D fullFriction;
     [HideInInspector] public Vector2 slopeNormalPrep;
@@ -30,16 +29,24 @@ public class PlayerGroundChecker : PlayerStateMachine
 
     #endregion
 
+    PlayerStateMachine PlayerState => PlayerStateMachine.instance;
+    PlayerComponents playerComponents;
+
+    void Awake()
+    {
+        playerComponents = GetComponent<PlayerComponents>();
+    }
+
     private void FixedUpdate()
     {
         GroundCheck();
 
-        if (isNormal && isGhost) SlopeCheck(normalSlopeCheckCollider.position);
+        if (PlayerState.isNormal && PlayerState.isGhost) SlopeCheck(normalSlopeCheckCollider.position);
     }
     void GroundCheck()
     {
-        if (isNormal) isGrounded = Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, platformLayer) || Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, bridgeLayer) || isOnSlope;
-        if (isGhost) isGrounded = Physics2D.OverlapCircle(ghostGroundCheckCollider.position, 0.3f, platformLayer) || Physics2D.OverlapCircle(ghostGroundCheckCollider.position, 0.3f, bridgeLayer) || isOnSlope;
+        if (PlayerState.isNormal) isGrounded = Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, platformLayer) || Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, bridgeLayer) || PlayerState.isOnSlope;
+        if (PlayerState.isGhost) isGrounded = Physics2D.OverlapCircle(ghostGroundCheckCollider.position, 0.3f, platformLayer) || Physics2D.OverlapCircle(ghostGroundCheckCollider.position, 0.3f, bridgeLayer) || PlayerState.isOnSlope;
     }
 
     #region SLOPE CHECK
@@ -60,7 +67,7 @@ public class PlayerGroundChecker : PlayerStateMachine
             slopeSideAngle = Vector2.Angle(slopeHitFront.normal, Vector2.up);
             //Debug.Log("slopeSideAngle : " + slopeSideAngle);
 
-            if (slopeSideAngle <= 60) isOnSlope = true;
+            if (slopeSideAngle <= 60) PlayerState.isOnSlope = true;
             Debug.DrawRay(checkPos, transform.right, Color.red);
         }
         else if (slopeHitBack)
@@ -68,13 +75,13 @@ public class PlayerGroundChecker : PlayerStateMachine
             slopeSideAngle = Vector2.Angle(slopeHitBack.normal, Vector2.up);
             //Debug.Log("slopeSideAngle : " + slopeSideAngle);
 
-            if (slopeSideAngle <= 60) isOnSlope = true;
+            if (slopeSideAngle <= 60) PlayerState.isOnSlope = true;
             Debug.DrawRay(checkPos, -transform.right, Color.red);
         }
         else
         {
             //Debug.Log("Not Found Slope");
-            isOnSlope = false;
+            PlayerState.isOnSlope = false;
             slopeSideAngle = 0f;
         }
     }
@@ -88,7 +95,7 @@ public class PlayerGroundChecker : PlayerStateMachine
             slopeNormalPrep = Vector2.Perpendicular(hit.normal).normalized;
             slopeDownAngle = Vector2.Angle(hit.normal, Vector2.up);
 
-            if (slopeDownAngle != lastSlopeAngle) isOnSlope = true;
+            if (slopeDownAngle != lastSlopeAngle) PlayerState.isOnSlope = true;
 
             //Debug.Log("slopeDownAnlge : " + slopeDownAngle);
 

@@ -5,7 +5,7 @@ using UnityEngine.Timeline;
 
 public class GlasyaController : MonoBehaviour
 {
-    private PlayerStateMachine playerStateMachine;
+    private PlayerComponents playerStateMachine;
     [SerializeField] GameObject playerNormalObject;
     [SerializeField] GameObject playerGhostObject;
     private const float PLAYER_TO_GLASYA_DISTANCE = 6f;
@@ -16,7 +16,7 @@ public class GlasyaController : MonoBehaviour
 
     void Awake()
     {
-        playerStateMachine = FindObjectOfType<PlayerStateMachine>();
+        playerStateMachine = FindObjectOfType<PlayerComponents>();
     }
 
     void Start()
@@ -30,11 +30,11 @@ public class GlasyaController : MonoBehaviour
 
         if (timeElapsed >= movementDelayTime)
         {
-            if (playerStateMachine.isNormal)
+            if (PlayerStateMachine.instance.isNormal)
             {
                 FollowPlayer(playerNormalObject);
             }
-            else if (playerStateMachine.isGhost)
+            else if (PlayerStateMachine.instance.isGhost)
             {
                 FollowPlayer(playerGhostObject);
             }

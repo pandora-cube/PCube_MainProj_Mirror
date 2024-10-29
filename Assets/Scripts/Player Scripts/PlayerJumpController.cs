@@ -5,28 +5,32 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.PostProcessing;
 
-public class PlayerJumpController : PlayerStateMachine
+public class PlayerJumpController : MonoBehaviour
 {
     [Header("Jump Variables")]
     public float jumpForce = 5f;
     bool isHoldingDown = false;
 
     PlayerGroundChecker playerGroundChecker;
+    PlayerComponents playerComponents;
+    PlayerStateMachine PlayerState => PlayerStateMachine.instance;
 
     void Awake()
     {
         playerGroundChecker = GetComponent<PlayerGroundChecker>();
+        playerComponents = GetComponent<PlayerComponents>();
     }
 
-    public void OnJump(InputAction.CallbackContext ctx)
+    public void OnJump(InputValue value)
     {
-        if (!playerGroundChecker.isGrounded || !ctx.performed) return;
+        float input = value.Get<float>();
+        if (!playerGroundChecker.isGrounded || input <= 0) return;
 
         if (isHoldingDown)
         {
             StartCoroutine(JumpDownThroughPlatform());
         }
-        else if (playerGroundChecker.isOnSlope)
+        else if (PlayerState.isOnSlope)
         {
             // slope일때 점프 수정 필요
 
@@ -45,8 +49,8 @@ public class PlayerJumpController : PlayerStateMachine
         }
         else
         {
-            if (isNormal) normalRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-            else if (isGhost) ghostRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            if (PlayerState.isNormal) playerComponents.normalRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            else if (PlayerState.isGhost) playerComponents.ghostRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
     }
 
@@ -60,8 +64,8 @@ public class PlayerJumpController : PlayerStateMachine
     {
         Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Bridge"), true);
 
-        if (isNormal) normalRb.AddForce(Vector2.down * 10f, ForceMode2D.Impulse);
-        else if (isGhost) ghostRb.AddForce(Vector2.down * 10f, ForceMode2D.Impulse);
+        if (PlayerState.isNormal) playerComponents.normalRb.AddForce(Vector2.down * 10f, ForceMode2D.Impulse);
+        else if (PlayerState.isGhost) playerComponents.ghostRb.AddForce(Vector2.down * 10f, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(0.5f);
 

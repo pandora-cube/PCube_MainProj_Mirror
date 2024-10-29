@@ -3,13 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInteractionController : PlayerStateMachine
+public class PlayerInteractionController : MonoBehaviour
 {
     [SerializeField] private float normalInteractRange = 0.5f;
     [SerializeField] private float ghostInteractRange = 1f;
 
     [SerializeField] private LayerMask interactableLayer;
 
+    private PlayerComponents playerComponents;
+    private PlayerStateMachine PlayerState => PlayerStateMachine.instance;
+    private Inventory inventory;
+
+    void Awake()
+    {
+        playerComponents = GetComponent<PlayerComponents>();
+        inventory = GetComponent<Inventory>();
+    }
 
     public void OnInteract(InputAction.CallbackContext ctx)
     {
@@ -29,13 +38,13 @@ public class PlayerInteractionController : PlayerStateMachine
     {
         List<IInteractable> interactableList = new List<IInteractable>();
         Collider2D collider = null;
-        if (isNormal)
+        if (PlayerState.isNormal)
         {
-            collider = Physics2D.OverlapCircle(normalTransform.position, normalInteractRange, interactableLayer);
+            collider = Physics2D.OverlapCircle(playerComponents.normalTransform.position, normalInteractRange, interactableLayer);
         }
-        else if (isGhost)
+        else if (PlayerState.isGhost)
         {
-            collider = Physics2D.OverlapCircle(ghostTransform.position, ghostInteractRange, interactableLayer);
+            collider = Physics2D.OverlapCircle(playerComponents.ghostTransform.position, ghostInteractRange, interactableLayer);
         }
 
         if (collider == null) return null;
@@ -54,8 +63,8 @@ public class PlayerInteractionController : PlayerStateMachine
             if (closestInteractable == null) closestInteractable = I;
             else
             {
-                if (Vector2.Distance(normalTransform.position, I.GetTransform().position) <
-                    Vector2.Distance(normalTransform.position, closestInteractable.GetTransform().position))
+                if (Vector2.Distance(playerComponents.normalTransform.position, I.GetTransform().position) <
+                    Vector2.Distance(playerComponents.normalTransform.position, closestInteractable.GetTransform().position))
                 {
                     closestInteractable = I;
                 }
@@ -66,10 +75,10 @@ public class PlayerInteractionController : PlayerStateMachine
     }
     public void Transform()
     {
-        isNormal = !isNormal;
-        isGhost = !isGhost;
+        PlayerState.isNormal = !PlayerState.isNormal;
+        PlayerState.isGhost = !PlayerState.isGhost;
 
-        normalGameObject.SetActive(isNormal); ghostGameObject.SetActive(isGhost);
-        if (isGhost) inventory.ClearInventory();
+        playerComponents.normalGameObject.SetActive(PlayerState.isNormal); playerComponents.ghostGameObject.SetActive(PlayerState.isGhost);
+        if (PlayerState.isGhost) inventory.ClearInventory();
     }
 }

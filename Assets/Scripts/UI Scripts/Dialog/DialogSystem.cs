@@ -53,14 +53,13 @@ public class DialogSystem : MonoBehaviour
     private bool firstDialog = true;
 
     private DialogList dialogLists = new DialogList();
-    private PlayerStateMachine playerStateMachine;
 
     private PlayerInput playerInput;
+    private PlayerStateMachine PlayerState => PlayerStateMachine.instance;
     string attackKey, moveKey, interactKey;
 
     private void Awake()
     {
-        playerStateMachine = FindObjectOfType<PlayerStateMachine>();
         playerInput = GetComponent<PlayerInput>();
         GetKey();
     }
@@ -92,7 +91,7 @@ public class DialogSystem : MonoBehaviour
     public IEnumerator DialogProgress()
     {
         firstDialog = true;
-        playerStateMachine.canMove = false;
+        PlayerState.canMove = false;
         currentDialogScene = dialogLists.dialog[currentID].dialogScene;
 
         while (currentID < dialogLists.dialog.Count && currentDialogScene == dialogLists.dialog[currentID].dialogScene)
@@ -116,7 +115,7 @@ public class DialogSystem : MonoBehaviour
             currentID++;
         }
 
-        playerStateMachine.canMove = true;
+        PlayerState.canMove = true;
         firstDialog = false;
         SpeakerUI[currentSpeaker].SetActive(false);
         DialogUI.SetActive(false);
