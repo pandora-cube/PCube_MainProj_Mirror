@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Flowre : MonoBehaviour, IDamageable
+public class Flowre : Damageable
 {
     private CapsuleCollider2D openCapsuleCollider2D;
 
@@ -13,12 +13,8 @@ public class Flowre : MonoBehaviour, IDamageable
     [SerializeField] private float attackDelay = 1f;
     protected float attackDamage = 1f;
 
-    [field: SerializeField] public float maxHealth { get; set;}
-    [field: SerializeField] public float currentHealth { get; set; }
-
     private Animator flowreAnimator;
 
-    const int PLAYER_LAYER = 3;
     private string currentState;
     enum FlowreAnimationStates
     {
@@ -49,7 +45,7 @@ public class Flowre : MonoBehaviour, IDamageable
         openCapsuleCollider2D.enabled = false;
     }
 
-    void DetectPlayer()
+    public override void DetectPlayer()
     {
         openCapsuleCollider2D.enabled = true;
 
@@ -66,10 +62,10 @@ public class Flowre : MonoBehaviour, IDamageable
         }
     }
     
-    IEnumerator AttackPlayer(Collider2D collider)
+    public override IEnumerator AttackPlayer(Collider2D playerCollider)
     {
         isAttacking = true;
-        IDamageable player = collider.gameObject.GetComponent<IDamageable>();
+        IDamageable player = playerCollider.gameObject.GetComponent<IDamageable>();
         player.TakeDamage(attackDamage);
         ChangeAnimationState(FlowreAnimationStates.flowreAttack);
         yield return new WaitForSeconds(attackDelay);
@@ -77,14 +73,14 @@ public class Flowre : MonoBehaviour, IDamageable
         isAttacking = false;
     }
 
-    public void TakeDamage(float damageAmount)
+    public override void TakeDamage(int damageAmount)
     {
         //TO-DO: ADD CLOSING ANIM
         currentHealth -= damageAmount;
         if (currentHealth <= 0) Die();
     }
 
-    public void Die()
+    public override void Die()
     {
         //TO-DO: ADD DEATH ANIM
         Destroy(gameObject);
@@ -111,22 +107,4 @@ public class Flowre : MonoBehaviour, IDamageable
         }
         return 0f;
     }
-    private void OnDrawGizmos()
-{
-    // Visualize detection radius as a wire sphere at the object's position
-    Gizmos.color = Color.yellow;
-    Gizmos.DrawWireSphere(transform.position, playerDetectionRadius);
-
-    // Visualize the direction of the CircleCast (upwards in your case)
-    Vector3 castDirection = Vector3.up; // You can change this to any direction you're casting
-    float castDistance = 1f; // This is the distance of your CircleCast, adjust as needed
-
-    // Draw a line to show the cast direction
-    Gizmos.color = Color.red;
-    Gizmos.DrawLine(transform.position, transform.position + castDirection * castDistance);
-
-    // Draw a wire sphere at the end of the cast to show where the circle would be
-    Gizmos.color = Color.blue;
-    Gizmos.DrawWireSphere(transform.position + castDirection * castDistance, playerDetectionRadius);
-}
 }
