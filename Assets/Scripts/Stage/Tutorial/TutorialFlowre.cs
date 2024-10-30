@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TutorialFlowre : Flowre
+public class TutorialFlowre : FlowreBehaviourController
 {
     [SerializeField] private Tutorial tutorial;
-    [SerializeField] private float tutorialAttackDamage = 0f;
+    [SerializeField] private int tutorialAttackDamage = 0;
     public bool OpenFlowre = false;
 
     protected override void Start()

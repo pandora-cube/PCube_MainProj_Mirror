@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerNormalHealthManager : MonoBehaviour, IDamageable
+public class PlayerNormalHealthManager : MonoBehaviour
 {
     [field: SerializeField] public float maxHealth { get ; set ; }
     [field: SerializeField] public float currentHealth { get ; set; }

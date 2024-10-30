@@ -182,7 +182,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 758932844082720566}
-  - component: {fileID: 3753893059695603745}
+  - component: {fileID: 8858663618920674127}
+  - component: {fileID: 5984503252183807353}
   - component: {fileID: 4981264581360602448}
   - component: {fileID: 5609659425340114987}
   - component: {fileID: 7183242153207730373}
@@ -210,7 +211,7 @@ Transform:
   m_Father: {fileID: 6834460670576839641}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3753893059695603745
+--- !u!114 &8858663618920674127
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -219,14 +220,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1543794118804809294}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0abb68a6a1503b14f90a62074c0fc1af, type: 3}
+  m_Script: {fileID: 11500000, guid: 44e07649909e4aa42adb2e89c7172836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedVine: {fileID: 8103060373991656007}
-  isStunned: 0
-  attackDelay: 1
-  <maxHealth>k__BackingField: 2
-  <currentHealth>k__BackingField: 0
+--- !u!114 &5984503252183807353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543794118804809294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fac907013ce0f343bb597692e92315e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &4981264581360602448
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -593,10 +601,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connectedFleaore:
-  - {fileID: 3753893059695603745}
-  - {fileID: 7465545976674577874}
-  - {fileID: 2248566274166220085}
-  - {fileID: 5797394277621547311}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   <maxHealth>k__BackingField: 0
   <currentHealth>k__BackingField: 0
   isEmerged: 0
@@ -903,10 +911,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1531309210955793477}
-  - component: {fileID: 2248566274166220085}
   - component: {fileID: 9124980308936748355}
   - component: {fileID: 1372673399831808054}
   - component: {fileID: 6367214913904638855}
+  - component: {fileID: 8618612735472495805}
+  - component: {fileID: 8240148717220020819}
   m_Layer: 12
   m_Name: Fleaore (2)
   m_TagString: Untagged
@@ -930,23 +939,6 @@ Transform:
   m_Father: {fileID: 6834460670576839641}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2248566274166220085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4912422577322637041}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0abb68a6a1503b14f90a62074c0fc1af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  connectedVine: {fileID: 7832288722315153115}
-  isStunned: 0
-  attackDelay: 1
-  <maxHealth>k__BackingField: 2
-  <currentHealth>k__BackingField: 0
 --- !u!212 &9124980308936748355
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1071,6 +1063,30 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &8618612735472495805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4912422577322637041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44e07649909e4aa42adb2e89c7172836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8240148717220020819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4912422577322637041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fac907013ce0f343bb597692e92315e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5276167983735569415
 GameObject:
   m_ObjectHideFlags: 0
@@ -1289,10 +1305,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3289412248946769654}
-  - component: {fileID: 5797394277621547311}
   - component: {fileID: 3675665120199372971}
   - component: {fileID: 4114660452382937428}
   - component: {fileID: 3217998812607303240}
+  - component: {fileID: 1029634377698505074}
+  - component: {fileID: 5106097535340251893}
   m_Layer: 12
   m_Name: Fleaore (3)
   m_TagString: Untagged
@@ -1316,23 +1333,6 @@ Transform:
   m_Father: {fileID: 6834460670576839641}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5797394277621547311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6513353064522773483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0abb68a6a1503b14f90a62074c0fc1af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  connectedVine: {fileID: 5724510907451210961}
-  isStunned: 0
-  attackDelay: 1
-  <maxHealth>k__BackingField: 2
-  <currentHealth>k__BackingField: 0
 --- !u!212 &3675665120199372971
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1457,6 +1457,30 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &1029634377698505074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6513353064522773483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44e07649909e4aa42adb2e89c7172836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5106097535340251893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6513353064522773483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fac907013ce0f343bb597692e92315e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8588581195362264255
 GameObject:
   m_ObjectHideFlags: 0
@@ -1466,10 +1490,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5783780815774389558}
-  - component: {fileID: 7465545976674577874}
   - component: {fileID: 778076683367098069}
   - component: {fileID: 3504586343306610445}
   - component: {fileID: 7285133753873221237}
+  - component: {fileID: 6899540330667764956}
+  - component: {fileID: 2344414680950185966}
   m_Layer: 12
   m_Name: Fleaore (1)
   m_TagString: Untagged
@@ -1493,23 +1518,6 @@ Transform:
   m_Father: {fileID: 6834460670576839641}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7465545976674577874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8588581195362264255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0abb68a6a1503b14f90a62074c0fc1af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  connectedVine: {fileID: 7050194241081862173}
-  isStunned: 0
-  attackDelay: 1
-  <maxHealth>k__BackingField: 2
-  <currentHealth>k__BackingField: 0
 --- !u!212 &778076683367098069
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1634,3 +1642,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &6899540330667764956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8588581195362264255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44e07649909e4aa42adb2e89c7172836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2344414680950185966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8588581195362264255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fac907013ce0f343bb597692e92315e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

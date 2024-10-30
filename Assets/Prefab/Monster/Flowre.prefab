@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4671995482970480398}
   - component: {fileID: 8360441023914462250}
   - component: {fileID: 6784851237198022212}
+  - component: {fileID: 2538154323733798347}
   - component: {fileID: 9116758770556256338}
   - component: {fileID: 9036843248383304248}
   - component: {fileID: 5035200596238267951}
@@ -35,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8360441023914462250
 SpriteRenderer:
@@ -101,10 +102,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a0fb7024252cb64290fb2231c15860c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDetectionRadius: 5
-  attackDelay: 1
-  <maxHealth>k__BackingField: 2
-  <currentHealth>k__BackingField: 0
+--- !u!114 &2538154323733798347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838748155303041347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07e8f1fbfe7ffa5489ef89811e5a119e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &9116758770556256338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,10 +126,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d91356aa18f7744f9a0d801201fb683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <maxHealth>k__BackingField: 5
-  <currentHealth>k__BackingField: 0
+  maxHealth: 0
+  currentHealth: 0
   flashMaterial: {fileID: 2100000, guid: 7d1f2937c3bfd064ead2ccdf22e3a052, type: 2}
   duration: 0.15
+  spriteRenderer: {fileID: 0}
+  originalMaterial: {fileID: 0}
 --- !u!70 &9036843248383304248
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

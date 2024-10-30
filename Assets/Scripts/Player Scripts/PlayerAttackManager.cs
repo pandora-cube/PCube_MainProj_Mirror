@@ -66,7 +66,7 @@ public class PlayerAttackManager : MonoBehaviour
     {
         if (collision.gameObject.layer == ATTACKABLE_LAYER)
         {
-            IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
+            Damageable damageable = collision.gameObject.GetComponent<Damageable>();
             if (damageable != null)
             {
                 damageable.TakeDamage(1);

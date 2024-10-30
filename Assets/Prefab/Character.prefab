@@ -1327,6 +1327,7 @@ MonoBehaviour:
   isCrawling: 0
   isOnSlope: 0
   canDash: 0
+  isGrounded: 0
 --- !u!114 &2652426612113270752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1408,7 +1409,6 @@ MonoBehaviour:
   bridgeLayer:
     serializedVersion: 2
     m_Bits: 2048
-  isGrounded: 0
   normalGroundCheckCollider: {fileID: 7946822656432411550}
   normalSlopeCheckCollider: {fileID: 2256083166484181286}
   ghostGroundCheckCollider: {fileID: 8200236091063017191}

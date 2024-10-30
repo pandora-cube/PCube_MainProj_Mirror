@@ -11,7 +11,7 @@ public class PlayerAnimationController : MonoBehaviour
     [HideInInspector] private AnimatorStateInfo currentAnimation;
 
     PlayerComponents playerComponents;
-
+    
     public enum NormalAnimationStates
     {
         normalIdle,

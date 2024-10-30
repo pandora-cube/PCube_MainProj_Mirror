@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Radix : MonoBehaviour, IDamageable
+public class Radix : MonoBehaviour
 {
-    [SerializeField] private Fleaore[] connectedFleaore;
+    [SerializeField] private FleaoreBehaviourController[] connectedFleaore;
     private BoxCollider2D boxCollider2D;
     private Animator radixAnimator;
     private PlayerComponents playerComponents;
@@ -65,7 +65,7 @@ public class Radix : MonoBehaviour, IDamageable
     }
     private bool IsFleaoresAllDestroyed()
     {
-        foreach (Fleaore fleaore in connectedFleaore)
+        foreach (FleaoreBehaviourController fleaore in connectedFleaore)
             if (fleaore != null && fleaore.gameObject != null) return false;
 
         return true;
@@ -123,7 +123,7 @@ public class Radix : MonoBehaviour, IDamageable
     IEnumerator AttackPlayer(Collider2D collider)
     {
         isAttacking = true;
-        IDamageable player = collider.gameObject.GetComponent<IDamageable>();
+        Damageable player = collider.gameObject.GetComponent<Damageable>();
         player.TakeDamage(attackDamage);
 
         ChangeAnimationState(RadixAnimationStates.radixAttack);
