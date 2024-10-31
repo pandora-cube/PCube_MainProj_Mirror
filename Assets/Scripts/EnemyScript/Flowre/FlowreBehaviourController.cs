@@ -7,13 +7,13 @@ using UnityEngine;
 public class FlowreBehaviourController : EnemyBehaviour
 {
     private FlowreAnimationController animationController;
-    private CapsuleCollider2D openCapsuleCollider2D;
     public PlayerStateMachine PlayerState => PlayerStateMachine.instance;
     
     void Awake()
     {
+        base.Awake();
         animationController = GetComponent<FlowreAnimationController>();
-        openCapsuleCollider2D = GetComponent<CapsuleCollider2D>();
+        boxCollider2D.enabled = false;
     }
 
     protected virtual void Start()
@@ -23,13 +23,21 @@ public class FlowreBehaviourController : EnemyBehaviour
 
     protected virtual void Update()
     {
-        if (PlayerState.isNormal) Close();  
-        else if (PlayerState.isGhost) DetectPlayer();
+        if (PlayerState.isNormal) 
+        {
+            Close();  
+            Debug.Log("1");
+        }
+        else if (PlayerState.isGhost) 
+        {
+            DetectPlayer();
+            Debug.Log("2");
+        }
     }
 
     protected void Close()
     {
-        openCapsuleCollider2D.enabled = false;
+        boxCollider2D.enabled = false;
     }
 
     override public IEnumerator TriggerAttackAnimation()

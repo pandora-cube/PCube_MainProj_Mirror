@@ -89,7 +89,7 @@ public class RadixBehaviour : EnemyBehaviour
         }
     }
 
-    override public IEnumerator TriggerAttackAnimation()
+    public override IEnumerator TriggerAttackAnimation()
     {
         animator.ChangeAnimationState(RadixAnimationController.RadixAnimationStates.radixAttack);
         float animLength = animator.GetAnimationStateLength(RadixAnimationController.RadixAnimationStates.radixAttack.ToString()); // get attack anim length;

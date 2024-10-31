@@ -8,9 +8,9 @@ public abstract class EnemyBehaviour : MonoBehaviour
 
     public const int PLAYER_LAYER = 3;
 
-    protected float playerDetectionRadius;
-    protected float attackDamage;
-    protected float attackDelay;
+    [SerializeField] protected float playerDetectionRadius;
+    [SerializeField] protected float attackDamage;
+    [SerializeField] protected float attackDelay;
 
     protected bool isAttacking;
     

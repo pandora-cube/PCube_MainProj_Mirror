@@ -29,7 +29,7 @@ public class FleaoreBehaviourController : EnemyBehaviour
         DetectPlayer();
     }
 
-    override public IEnumerator TriggerAttackAnimation()
+    public override IEnumerator TriggerAttackAnimation()
     {
         animationController.ChangeAnimationState(FleaoreAnimationController.FleaoreAnimationStates.fleaoreAttack);
         yield return new WaitForSeconds(attackDelay);

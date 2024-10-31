@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 3308553549901306974}
   - component: {fileID: 7887066606943191244}
   - component: {fileID: 6709156460315151056}
-  - component: {fileID: 5281237216462481153}
   m_Layer: 3
   m_Name: Glasya
   m_TagString: Untagged
@@ -138,24 +137,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5281237216462481153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 621062538630150658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1888837505f7f14aa16788be763b68e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerNormalObject: {fileID: 6083986484843730980}
-  playerGhostObject: {fileID: 6787739559307351797}
-  lastMoveTime: 0
-  timeElapsed: 0
-  movementDelayTime: 2
-  dynamicSpeed: 0
 --- !u!1 &789928501719112532
 GameObject:
   m_ObjectHideFlags: 0
@@ -1429,7 +1410,7 @@ MonoBehaviour:
   ghostInteractRange: 1
   interactableLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16384
 --- !u!114 &7455220167819976435
 MonoBehaviour:
   m_ObjectHideFlags: 0

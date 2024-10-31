@@ -5,10 +5,11 @@ using UnityEngine.Timeline;
 
 public class GlasyaController : MonoBehaviour
 {
-    private PlayerComponents playerStateMachine;
-    [SerializeField] GameObject playerNormalObject;
-    [SerializeField] GameObject playerGhostObject;
+    private PlayerStateMachine PlayerState => PlayerStateMachine.instance;
+    private PlayerComponents playerComponents;
+
     private const float PLAYER_TO_GLASYA_DISTANCE = 6f;
+
     [SerializeField] private float lastMoveTime;
     [SerializeField] private float timeElapsed;
     [SerializeField] private float movementDelayTime;
@@ -16,7 +17,17 @@ public class GlasyaController : MonoBehaviour
 
     void Awake()
     {
-        playerStateMachine = FindObjectOfType<PlayerComponents>();
+        GameObject childObject = GameObject.FindGameObjectWithTag("Player");
+
+        if (childObject == null) Debug.LogError("No object with tag PLAYER found!");
+        
+        Transform currentTransform = childObject.transform;
+
+        while (currentTransform.parent != null)
+        {
+            currentTransform = currentTransform.parent;
+        }
+        playerComponents = currentTransform.gameObject.GetComponent<PlayerComponents>();
     }
 
     void Start()
@@ -30,13 +41,13 @@ public class GlasyaController : MonoBehaviour
 
         if (timeElapsed >= movementDelayTime)
         {
-            if (PlayerStateMachine.instance.isNormal)
+            if (PlayerState.isNormal)
             {
-                FollowPlayer(playerNormalObject);
+                FollowPlayer(playerComponents.normalGameObject);
             }
-            else if (PlayerStateMachine.instance.isGhost)
+            else if (PlayerState.isGhost)
             {
-                FollowPlayer(playerGhostObject);
+                FollowPlayer(playerComponents.ghostGameObject);
             }
         }
     }
