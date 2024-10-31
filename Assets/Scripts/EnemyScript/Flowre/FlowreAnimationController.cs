@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FlowreAnimationController : MonoBehaviour
 {
-    private Animator flowreAnimator;
+    private Animator animator;
     private string currentState;
 
     public enum FlowreAnimationStates
@@ -16,7 +16,7 @@ public class FlowreAnimationController : MonoBehaviour
 
     void Awake()
     {
-        flowreAnimator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     public void ChangeAnimationState (FlowreAnimationStates animationStates)
@@ -24,17 +24,17 @@ public class FlowreAnimationController : MonoBehaviour
         string newState = animationStates.ToString(); 
         if (currentState == newState) return;
         
-        flowreAnimator.Play(newState);
+        animator.Play(newState);
         currentState = newState;
     }
 
     public float GetAnimationStateLength(string stateName)
     {
-        if (flowreAnimator == null) return 0f;
+        if (animator == null) return 0f;
 
-        for (int i = 0; i < flowreAnimator.layerCount; i++)
+        for (int i = 0; i < animator.layerCount; i++)
         {
-            AnimatorStateInfo stateInfo = flowreAnimator.GetCurrentAnimatorStateInfo(i);
+            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(i);
 
             if (stateInfo.IsName(stateName)) return stateInfo.length;
         }

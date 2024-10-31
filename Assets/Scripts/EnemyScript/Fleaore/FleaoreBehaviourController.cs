@@ -11,7 +11,6 @@ public class FleaoreBehaviourController : EnemyBehaviour
 
     private PlayerStateMachine PlayerState => PlayerStateMachine.instance;
 
-    private bool isAttacking;
     private bool isAttacked = false;
     private bool isStunned = false;
 
@@ -31,35 +30,7 @@ public class FleaoreBehaviourController : EnemyBehaviour
         DetectPlayer();
     }
 
-
-    public override void DetectPlayer()
-    {
-        if (isAttacking) return;
-
-        //TO-DO: ADD ANIM TRIGGER FOR OPENING
-        openCollider2D.enabled = true; //also allows Floaore to be attackable.
-
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, playerDetectionRadius, 1 << PLAYER_LAYER);
-
-        foreach (Collider2D hitCollider in hitColliders)
-        {
-            if (hitCollider == null || hitCollider.CompareTag("Player")) continue;
-    
-            AttackPlayer(hitCollider);
-        }
-    }
-
-    public override void AttackPlayer(Collider2D collider)
-    {
-        isAttacking = true;
-        Damageable player = collider.gameObject.GetComponent<Damageable>();
-        player.TakeDamage(attackDamage);
-        StartCoroutine(TriggerAttackAnimation());
-
-        isAttacking = false;
-    }
-
-    public IEnumerator TriggerAttackAnimation()
+    override public IEnumerator TriggerAttackAnimation()
     {
         animationController.ChangeAnimationState(FleaoreAnimationController.FleaoreAnimationStates.fleaoreAttack);
         yield return new WaitForSeconds(attackDelay);

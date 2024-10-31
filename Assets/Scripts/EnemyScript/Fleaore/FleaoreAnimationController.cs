@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FleaoreAnimationController : MonoBehaviour
 {
-    private Animator fleaoreAnimator;
+    private Animator animator;
 
     private string currentState;
 
@@ -15,7 +15,7 @@ public class FleaoreAnimationController : MonoBehaviour
     }
     void Awake()
     {
-        fleaoreAnimator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     public void ChangeAnimationState(FleaoreAnimationStates animationStates)
@@ -23,7 +23,7 @@ public class FleaoreAnimationController : MonoBehaviour
         string newState = animationStates.ToString();
         if (currentState == newState) return;
 
-        fleaoreAnimator.Play(newState);
+        animator.Play(newState);
         currentState = newState;
     }
 }
