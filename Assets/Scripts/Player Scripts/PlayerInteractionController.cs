@@ -20,9 +20,10 @@ public class PlayerInteractionController : MonoBehaviour
         inventory = GetComponent<Inventory>();
     }
 
-    public void OnInteract(InputAction.CallbackContext ctx)
+    public void OnInteract(InputValue value)
     {
-        if (ctx.started)
+        float input = value.Get<float>();
+        if (input > 0)
         {
             IInteractable interactable = GetInteractableObject();
 

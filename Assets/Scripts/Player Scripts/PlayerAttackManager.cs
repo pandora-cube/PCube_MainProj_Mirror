@@ -36,9 +36,10 @@ public class PlayerAttackManager : MonoBehaviour
     }
 
 
-    public void OnAttack(InputAction.CallbackContext ctx)
+    public void OnAttack(InputValue value)
     {
-        if (!PlayerState.isGhost || !ctx.started) return;
+        float input = value.Get<float>();
+        if (!PlayerState.isGhost || input == 0f) return;
 
         lastAttackTime = Time.time;
 

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FleaoreBehaviourController : EnemyBehaviour
 {
-    private BoxCollider2D openCollider2D;
     private FleaoreAnimationController animationController;
     private Vine connectedVine;
     private Damageable damageable;
@@ -16,7 +15,7 @@ public class FleaoreBehaviourController : EnemyBehaviour
 
     void Awake()
     {
-        openCollider2D = GetComponent<BoxCollider2D>();
+        base.Awake();
         animationController = GetComponent<FleaoreAnimationController>();
         connectedVine = GetComponentInChildren<Vine>();
         damageable = GetComponent<Damageable>();
@@ -62,6 +61,6 @@ public class FleaoreBehaviourController : EnemyBehaviour
 
     void Close()
     {
-        openCollider2D.enabled = false;
+        boxCollider2D.enabled = false;
     }
 }

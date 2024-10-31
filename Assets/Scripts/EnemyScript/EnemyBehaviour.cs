@@ -13,7 +13,11 @@ public abstract class EnemyBehaviour : MonoBehaviour
     protected float attackDelay;
 
     protected bool isAttacking;
-
+    
+    protected void Awake()
+    {
+        boxCollider2D = GetComponent<BoxCollider2D>();
+    }
     protected void DetectPlayer()
     {
         if (isAttacking) return;

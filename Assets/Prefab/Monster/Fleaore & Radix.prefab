@@ -562,7 +562,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6179572673890436035}
-  - component: {fileID: 917745378191801426}
+  - component: {fileID: 5157553286101585493}
+  - component: {fileID: 798337656185581050}
   - component: {fileID: 7887781373187730685}
   - component: {fileID: 5608256513346786042}
   - component: {fileID: 8292056893250977077}
@@ -588,7 +589,7 @@ Transform:
   m_Father: {fileID: 6834460670576839641}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &917745378191801426
+--- !u!114 &5157553286101585493
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -597,20 +598,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 2791436064172687120}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e827d8dd975bbc742b4f7054989b10bc, type: 3}
+  m_Script: {fileID: 11500000, guid: f08ae671931a0064398431fd044c7971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 2
+  emergeDelay: 5
   connectedFleaore:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  <maxHealth>k__BackingField: 0
-  <currentHealth>k__BackingField: 0
-  isEmerged: 0
-  speed: 4
-  attackDelay: 0
-  emergeDelay: 1.5
+  - {fileID: 8858663618920674127}
+  - {fileID: 6899540330667764956}
+  - {fileID: 8618612735472495805}
+  - {fileID: 1029634377698505074}
+--- !u!114 &798337656185581050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2791436064172687120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bab7e88ce5efa4c92e1c7b915dc86e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &7887781373187730685
 SpriteRenderer:
   m_ObjectHideFlags: 0

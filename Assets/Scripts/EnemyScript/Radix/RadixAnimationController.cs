@@ -14,6 +14,7 @@ public class RadixAnimationController : MonoBehaviour
         radixMove,
         radixAttack
     }
+
     void Awake()
     {
         animator = GetComponent<Animator>();
@@ -48,13 +49,11 @@ public class RadixAnimationController : MonoBehaviour
 
         foreach (AnimationClip clip in controller.animationClips)
         {
-            if (clip.name == stateName)
-            {
-                return clip.length;
-            }
+            if (clip.name != stateName) continue;
+            
+            return clip.length;
         }
 
         return 0f;
-
     }
 }

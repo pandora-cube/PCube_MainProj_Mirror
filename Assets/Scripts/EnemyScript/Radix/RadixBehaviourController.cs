@@ -13,6 +13,11 @@ public class RadixBehaviour : EnemyBehaviour
 
     [SerializeField] private FleaoreBehaviourController[] connectedFleaore;
 
+    void Awake()
+    {
+        base.Awake();
+    }
+    
     void Start()
     {
         playerComponents = FindObjectOfType<PlayerComponents>();
@@ -47,17 +52,29 @@ public class RadixBehaviour : EnemyBehaviour
         yield return new WaitForSeconds(emergeDelay);
         isEmerged = true;
         boxCollider2D.enabled = true;
-        //
     }
 
     private void MoveTowardsPlayer()
     {
         Vector3 currentPosition = transform.position;
-        Vector3 targetPosition = new Vector3(0f, 0f);
-        if (PlayerStateMachine.instance.isNormal) targetPosition = playerComponents.normalGameObject.transform.position;
-        else targetPosition = playerComponents.ghostGameObject.transform.position;
-
+        Vector3 targetPosition = DetermineTargetPosition();
+        
         float direction = Mathf.Sign(targetPosition.x - currentPosition.x);
+        FlipSpriteBasedOnDirection(direction);
+
+        Vector3 newPosition = new Vector3(currentPosition.x + direction * speed * Time.deltaTime, currentPosition.y, currentPosition.z);
+        transform.position = newPosition;
+
+        animator.ChangeAnimationState(RadixAnimationController.RadixAnimationStates.radixMove);
+    }
+
+    private Vector3 DetermineTargetPosition()
+    {
+        if (PlayerStateMachine.instance.isNormal) return playerComponents.normalGameObject.transform.position;
+        else return playerComponents.ghostGameObject.transform.position;
+    }
+    private void FlipSpriteBasedOnDirection(float direction)
+    {
         if (Mathf.Approximately(direction, 1))
         {
             Vector3 newScale = transform.localScale;
@@ -70,10 +87,6 @@ public class RadixBehaviour : EnemyBehaviour
             newScale.x = -1;
             transform.localScale = newScale;
         }
-        Vector3 newPosition = new Vector3(currentPosition.x + direction * speed * Time.deltaTime, currentPosition.y, currentPosition.z);
-        transform.position = newPosition;
-
-        animator.ChangeAnimationState(RadixAnimationController.RadixAnimationStates.radixMove);
     }
 
     override public IEnumerator TriggerAttackAnimation()

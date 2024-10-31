@@ -72,6 +72,11 @@ public class PlayerHorizontalMovement : MonoBehaviour
 
         direction = value.Get<float>();
 
+        TriggerWalkAnimation();
+    }
+
+    private void TriggerWalkAnimation()
+    {
         if (PlayerState.isNormal)
         {
             if (Mathf.Approximately(direction, 0f)) playerAnimationController.ChangeAnimationState(PlayerAnimationController.NormalAnimationStates.normalIdle);
@@ -88,19 +93,18 @@ public class PlayerHorizontalMovement : MonoBehaviour
     {
         float speed = DecidePlayerSpeed();
 
-        Vector2 moveDirection = Vector2.right * direction * speed * Time.deltaTime;
-
+        
         if (PlayerState.isNormal)
         {
-            if (!PlayerState.isCrawling && PlayerState.isOnSlope) rb.velocity = new Vector2(direction * normalSpeed * Time.deltaTime, rb.velocity.y); // normal walk
-            else if (PlayerState.isOnSlope && !PlayerState.isCrawling) rb.velocity = new Vector2(-direction * normalSpeed * playerGroundChecker.slopeNormalPrep.x * Time.deltaTime, normalSpeed * playerGroundChecker.slopeNormalPrep.y * -direction * Time.deltaTime); // slope walk
-            else if (PlayerState.isOnSlope && PlayerState.isCrawling) rb.velocity = new Vector2(-direction * (normalSpeed - crawlSpeedDecrease) * playerGroundChecker.slopeNormalPrep.x * Time.deltaTime, (normalSpeed - crawlSpeedDecrease) * playerGroundChecker.slopeNormalPrep.y * -direction * Time.deltaTime);
-            else if (PlayerState.isCrawling) rb.velocity = new Vector2(direction * (normalSpeed - crawlSpeedDecrease) * Time.deltaTime, rb.velocity.y); // craw walk
+            if      (!PlayerState.isOnSlope && !PlayerState.isCrawling )    rb.velocity = new Vector2(direction * speed, rb.velocity.y); // normal walk
+            else if (PlayerState.isOnSlope  && !PlayerState.isCrawling)     rb.velocity = new Vector2(-direction * speed * playerGroundChecker.slopeNormalPrep.x, speed * playerGroundChecker.slopeNormalPrep.y * -direction); // slope walk
+            else if (PlayerState.isOnSlope  && PlayerState.isCrawling)      rb.velocity = new Vector2(-direction * (speed - crawlSpeedDecrease) * playerGroundChecker.slopeNormalPrep.x, (speed - crawlSpeedDecrease) * playerGroundChecker.slopeNormalPrep.y * -direction);
+            else if (!PlayerState.isOnSlope && PlayerState.isCrawling)      rb.velocity = new Vector2(direction * (speed - crawlSpeedDecrease), rb.velocity.y); // craw walk
         }
         else if (PlayerState.isGhost)
         {
-            if (!PlayerState.isOnSlope) rb.velocity = new Vector2(direction * ghostSpeed * Time.deltaTime, rb.velocity.y); // normal walk
-            else if (PlayerState.isOnSlope) rb.velocity = new Vector2(-direction * ghostSpeed * playerGroundChecker.slopeNormalPrep.x * Time.deltaTime, ghostSpeed * playerGroundChecker.slopeNormalPrep.y * -direction * Time.deltaTime); // slope walk
+            if (!PlayerState.isOnSlope) rb.velocity = new Vector2(direction * speed, rb.velocity.y); // normal walk
+            else if (PlayerState.isOnSlope) rb.velocity = new Vector2(-direction * speed * playerGroundChecker.slopeNormalPrep.x, speed * playerGroundChecker.slopeNormalPrep.y * -direction); // slope walk
         }
 
         FlipSpriteBasedOnDirection(currentTransform);
