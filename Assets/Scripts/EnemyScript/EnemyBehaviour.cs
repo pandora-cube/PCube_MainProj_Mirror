@@ -21,6 +21,12 @@ public abstract class EnemyBehaviour : MonoBehaviour
     {
         boxCollider2D = GetComponent<BoxCollider2D>();
     }
+
+    protected void Start()
+    {
+        
+    }
+    
     protected void DetectPlayer()
     {
         if (isAttacking) return;

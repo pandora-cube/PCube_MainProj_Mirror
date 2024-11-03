@@ -8,7 +8,7 @@ public class FlowreBehaviourController : EnemyBehaviour
 {
     private FlowreAnimationController animationController;
     public PlayerStateMachine PlayerState => PlayerStateMachine.instance;
-    
+
     void Awake()
     {
         base.Awake();
@@ -39,6 +39,7 @@ public class FlowreBehaviourController : EnemyBehaviour
     protected void Close()
     {
         boxCollider2D.enabled = false;
+        animationController.ChangeAnimationState(FlowreAnimationController.FlowreAnimationStates.flowreClosed);
     }
 
     public override IEnumerator TriggerAttackAnimation()

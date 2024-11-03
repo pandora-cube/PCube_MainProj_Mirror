@@ -24,6 +24,8 @@ public class RadixBehaviour : EnemyBehaviour
         animator = GetComponentInChildren<RadixAnimationController>();
         boxCollider2D = GetComponent<BoxCollider2D>();
         boxCollider2D.enabled = false;
+
+        attackDelay = animator.GetAnimationStateLength(RadixAnimationController.RadixAnimationStates.radixAttack);
     }
 
     void Update()
@@ -47,6 +49,7 @@ public class RadixBehaviour : EnemyBehaviour
 
         return true;
     }
+
     private IEnumerator Emerge()
     {
         yield return new WaitForSeconds(emergeDelay);
@@ -92,10 +95,8 @@ public class RadixBehaviour : EnemyBehaviour
     public override IEnumerator TriggerAttackAnimation()
     {
         animator.ChangeAnimationState(RadixAnimationController.RadixAnimationStates.radixAttack);
-        float animLength = animator.GetAnimationStateLength(RadixAnimationController.RadixAnimationStates.radixAttack.ToString()); // get attack anim length;
-        yield return new WaitForSeconds(animLength);
+        yield return new WaitForSeconds(attackDelay);
 
         animator.ChangeAnimationState(RadixAnimationController.RadixAnimationStates.radixEmerged); //go back to emerged once attack anim is finished
-        yield return new WaitForSeconds(attackDelay - animLength); //wait until end of attack delay;
     }
 }

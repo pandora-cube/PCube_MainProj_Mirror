@@ -2,28 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FleaoreAnimationController : MonoBehaviour
+public class FleaoreAnimationController : EnemyBaseAnimationController<FleaoreAnimationController.FleaoreAnimationStates>
 {
-    private Animator animator;
-
-    private string currentState;
-
     public enum FleaoreAnimationStates
     {
         fleaoreIdle,
         fleaoreAttack
     }
-    void Awake()
-    {
-        animator = GetComponent<Animator>();
-    }
 
-    public void ChangeAnimationState(FleaoreAnimationStates animationStates)
+    void Start()
     {
-        string newState = animationStates.ToString();
-        if (currentState == newState) return;
-
-        animator.Play(newState);
-        currentState = newState;
+        ChangeAnimationState(FleaoreAnimationStates.fleaoreIdle);
     }
 }

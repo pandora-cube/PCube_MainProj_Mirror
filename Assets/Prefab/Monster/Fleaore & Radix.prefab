@@ -223,6 +223,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e07649909e4aa42adb2e89c7172836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerDetectionRadius: 0
+  attackDamage: 0
+  isAttacking: 0
 --- !u!114 &5984503252183807353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -601,6 +604,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f08ae671931a0064398431fd044c7971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerDetectionRadius: 0
+  attackDamage: 0
+  isAttacking: 0
   speed: 2
   emergeDelay: 5
   connectedFleaore:
@@ -925,6 +931,7 @@ GameObject:
   - component: {fileID: 6367214913904638855}
   - component: {fileID: 8618612735472495805}
   - component: {fileID: 8240148717220020819}
+  - component: {fileID: 7597370053523688906}
   m_Layer: 12
   m_Name: Fleaore (2)
   m_TagString: Untagged
@@ -1084,6 +1091,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e07649909e4aa42adb2e89c7172836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerDetectionRadius: 0
+  attackDamage: 0
+  isAttacking: 0
 --- !u!114 &8240148717220020819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1096,6 +1106,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fac907013ce0f343bb597692e92315e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &7597370053523688906
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4912422577322637041}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6998186238bf9fe4b881de5430c5860c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5276167983735569415
 GameObject:
   m_ObjectHideFlags: 0
@@ -1319,6 +1350,7 @@ GameObject:
   - component: {fileID: 3217998812607303240}
   - component: {fileID: 1029634377698505074}
   - component: {fileID: 5106097535340251893}
+  - component: {fileID: 3712352110422998306}
   m_Layer: 12
   m_Name: Fleaore (3)
   m_TagString: Untagged
@@ -1478,6 +1510,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e07649909e4aa42adb2e89c7172836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerDetectionRadius: 0
+  attackDamage: 0
+  isAttacking: 0
 --- !u!114 &5106097535340251893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1490,6 +1525,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fac907013ce0f343bb597692e92315e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &3712352110422998306
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6513353064522773483}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6998186238bf9fe4b881de5430c5860c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8588581195362264255
 GameObject:
   m_ObjectHideFlags: 0
@@ -1504,6 +1560,7 @@ GameObject:
   - component: {fileID: 7285133753873221237}
   - component: {fileID: 6899540330667764956}
   - component: {fileID: 2344414680950185966}
+  - component: {fileID: 3025987489080681683}
   m_Layer: 12
   m_Name: Fleaore (1)
   m_TagString: Untagged
@@ -1663,6 +1720,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e07649909e4aa42adb2e89c7172836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerDetectionRadius: 0
+  attackDamage: 0
+  isAttacking: 0
 --- !u!114 &2344414680950185966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1675,3 +1735,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fac907013ce0f343bb597692e92315e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &3025987489080681683
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8588581195362264255}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6998186238bf9fe4b881de5430c5860c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

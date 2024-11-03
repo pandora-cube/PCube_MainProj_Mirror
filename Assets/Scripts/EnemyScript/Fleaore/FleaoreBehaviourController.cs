@@ -21,12 +21,17 @@ public class FleaoreBehaviourController : EnemyBehaviour
         damageable = GetComponent<Damageable>();
     }
 
+    void Start()
+    {
+        attackDelay = animationController.GetAnimationStateLength(FleaoreAnimationController.FleaoreAnimationStates.fleaoreAttack);
+    }
+
     void Update()
     {
         if (isStunned) return;
 
         if (PlayerState.isNormal || isAttacked) Close();
-        DetectPlayer();
+        else if (PlayerState.isGhost) DetectPlayer();
     }
 
     public override IEnumerator TriggerAttackAnimation()
