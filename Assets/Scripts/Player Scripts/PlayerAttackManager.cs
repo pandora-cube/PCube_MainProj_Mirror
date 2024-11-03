@@ -31,7 +31,6 @@ public class PlayerAttackManager : MonoBehaviour
         if (PlayerState.isGhost && (Time.time - lastAttackTime > comboResetTime))
         {
             comboAttackNumber = 0;
-            if (playerAnimationController == null) Debug.Log("NULL!!!");
             playerAnimationController.ChangeAnimationState(PlayerAnimationController.GhostAnimationStates.ghostWalk); //TO-DO: Change to Idle
         }
     }

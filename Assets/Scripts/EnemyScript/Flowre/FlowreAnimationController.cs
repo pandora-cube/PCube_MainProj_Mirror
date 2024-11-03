@@ -19,25 +19,28 @@ public class FlowreAnimationController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public void ChangeAnimationState (FlowreAnimationStates animationStates)
+    public void ChangeAnimationState(FlowreAnimationStates animationStates)
     {
-        string newState = animationStates.ToString(); 
+        string newState = animationStates.ToString();
         if (currentState == newState) return;
-        
+
         animator.Play(newState);
         currentState = newState;
     }
 
-    public float GetAnimationStateLength(string stateName)
+    public float GetAnimationStateLength(FlowreAnimationStates animationStates)
     {
+        string stateName = animationStates.ToString();
+        
         if (animator == null) return 0f;
 
-        for (int i = 0; i < animator.layerCount; i++)
+        foreach (AnimationClip clip in animator.runtimeAnimatorController.animationClips)
         {
-            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(i);
-
-            if (stateInfo.IsName(stateName)) return stateInfo.length;
+            if (clip.name != stateName) continue;
+            
+            return clip.length;
         }
+
         return 0f;
     }
 }

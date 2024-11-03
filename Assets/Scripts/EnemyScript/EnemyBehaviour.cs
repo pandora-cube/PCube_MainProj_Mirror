@@ -11,9 +11,11 @@ public abstract class EnemyBehaviour : MonoBehaviour
 
     [SerializeField] protected float playerDetectionRadius;
     [SerializeField] protected float attackDamage;
-    [SerializeField] protected float attackDelay;
+    protected float attackDelay;
 
-    protected bool isAttacking;
+    [SerializeField] protected bool isAttacking;
+
+    private Coroutine attackCoroutine;
     
     protected void Awake()
     {
@@ -42,8 +44,6 @@ public abstract class EnemyBehaviour : MonoBehaviour
         player.TakeDamage(attackDamage);
 
         StartCoroutine(TriggerAttackAnimation());
-
-        isAttacking = false;
     }
 
     public abstract IEnumerator TriggerAttackAnimation();

@@ -19,6 +19,9 @@ public class FlowreBehaviourController : EnemyBehaviour
     protected virtual void Start()
     {
         animationController.ChangeAnimationState(FlowreAnimationController.FlowreAnimationStates.flowreClosed);
+        
+        //this needs to be here because if this line is in Awake, it will be called before Animator component is fully initialzied..
+        attackDelay = animationController.GetAnimationStateLength(FlowreAnimationController.FlowreAnimationStates.flowreAttack);
     }
 
     protected virtual void Update()
@@ -43,6 +46,7 @@ public class FlowreBehaviourController : EnemyBehaviour
         animationController.ChangeAnimationState(FlowreAnimationController.FlowreAnimationStates.flowreAttack);
         yield return new WaitForSeconds(attackDelay);
         animationController.ChangeAnimationState(FlowreAnimationController.FlowreAnimationStates.flowreIdle);
+        
         isAttacking = false;
-    }
+    }    
 }
