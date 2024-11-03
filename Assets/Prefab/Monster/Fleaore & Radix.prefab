@@ -27,14 +27,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 326803893201802211}
-  m_LocalRotation: {x: 0, y: 0, z: -0.24175245, w: 0.970338}
-  m_LocalPosition: {x: -0.02, y: -2.35, z: 0}
-  m_LocalScale: {x: 0.11, y: 15, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.60993767, w: 0.7924495}
+  m_LocalPosition: {x: 5.58, y: -2.35, z: 0}
+  m_LocalScale: {x: 0.11, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 758932844082720566}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -58.399}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 75.17}
 --- !u!114 &8103060373991656007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 758932844082720566}
   - component: {fileID: 8858663618920674127}
   - component: {fileID: 5984503252183807353}
+  - component: {fileID: 5141827157742775591}
   - component: {fileID: 4981264581360602448}
   - component: {fileID: 5609659425340114987}
   - component: {fileID: 7183242153207730373}
@@ -223,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e07649909e4aa42adb2e89c7172836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDetectionRadius: 0
+  playerDetectionRadius: 3
   attackDamage: 0
   isAttacking: 0
 --- !u!114 &5984503252183807353
@@ -238,6 +239,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fac907013ce0f343bb597692e92315e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5141827157742775591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543794118804809294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d91356aa18f7744f9a0d801201fb683, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 3
+  currentHealth: 0
+  flashMaterial: {fileID: 2100000, guid: 7d1f2937c3bfd064ead2ccdf22e3a052, type: 2}
+  duration: 0.15
+  originalMaterial: {fileID: 0}
 --- !u!212 &4981264581360602448
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -410,14 +428,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2487054772050407889}
-  m_LocalRotation: {x: 0, y: 0, z: -0.24175245, w: 0.970338}
-  m_LocalPosition: {x: -0.02, y: -2.35, z: 0}
-  m_LocalScale: {x: 0.11, y: 3, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.8120835, w: 0.58354133}
+  m_LocalPosition: {x: 5.4, y: -2.35, z: 0}
+  m_LocalScale: {x: 0.11, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5783780815774389558}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -58.399}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -108.6}
 --- !u!114 &7050194241081862173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -567,6 +585,7 @@ GameObject:
   - component: {fileID: 6179572673890436035}
   - component: {fileID: 5157553286101585493}
   - component: {fileID: 798337656185581050}
+  - component: {fileID: 938201951883503917}
   - component: {fileID: 7887781373187730685}
   - component: {fileID: 5608256513346786042}
   - component: {fileID: 8292056893250977077}
@@ -604,7 +623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f08ae671931a0064398431fd044c7971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDetectionRadius: 0
+  playerDetectionRadius: 5
   attackDamage: 0
   isAttacking: 0
   speed: 2
@@ -626,6 +645,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5bab7e88ce5efa4c92e1c7b915dc86e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &938201951883503917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2791436064172687120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d91356aa18f7744f9a0d801201fb683, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 0
+  currentHealth: 0
+  flashMaterial: {fileID: 2100000, guid: 7d1f2937c3bfd064ead2ccdf22e3a052, type: 2}
+  duration: 0.15
+  originalMaterial: {fileID: 0}
 --- !u!212 &7887781373187730685
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -771,14 +807,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4164664955254624874}
-  m_LocalRotation: {x: 0, y: 0, z: -0.24175245, w: 0.970338}
-  m_LocalPosition: {x: -0.02, y: -2.35, z: 0}
-  m_LocalScale: {x: 0.11, y: 3, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7767064, w: 0.62986284}
+  m_LocalPosition: {x: 5.7, y: -2.35, z: 0}
+  m_LocalScale: {x: 0.11, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3289412248946769654}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -58.399}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -101.92}
 --- !u!114 &5724510907451210961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -931,6 +967,7 @@ GameObject:
   - component: {fileID: 6367214913904638855}
   - component: {fileID: 8618612735472495805}
   - component: {fileID: 8240148717220020819}
+  - component: {fileID: 3925852289391414940}
   - component: {fileID: 7597370053523688906}
   m_Layer: 12
   m_Name: Fleaore (2)
@@ -1091,7 +1128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e07649909e4aa42adb2e89c7172836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDetectionRadius: 0
+  playerDetectionRadius: 3
   attackDamage: 0
   isAttacking: 0
 --- !u!114 &8240148717220020819
@@ -1106,6 +1143,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fac907013ce0f343bb597692e92315e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3925852289391414940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4912422577322637041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d91356aa18f7744f9a0d801201fb683, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 3
+  currentHealth: 0
+  flashMaterial: {fileID: 2100000, guid: 7d1f2937c3bfd064ead2ccdf22e3a052, type: 2}
+  duration: 0.15
+  originalMaterial: {fileID: 0}
 --- !u!95 &7597370053523688906
 Animator:
   serializedVersion: 5
@@ -1190,14 +1244,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6420326142571818097}
-  m_LocalRotation: {x: 0, y: 0, z: -0.24175245, w: 0.970338}
-  m_LocalPosition: {x: -0.02, y: -2.35, z: 0}
-  m_LocalScale: {x: 0.11, y: 3, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7738401, w: 0.633381}
+  m_LocalPosition: {x: 5.2, y: -2.35, z: 0}
+  m_LocalScale: {x: 0.11, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1531309210955793477}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -58.399}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -101.4}
 --- !u!114 &7832288722315153115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1350,6 +1404,7 @@ GameObject:
   - component: {fileID: 3217998812607303240}
   - component: {fileID: 1029634377698505074}
   - component: {fileID: 5106097535340251893}
+  - component: {fileID: 6549416617381054159}
   - component: {fileID: 3712352110422998306}
   m_Layer: 12
   m_Name: Fleaore (3)
@@ -1510,7 +1565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e07649909e4aa42adb2e89c7172836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDetectionRadius: 0
+  playerDetectionRadius: 3
   attackDamage: 0
   isAttacking: 0
 --- !u!114 &5106097535340251893
@@ -1525,6 +1580,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fac907013ce0f343bb597692e92315e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6549416617381054159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6513353064522773483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d91356aa18f7744f9a0d801201fb683, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 3
+  currentHealth: 0
+  flashMaterial: {fileID: 2100000, guid: 7d1f2937c3bfd064ead2ccdf22e3a052, type: 2}
+  duration: 0
+  originalMaterial: {fileID: 0}
 --- !u!95 &3712352110422998306
 Animator:
   serializedVersion: 5
@@ -1560,6 +1632,7 @@ GameObject:
   - component: {fileID: 7285133753873221237}
   - component: {fileID: 6899540330667764956}
   - component: {fileID: 2344414680950185966}
+  - component: {fileID: 5907824853691466857}
   - component: {fileID: 3025987489080681683}
   m_Layer: 12
   m_Name: Fleaore (1)
@@ -1720,7 +1793,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e07649909e4aa42adb2e89c7172836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDetectionRadius: 0
+  playerDetectionRadius: 3
   attackDamage: 0
   isAttacking: 0
 --- !u!114 &2344414680950185966
@@ -1735,6 +1808,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fac907013ce0f343bb597692e92315e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5907824853691466857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8588581195362264255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d91356aa18f7744f9a0d801201fb683, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 3
+  currentHealth: 0
+  flashMaterial: {fileID: 2100000, guid: 7d1f2937c3bfd064ead2ccdf22e3a052, type: 2}
+  duration: 0.15
+  originalMaterial: {fileID: 0}
 --- !u!95 &3025987489080681683
 Animator:
   serializedVersion: 5

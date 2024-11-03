@@ -13,7 +13,9 @@ public class FleaoreBehaviourController : EnemyBehaviour
     private bool isAttacked = false;
     private bool isStunned = false;
 
+#pragma warning disable CS0108 // Member hides inherited member; missing new keyword
     void Awake()
+#pragma warning restore CS0108 // Member hides inherited member; missing new keyword
     {
         base.Awake();
         animationController = GetComponent<FleaoreAnimationController>();

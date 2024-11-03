@@ -26,6 +26,7 @@ public class RadixBehaviour : EnemyBehaviour
         boxCollider2D.enabled = false;
 
         attackDelay = animator.GetAnimationStateLength(RadixAnimationController.RadixAnimationStates.radixAttack);
+        animator.ChangeAnimationState(RadixAnimationController.RadixAnimationStates.radixIdle);
     }
 
     void Update()
@@ -38,7 +39,6 @@ public class RadixBehaviour : EnemyBehaviour
         if (isEmerged)
         {
             if (!isAttacking) MoveTowardsPlayer();
-            DetectPlayer();
         }
     }
 
@@ -69,6 +69,7 @@ public class RadixBehaviour : EnemyBehaviour
         transform.position = newPosition;
 
         animator.ChangeAnimationState(RadixAnimationController.RadixAnimationStates.radixMove);
+        DetectPlayer();
     }
 
     private Vector3 DetermineTargetPosition()
@@ -76,6 +77,7 @@ public class RadixBehaviour : EnemyBehaviour
         if (PlayerStateMachine.instance.isNormal) return playerComponents.normalGameObject.transform.position;
         else return playerComponents.ghostGameObject.transform.position;
     }
+
     private void FlipSpriteBasedOnDirection(float direction)
     {
         if (Mathf.Approximately(direction, 1))
@@ -98,5 +100,7 @@ public class RadixBehaviour : EnemyBehaviour
         yield return new WaitForSeconds(attackDelay);
 
         animator.ChangeAnimationState(RadixAnimationController.RadixAnimationStates.radixEmerged); //go back to emerged once attack anim is finished
+        
+        isAttacking = false;
     }
 }
