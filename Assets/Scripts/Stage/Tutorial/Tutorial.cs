@@ -9,13 +9,14 @@ public class Tutorial : MonoBehaviour
     [SerializeField] DialogSystem dialogSystem;
     [SerializeField] GameObject CamCollider;
     [SerializeField] CinemachineVirtualCamera mirrorCam;
-    [SerializeField] PlayerController playerController;
+    [SerializeField] PlayerComponents playerStateMachine;
     CinemachineStateDrivenCamera stateCam;
     Animator animator;
     
     int dieFlowre = 0;
     [SerializeField] TutorialFlowre[] tutorialFlowres;
     [SerializeField] private PlayerGhostHealthManager playerGhostHealthManager;
+    PlayerStateMachine PlayerState => PlayerStateMachine.instance;
 
     private void Awake()
     {
@@ -49,7 +50,7 @@ public class Tutorial : MonoBehaviour
 
         yield return dialogSystem.StartCoroutine(dialogSystem.DialogProgress());
 
-        playerController.canMove = false;
+        PlayerState.canMove = false;
         playerGhostHealthManager.SetGhostTimeLimit(Mathf.Infinity);
         foreach (var flowre in tutorialFlowres) flowre.OpenFlowre = true;
 
@@ -90,7 +91,7 @@ public class Tutorial : MonoBehaviour
 
     public IEnumerator Tuto8_radix()
     {
-        playerController.canMove = false;
+        PlayerState.canMove = false;
         animator.Play("Radix");
 
         yield return new WaitForSeconds(0.5f);

@@ -5,15 +5,19 @@ using UnityEngine;
 public class CinemachineConfinerManager : MonoBehaviour
 {
     [SerializeField] private PolygonCollider2D[] confiner2D;
-    [SerializeField] private PlayerController playerController;
+    [SerializeField] private PlayerHorizontalMovement playerHorizontalMovement;
 
     int currentStage;
     int newStage;
 
+    void Awake()
+    {
+
+    }
     void Start()
     {
         currentStage = ProgressData.Instance.playerData.currentStage;
-        playerController.currentConfinerCollider = confiner2D[currentStage - 1];
+        playerHorizontalMovement.currentConfinerCollider = confiner2D[currentStage - 1];
         CinemachineConfiner2D[] confiners = GetComponentsInChildren<CinemachineConfiner2D>();
         foreach (CinemachineConfiner2D confiner in confiners)
         {
@@ -38,7 +42,7 @@ public class CinemachineConfinerManager : MonoBehaviour
                     confiner.m_BoundingShape2D = confiner2D[currentStage - 1];
                 }
             }
-            playerController.currentConfinerCollider = confiner2D[currentStage - 1];
+            playerHorizontalMovement.currentConfinerCollider = confiner2D[currentStage - 1];
 
         }
     }

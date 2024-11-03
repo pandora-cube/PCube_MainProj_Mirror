@@ -16,13 +16,13 @@ public class TutorialMirror : MonoBehaviour, IInteractable
         
     public void Interact()
     {
-        PlayerController player = FindObjectOfType<PlayerController>();
+        PlayerInteractionController player = FindObjectOfType<PlayerInteractionController>();
         player.Transform();
 
         if (tutoPlay)
         {
             tutoPlay = false;
-            if(player.isGhost) tutorial.StartCoroutine(tutorial.Tuto3_ghost());
+            if(PlayerStateMachine.instance.isGhost) tutorial.StartCoroutine(tutorial.Tuto3_ghost());
             else tutorial.StartCoroutine(tutorial.Tuto6_normal());
         }
     }

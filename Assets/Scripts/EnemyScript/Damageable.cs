@@ -2,20 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealthManager : MonoBehaviour, IDamageable
+public class Damageable : MonoBehaviour
 {
-    [field: SerializeField] public float maxHealth { get; set; }
-    [field: SerializeField] public float currentHealth { get; set; }
-    [field: SerializeField] public bool isAttacked {get; set;}
+    public float maxHealth;
+    public float currentHealth;
 
-    [Tooltip("Material to switch to during the flash.")]
-    [SerializeField] private Material flashMaterial;
+    [Tooltip("Material to switch to during damage flash SFX.")]
+    public Material flashMaterial;
 
     [Tooltip("Duration of the flash.")]
-    [SerializeField] private float duration;
+    public float duration;
 
     private SpriteRenderer spriteRenderer;
-    private Material originalMaterial;
+    public Material originalMaterial;
     private Coroutine flashRoutine;
 
     private void Start()
@@ -28,7 +27,6 @@ public class EnemyHealthManager : MonoBehaviour, IDamageable
     public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
-        isAttacked = true;
         Flash();
         if (currentHealth <= 0) Die();
     }

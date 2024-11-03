@@ -6,7 +6,7 @@ using UnityEngine.Assertions.Must;
 using Cinemachine;
 using UnityEngine.UI;
 
-public class PlayerGhostHealthManager : MonoBehaviour, IDamageable
+public class PlayerGhostHealthManager : MonoBehaviour
 {
     [field: SerializeField] public float maxHealth { get; set; }
     [field: SerializeField] public float currentHealth { get; set; }

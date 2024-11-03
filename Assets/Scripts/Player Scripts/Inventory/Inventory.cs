@@ -12,10 +12,11 @@ public class Inventory : MonoBehaviour
 
 #if UNITY_EDITOR
     private void OnValidate()
-    {
+    {        
         slots = slotParent.GetComponentsInChildren<Slot>(); 
     }
 #endif
+
     private void Awake()
     {
         FreshSlot();
