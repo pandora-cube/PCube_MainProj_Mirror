@@ -739,7 +739,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2006199944466533821}
   - component: {fileID: 1238336566175937545}
-  - component: {fileID: 6772371009387974392}
   m_Layer: 13
   m_Name: Attack Transform
   m_TagString: Untagged
@@ -807,25 +806,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 8.975626, y: 14.854801}
   m_EdgeRadius: 0
---- !u!114 &6772371009387974392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3609746959419466173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4358ce4df99ce6448902a7390564fc95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackCollider: {fileID: 0}
-  attackableLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  comboResetTime: 1
-  lastAttackTime: 0
-  comboAttackNumber: 0
 --- !u!1 &3763264680750757946
 GameObject:
   m_ObjectHideFlags: 0
@@ -1426,7 +1406,7 @@ MonoBehaviour:
   attackCollider: {fileID: 1238336566175937545}
   attackableLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
   comboResetTime: 1
   lastAttackTime: 0
   comboAttackNumber: 0

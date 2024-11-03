@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public abstract class EnemyBehaviour : MonoBehaviour
@@ -28,7 +29,7 @@ public abstract class EnemyBehaviour : MonoBehaviour
 
         foreach (Collider2D hitCollider in hitColliders)
         {
-            if (hitCollider == null || hitCollider.CompareTag("Player")) continue;
+            if (hitCollider == null || !hitCollider.CompareTag("Player")) continue;
 
             AttackPlayer(hitCollider);
         }
@@ -37,8 +38,9 @@ public abstract class EnemyBehaviour : MonoBehaviour
     protected void AttackPlayer(Collider2D playerCollider)
     {
         isAttacking = true;
-        Damageable player = playerCollider.gameObject.GetComponent<Damageable>();
+        PlayerGhostHealthManager player = playerCollider.gameObject.GetComponent<PlayerGhostHealthManager>();
         player.TakeDamage(attackDamage);
+
         StartCoroutine(TriggerAttackAnimation());
 
         isAttacking = false;

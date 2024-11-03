@@ -26,12 +26,10 @@ public class FlowreBehaviourController : EnemyBehaviour
         if (PlayerState.isNormal) 
         {
             Close();  
-            Debug.Log("1");
         }
         else if (PlayerState.isGhost) 
         {
             DetectPlayer();
-            Debug.Log("2");
         }
     }
 
@@ -40,7 +38,7 @@ public class FlowreBehaviourController : EnemyBehaviour
         boxCollider2D.enabled = false;
     }
 
-    override public IEnumerator TriggerAttackAnimation()
+    public override IEnumerator TriggerAttackAnimation()
     {
         animationController.ChangeAnimationState(FlowreAnimationController.FlowreAnimationStates.flowreAttack);
         yield return new WaitForSeconds(attackDelay);
