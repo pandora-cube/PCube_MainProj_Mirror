@@ -226,6 +226,7 @@ GameObject:
   - component: {fileID: 10893538}
   - component: {fileID: 10893537}
   - component: {fileID: 10893541}
+  - component: {fileID: 10893542}
   m_Layer: 5
   m_Name: Dialog System
   m_TagString: Untagged
@@ -331,6 +332,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6524e975f04583841a91f74b786a0734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogJSONFile: {fileID: 4900000, guid: ac1f972569e23a642a3dcb02b55186cd, type: 3}
+--- !u!114 &10893542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10893536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 682af3822cb48af42b16ecb9a0e71f5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   textUI:
   - {fileID: 722927654}
   - {fileID: 1597188080}
@@ -344,7 +358,6 @@ MonoBehaviour:
   Speaker:
   - ???
   - "\uAE00\uB77C\uC0E4"
-  dialogJSONFile: {fileID: 4900000, guid: ac1f972569e23a642a3dcb02b55186cd, type: 3}
 --- !u!1001 &19863284
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6217,7 +6230,7 @@ MonoBehaviour:
   m_text: player
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 285854aae3c3f3e4daadacbd684909ff, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 8555683965151664729, guid: 285854aae3c3f3e4daadacbd684909ff, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7074,7 +7087,7 @@ GameObject:
   - component: {fileID: 838982097}
   - component: {fileID: 838982096}
   m_Layer: 5
-  m_Name: NPC name
+  m_Name: NPC nameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16169,7 +16182,7 @@ GameObject:
   - component: {fileID: 1844018592}
   - component: {fileID: 1844018591}
   m_Layer: 5
-  m_Name: Image
+  m_Name: DialogUIPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19440,7 +19453,7 @@ GameObject:
   - component: {fileID: 2098096274}
   - component: {fileID: 2098096273}
   m_Layer: 5
-  m_Name: Player name
+  m_Name: Player nameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19489,7 +19502,7 @@ MonoBehaviour:
   m_text: Player
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c06b88f9e25faf74894d5a6ae1715582, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -9185105592968209251, guid: c06b88f9e25faf74894d5a6ae1715582, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

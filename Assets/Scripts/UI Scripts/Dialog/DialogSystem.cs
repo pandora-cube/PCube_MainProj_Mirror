@@ -15,11 +15,11 @@ public class Dialog
 
     public Dialog(int dialogScene, int id, string[] dialogText, int speakerID, string playFunc)
     {
-        this.dialogScene = dialogScene;
-        this.id = id;
-        this.dialogText = dialogText;
-        this.speakerID = speakerID;
-        this.playFunc = playFunc;
+        this.dialogScene = dialogScene; // 한 번의 대화 범위
+        this.id = id; // 각 대화에 부여된 고유 ID
+        this.dialogText = dialogText; // 대화 Text
+        this.speakerID = speakerID; // 발화자 ID
+        this.playFunc = playFunc; // 연출 때문에 넣은 기능, 아직 X
     }
 }
 
@@ -36,32 +36,25 @@ public class DialogList
 
 public class DialogSystem : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI[] textUI;
-    [SerializeField] TextMeshProUGUI[] NameUI;
-    [SerializeField] GameObject[] SpeakerUI;
-    [SerializeField] GameObject DialogUI;
-    [SerializeField] string[] Speaker;
+    public static DialogSystem instance;
 
-    [SerializeField] private TextAsset dialogJSONFile;
-    //[SerializeField] private string filePath = "/Resources/DialogTexts.json";
-
-    private string currentText;
-    private int currentID = 0;
-    private int currentDialogScene = 0;
-    private int prevSpeaker, currentSpeaker;
-
-    private bool firstDialog = true;
+    [SerializeField] private TextAsset dialogJSONFile; // fix later...
 
     private DialogList dialogLists = new DialogList();
+    private int currentID = 0;
+    private int currentDialogScene = 0;
+    private bool firstDialog = true;
 
     private PlayerInput playerInput;
     private PlayerStateMachine PlayerState => PlayerStateMachine.instance;
-    string attackKey, moveKey, interactKey;
-
+    private DialogUIManager dialogUI => DialogUIManager.instance;
+    
     private void Awake()
     {
-        playerInput = GetComponent<PlayerInput>();
-        GetKey();
+        #region singleton
+        if (instance == null) instance = this;
+        else Destroy(instance);
+        #endregion
     }
 
     private void Start()
@@ -69,7 +62,7 @@ public class DialogSystem : MonoBehaviour
         JsonLoad();
     }
 
-    void JsonLoad()
+    void JsonLoad() // Json 파일 Load
     {
         if (dialogJSONFile != null)
         {
@@ -84,55 +77,50 @@ public class DialogSystem : MonoBehaviour
             else Debug.LogError("Dialog load failed");
         }
         else Debug.LogError("No JSON file assigned in the inspector.");
+    }
 
-
+    public void StartDialog() // 현재 currentID부터 한 타임 대화 시작
+    {
+        currentDialogScene = dialogLists.dialog[currentID].dialogScene;
+        firstDialog = true;
+        StartCoroutine(DialogProgress());
     }
 
     public IEnumerator DialogProgress()
     {
-        firstDialog = true;
-        PlayerState.canMove = false;
-        currentDialogScene = dialogLists.dialog[currentID].dialogScene;
-
+        PlayerState.canMove = false; // player 움직임 제어
+        
+        // 한 대화 씬 (같은 dialgScene 동안 반복)
         while (currentID < dialogLists.dialog.Count && currentDialogScene == dialogLists.dialog[currentID].dialogScene)
         {
-            currentSpeaker = dialogLists.dialog[currentID].speakerID;
-            SetDialogUI();
+            var currentDialog = dialogLists.dialog[currentID];
+            dialogUI.SetDialogUI(currentDialog); // 현재 대화의 UI 표시
 
-            int index = 0;
-            while (index < dialogLists.dialog[currentID].dialogText.Length)
+            // 현재 ID의 Texts을 출력
+            foreach(var currentText in dialogLists.dialog[currentID].dialogText)
             {
-                currentText = dialogLists.dialog[currentID].dialogText[index];
-
-                string playFunc = dialogLists.dialog[currentID].playFunc;
-                if (playFunc != "None") yield return StartCoroutine(playFunc);
-
-                yield return StartCoroutine(DialogTypingEffect());
-                index++;
+                yield return StartCoroutine(DialogTypingEffect(currentText));
             }
 
-            prevSpeaker = currentSpeaker;
-            currentID++;
+            currentID++; // ID 증가
         }
 
-        PlayerState.canMove = true;
-        firstDialog = false;
-        SpeakerUI[currentSpeaker].SetActive(false);
-        DialogUI.SetActive(false);
+        PlayerState.canMove = true; // 대화 종료 처리
+        dialogUI.HideDialogUI();
     }
 
-    IEnumerator DialogTypingEffect()
+    IEnumerator DialogTypingEffect(string currentText) // 한 글자씩 출력 연출
     {
         string showText = "";
 
-        for (int i = 0; i < currentText.Length; i++)
+        foreach(var word in currentText)
         {
-            showText += currentText[i];
-            textUI[currentSpeaker].text = showText;
+            showText += word;
+            dialogUI.UpdateText(showText);
 
             if (Input.GetMouseButton(0))
             {
-                textUI[currentSpeaker].text = currentText;
+                dialogUI.UpdateText(currentText);
                 break;
             }
 
@@ -150,42 +138,5 @@ public class DialogSystem : MonoBehaviour
             }
             yield return null;
         }
-    }
-
-    void SetDialogUI()
-    {
-        if (firstDialog)
-        {
-            NameUI[currentSpeaker].text = Speaker[currentSpeaker];
-            DialogUI.SetActive(true);
-            SpeakerUI[currentSpeaker].SetActive(true);
-
-            firstDialog = false;
-        }
-        else if (prevSpeaker != currentSpeaker)
-        {
-            NameUI[currentSpeaker].text = Speaker[currentSpeaker];
-            SpeakerUI[prevSpeaker].SetActive(false);
-            SpeakerUI[currentSpeaker].SetActive(true);
-        }
-    }
-
-    void GetKey()
-    {
-        if (playerInput != null)
-        {
-            attackKey = playerInput.actions["Attack"].GetBindingDisplayString();
-            moveKey = playerInput.actions["Movement"].GetBindingDisplayString();
-            interactKey = playerInput.actions["Interact"].GetBindingDisplayString();
-        }
-    }
-
-    IEnumerator SetTextforKey()
-    {
-        if (currentText.Contains("{move}")) currentText = currentText.Replace("{move}", moveKey);
-        else if (currentText.Contains("{attack}")) currentText = currentText.Replace("{attack}", attackKey);
-        else if (currentText.Contains("{interact}")) currentText = currentText.Replace("{interact}", interactKey);
-
-        yield return null;
     }
 }
