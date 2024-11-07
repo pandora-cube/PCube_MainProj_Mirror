@@ -32,7 +32,6 @@ public class EnemyBaseAnimationController<T> : MonoBehaviour
             if (clip.name != stateName) continue;
 
             return clip.length;
-
         }
         return 0f;
     }

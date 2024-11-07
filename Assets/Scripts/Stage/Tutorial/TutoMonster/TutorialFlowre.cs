@@ -10,8 +10,8 @@ public class TutorialFlowre : FlowreBehaviourController
 
     protected override void Start()
     {
+        base.Start();
         attackDamage = tutorialAttackDamage;
-        //if (PlayerStateMachine.instance.isGhost) Close();
     }
 
     protected override void Update()
@@ -23,4 +23,10 @@ public class TutorialFlowre : FlowreBehaviourController
     {
         if (tutorial != null) tutorial.Tuto4_flowre();
     }
+
+    public override IEnumerator TriggerAttackAnimation()
+    {
+        yield return base.TriggerAttackAnimation();  
+    }
+
 }

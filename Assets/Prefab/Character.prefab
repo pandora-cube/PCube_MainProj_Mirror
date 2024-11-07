@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 7887066606943191244}
   - component: {fileID: 6709156460315151056}
   - component: {fileID: 6386194834656936546}
+  - component: {fileID: 3912623856007172308}
   m_Layer: 3
   m_Name: Glasya
   m_TagString: Untagged
@@ -139,6 +140,22 @@ Animator:
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &6386194834656936546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621062538630150658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1888837505f7f14aa16788be763b68e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastMoveTime: 0
+  timeElapsed: 0
+  movementDelayTime: 0
+  dynamicSpeed: 0
+--- !u!114 &3912623856007172308
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3219,6 +3236,7 @@ GameObject:
   - component: {fileID: 1770930682177696535}
   - component: {fileID: 1090785579436528128}
   - component: {fileID: 682150150724095780}
+  - component: {fileID: 7286789675698523277}
   m_Layer: 3
   m_Name: Inventory
   m_TagString: Untagged
@@ -3286,6 +3304,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7286789675698523277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8664513624701825681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b3542a8d2ce2e4d844c89cb1464795, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  slotParent: {fileID: 8197000859236343073}
+  slots:
+  - {fileID: 7192006961366880943}
+  - {fileID: 1836431479995073259}
+  - {fileID: 8656799385544903197}
 --- !u!1 &8677753861806595989
 GameObject:
   m_ObjectHideFlags: 0
