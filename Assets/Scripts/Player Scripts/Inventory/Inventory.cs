@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    public static Inventory instance;
     public List<Item> items;
 
     [SerializeField] private Transform slotParent;
@@ -19,6 +20,9 @@ public class Inventory : MonoBehaviour
 
     private void Awake()
     {
+        if (instance == null) instance = this;
+        else Destroy(instance);
+
         FreshSlot();
     }
 

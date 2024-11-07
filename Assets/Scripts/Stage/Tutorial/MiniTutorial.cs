@@ -7,8 +7,8 @@ public class MiniTutorial : MonoBehaviour
 {
     [SerializeField] string text;
     [SerializeField] TextMeshProUGUI textUI;
-    [SerializeField] Inventory inventory;
     [SerializeField] Item item;
+    private Inventory inventory => Inventory.instance;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && item == null)
