@@ -23,7 +23,6 @@ public class PlayerGhostHealthManager : MonoBehaviour
 
     [Header("Game Over")]
     [SerializeField] private GameObject gameOverPanel;
-    [SerializeField] SavePoints savePoints;
     [SerializeField] private float ghostTimer;
     [SerializeField] private float ghostTimeLimit;
 
@@ -188,7 +187,7 @@ public class PlayerGhostHealthManager : MonoBehaviour
         ghostTimer = 0f;
         gameOverPanel.SetActive(false);
         Time.timeScale = 1f;
-        savePoints.PlayerRespawn();
+        SavePoints.instance.PlayerRespawn();
     }
 
     public void TakeDamage(float damageAmount)

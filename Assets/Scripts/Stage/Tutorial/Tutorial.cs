@@ -6,10 +6,9 @@ using UnityEngine;
 
 public class Tutorial : MonoBehaviour
 {
-    [SerializeField] DialogSystem dialogSystem;
+    private DialogSystem dialogSystem => DialogSystem.instance;
     [SerializeField] GameObject CamCollider;
     [SerializeField] CinemachineVirtualCamera mirrorCam;
-    [SerializeField] PlayerComponents playerStateMachine;
     CinemachineStateDrivenCamera stateCam;
     Animator animator;
     

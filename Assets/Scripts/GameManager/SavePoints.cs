@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class SavePoints : MonoBehaviour
 {
+    public static SavePoints instance;
     public Transform[] savePoints;
     [SerializeField] private Transform normalPlayer;
-    [SerializeField] private PlayerComponents playerStateMachine;
     [SerializeField] private PlayerInteractionController playerInteractionController;
     int currentStage = 0;
 
+    private void Awake()
+    {
+        if (instance == null) instance = this;
+        else Destroy(instance);
+    }
     void Start()
     {
         PlayerRespawn();

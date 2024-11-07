@@ -32,7 +32,6 @@ public class PlayerComponents : MonoBehaviour
 
     #region OTHER VARIABLES
     [Header("Other Variables")]
-    [SerializeField] private DialogSystem dialogSystem;
     [SerializeField] protected Inventory inventory;
     private PlayerInput playerInput;
     #endregion

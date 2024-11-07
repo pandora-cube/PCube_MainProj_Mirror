@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class PlayerTutorial : MonoBehaviour
 {
-    [SerializeField] Tutorial tuto;
-    [SerializeField] string funcName;
-    private bool tutoPlay = true;
+    private TutorialManager tutorial => TutorialManager.instance;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (tutoPlay && collision.CompareTag("Player"))
+        if (!tutorial.isTutoPlaying && collision.CompareTag("Player"))
         {
-            tutoPlay = false;
-            tuto.StartCoroutine(funcName);
+            tutorial.isTutoPlaying = true;
+            tutorial.StartTutorialDialog();
         }
     }
 }

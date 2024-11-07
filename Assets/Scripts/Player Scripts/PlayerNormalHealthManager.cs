@@ -9,7 +9,6 @@ public class PlayerNormalHealthManager : MonoBehaviour
     public bool isAttacked {get; set;}
     [Header("Game Over")]
     [SerializeField] private GameObject gameOverPanel;
-    [SerializeField] SavePoints savePoints;
 
     const int OBSTACLE_LAYER = 9;
     
@@ -46,6 +45,6 @@ public class PlayerNormalHealthManager : MonoBehaviour
         currentHealth = maxHealth;
         gameOverPanel.SetActive(false);
         Time.timeScale = 1f;
-        savePoints.PlayerRespawn();
+        SavePoints.instance.PlayerRespawn();
     }
 }
