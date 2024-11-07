@@ -19,7 +19,7 @@ public class PlayerTutorial : MonoBehaviour
         StartCoroutine(StartTutorialDialog());
     }
 
-    public IEnumerator StartTutorialDialog()
+    public virtual IEnumerator StartTutorialDialog()
     {
         if (dollyTrack != null) dollyTrack.ActivateMyDollyTrack();
 
