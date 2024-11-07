@@ -68,5 +68,4 @@ public class PlayerJumpController : MonoBehaviour
 
         Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Bridge"), false);
     }
-
 }
