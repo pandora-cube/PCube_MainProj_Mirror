@@ -82,6 +82,7 @@ GameObject:
   m_Component:
   - component: {fileID: 514605029785029832}
   - component: {fileID: 1846033761367240345}
+  - component: {fileID: 8439732301579802663}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -116,6 +117,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8439732301579802663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3833320228053371280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e8b78ac948f05a46a6d8339a503172b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4042797272940785890
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,8 +155,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4042797272940785890}
-  m_LocalRotation: {x: -0, y: 0.70425594, z: -0, w: 0.7099463}
-  m_LocalPosition: {x: -63.598106, y: -12.462355, z: 0.105624706}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -126.1, y: -19.5, z: 5.5556574}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -167,7 +180,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 20
+  m_Priority: 0
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
@@ -197,7 +210,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4042797272940785890}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
   m_Name: 
@@ -423,7 +436,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6620739716063841034}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -36.398697, y: -6.344508, z: -9.782238}
+  m_LocalPosition: {x: -86.3987, y: -9.344508, z: -9.782238}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -453,7 +466,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 12.5
+    OrthographicSize: 20
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -512,7 +525,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6678314664485013040}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -36.398697, y: -5.694508, z: -9.782238}
+  m_LocalPosition: {x: -86.3987, y: -8.694508, z: -9.782238}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -542,7 +555,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 12.5
+    OrthographicSize: 20
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -648,7 +661,11 @@ MonoBehaviour:
   m_AnimatedTarget: {fileID: 2465962817529703972}
   m_LayerIndex: 0
   m_ShowDebugText: 0
-  m_ChildCameras: []
+  m_ChildCameras:
+  - {fileID: 6492213904395321440}
+  - {fileID: 7345085046030002597}
+  - {fileID: 6360333183879639443}
+  - {fileID: 7536118925983821455}
   m_Instructions:
   - m_FullHash: 1335687422
     m_VirtualCamera: {fileID: 6492213904395321440}
@@ -660,6 +677,10 @@ MonoBehaviour:
     m_MinDuration: 0
   - m_FullHash: -619888154
     m_VirtualCamera: {fileID: 6360333183879639443}
+    m_ActivateAfter: 0
+    m_MinDuration: 0
+  - m_FullHash: -1416298237
+    m_VirtualCamera: {fileID: 7536118925983821455}
     m_ActivateAfter: 0
     m_MinDuration: 0
   m_DefaultBlend:
@@ -678,6 +699,8 @@ MonoBehaviour:
   - m_Hash: -619888154
     m_ParentHash: 756556552
   - m_Hash: 57509620
+    m_ParentHash: 756556552
+  - m_Hash: -1416298237
     m_ParentHash: 756556552
 --- !u!95 &2465962817529703972
 Animator:
@@ -712,11 +735,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7249f22665ee1f54fa4790edb061fb30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 0
-  timeElapsed: 0
   normalCamera: {fileID: 6492213904395321440}
   ghostCamera: {fileID: 7345085046030002597}
   peekCamera: {fileID: 6360333183879639443}
+  ProductionCamera: {fileID: 0}
 --- !u!114 &319733641932186557
 MonoBehaviour:
   m_ObjectHideFlags: 0

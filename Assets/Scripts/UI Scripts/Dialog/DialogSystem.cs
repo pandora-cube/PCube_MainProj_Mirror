@@ -43,7 +43,6 @@ public class DialogSystem : MonoBehaviour
     private DialogList dialogLists = new DialogList();
     private int currentID = 0;
     private int currentDialogScene = 0;
-    private bool firstDialog = true;
 
     private PlayerInput playerInput;
     private PlayerStateMachine PlayerState => PlayerStateMachine.instance;
@@ -79,15 +78,9 @@ public class DialogSystem : MonoBehaviour
         else Debug.LogError("No JSON file assigned in the inspector.");
     }
 
-    public void StartDialog() // 현재 currentID부터 한 타임 대화 시작
-    {
-        currentDialogScene = dialogLists.dialog[currentID].dialogScene;
-        firstDialog = true;
-        StartCoroutine(DialogProgress());
-    }
-
     public IEnumerator DialogProgress()
     {
+        currentDialogScene = dialogLists.dialog[currentID].dialogScene;
         PlayerState.canMove = false; // player 움직임 제어
         
         // 한 대화 씬 (같은 dialgScene 동안 반복)

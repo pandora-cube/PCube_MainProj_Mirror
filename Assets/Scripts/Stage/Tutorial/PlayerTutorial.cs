@@ -4,13 +4,28 @@ using UnityEngine;
 
 public class PlayerTutorial : MonoBehaviour
 {
-    private TutorialManager tutorial => TutorialManager.instance;
+    private DialogSystem dialogSystem => DialogSystem.instance;
+    private CinemachineDollyTrack dollyTrack;
+    bool thisTutoPlaying = false;
+
+    private void Start()
+    {
+        dollyTrack = GetComponent<CinemachineDollyTrack>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!tutorial.isTutoPlaying && collision.CompareTag("Player"))
+        if (!thisTutoPlaying && collision.CompareTag("Player"))
         {
-            tutorial.isTutoPlaying = true;
-            tutorial.StartTutorialDialog();
+            thisTutoPlaying = true;
+            StartCoroutine(StartTutorialDialog());
         }
+    }
+
+    public IEnumerator StartTutorialDialog()
+    {
+        if (dollyTrack != null) dollyTrack.ActivateMyDollyTrack();
+        yield return dialogSystem.StartCoroutine(dialogSystem.DialogProgress());
+        if (dollyTrack != null) dollyTrack.ExitCameraProduction();
     }
 }
