@@ -5,8 +5,6 @@ using UnityEngine;
 
 public abstract class EnemyBehaviour : MonoBehaviour
 {
-    protected BoxCollider2D boxCollider2D;
-
     [SerializeField] protected float playerDetectionRadius;
     [SerializeField] protected float attackDamage;
     protected float attackDelay;

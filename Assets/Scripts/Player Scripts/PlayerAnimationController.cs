@@ -25,6 +25,7 @@ public class PlayerAnimationController : MonoBehaviour
         ghostAttack1,
         ghostAttack2,
         ghostAttack3,
+        ghostParry
     }    
 
     void Awake()

@@ -677,9 +677,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationName: radixAttack
-  startFrame: 10
+  startFrame: 5
   endFrame: 20
-  parryForce: 20
+  parryForce: 10
 --- !u!212 &7887781373187730685
 SpriteRenderer:
   m_ObjectHideFlags: 0

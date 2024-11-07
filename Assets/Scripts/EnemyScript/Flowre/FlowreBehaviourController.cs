@@ -12,7 +12,6 @@ public class FlowreBehaviourController : EnemyBehaviour
     void Awake()
     {
         animationController = GetComponent<FlowreAnimationController>();
-        boxCollider2D.enabled = false;
     }
 
     protected virtual void Start()
@@ -37,7 +36,6 @@ public class FlowreBehaviourController : EnemyBehaviour
 
     protected void Close()
     {
-        boxCollider2D.enabled = false;
         animationController.ChangeAnimationState(FlowreAnimationController.FlowreAnimationStates.flowreClosed);
     }
 

@@ -57,14 +57,15 @@ public class Parryable : MonoBehaviour
         else parryable = false;
     }
 
-    public void AttemptParry()
+    public bool AttemptParry()
     {
-        if (parryable) OnParrySuccess();
+        if (parryable)  OnParrySuccess();
+
+        return parryable;
     }
 
     void OnParrySuccess()
     {
-        Debug.Log("FUCK YEAH!");
         Vector2 pushDirection = (transform.position - PlayerStateMachine.instance.transform.position).normalized;
         rb.AddForce(pushDirection * parryForce, ForceMode2D.Impulse);
     }
