@@ -18,6 +18,13 @@ public class CinemachineDollyTrack : MonoBehaviour
         cameraController.StartProductionCamera();
     }
 
+    void Update()
+    {
+        // 카메라의 회전을 고정 (2D에서는 Z축만 고정)
+        dollyCamera.transform.rotation = Quaternion.Euler(0f, 0f, dollyCamera.transform.eulerAngles.z);
+    }
+
+
     public void ExitCameraProduction()
     {
         cameraController.ReturnCameraPosition();
