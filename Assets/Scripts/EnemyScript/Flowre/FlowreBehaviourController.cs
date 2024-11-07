@@ -11,7 +11,6 @@ public class FlowreBehaviourController : EnemyBehaviour
 
     void Awake()
     {
-        base.Awake();
         animationController = GetComponent<FlowreAnimationController>();
         boxCollider2D.enabled = false;
     }

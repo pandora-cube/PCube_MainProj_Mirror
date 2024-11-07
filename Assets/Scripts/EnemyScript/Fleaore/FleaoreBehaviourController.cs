@@ -13,11 +13,8 @@ public class FleaoreBehaviourController : EnemyBehaviour
     private bool isAttacked = false;
     private bool isStunned = false;
 
-#pragma warning disable CS0108 // Member hides inherited member; missing new keyword
     void Awake()
-#pragma warning restore CS0108 // Member hides inherited member; missing new keyword
     {
-        base.Awake();
         animationController = GetComponent<FleaoreAnimationController>();
         connectedVine = GetComponentInChildren<Vine>();
         damageable = GetComponent<Damageable>();
@@ -32,8 +29,7 @@ public class FleaoreBehaviourController : EnemyBehaviour
     {
         if (isStunned) return;
 
-        if (PlayerState.isNormal || isAttacked) Close();
-        else if (PlayerState.isGhost) DetectPlayer();
+        if (PlayerState.isGhost) DetectPlayer();
     }
 
     public override IEnumerator TriggerAttackAnimation()
@@ -63,11 +59,5 @@ public class FleaoreBehaviourController : EnemyBehaviour
         isStunned = false;
         damageable.currentHealth = damageable.maxHealth;
         //TODO: Add anim for revival
-    }
-
-
-    void Close()
-    {
-        boxCollider2D.enabled = false;
     }
 }

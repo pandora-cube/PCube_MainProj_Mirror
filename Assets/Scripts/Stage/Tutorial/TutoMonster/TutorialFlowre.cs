@@ -28,5 +28,4 @@ public class TutorialFlowre : FlowreBehaviourController
     {
         yield return base.TriggerAttackAnimation();  
     }
-
 }

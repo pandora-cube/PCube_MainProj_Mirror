@@ -50,7 +50,7 @@ public class PlayerAttackManager : MonoBehaviour
         else comboAttackNumber--;
     }
 
-    
+
     private void TriggerAttackAnimation()
     {
         switch (comboAttackNumber)
@@ -64,13 +64,10 @@ public class PlayerAttackManager : MonoBehaviour
 
     public void HandleAttackCollision(Collider2D collision)
     {
-        if (collision.gameObject.layer == ATTACKABLE_LAYER)
-        {
-            Damageable damageable = collision.gameObject.GetComponent<Damageable>();
-            if (damageable != null)
-            {
-                damageable.TakeDamage(1);
-            }
-        }
+
+        Damageable damageable = collision.gameObject.GetComponent<Damageable>();
+        if (damageable == null) return;
+
+        damageable.TakeDamage(1);
     }
 }

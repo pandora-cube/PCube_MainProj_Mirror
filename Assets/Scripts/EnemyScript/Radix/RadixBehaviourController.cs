@@ -13,17 +13,11 @@ public class RadixBehaviour : EnemyBehaviour
 
     [SerializeField] private FleaoreBehaviourController[] connectedFleaore;
 
-    void Awake()
-    {
-        base.Awake();
-    }
     
     void Start()
     {
         playerComponents = FindObjectOfType<PlayerComponents>();
         animator = GetComponentInChildren<RadixAnimationController>();
-        boxCollider2D = GetComponent<BoxCollider2D>();
-        boxCollider2D.enabled = false;
 
         attackDelay = animator.GetAnimationStateLength(RadixAnimationController.RadixAnimationStates.radixAttack);
         animator.ChangeAnimationState(RadixAnimationController.RadixAnimationStates.radixIdle);
@@ -54,7 +48,6 @@ public class RadixBehaviour : EnemyBehaviour
     {
         yield return new WaitForSeconds(emergeDelay);
         isEmerged = true;
-        boxCollider2D.enabled = true;
     }
 
     private void MoveTowardsPlayer()

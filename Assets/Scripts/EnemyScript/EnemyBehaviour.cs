@@ -7,8 +7,6 @@ public abstract class EnemyBehaviour : MonoBehaviour
 {
     protected BoxCollider2D boxCollider2D;
 
-    public const int PLAYER_LAYER = 3;
-
     [SerializeField] protected float playerDetectionRadius;
     [SerializeField] protected float attackDamage;
     protected float attackDelay;
@@ -16,24 +14,12 @@ public abstract class EnemyBehaviour : MonoBehaviour
     [SerializeField] protected bool isAttacking;
 
     private Coroutine attackCoroutine;
-    
-    protected void Awake()
-    {
-        boxCollider2D = GetComponent<BoxCollider2D>();
-    }
 
-    protected void Start()
-    {
-        
-    }
-    
     protected void DetectPlayer()
     {
         if (isAttacking) return;
 
-        boxCollider2D.enabled = true;
-
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, playerDetectionRadius, 1 << PLAYER_LAYER);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, playerDetectionRadius);
 
         foreach (Collider2D hitCollider in hitColliders)
         {

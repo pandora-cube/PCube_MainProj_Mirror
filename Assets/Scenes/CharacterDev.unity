@@ -3257,7 +3257,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 12.5
+  orthographic size: 20
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3406,25 +3406,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 484747842376672808, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 964529266230998606, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
       propertyPath: cinemachineVirtualCamera
       value: 
       objectReference: {fileID: 1349191622}
+    - target: {fileID: 1363549605767737251, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 2623866325261710830, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
       propertyPath: m_ActionEvents.Array.size
-      value: 9
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2623866325261710830, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
       propertyPath: m_ActionEvents.Array.data[9].m_ActionId
-      value: 8c4b66fc-08b6-43a2-9ef7-a080f661f4e5
+      value: 78f69579-76aa-4c55-8943-25efff318e5c
+      objectReference: {fileID: 0}
+    - target: {fileID: 2623866325261710830, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_ActionId
+      value: adb95178-f0e8-4e47-abca-b071d300e826
+      objectReference: {fileID: 0}
+    - target: {fileID: 2623866325261710830, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_ActionId
+      value: 05470aa5-9674-4895-88ae-fc2ed56e8ee3
       objectReference: {fileID: 0}
     - target: {fileID: 2623866325261710830, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
       propertyPath: m_ActionEvents.Array.data[9].m_ActionName
-      value: PlayerActions/Jump Down[/Keyboard/downArrow,/Keyboard/space]
+      value: PlayerActions/Pause[/Keyboard/escape]
+      objectReference: {fileID: 0}
+    - target: {fileID: 2623866325261710830, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_ActionName
+      value: PlayerActions/Parry[/Keyboard/shift]
+      objectReference: {fileID: 0}
+    - target: {fileID: 2623866325261710830, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_ActionName
+      value: UI Actions/Pause[/Keyboard/escape]
       objectReference: {fileID: 0}
     - target: {fileID: 2623866325261710830, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
       propertyPath: m_ActionEvents.Array.data[9].m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2623866325261710830, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
       propertyPath: m_ActionEvents.Array.data[9].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -3494,9 +3518,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3430430844043821422, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 3609746959419466173, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4497145432123883104, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 5824343611764768133, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
       propertyPath: m_Name
       value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 6083986484843730980, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+      propertyPath: m_Layer
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6772371009387974392, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
@@ -3782,7 +3822,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 901638686366473694, guid: c08053190f3555b49bfb5e774cfe1d2d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

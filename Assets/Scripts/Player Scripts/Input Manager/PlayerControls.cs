@@ -116,6 +116,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Parry"",
+                    ""type"": ""Button"",
+                    ""id"": ""adb95178-f0e8-4e47-abca-b071d300e826"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -371,6 +380,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""02b793cf-ddc3-4140-9e57-888366761a22"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Parry"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -439,6 +459,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_Smoke = m_PlayerActions.FindAction("Smoke", throwIfNotFound: true);
         m_PlayerActions_HoldDown = m_PlayerActions.FindAction("Hold Down", throwIfNotFound: true);
         m_PlayerActions_Pause = m_PlayerActions.FindAction("Pause", throwIfNotFound: true);
+        m_PlayerActions_Parry = m_PlayerActions.FindAction("Parry", throwIfNotFound: true);
         // UI Actions
         m_UIActions = asset.FindActionMap("UI Actions", throwIfNotFound: true);
         m_UIActions_Pause = m_UIActions.FindAction("Pause", throwIfNotFound: true);
@@ -513,6 +534,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Smoke;
     private readonly InputAction m_PlayerActions_HoldDown;
     private readonly InputAction m_PlayerActions_Pause;
+    private readonly InputAction m_PlayerActions_Parry;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -527,6 +549,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Smoke => m_Wrapper.m_PlayerActions_Smoke;
         public InputAction @HoldDown => m_Wrapper.m_PlayerActions_HoldDown;
         public InputAction @Pause => m_Wrapper.m_PlayerActions_Pause;
+        public InputAction @Parry => m_Wrapper.m_PlayerActions_Parry;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -566,6 +589,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @Parry.started += instance.OnParry;
+            @Parry.performed += instance.OnParry;
+            @Parry.canceled += instance.OnParry;
         }
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
@@ -600,6 +626,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @Parry.started -= instance.OnParry;
+            @Parry.performed -= instance.OnParry;
+            @Parry.canceled -= instance.OnParry;
         }
 
         public void RemoveCallbacks(IPlayerActionsActions instance)
@@ -693,6 +722,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnSmoke(InputAction.CallbackContext context);
         void OnHoldDown(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnParry(InputAction.CallbackContext context);
     }
     public interface IUIActionsActions
     {
