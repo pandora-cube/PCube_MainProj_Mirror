@@ -13,7 +13,7 @@ public class PlayerTutorial : MonoBehaviour
         dollyTrack = GetComponent<CinemachineDollyTrack>();
     }
 
-    protected virtual void PlayTutorial()
+    public virtual void PlayTutorial()
     {
         thisTutoPlaying = true;
         StartCoroutine(StartTutorialDialog());
@@ -24,13 +24,12 @@ public class PlayerTutorial : MonoBehaviour
         if (dollyTrack != null) dollyTrack.ActivateMyDollyTrack();
 
         yield return dialogSystem.StartCoroutine(dialogSystem.DialogProgress());
-
-        if (dollyTrack != null) dollyTrack.ExitCameraProduction();
+        
         ExitTutorial();
     }
 
-    protected virtual void ExitTutorial()
+    public virtual void ExitTutorial()
     {
-        
+        if (dollyTrack != null) dollyTrack.ExitCameraProduction();
     }
 }

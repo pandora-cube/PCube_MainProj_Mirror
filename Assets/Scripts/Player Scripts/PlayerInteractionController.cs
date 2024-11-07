@@ -79,7 +79,9 @@ public class PlayerInteractionController : MonoBehaviour
         PlayerState.isNormal = !PlayerState.isNormal;
         PlayerState.isGhost = !PlayerState.isGhost;
 
-        PlayerCameraController.instance.ReturnCameraPosition();
+        if (!PlayerCameraController.instance.isProducting)
+            PlayerCameraController.instance.ReturnCameraPosition();
+
         playerComponents.normalGameObject.SetActive(PlayerState.isNormal); playerComponents.ghostGameObject.SetActive(PlayerState.isGhost);
         if (PlayerState.isGhost) inventory.ClearInventory();
     }

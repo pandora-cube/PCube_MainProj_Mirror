@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerCameraController : MonoBehaviour
 {
     public static PlayerCameraController instance;
-
+    public bool isProducting = false; 
     //[SerializeField] private float direction;
     //[SerializeField] private float timeElapsed = 0f;
     //private float timeNeeded = 1.5f;
@@ -91,11 +91,13 @@ public class PlayerCameraController : MonoBehaviour
     //}
     public void ReturnCameraPosition()
     {
+        isProducting = false;
         if (PlayerState.isNormal) animator.Play("NormalDefault");
         else animator.Play("GhostDefault");
     }
     public void StartProductionCamera()
     {
+        isProducting = true;
         animator.Play("Production");
     }
 }
