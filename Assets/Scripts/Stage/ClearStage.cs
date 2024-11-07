@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class ClearStage : MonoBehaviour, IInteractable
 {
-    [SerializeField] private string interactText;
-    [SerializeField] private Inventory inventory;
     [SerializeField] private Item item;
     private BoxCollider2D collid;
+
+    private Inventory inventory => Inventory.instance;
 
     private void Start()
     {
@@ -37,12 +37,7 @@ public class ClearStage : MonoBehaviour, IInteractable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(item == null && collision.CompareTag("Player")) ClearStageSave();
-    }
-
-    public string GetInteractText()
-    {
-        return interactText;
+        if (item == null && collision.CompareTag("Player")) ClearStageSave();
     }
 
     public Transform GetTransform()
