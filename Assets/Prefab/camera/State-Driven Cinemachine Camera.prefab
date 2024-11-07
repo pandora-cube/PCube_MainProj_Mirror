@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2633292461989738205}
   - component: {fileID: 6360333183879639443}
+  - component: {fileID: 2971587395406076270}
   m_Layer: 0
   m_Name: Peek Virtual Camera
   m_TagString: Untagged
@@ -55,7 +56,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 12.5
+    OrthographicSize: 20
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -72,6 +73,21 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 324698196331580967}
+--- !u!114 &2971587395406076270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506279585200422105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BoundingShape2D: {fileID: 0}
+  m_Damping: 0.5
+  m_MaxWindowSize: -1
 --- !u!1 &3833320228053371280
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,6 +796,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7249f22665ee1f54fa4790edb061fb30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isProducting: 0
+  direction: 0
+  timeElapsed: 0
   normalCamera: {fileID: 6492213904395321440}
   ghostCamera: {fileID: 7345085046030002597}
   peekCamera: {fileID: 6360333183879639443}

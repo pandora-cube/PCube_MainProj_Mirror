@@ -458,7 +458,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: State-Driven Cinemachine Camera
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4174273551096155581, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

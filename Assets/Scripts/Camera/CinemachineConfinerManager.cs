@@ -10,10 +10,6 @@ public class CinemachineConfinerManager : MonoBehaviour
     int currentStage;
     int newStage;
 
-    void Awake()
-    {
-
-    }
     void Start()
     {
         currentStage = ProgressData.Instance.playerData.currentStage;
@@ -28,6 +24,8 @@ public class CinemachineConfinerManager : MonoBehaviour
         }
 
     }
+
+
     void Update()
     {
         newStage = ProgressData.Instance.playerData.currentStage;
@@ -37,13 +35,12 @@ public class CinemachineConfinerManager : MonoBehaviour
             CinemachineConfiner2D[] confiners = GetComponentsInChildren<CinemachineConfiner2D>();
             foreach (CinemachineConfiner2D confiner in confiners)
             {
-                if (confiner != null)
-                {
-                    confiner.m_BoundingShape2D = confiner2D[currentStage - 1];
-                }
-            }
-            playerHorizontalMovement.currentConfinerCollider = confiner2D[currentStage - 1];
+                if (confiner == null) continue;
 
+                confiner.m_BoundingShape2D = confiner2D[currentStage - 1];
+            }
         }
+        playerHorizontalMovement.currentConfinerCollider = confiner2D[currentStage - 1];
+
     }
 }
