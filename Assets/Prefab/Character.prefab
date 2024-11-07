@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 3308553549901306974}
   - component: {fileID: 7887066606943191244}
   - component: {fileID: 6709156460315151056}
+  - component: {fileID: 6386194834656936546}
   m_Layer: 3
   m_Name: Glasya
   m_TagString: Untagged
@@ -137,6 +138,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6386194834656936546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621062538630150658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1888837505f7f14aa16788be763b68e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastMoveTime: 0
+  timeElapsed: 0
+  movementDelayTime: 0
+  dynamicSpeed: 0
 --- !u!1 &789928501719112532
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,7 +411,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3367467547188870502}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerNormalHealthManager, Assembly-CSharp
         m_MethodName: ReadyToRestart
         m_Mode: 1
@@ -692,7 +709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 7965116132896395813}
-  inventory: {fileID: 6874673845299253127}
+  inventory: {fileID: 2918511752632775971}
   NameText: {fileID: 2738812591777510140}
   InfoText: {fileID: 8037551300431985473}
   InfoScreen: {fileID: 6869943870109066890}
@@ -1231,7 +1248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 7182026175986817469}
-  inventory: {fileID: 6874673845299253127}
+  inventory: {fileID: 0}
   NameText: {fileID: 2738812591777510140}
   InfoText: {fileID: 8037551300431985473}
   InfoScreen: {fileID: 6869943870109066890}
@@ -1281,7 +1298,7 @@ Transform:
   - {fileID: 3308553549901306974}
   - {fileID: 3472490331342985577}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3727536533077897045
 MonoBehaviour:
@@ -1328,8 +1345,7 @@ MonoBehaviour:
   itemLayer:
     serializedVersion: 2
     m_Bits: 0
-  dialogSystem: {fileID: 0}
-  inventory: {fileID: 6874673845299253127}
+  inventory: {fileID: 2918511752632775971}
 --- !u!114 &8159355029487188009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1343,7 +1359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 0
-  normalSpeed: 5
+  normalSpeed: 15
   ghostSpeed: 10
   currentConfinerCollider: {fileID: 0}
   trailRenderer: {fileID: 547016282715293714}
@@ -1581,7 +1597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 4f214c585c601074ab75499436c0259a, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -1595,8 +1611,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2652426612113270752}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+      - m_Target: {fileID: 8159355029487188009}
+        m_TargetAssemblyTypeName: PlayerHorizontalMovement, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -1611,8 +1627,8 @@ MonoBehaviour:
     m_ActionName: PlayerActions/Movement[/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2652426612113270752}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+      - m_Target: {fileID: 8317366783203270412}
+        m_TargetAssemblyTypeName: PlayerJumpController, Assembly-CSharp
         m_MethodName: OnJump
         m_Mode: 0
         m_Arguments:
@@ -1627,8 +1643,8 @@ MonoBehaviour:
     m_ActionName: PlayerActions/Jump[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2652426612113270752}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+      - m_Target: {fileID: 2479215063350025011}
+        m_TargetAssemblyTypeName: PlayerInteractionController, Assembly-CSharp
         m_MethodName: OnInteract
         m_Mode: 0
         m_Arguments:
@@ -1643,9 +1659,9 @@ MonoBehaviour:
     m_ActionName: PlayerActions/Interact[/Keyboard/alt]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2652426612113270752}
+      - m_Target: {fileID: 5824343611764768133}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnCrawl
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1659,8 +1675,8 @@ MonoBehaviour:
     m_ActionName: PlayerActions/Crawl[/Keyboard/c]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2652426612113270752}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+      - m_Target: {fileID: 7455220167819976435}
+        m_TargetAssemblyTypeName: PlayerAttackManager, Assembly-CSharp
         m_MethodName: OnAttack
         m_Mode: 0
         m_Arguments:
@@ -1687,21 +1703,9 @@ MonoBehaviour:
     m_ActionName: PlayerActions/Smoke[/Keyboard/s]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2652426612113270752}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnHoldDown
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnPressUpOrDown
+        m_TargetAssemblyTypeName: PlayerCameraController, Assembly-CSharp
+        m_MethodName: OnHoldDown
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1761,7 +1765,6 @@ GameObject:
   - component: {fileID: 869793278093406168}
   - component: {fileID: 1455752272669314600}
   - component: {fileID: 6031092596345988927}
-  - component: {fileID: 3367467547188870502}
   - component: {fileID: 4195761594226088202}
   - component: {fileID: 6812376800535443980}
   m_Layer: 3
@@ -1867,25 +1870,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &3367467547188870502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6083986484843730980}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ed4cb3a04fca0f4fa676a10081ccdef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <maxHealth>k__BackingField: 0
-  <currentHealth>k__BackingField: 0
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  gameOverPanel: {fileID: 4102675401255510411}
-  savePoints: {fileID: 0}
 --- !u!70 &4195761594226088202
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2088,7 +2072,6 @@ GameObject:
   - component: {fileID: 8197000859236343073}
   - component: {fileID: 4618158686245514877}
   - component: {fileID: 5829149957482909949}
-  - component: {fileID: 6874673845299253127}
   m_Layer: 3
   m_Name: Slots
   m_TagString: Untagged
@@ -2157,24 +2140,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6874673845299253127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6636038154849341944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37b3542a8d2ce2e4d844c89cb1464795, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  items: []
-  slotParent: {fileID: 8197000859236343073}
-  slots:
-  - {fileID: 7192006961366880943}
-  - {fileID: 1836431479995073259}
-  - {fileID: 8656799385544903197}
 --- !u!1 &6766785769586561036
 GameObject:
   m_ObjectHideFlags: 0
@@ -2457,7 +2422,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   gameOverPanel: {fileID: 4102675401255510411}
-  savePoints: {fileID: 0}
   ghostTimer: 0
   ghostTimeLimit: 60
   isTakingDamage: 0
@@ -2987,7 +2951,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 3465947310958218086}
-  inventory: {fileID: 6874673845299253127}
+  inventory: {fileID: 0}
   NameText: {fileID: 2738812591777510140}
   InfoText: {fileID: 8037551300431985473}
   InfoScreen: {fileID: 6869943870109066890}

@@ -11,19 +11,17 @@ public class PlayerJumpController : MonoBehaviour
     public float jumpForce = 5f;
     bool isHoldingDown = false;
 
-    PlayerGroundChecker playerGroundChecker;
     PlayerComponents playerComponents;
     PlayerStateMachine PlayerState => PlayerStateMachine.instance;
 
     void Awake()
     {
-        playerGroundChecker = GetComponent<PlayerGroundChecker>();
         playerComponents = GetComponent<PlayerComponents>();
     }
 
-    public void OnJump(InputValue value)
+    public void OnJump(InputAction.CallbackContext value)
     {
-        float input = value.Get<float>();
+        float input = value.ReadValue<float>();
         if (!PlayerState.isGrounded || input <= 0) return;
 
         if (isHoldingDown)

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 public class PlayerHorizontalMovement : MonoBehaviour
 {
@@ -66,11 +67,11 @@ public class PlayerHorizontalMovement : MonoBehaviour
         }
     }
 
-    public void OnMove(InputValue value)
+    public void OnMove(InputAction.CallbackContext value)
     {
         if (isDashing) return;
 
-        direction = value.Get<float>();
+        direction = value.ReadValue<float>();
 
         TriggerWalkAnimation();
     }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,11 +8,12 @@ using UnityEngine.InputSystem;
 public class PlayerCameraController : MonoBehaviour
 {
     public static PlayerCameraController instance;
-    public bool isProducting = false; 
-    //[SerializeField] private float direction;
-    //[SerializeField] private float timeElapsed = 0f;
-    //private float timeNeeded = 1.5f;
-    //private bool isPeeking = false;
+    public bool isProducting = false;
+    [SerializeField] private float direction;
+    [SerializeField] private float timeElapsed = 0f;
+    private float timeNeeded = 1.5f;
+    private bool isPeeking = false;
+    string currentState;
 
     [SerializeField] private CinemachineVirtualCamera normalCamera;
     [SerializeField] private CinemachineVirtualCamera ghostCamera;
@@ -20,7 +22,7 @@ public class PlayerCameraController : MonoBehaviour
 
     private Animator animator;
     private PlayerStateMachine PlayerState => PlayerStateMachine.instance;
-    //private Vector3 peekCameraFinalPosition;
+    private Vector3 peekCameraFinalPosition;
 
     void Awake()
     {
@@ -30,74 +32,81 @@ public class PlayerCameraController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    //void Update()
-    //{
-    //    if (Mathf.Approximately(direction, 0f)) StopPeekOverEdge(direction);
-    //    else StartPeekOverEdge(direction);
-    //}
+    void Update()
+    {
+        if (Mathf.Approximately(direction, 0f)) StopPeeking();
+        else StartPeeking();
+    }
 
-    //public void OnPressUpOrDown(InputAction.CallbackContext ctx)
-    //{
-    //    direction = ctx.ReadValue<float>();
-    //}
+    public void OnHoldDown(InputAction.CallbackContext input)
+    {
+        direction = input.ReadValue<float>();
+    }
 
-    // void StartPeekOverEdge(float peekDirection)
-    //{
-    //    if (!PlayerState.isGrounded) return;
+    void StartPeeking()
+    {
+        if (!PlayerState.isGrounded) return;
 
-    //    timeElapsed += Time.deltaTime;
+        timeElapsed += Time.deltaTime;
 
-    //    if (timeElapsed >= timeNeeded)
-    //    {
-    //        if (PlayerState.isNormal) peekCamera.transform.position = normalCamera.transform.position;
-    //        else if (PlayerState.isGhost) peekCamera.transform.position = ghostCamera.transform.position;
-    //        peekCamera.transform.position += new Vector3(0f, -2f);
+        if (timeElapsed >= timeNeeded)
+        {
+            SetPeekCameraPosition();
+            peekCameraFinalPosition = peekCamera.transform.position;
 
-    //        peekCameraFinalPosition = peekCamera.transform.position;
+            ChangeAnimationState("Peeking");
 
-    //        animator.Play("Peeking");
+            isPeeking = true;
+            timeElapsed = 0f;
+        }
+    }
 
-    //        isPeeking = true;
-    //        timeElapsed = 0f;
-    //    }
-    //}
+    void SetPeekCameraPosition()
+    {
+        if      (PlayerState.isNormal)  peekCamera.transform.position = normalCamera.transform.position;
+        else if (PlayerState.isGhost)   peekCamera.transform.position = ghostCamera.transform.position;
 
-    //void StopPeekOverEdge(float peekDirection)
-    //{
-    //    if (!isPeeking) return;
+        peekCamera.transform.position += new Vector3(0f, -2f);
+    }
 
-    //    timeElapsed = 0f;
+    void StopPeeking()
+    {
+        if (!isPeeking) return;
 
-    //    if (PlayerState.isNormal)
-    //    {
-    //        normalCamera.transform.position = peekCameraFinalPosition;
-    //    }
-    //    else if (PlayerState.isGhost)
-    //    {
-    //        ghostCamera.transform.position = peekCameraFinalPosition;
-    //    }
+        timeElapsed = 0f;
 
-    //    peekCamera.transform.position = peekCameraFinalPosition;
+        ResetCameraPosition();
 
-    //    if (PlayerState.isNormal)
-    //    {
-    //        animator.Play("NormalDefault");
-    //    }
-    //    else
-    //    {
-    //        animator.Play("GhostDefault");
-    //    }
-    //    isPeeking = false;
-    //}
+        peekCamera.transform.position = peekCameraFinalPosition;
+
+        ReturnCameraPosition();
+        isPeeking = false;
+    }
+
+    void ResetCameraPosition()
+    {
+        if (PlayerState.isNormal) normalCamera.transform.position = peekCameraFinalPosition;
+        else if (PlayerState.isGhost) ghostCamera.transform.position = peekCameraFinalPosition;
+    }
+
     public void ReturnCameraPosition()
     {
         isProducting = false;
-        if (PlayerState.isNormal) animator.Play("NormalDefault");
-        else animator.Play("GhostDefault");
+        if (PlayerState.isNormal) ChangeAnimationState("NormalDefault");
+        else ChangeAnimationState("GhostDefault");
     }
+
     public void StartProductionCamera()
     {
         isProducting = true;
-        animator.Play("Production");
+        ChangeAnimationState("Production");
+    }
+
+    void ChangeAnimationState(string newState)
+    {
+        if (currentState == newState) return;
+
+        animator.Play(newState);
+        currentState = newState;
     }
 }

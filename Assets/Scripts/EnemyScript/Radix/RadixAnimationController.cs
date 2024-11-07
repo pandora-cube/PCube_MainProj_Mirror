@@ -11,9 +11,4 @@ public class RadixAnimationController : EnemyBaseAnimationController<RadixAnimat
         radixMove,
         radixAttack
     }
-
-    void Start()
-    {
-        ChangeAnimationState(RadixAnimationStates.radixIdle);
-    }
 }
