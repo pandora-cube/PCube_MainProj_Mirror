@@ -55,12 +55,6 @@ public class TreePassage : MonoBehaviour, IInteractable
         return null;
     }
 
-    public string GetInteractText()
-    {
-        string text = "Interact";
-        return text;
-    }
-
     public Transform GetTransform()
     {
         return transform;

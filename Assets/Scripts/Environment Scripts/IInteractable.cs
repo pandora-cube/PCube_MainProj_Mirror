@@ -14,8 +14,6 @@ public interface IInteractable
     /// Function that sets the interaction UI text
     /// </summary>
     /// <returns>string that shows up for the interaction UI</returns>
-    string GetInteractText();
-
 
     Transform GetTransform();
 }

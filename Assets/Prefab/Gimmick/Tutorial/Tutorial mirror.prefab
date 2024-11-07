@@ -14,15 +14,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6681431396476874125, guid: b3717393feed45a4691cd2d0daf2f557, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -62.216995
+      value: -4.8916416
       objectReference: {fileID: 0}
     - target: {fileID: 6681431396476874125, guid: b3717393feed45a4691cd2d0daf2f557, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.716529
+      value: 1.7667274
       objectReference: {fileID: 0}
     - target: {fileID: 6681431396476874125, guid: b3717393feed45a4691cd2d0daf2f557, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.95256984
+      value: 0.15953541
       objectReference: {fileID: 0}
     - target: {fileID: 6681431396476874125, guid: b3717393feed45a4691cd2d0daf2f557, type: 3}
       propertyPath: m_LocalRotation.w
@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7862947939470275594, guid: b3717393feed45a4691cd2d0daf2f557, type: 3}
       propertyPath: m_Name
-      value: mirror Variant
+      value: Tutorial mirror
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 934212369854620872, guid: b3717393feed45a4691cd2d0daf2f557, type: 3}
@@ -82,6 +82,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf02952907a1b542b2fc587d9a31884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactText: 
-  interactableObject: {fileID: 0}
-  tutorial: {fileID: 0}

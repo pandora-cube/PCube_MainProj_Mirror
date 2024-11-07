@@ -3460,8 +3460,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1670040874}
-  - {fileID: 1692144164}
   - {fileID: 1251334937}
   - {fileID: 1129789662}
   - {fileID: 180694436}
@@ -13061,7 +13059,7 @@ GameObject:
   - component: {fileID: 1454141281}
   - component: {fileID: 1454141284}
   - component: {fileID: 1454141283}
-  - component: {fileID: 1454141282}
+  - component: {fileID: 1454141285}
   m_Layer: 0
   m_Name: tuto2Point
   m_TagString: TutoPosition
@@ -13084,18 +13082,6 @@ Transform:
   m_Father: {fileID: 1953145884}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1454141282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1454141280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8c327f36c04a774ab389d29a7cf776c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &1454141283
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13193,6 +13179,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1454141285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454141280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40732cb4656c42b47858db3c593767f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1455621514
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14370,7 +14368,7 @@ GameObject:
   - component: {fileID: 1600436905}
   - component: {fileID: 1600436908}
   - component: {fileID: 1600436907}
-  - component: {fileID: 1600436906}
+  - component: {fileID: 1600436910}
   - component: {fileID: 1600436909}
   m_Layer: 0
   m_Name: tuto1Point
@@ -14395,18 +14393,6 @@ Transform:
   m_Father: {fileID: 1953145884}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1600436906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1600436904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8c327f36c04a774ab389d29a7cf776c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &1600436907
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14518,6 +14504,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dollyCamera: {fileID: 117532203}
   myDollyTrack: {fileID: 120651082}
+--- !u!114 &1600436910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1600436904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40732cb4656c42b47858db3c593767f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1616282860
 GameObject:
   m_ObjectHideFlags: 0
@@ -14929,19 +14927,11 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 428830855}
+    m_TransformParent: {fileID: 1953145884}
     m_Modifications:
-    - target: {fileID: 2338968493388524375, guid: ff1e8f6b3d394534a99a89e1339f50b2, type: 3}
-      propertyPath: tutorial
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2338968493388524375, guid: ff1e8f6b3d394534a99a89e1339f50b2, type: 3}
-      propertyPath: playerGhostHealthManager
-      value: 
-      objectReference: {fileID: 8454282323713298055}
     - target: {fileID: 4984783239544294530, guid: ff1e8f6b3d394534a99a89e1339f50b2, type: 3}
       propertyPath: m_Name
-      value: Tutorial mirror
+      value: tuto3Point_Tutorial mirror
       objectReference: {fileID: 0}
     - target: {fileID: 8397659675570296069, guid: ff1e8f6b3d394534a99a89e1339f50b2, type: 3}
       propertyPath: m_RootOrder
@@ -14949,15 +14939,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8397659675570296069, guid: ff1e8f6b3d394534a99a89e1339f50b2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -94.7
+      value: -4.8916416
       objectReference: {fileID: 0}
     - target: {fileID: 8397659675570296069, guid: ff1e8f6b3d394534a99a89e1339f50b2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.3176484
+      value: 1.7667274
       objectReference: {fileID: 0}
     - target: {fileID: 8397659675570296069, guid: ff1e8f6b3d394534a99a89e1339f50b2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.3182518
+      value: 0.15953541
       objectReference: {fileID: 0}
     - target: {fileID: 8397659675570296069, guid: ff1e8f6b3d394534a99a89e1339f50b2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -15003,7 +14993,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 428830855}
+    m_TransformParent: {fileID: 1953145884}
     m_Modifications:
     - target: {fileID: 2338968493388524375, guid: ff1e8f6b3d394534a99a89e1339f50b2, type: 3}
       propertyPath: tutorial
@@ -15023,15 +15013,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8397659675570296069, guid: ff1e8f6b3d394534a99a89e1339f50b2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.8
+      value: 120.60836
       objectReference: {fileID: 0}
     - target: {fileID: 8397659675570296069, guid: ff1e8f6b3d394534a99a89e1339f50b2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.736601
+      value: 1.347775
       objectReference: {fileID: 0}
     - target: {fileID: 8397659675570296069, guid: ff1e8f6b3d394534a99a89e1339f50b2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.3182518
+      value: 0.15953541
       objectReference: {fileID: 0}
     - target: {fileID: 8397659675570296069, guid: ff1e8f6b3d394534a99a89e1339f50b2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -16425,6 +16415,8 @@ Transform:
   m_Children:
   - {fileID: 1600436905}
   - {fileID: 1454141281}
+  - {fileID: 1670040874}
+  - {fileID: 1692144164}
   - {fileID: 835365839}
   - {fileID: 2143066275}
   - {fileID: 1010253899}

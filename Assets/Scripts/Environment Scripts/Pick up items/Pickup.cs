@@ -21,11 +21,6 @@ public class Pickup : MonoBehaviour, IInteractable
     
     }
 
-    public string GetInteractText()
-    {
-        return interactText;
-    }
-
     public Transform GetTransform()
     {
         return transform;
