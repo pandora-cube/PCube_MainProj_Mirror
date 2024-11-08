@@ -454,6 +454,10 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 120651083}
+    - target: {fileID: 7536118925983821455, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8478264256086608593, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
       propertyPath: m_Name
       value: State-Driven Cinemachine Camera
@@ -14951,6 +14955,10 @@ PrefabInstance:
       propertyPath: playerGhostHealthManager
       value: 
       objectReference: {fileID: 8454282323713298055}
+    - target: {fileID: 2881302323618884981, guid: ff1e8f6b3d394534a99a89e1339f50b2, type: 3}
+      propertyPath: dollyCamera
+      value: 
+      objectReference: {fileID: 117532203}
     - target: {fileID: 4984783239544294530, guid: ff1e8f6b3d394534a99a89e1339f50b2, type: 3}
       propertyPath: m_Name
       value: Tuto?Point_Tutorial mirror
