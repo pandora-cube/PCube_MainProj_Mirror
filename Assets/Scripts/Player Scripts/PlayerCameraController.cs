@@ -109,4 +109,10 @@ public class PlayerCameraController : MonoBehaviour
         animator.Play(newState);
         currentState = newState;
     }
+    
+    public Transform CurCameraPosition()
+    {
+        if (PlayerState.isNormal) return normalCamera.transform;
+        else return ghostCamera.transform;
+    }
 }
