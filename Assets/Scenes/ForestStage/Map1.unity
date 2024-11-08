@@ -14682,10 +14682,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8458387915341151088, guid: 28297ddf393b377449d241dbfe9ee20f, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9052045501453578816, guid: 28297ddf393b377449d241dbfe9ee20f, type: 3}
       propertyPath: m_Name
       value: Tutorial Flowre
