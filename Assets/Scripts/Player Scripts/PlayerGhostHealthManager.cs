@@ -30,14 +30,6 @@ public class PlayerGhostHealthManager : MonoBehaviour
     [SerializeField] private bool isTakingDamage = false;
     bool hasShownTimerEffect = false;
 
-    [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
-    private float shakeTimer;
-    private float shakeTimerTotal;
-    private float startingIntensity;
-
-    [SerializeField] float shakeIntensity;
-    [SerializeField] float shakeTime;
-
     [Header("Damage Effects")]
     [SerializeField] private Image[] timerEffectImages;
     [SerializeField] private float timerEffectDuration;
@@ -58,7 +50,6 @@ public class PlayerGhostHealthManager : MonoBehaviour
 
     private void Awake()
     {
-        if (cinemachineVirtualCamera == null) Debug.LogError("Cinemachine virtual cam is null! GameObject: +" + gameObject.name);
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -71,16 +62,6 @@ public class PlayerGhostHealthManager : MonoBehaviour
 
     private void Update()
     {
-        if (shakeTimer > 0)
-        {
-            shakeTimer -= Time.deltaTime;
-            CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin =
-                cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-
-            float newAmplitude = Mathf.Lerp(startingIntensity, 0f, 1 - shakeTimer / shakeTimerTotal);
-            cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = newAmplitude;
-        }
-
         if (gameObject.activeSelf)
         {
             ghostTimer += Time.deltaTime;
@@ -88,35 +69,10 @@ public class PlayerGhostHealthManager : MonoBehaviour
             {
                 InvokeRepeating("StartTriggerTimerEffect", 0, timerEffectRepeatRate);
             }
-            if (ghostTimer >= ghostTimeLimit)
-                Die();
+            if (ghostTimer >= ghostTimeLimit) Die();
         }
     }
 
-
-    #region DAMAGE EFFECTS
-    public void TriggerDamageEffects()
-    {
-        ShakeCamera();
-    }
-
-    private void ShakeCamera()
-    {
-        CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin =
-            cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-
-        if (cinemachineBasicMultiChannelPerlin != null)
-        {
-            startingIntensity = shakeIntensity;
-            shakeTimerTotal = shakeTime;
-            shakeTimer = shakeTime;
-
-            cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = shakeIntensity;
-        }
-    }
-
-
-    #endregion
 
     void StartTriggerTimerEffect()
     {
@@ -197,7 +153,6 @@ public class PlayerGhostHealthManager : MonoBehaviour
         currentHealth -= damageAmount;
         if (currentHealth <= 0) Die();
 
-        TriggerDamageEffects();
         StartCoroutine(BlinkAfterTakingDamage());
         StartCoroutine(ResetIsTakingDamageBool());
     }
