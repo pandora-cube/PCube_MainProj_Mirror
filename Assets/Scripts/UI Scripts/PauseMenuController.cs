@@ -7,15 +7,13 @@ using UnityEngine.SceneManagement;
 public class PauseMenuController : MonoBehaviour
 {
     public GameObject topPauseMenu;
-    public GameObject[] subMenus;
+    public GameObject settingsMenu;
+
     private bool isPaused = false;
-    private bool isSubMenuActivated = false;
-    private int activatedSubMenuIdx = 0;
+
     void Awake()
     {
         isPaused = false;
-        isSubMenuActivated = false;
-        activatedSubMenuIdx = 0;
     }
 
     public void OnPauseButtonPressed(InputAction.CallbackContext ctx)
@@ -23,17 +21,14 @@ public class PauseMenuController : MonoBehaviour
         if (!ctx.performed) return;
 
         //pause while playing 
-        if (!topPauseMenu.activeSelf)
+        if (!isPaused)
         {
             TogglePause();
         }
-        //go back while in pause menu
+        //unpause only if player is looking at the top pause menu
         else
         {
-            FindActivatedSubMenu();
-            Debug.Log(isPaused);
-            if (isSubMenuActivated) CloseActivatedSubMenu(); //if the player is looking at a sub menu
-            else TogglePause(); // if the player is at the top pause menu
+            if (settingsMenu.activeSelf) TogglePause();
         }
     }
 
@@ -53,24 +48,7 @@ public class PauseMenuController : MonoBehaviour
         }
     }
 
-    private void FindActivatedSubMenu()
-    {
-        //iterate through the array of submenus
-        //if submenu is active, set the bool as true and keep the index of activated sub menu.
-        for (int i = 0; i < subMenus.Length; ++i)
-        {
-            if (!subMenus[i].activeSelf) continue;
-
-            isSubMenuActivated = true;
-            activatedSubMenuIdx = i;
-        }
-    }
-
-    private void CloseActivatedSubMenu()
-    {
-        subMenus[activatedSubMenuIdx].SetActive(false); //turn off the submenu
-        topPauseMenu.SetActive(true); //turn on the top pause menu
-    }
+    
 
     public void RestartCurrentMap()
     {
