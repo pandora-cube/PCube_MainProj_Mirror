@@ -13,7 +13,7 @@ public class MenuHeirarchyController : MonoBehaviour
     [SerializeField] PlayerInput playerInput;
 
     public void OnPause(InputAction.CallbackContext ctx)
-    {
+    {   
         if (ctx.phase != InputActionPhase.Started) return;
 
         //player is in-game or in menu
@@ -39,6 +39,10 @@ public class MenuHeirarchyController : MonoBehaviour
             {
                 Time.timeScale = 1f;
                 playerInput.SwitchCurrentActionMap("PlayerActions");
+            }
+            else if (menuStack.Count == 0 && isOnMainMenu)
+            {
+
             }
         }
     }

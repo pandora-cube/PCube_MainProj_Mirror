@@ -134,6 +134,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &29407982 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+  m_PrefabInstance: {fileID: 4552233288968639539}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &134832905
 GameObject:
   m_ObjectHideFlags: 0
@@ -2293,24 +2304,8 @@ MonoBehaviour:
     m_ActionName: PlayerActions/Hold Down[/Keyboard/downArrow]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
-        m_MethodName: OnPauseButtonPressed
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 78f69579-76aa-4c55-8943-25efff318e5c
-    m_ActionName: PlayerActions/Pause[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
+      - m_Target: {fileID: 906759969}
+        m_TargetAssemblyTypeName: MenuHeirarchyController, Assembly-CSharp
         m_MethodName: OnPause
         m_Mode: 0
         m_Arguments:
@@ -2327,6 +2322,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: adb95178-f0e8-4e47-abca-b071d300e826
     m_ActionName: PlayerActions/Parry[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9015e0bd-65b2-45c3-9ea3-c3ebf138edcd
+    m_ActionName: PlayerActions/Pause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerActions
@@ -2346,6 +2345,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topMenu: {fileID: 1856136773}
   previousTopMenu: {fileID: 0}
+  isOnMainMenu: 1
+  playerInput: {fileID: 29407982}
 --- !u!114 &906759970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4935,10 +4936,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
-        m_MethodName: CloseSubMenu
-        m_Mode: 1
+      - m_Target: {fileID: 1856136773}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
