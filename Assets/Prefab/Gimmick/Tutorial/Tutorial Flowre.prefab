@@ -8,10 +8,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 242838766154649715, guid: e19fc831294a0154dbe10220ad3c5e1b, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 838748155303041347, guid: e19fc831294a0154dbe10220ad3c5e1b, type: 3}
       propertyPath: m_Name
       value: Tutorial Flowre

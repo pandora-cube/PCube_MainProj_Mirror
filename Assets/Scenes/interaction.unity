@@ -363,6 +363,7 @@ MonoBehaviour:
   InfoText: {fileID: 1776948020}
   InfoScreen: {fileID: 1102745305}
   infoRect: {fileID: 1102745306}
+  playerStateMachine: {fileID: 0}
 --- !u!1 &328491586
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,6 +459,7 @@ MonoBehaviour:
   InfoText: {fileID: 1776948020}
   InfoScreen: {fileID: 1102745305}
   infoRect: {fileID: 1102745306}
+  playerStateMachine: {fileID: 0}
 --- !u!1 &428978413
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,6 +741,7 @@ MonoBehaviour:
   InfoText: {fileID: 1776948020}
   InfoScreen: {fileID: 1102745305}
   infoRect: {fileID: 1102745306}
+  playerStateMachine: {fileID: 0}
 --- !u!1 &600677428
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,6 +929,7 @@ MonoBehaviour:
   InfoText: {fileID: 1776948020}
   InfoScreen: {fileID: 1102745305}
   infoRect: {fileID: 1102745306}
+  playerStateMachine: {fileID: 0}
 --- !u!1 &789967233
 GameObject:
   m_ObjectHideFlags: 0
@@ -1753,6 +1757,7 @@ MonoBehaviour:
   InfoText: {fileID: 1776948020}
   InfoScreen: {fileID: 1102745305}
   infoRect: {fileID: 1102745306}
+  playerStateMachine: {fileID: 0}
 --- !u!1 &2062408150
 GameObject:
   m_ObjectHideFlags: 0

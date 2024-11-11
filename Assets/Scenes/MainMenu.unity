@@ -669,6 +669,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 343150044}
   m_CullTransparentMesh: 1
+--- !u!1 &349296258 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 933795797990498848, guid: e7f6cf6976b4b5f40bee388735c0b547, type: 3}
+  m_PrefabInstance: {fileID: 6347718488389173418}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &418966668
 GameObject:
   m_ObjectHideFlags: 0
@@ -2241,9 +2246,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2af8552ff082c44ab82ea6dc05860a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pausePanel: {fileID: 1856136773}
-  subMenus: []
-  isPaused: 0
+  topPauseMenu: {fileID: 151413363}
+  settingsMenu: {fileID: 151413363}
+  subMenus:
+  - {fileID: 730744143}
+  - {fileID: 534098030}
+  - {fileID: 349296258}
 --- !u!114 &906759968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2309,7 +2317,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 906759967}
         m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
-        m_MethodName: OnPause
+        m_MethodName: OnPauseButtonPressed
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2337,6 +2345,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 05470aa5-9674-4895-88ae-fc2ed56e8ee3
     m_ActionName: UI Actions/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: adb95178-f0e8-4e47-abca-b071d300e826
+    m_ActionName: PlayerActions/Parry[/Keyboard/shift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerActions
@@ -4508,17 +4520,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 906759967}
-        m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
-        m_MethodName: OpenSubMenu
-        m_Mode: 2
+      - m_Target: {fileID: 151413363}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
-          m_ObjectArgument: {fileID: 151413363}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 446782951}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -5726,7 +5738,8 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9058723670430949127, guid: e7f6cf6976b4b5f40bee388735c0b547, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

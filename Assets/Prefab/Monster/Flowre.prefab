@@ -116,7 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDetectionRadius: 3
   attackDamage: 0
-  attackDelay: 0
+  isAttacking: 0
 --- !u!114 &9116758770556256338
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -58,6 +58,10 @@ public class PauseMenuController : MonoBehaviour
 
     public void TogglePause()
     {
+        if (topPauseMenu == null)
+        {
+            
+        }
         if (isPaused)
         {
             topPauseMenu.SetActive(false);
