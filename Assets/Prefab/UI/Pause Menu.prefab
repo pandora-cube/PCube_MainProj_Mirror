@@ -146,6 +146,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8846009107130869720}
+        m_TargetAssemblyTypeName: MenuHeirarchyController, Assembly-CSharp
+        m_MethodName: AddToStack
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2694449176306683354}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &96692762676972368
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,6 +537,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8846009107130869720}
+        m_TargetAssemblyTypeName: MenuHeirarchyController, Assembly-CSharp
+        m_MethodName: AddToStack
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 6904017852218304058}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1613,10 +1637,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8673578553834698818}
-        m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
-        m_MethodName: TogglePause
+      - m_Target: {fileID: 8846009107130869720}
+        m_TargetAssemblyTypeName: MenuHeirarchyController, Assembly-CSharp
+        m_MethodName: ClearStack
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 96692762676972368}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4233,6 +4269,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8846009107130869720}
+        m_TargetAssemblyTypeName: MenuHeirarchyController, Assembly-CSharp
+        m_MethodName: PopStack
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7234,6 +7282,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8846009107130869720}
+        m_TargetAssemblyTypeName: MenuHeirarchyController, Assembly-CSharp
+        m_MethodName: PopStack
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -13691,6 +13751,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8846009107130869720}
+        m_TargetAssemblyTypeName: MenuHeirarchyController, Assembly-CSharp
+        m_MethodName: AddToStack
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1627596020924793027}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6143721046850104980
 GameObject:
   m_ObjectHideFlags: 0
@@ -16717,6 +16789,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8846009107130869720}
+        m_TargetAssemblyTypeName: MenuHeirarchyController, Assembly-CSharp
+        m_MethodName: PopStack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7922509450985864070
 GameObject:
   m_ObjectHideFlags: 0
@@ -17921,7 +18005,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3082952990024353669}
-  - component: {fileID: 8673578553834698818}
+  - component: {fileID: 8846009107130869720}
+  - component: {fileID: 8818787475825701889}
   m_Layer: 0
   m_Name: Pause Menu
   m_TagString: Untagged
@@ -17946,7 +18031,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8673578553834698818
+--- !u!114 &8846009107130869720
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -17955,14 +18040,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 8926036615024517358}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2af8552ff082c44ab82ea6dc05860a1, type: 3}
+  m_Script: {fileID: 11500000, guid: 481869f88eeff4244bf8ca0371678259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topPauseMenu: {fileID: 96692762676972368}
-  settingsMenu: {fileID: 1627596020924793027}
-  subMenus:
-  - {fileID: 2694449176306683354}
-  - {fileID: 6904017852218304058}
+  topMenu: {fileID: 96692762676972368}
+--- !u!114 &8818787475825701889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8926036615024517358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfd2175c6a4e97945bd2f941c308c69e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9029034319662496751
 GameObject:
   m_ObjectHideFlags: 0

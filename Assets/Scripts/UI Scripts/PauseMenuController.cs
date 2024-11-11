@@ -21,6 +21,11 @@ public class PauseMenuController : MonoBehaviour
         activatedSubMenuIdx = -1;
     }
 
+    void Start()
+    {
+
+    }
+    
     public void OnPauseButtonPressed(InputAction.CallbackContext ctx)
     {
         if (!ctx.performed) return;
@@ -58,10 +63,6 @@ public class PauseMenuController : MonoBehaviour
 
     public void TogglePause()
     {
-        if (topPauseMenu == null)
-        {
-            
-        }
         if (isPaused)
         {
             topPauseMenu.SetActive(false);

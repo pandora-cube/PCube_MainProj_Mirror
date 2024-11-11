@@ -1770,8 +1770,8 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
-        m_MethodName: OnPauseButtonPressed
+        m_TargetAssemblyTypeName: MenuHeirarchyController, Assembly-CSharp
+        m_MethodName: OnPause
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2459,9 +2459,6 @@ MonoBehaviour:
   ghostTimer: 0
   ghostTimeLimit: 60
   isTakingDamage: 0
-  cinemachineVirtualCamera: {fileID: 0}
-  shakeIntensity: 10
-  shakeTime: 0.5
   timerEffectImages:
   - {fileID: 856698992718940018}
   - {fileID: 731961575608571750}
