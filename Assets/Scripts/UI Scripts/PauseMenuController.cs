@@ -6,95 +6,70 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenuController : MonoBehaviour
 {
-    [SerializeField] private GameObject pausePanel;
-    [SerializeField] private GameObject[] subMenus; // Array of submenus
-    private GameObject currentMenu;
-    private PlayerInput playerInput;
-    private InputActionMap gameplayActionMap;
-    private InputActionMap UIActionMap;
-    [SerializeField] private bool isPaused = false;
-
-    private Stack<GameObject> menuStack = new Stack<GameObject>();
-
+    public GameObject topPauseMenu;
+    public GameObject[] subMenus;
+    private bool isPaused = false;
+    private bool isSubMenuActivated = false;
+    private int activatedSubMenuIdx = 0;
     void Awake()
     {
-        playerInput = FindObjectOfType<PlayerInput>();
-        gameplayActionMap = playerInput.actions.FindActionMap("PlayerActions"); 
-        UIActionMap = playerInput.actions.FindActionMap("UI Actions");
+        isPaused = false;
+        isSubMenuActivated = false;
+        activatedSubMenuIdx = 0;
     }
 
-    public void OnPause(InputAction.CallbackContext ctx)
+    public void OnPauseButtonPressed(InputAction.CallbackContext ctx)
     {
-        if (ctx.started)
+        if (!ctx.performed) return;
+
+        //pause while playing 
+        if (!topPauseMenu.activeSelf)
         {
-             if (isPaused && menuStack.Count > 0)
-            {
-                CloseSubMenu(); // Close submenu if one is open
-            }
-            else
-            {
-                TogglePause();  // Toggle pause menu if no submenus are open
-            }
+            TogglePause();
+        }
+        //go back while in pause menu
+        else
+        {
+            FindActivatedSubMenu();
+            Debug.Log(isPaused);
+            if (isSubMenuActivated) CloseActivatedSubMenu(); //if the player is looking at a sub menu
+            else TogglePause(); // if the player is at the top pause menu
         }
     }
 
     public void TogglePause()
     {
-        isPaused = !isPaused;
-
-        if (!isPaused)
+        if (isPaused)
         {
-            CloseAllMenus();
+            topPauseMenu.SetActive(false);
+            isPaused = false;
             Time.timeScale = 1f;
-            gameplayActionMap.Enable();
-            UIActionMap.Disable();
         }
         else
         {
+            topPauseMenu.SetActive(true);
+            isPaused = true;
             Time.timeScale = 0f;
-            OpenSubMenu(pausePanel); // Open the pause menu first
-            gameplayActionMap.Disable();
-            UIActionMap.Enable();
         }
     }
 
-    // Opens a submenu and hides the current menu
-    public void OpenSubMenu(GameObject subMenu)
+    private void FindActivatedSubMenu()
     {
-        if (currentMenu != null)
+        //iterate through the array of submenus
+        //if submenu is active, set the bool as true and keep the index of activated sub menu.
+        for (int i = 0; i < subMenus.Length; ++i)
         {
-            currentMenu.SetActive(false); // Hide the current menu (either pause or another sub-menu)
-            menuStack.Push(currentMenu);  // Push the current menu onto the stack
-        }
+            if (!subMenus[i].activeSelf) continue;
 
-        subMenu.SetActive(true);          // Show the new sub-menu
-        currentMenu = subMenu;            // Set it as the current menu
-    }
-
-    // Closes the current sub-menu and returns to the previous one
-    public void CloseSubMenu()
-    {
-        if (menuStack.Count > 0)          // Check if there are previous menus
-        {
-            currentMenu.SetActive(false); // Close the current menu
-            currentMenu = menuStack.Pop(); // Pop the previous menu from the stack
-            currentMenu.SetActive(true);  // Show the previous menu
-        }
-        else
-        {
-            TogglePause();                // If no previous menus, just unpause the game
+            isSubMenuActivated = true;
+            activatedSubMenuIdx = i;
         }
     }
 
-    // Closes all menus and resumes the game
-    public void CloseAllMenus()
+    private void CloseActivatedSubMenu()
     {
-        while (menuStack.Count > 0)
-        {
-            menuStack.Pop().SetActive(false); // Deactivate and clear all menus
-        }
-        pausePanel.SetActive(false); // Always close the pause panel
-        currentMenu = null;
+        subMenus[activatedSubMenuIdx].SetActive(false); //turn off the submenu
+        topPauseMenu.SetActive(true); //turn on the top pause menu
     }
 
     public void RestartCurrentMap()

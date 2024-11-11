@@ -1769,9 +1769,9 @@ MonoBehaviour:
     m_ActionName: UI Actions/Pause[/Keyboard/escape]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 251096201836965028}
-        m_TargetAssemblyTypeName: PlayerParryController, Assembly-CSharp
-        m_MethodName: OnParry
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
+        m_MethodName: OnPauseButtonPressed
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
