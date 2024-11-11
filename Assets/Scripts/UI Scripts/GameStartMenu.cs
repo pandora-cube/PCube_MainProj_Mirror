@@ -22,6 +22,7 @@ public class GameStartMenu : MonoBehaviour
         }
 
     }
+
     public void StartFromBeginning()
     {
         SceneManager.LoadScene(FORST_STAGE_MAP1);

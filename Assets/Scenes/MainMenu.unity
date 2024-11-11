@@ -669,11 +669,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 343150044}
   m_CullTransparentMesh: 1
---- !u!1 &349296258 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 933795797990498848, guid: e7f6cf6976b4b5f40bee388735c0b547, type: 3}
-  m_PrefabInstance: {fileID: 6347718488389173418}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &418966668
 GameObject:
   m_ObjectHideFlags: 0
@@ -2197,7 +2192,8 @@ GameObject:
   m_Component:
   - component: {fileID: 906759965}
   - component: {fileID: 906759966}
-  - component: {fileID: 906759967}
+  - component: {fileID: 906759969}
+  - component: {fileID: 906759970}
   - component: {fileID: 906759968}
   m_Layer: 0
   m_Name: Script + Others
@@ -2234,24 +2230,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupPanel: {fileID: 1147732399}
---- !u!114 &906759967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 906759963}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2af8552ff082c44ab82ea6dc05860a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  topPauseMenu: {fileID: 151413363}
-  settingsMenu: {fileID: 151413363}
-  subMenus:
-  - {fileID: 730744143}
-  - {fileID: 534098030}
-  - {fileID: 349296258}
 --- !u!114 &906759968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2315,7 +2293,7 @@ MonoBehaviour:
     m_ActionName: PlayerActions/Hold Down[/Keyboard/downArrow]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 906759967}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
         m_MethodName: OnPauseButtonPressed
         m_Mode: 0
@@ -2331,7 +2309,7 @@ MonoBehaviour:
     m_ActionName: PlayerActions/Pause[/Keyboard/escape]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 906759967}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
         m_MethodName: OnPause
         m_Mode: 0
@@ -2354,6 +2332,32 @@ MonoBehaviour:
   m_DefaultActionMap: PlayerActions
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &906759969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906759963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 481869f88eeff4244bf8ca0371678259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  topMenu: {fileID: 1856136773}
+  previousTopMenu: {fileID: 0}
+--- !u!114 &906759970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906759963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfd2175c6a4e97945bd2f941c308c69e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &950758396
 GameObject:
   m_ObjectHideFlags: 0
@@ -3473,17 +3477,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 906759967}
-        m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
-        m_MethodName: TogglePause
-        m_Mode: 1
+      - m_Target: {fileID: 1856136773}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1190037320
 MonoBehaviour:
@@ -3607,9 +3611,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 906759967}
-        m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
-        m_MethodName: QuitToMainMenu
+      - m_Target: {fileID: 906759970}
+        m_TargetAssemblyTypeName: GeneralButtonFunctions, Assembly-CSharp
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4544,6 +4548,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 906759969}
+        m_TargetAssemblyTypeName: MenuHeirarchyController, Assembly-CSharp
+        m_MethodName: SetTopMenu
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 446782951}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 906759969}
+        m_TargetAssemblyTypeName: MenuHeirarchyController, Assembly-CSharp
+        m_MethodName: AddToStack
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 151413363}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1796449203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4907,7 +4935,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 906759967}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
         m_MethodName: CloseSubMenu
         m_Mode: 1
@@ -5290,6 +5318,134 @@ PrefabInstance:
     - target: {fileID: 7709597761872225322, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
       propertyPath: m_Name
       value: Others
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_ActionId
+      value: 6727fb70-a424-44b1-bf99-3458ddf31ce7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_ActionId
+      value: 58d2a07b-31fb-41a1-beb0-ee25e7b9a5ed
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_ActionId
+      value: 824a01be-d532-43bd-8c7c-2a3d367b0d91
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_ActionId
+      value: 6108f104-a128-445f-a2d2-bd81566cc86c
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_ActionId
+      value: 54f714c7-3379-4fb0-bae2-a7ff01daf0c0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionId
+      value: ef852d49-0c24-4508-82f2-94700c782f5c
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_ActionId
+      value: b4e1b09e-ef4c-4081-90e6-f7b1de3147df
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_ActionId
+      value: 84814065-b9a5-4564-b157-6ee5a0928455
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_ActionId
+      value: d9cb4397-1538-4077-9b57-303242af94d4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[9].m_ActionId
+      value: 78f69579-76aa-4c55-8943-25efff318e5c
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_ActionId
+      value: adb95178-f0e8-4e47-abca-b071d300e826
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_ActionId
+      value: 05470aa5-9674-4895-88ae-fc2ed56e8ee3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_ActionName
+      value: PlayerActions/Move[/Keyboard/leftArrow,/Keyboard/rightArrow]
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_ActionName
+      value: PlayerActions/Jump[/Keyboard/space]
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_ActionName
+      value: PlayerActions/Interact[/Keyboard/alt]
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_ActionName
+      value: PlayerActions/Crawl[/Keyboard/c]
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_ActionName
+      value: PlayerActions/Attack[/Keyboard/leftCtrl]
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionName
+      value: PlayerActions/Teleport[/Keyboard/a]
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_ActionName
+      value: PlayerActions/Dash[/Keyboard/z]
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_ActionName
+      value: PlayerActions/Smoke[/Keyboard/s]
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_ActionName
+      value: PlayerActions/Hold Down[/Keyboard/downArrow]
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[9].m_ActionName
+      value: PlayerActions/Pause[/Keyboard/escape]
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_ActionName
+      value: PlayerActions/Parry[/Keyboard/shift]
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_ActionName
+      value: UI Actions/Pause[/Keyboard/escape]
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[9].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[9].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[9].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 906759969}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[9].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[9].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnPause
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[9].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MenuHeirarchyController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482065163772710983, guid: 947a91db6a4d0884bb069f0c4ca59565, type: 3}
+      propertyPath: m_ActionEvents.Array.data[9].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

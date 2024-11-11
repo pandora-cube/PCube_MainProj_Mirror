@@ -87,18 +87,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Pause",
+                    "name": "Parry",
                     "type": "Button",
-                    "id": "78f69579-76aa-4c55-8943-25efff318e5c",
+                    "id": "adb95178-f0e8-4e47-abca-b071d300e826",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Parry",
+                    "name": "Pause",
                     "type": "Button",
-                    "id": "adb95178-f0e8-4e47-abca-b071d300e826",
+                    "id": "9015e0bd-65b2-45c3-9ea3-c3ebf138edcd",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -350,23 +350,23 @@
                 },
                 {
                     "name": "",
-                    "id": "5ef1c6cd-9362-42bf-814a-3af034fcd328",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PC",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "02b793cf-ddc3-4140-9e57-888366761a22",
                     "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": "PC",
                     "action": "Parry",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "22bf27d5-1697-4bd7-b80b-0a45b3a25054",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1754,7 +1754,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
+        m_TargetAssemblyTypeName: MenuHeirarchyController, Assembly-CSharp
         m_MethodName: OnPause
         m_Mode: 0
         m_Arguments:
