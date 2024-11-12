@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,8 +13,14 @@ public class MenuHeirarchyController : MonoBehaviour
     [SerializeField] private bool isOnMainMenu;
     [SerializeField] PlayerInput playerInput;
 
+    void Awake()
+    {
+        playerInput.SwitchCurrentActionMap("UI Actions");
+    }
+
     public void OnPause(InputAction.CallbackContext ctx)
-    {   
+    {
+        Debug.Log("HERE!");
         if (ctx.phase != InputActionPhase.Started) return;
 
         //player is in-game or in menu
@@ -21,7 +28,7 @@ public class MenuHeirarchyController : MonoBehaviour
         {
             menuStack.Push(topMenu);
             menuStack.Peek().SetActive(true);
-            if (!isOnMainMenu) 
+            if (!isOnMainMenu)
             {
                 Time.timeScale = 0f;
                 playerInput.SwitchCurrentActionMap("UI Actions");
@@ -35,14 +42,15 @@ public class MenuHeirarchyController : MonoBehaviour
 
             //turn on the parent menu if there is any
             if (menuStack.Count > 0) menuStack.Peek().SetActive(true);
-            else if (menuStack.Count == 0 && !isOnMainMenu) 
+            else if (menuStack.Count == 0 && !isOnMainMenu)
             {
                 Time.timeScale = 1f;
                 playerInput.SwitchCurrentActionMap("PlayerActions");
             }
-            else if (menuStack.Count == 0 && isOnMainMenu)
+            if (menuStack.Count == 1 && isOnMainMenu)
             {
-
+                menuStack.Clear();
+                topMenu = previousTopMenu;
             }
         }
     }
@@ -50,6 +58,7 @@ public class MenuHeirarchyController : MonoBehaviour
     public void AddToStack(GameObject obj)
     {
         menuStack.Push(obj);
+        Debug.Log(menuStack.Count);
     }
 
     public void SetTopMenu(GameObject obj)
@@ -64,6 +73,12 @@ public class MenuHeirarchyController : MonoBehaviour
     public void PopStack()
     {
         menuStack.Pop();
+        Debug.Log(menuStack.Count);
+        if (menuStack.Count == 1 && isOnMainMenu)
+        {
+            menuStack.Clear();
+            topMenu = previousTopMenu;
+        }
     }
 
     //menu stack needs to be cleared when leaving menu by clicking on button
