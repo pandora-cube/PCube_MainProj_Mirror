@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4280175023308433543}
-  m_Layer: 3
+  m_Layer: 17
   m_Name: Ghost Slope Check Raycast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -461,7 +461,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7946822656432411550}
-  m_Layer: 3
+  m_Layer: 16
   m_Name: Normal Ground Check Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -741,7 +741,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8200236091063017191}
-  m_Layer: 3
+  m_Layer: 17
   m_Name: Ghost Ground Check Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -774,7 +774,7 @@ GameObject:
   - component: {fileID: 2006199944466533821}
   - component: {fileID: 1238336566175937545}
   - component: {fileID: 8893212188115196994}
-  m_Layer: 13
+  m_Layer: 17
   m_Name: Attack Transform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1153,7 +1153,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2256083166484181286}
-  m_Layer: 3
+  m_Layer: 16
   m_Name: Normal Slope Check Raycast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1768,6 +1768,10 @@ MonoBehaviour:
     m_ActionId: 05470aa5-9674-4895-88ae-fc2ed56e8ee3
     m_ActionName: UI Actions/Pause[/Keyboard/escape]
   - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: adb95178-f0e8-4e47-abca-b071d300e826
+    m_ActionName: PlayerActions/Parry[/Keyboard/shift]
+  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MenuHeirarchyController, Assembly-CSharp
@@ -1781,7 +1785,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 78f69579-76aa-4c55-8943-25efff318e5c
+    m_ActionId: 9015e0bd-65b2-45c3-9ea3-c3ebf138edcd
     m_ActionName: PlayerActions/Pause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
@@ -1801,7 +1805,8 @@ GameObject:
   - component: {fileID: 6031092596345988927}
   - component: {fileID: 4195761594226088202}
   - component: {fileID: 6812376800535443980}
-  m_Layer: 3
+  - component: {fileID: 7369082018093633404}
+  m_Layer: 16
   m_Name: Normal
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1960,6 +1965,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7369082018093633404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6083986484843730980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed4cb3a04fca0f4fa676a10081ccdef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <maxHealth>k__BackingField: 1
+  <currentHealth>k__BackingField: 0
+  gameOverPanel: {fileID: 4102675401255510411}
 --- !u!1 &6517379880185006732
 GameObject:
   m_ObjectHideFlags: 0
