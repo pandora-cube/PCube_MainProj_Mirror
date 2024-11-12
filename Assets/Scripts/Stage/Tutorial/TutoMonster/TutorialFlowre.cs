@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TutorialFlowre : FlowreBehaviourController
 {
-    [SerializeField] private TutorialMirror tutorial;
+    [SerializeField] private Tutorial3_Mirror tutorial;
     [SerializeField] private int tutorialAttackDamage = 0;
     public bool OpenFlowre = false;
 
