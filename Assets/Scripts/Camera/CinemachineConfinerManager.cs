@@ -4,43 +4,41 @@ using UnityEngine;
 
 public class CinemachineConfinerManager : MonoBehaviour
 {
+    public static CinemachineConfinerManager instance;
     [SerializeField] private PolygonCollider2D[] confiner2D;
     [SerializeField] private PlayerHorizontalMovement playerHorizontalMovement;
 
-    int currentStage;
-    int newStage;
+    int currentStage, newStage;
 
+    private void Awake()
+    {
+        if (instance == null) instance = this;
+        else Destroy(instance);
+    }
     void Start()
     {
-        currentStage = ProgressData.Instance.playerData.currentStage;
-        playerHorizontalMovement.currentConfinerCollider = confiner2D[currentStage - 1];
+        ChangeStage();
+    }
+
+    public void UpdateConfinerSize()
+    {
         CinemachineConfiner2D[] confiners = GetComponentsInChildren<CinemachineConfiner2D>();
         foreach (CinemachineConfiner2D confiner in confiners)
         {
-            if (confiner != null)
-            {
-                confiner.m_BoundingShape2D = confiner2D[currentStage - 1];
-            }
+            if (confiner == null) continue;
+            confiner.InvalidateCache(); // 경로 캐시 초기화
+            confiner.m_BoundingShape2D = confiner2D[currentStage - 1];
         }
-
     }
 
-
-    void Update()
+    public void ChangeStage()
     {
         newStage = ProgressData.Instance.playerData.currentStage;
         if (currentStage != newStage)
         {
             currentStage = newStage;
-            CinemachineConfiner2D[] confiners = GetComponentsInChildren<CinemachineConfiner2D>();
-            foreach (CinemachineConfiner2D confiner in confiners)
-            {
-                if (confiner == null) continue;
-
-                confiner.m_BoundingShape2D = confiner2D[currentStage - 1];
-            }
+            UpdateConfinerSize();
         }
         playerHorizontalMovement.currentConfinerCollider = confiner2D[currentStage - 1];
-
     }
 }

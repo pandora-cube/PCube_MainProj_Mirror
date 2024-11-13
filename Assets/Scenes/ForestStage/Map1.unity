@@ -904,6 +904,10 @@ PrefabInstance:
       propertyPath: tutorial
       value: 
       objectReference: {fileID: 1609511021}
+    - target: {fileID: 2255854214373390202, guid: 28297ddf393b377449d241dbfe9ee20f, type: 3}
+      propertyPath: playerDetectionRadius
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 3957192169225548813, guid: 28297ddf393b377449d241dbfe9ee20f, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -3658,6 +3662,10 @@ PrefabInstance:
       propertyPath: tutorial
       value: 
       objectReference: {fileID: 1609511021}
+    - target: {fileID: 2255854214373390202, guid: 28297ddf393b377449d241dbfe9ee20f, type: 3}
+      propertyPath: playerDetectionRadius
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 3957192169225548813, guid: 28297ddf393b377449d241dbfe9ee20f, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -7226,6 +7234,10 @@ PrefabInstance:
       propertyPath: tutorial
       value: 
       objectReference: {fileID: 1609511021}
+    - target: {fileID: 2255854214373390202, guid: 28297ddf393b377449d241dbfe9ee20f, type: 3}
+      propertyPath: playerDetectionRadius
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 3957192169225548813, guid: 28297ddf393b377449d241dbfe9ee20f, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -7731,6 +7743,10 @@ PrefabInstance:
       propertyPath: tutorial
       value: 
       objectReference: {fileID: 1609511021}
+    - target: {fileID: 2255854214373390202, guid: 28297ddf393b377449d241dbfe9ee20f, type: 3}
+      propertyPath: playerDetectionRadius
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 3957192169225548813, guid: 28297ddf393b377449d241dbfe9ee20f, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -8767,7 +8783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 1631789080}
-  CameraSize: 10
+  CameraSize: 13.5
 --- !u!114 &1024874018 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2255854214373390202, guid: 28297ddf393b377449d241dbfe9ee20f, type: 3}
@@ -11896,6 +11912,10 @@ PrefabInstance:
       propertyPath: tutorial
       value: 
       objectReference: {fileID: 1609511021}
+    - target: {fileID: 2255854214373390202, guid: 28297ddf393b377449d241dbfe9ee20f, type: 3}
+      propertyPath: playerDetectionRadius
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 3957192169225548813, guid: 28297ddf393b377449d241dbfe9ee20f, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -14579,6 +14599,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3907388989164839458, guid: ff1e8f6b3d394534a99a89e1339f50b2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 32.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4984783239544294530, guid: ff1e8f6b3d394534a99a89e1339f50b2, type: 3}
       propertyPath: m_Name
       value: Tuto3Point_Tutorial mirror
@@ -14688,7 +14712,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 0}
-  CameraSize: 20
+  CameraSize: 18
 --- !u!1 &1616282860
 GameObject:
   m_ObjectHideFlags: 0
@@ -14769,6 +14793,10 @@ PrefabInstance:
       propertyPath: tutorial
       value: 
       objectReference: {fileID: 1609511021}
+    - target: {fileID: 2255854214373390202, guid: 28297ddf393b377449d241dbfe9ee20f, type: 3}
+      propertyPath: playerDetectionRadius
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 3627807989416792725, guid: 28297ddf393b377449d241dbfe9ee20f, type: 3}
       propertyPath: tutorial
       value: 
@@ -14890,7 +14918,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1647854864}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.009, y: 0, z: -68.4}
+  m_LocalPosition: {x: -0.009, y: 0, z: -66.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

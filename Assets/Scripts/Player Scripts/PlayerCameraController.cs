@@ -97,7 +97,7 @@ public class PlayerCameraController : MonoBehaviour
         else ChangeAnimationState("GhostDefault");
     }
 
-    public void SetProductionCamera(Vector3 targetTrasform, int size)
+    public void SetProductionCamera(Vector3 targetTrasform, float size)
     {
         productionCamera.transform.position = targetTrasform;
         productionCamera.m_Lens.OrthographicSize = size;
@@ -114,6 +114,7 @@ public class PlayerCameraController : MonoBehaviour
         if (currentState == newState) return;
 
         animator.Play(newState);
+        CinemachineConfinerManager.instance.UpdateConfinerSize();
         currentState = newState;
     }
     
