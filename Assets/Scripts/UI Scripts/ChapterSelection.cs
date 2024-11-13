@@ -8,11 +8,16 @@ using UnityEngine.UI;
 public class ChapterSelection : MonoBehaviour
 {
     [SerializeField] private Image[] chapterSelectionImages;
-    [SerializeField] private Button previousButton;
-    [SerializeField] private Button nextButton; 
     private int index;
     private int numberOfImages;
 
+    private MenuHeirarchyController menuHeirarchyController;
+
+    void Awake()
+    {
+        menuHeirarchyController = GetComponent<MenuHeirarchyController>();
+    }
+    
     void Start()
     {
         numberOfImages = chapterSelectionImages.Length;
@@ -33,8 +38,7 @@ public class ChapterSelection : MonoBehaviour
         }  
         else
         {
-            if (index == numberOfImages - 2)  nextButton.GetComponent<Image>().color = Color.black;
-            else nextButton.GetComponent<Image>().color = Color.white;
+            if (index == numberOfImages - 2) menuHeirarchyController.PopStack();
             index++;
             SetImageActive(index);
         }
@@ -48,8 +52,7 @@ public class ChapterSelection : MonoBehaviour
         }
         else
         {
-            if (index == 1) previousButton.GetComponent<Image>().color = Color.black;
-            else previousButton.GetComponent<Image>().color = Color.white;
+            if (index == 1) menuHeirarchyController.PopStack();
             index--;
             SetImageActive(index);
         } 
@@ -57,12 +60,6 @@ public class ChapterSelection : MonoBehaviour
 
     private void SetImageActive(int idx)
     {
-        if (idx == 0) previousButton.GetComponent<Image>().color = Color.black;
-        else previousButton.GetComponent<Image>().color = Color.white;
-
-        if (idx == numberOfImages - 1) nextButton.GetComponent<Image>().color = Color.black;
-        else nextButton.GetComponent<Image>().color = Color.white;
-
         chapterSelectionImages[idx].gameObject.SetActive(true);
 
         for (int i = 0; i < numberOfImages; ++i)

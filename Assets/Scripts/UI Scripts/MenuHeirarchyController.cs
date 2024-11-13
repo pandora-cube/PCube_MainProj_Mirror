@@ -15,12 +15,11 @@ public class MenuHeirarchyController : MonoBehaviour
 
     void Awake()
     {
-        playerInput.SwitchCurrentActionMap("UI Actions");
+        playerInput.SwitchCurrentActionMap("PlayerActions");
     }
 
     public void OnPause(InputAction.CallbackContext ctx)
     {
-        Debug.Log("HERE!");
         if (ctx.phase != InputActionPhase.Started) return;
 
         //player is in-game or in menu
