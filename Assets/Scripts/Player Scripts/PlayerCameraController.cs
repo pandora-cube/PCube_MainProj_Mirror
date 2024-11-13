@@ -18,7 +18,7 @@ public class PlayerCameraController : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera normalCamera;
     [SerializeField] private CinemachineVirtualCamera ghostCamera;
     [SerializeField] private CinemachineVirtualCamera peekCamera;
-    [SerializeField] private CinemachineVirtualCamera ProductionCamera;
+    [SerializeField] private CinemachineVirtualCamera productionCamera;
 
     private Animator animator;
     private PlayerStateMachine PlayerState => PlayerStateMachine.instance;
