@@ -386,50 +386,18 @@ PrefabInstance:
       propertyPath: m_BoundingShape2D
       value: 
       objectReference: {fileID: 968407909}
-    - target: {fileID: 3400108109289329286, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
-      propertyPath: m_Speed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3400108109289329286, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3400108109289329286, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
-      propertyPath: m_UpdateMethod
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3780397555064757828, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
-      propertyPath: m_Damping
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3780397555064757828, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
+    - target: {fileID: 4192908959834844874, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
       propertyPath: m_Enabled
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3780397555064757828, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
-      propertyPath: m_BoundingShape2D
-      value: 
-      objectReference: {fileID: 968407909}
-    - target: {fileID: 3884148509844823867, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
-      propertyPath: ProductionCamera
-      value: 
-      objectReference: {fileID: 117532203}
-    - target: {fileID: 3884148509844823867, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
-      propertyPath: productionCamera
-      value: 
-      objectReference: {fileID: 117532203}
-    - target: {fileID: 4032162363293629390, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -86.3987
-      objectReference: {fileID: 0}
-    - target: {fileID: 4032162363293629390, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -9.344508
       objectReference: {fileID: 0}
     - target: {fileID: 4192908959834844874, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
       propertyPath: m_BoundingShape2D
       value: 
       objectReference: {fileID: 968407909}
+    - target: {fileID: 5207025013068540810, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
+      propertyPath: m_DefaultBlend.m_Time
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5207025013068540810, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
       propertyPath: m_ChildCameras.Array.size
       value: 0
@@ -482,34 +450,22 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 1491362489}
+    - target: {fileID: 7164202950821994861, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
+      propertyPath: m_BoundingShape2D
+      value: 
+      objectReference: {fileID: 968407909}
     - target: {fileID: 7345085046030002597, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 1116406447}
-    - target: {fileID: 7536118925983821455, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
-      propertyPath: m_Follow
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7536118925983821455, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
-      propertyPath: m_Lens.OrthographicSize
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 8478264256086608593, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
       propertyPath: m_Name
       value: State-Driven Cinemachine Camera
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 0}
-    - {fileID: 3780397555064757828, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
-    - {fileID: 3400108109289329286, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
-    - {fileID: 1197966639048830592, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
-    - {fileID: 8029573005642426179, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4042797272940785890, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1709205484}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
 --- !u!1 &22208288
 GameObject:
@@ -795,7 +751,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7536118925983821455, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
   m_PrefabInstance: {fileID: 19863284}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1709205481}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
@@ -8811,6 +8767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 1631789080}
+  CameraSize: 10
 --- !u!114 &1024874018 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2255854214373390202, guid: 28297ddf393b377449d241dbfe9ee20f, type: 3}
@@ -14577,6 +14534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 1609511012}
+  CameraSize: 10
 --- !u!1001 &1609511011
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14730,6 +14688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 0}
+  CameraSize: 20
 --- !u!1 &1616282860
 GameObject:
   m_ObjectHideFlags: 0
@@ -15461,26 +15420,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1709205481 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4042797272940785890, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
-  m_PrefabInstance: {fileID: 19863284}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1709205484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1709205481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_BoundingShape2D: {fileID: 968407909}
-  m_Damping: 1
-  m_MaxWindowSize: -1
 --- !u!1001 &1716479767
 PrefabInstance:
   m_ObjectHideFlags: 0
