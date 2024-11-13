@@ -12,12 +12,11 @@ public class PlayerInteractionController : MonoBehaviour
 
     private PlayerComponents playerComponents;
     private PlayerStateMachine PlayerState => PlayerStateMachine.instance;
-    private Inventory inventory;
+    private Inventory inventory => Inventory.instance;
 
     void Awake()
     {
         playerComponents = GetComponent<PlayerComponents>();
-        inventory = GetComponent<Inventory>();
     }
 
     public void OnInteract(InputAction.CallbackContext ctx)
