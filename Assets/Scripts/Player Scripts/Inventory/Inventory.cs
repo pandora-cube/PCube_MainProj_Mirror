@@ -14,12 +14,13 @@ public class Inventory : MonoBehaviour
 #if UNITY_EDITOR
     private void OnValidate()
     {        
-        slots = slotParent.GetComponentsInChildren<Slot>(); 
+        //slots = slotParent.GetComponentsInChildren<Slot>(); 
     }
 #endif
 
     private void Awake()
     {
+        Debug.Log("?");
         if (instance == null) instance = this;
         else Destroy(instance);
 

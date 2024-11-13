@@ -17,7 +17,7 @@ public class ClearStage : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (inventory == null || collid.isTrigger) return;
+        if (collid.isTrigger) return;
 
         if (inventory.FindItem(item))
         {

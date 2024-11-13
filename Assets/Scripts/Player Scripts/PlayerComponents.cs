@@ -35,8 +35,8 @@ public class PlayerComponents : MonoBehaviour
     #endregion
 
     #region OTHER VARIABLES
-    [Header("Other Variables")]
-    [SerializeField] protected Inventory inventory;
+    //[Header("Other Variables")]
+    //[SerializeField] protected Inventory inventory;
     #endregion
 
 
