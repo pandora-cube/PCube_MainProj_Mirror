@@ -20,7 +20,7 @@ public class Tutorial3_Mirror : TutorialMirror
 
     public override IEnumerator StartTutorialDialog()
     {
-        if (dollyTrack != null) dollyTrack.ActivateMyDollyTrack();
+        if (cameraPosition != null)cameraPosition.ActiveCameraProduction();
 
         yield return dialogSystem.StartCoroutine(dialogSystem.DialogProgress());
 

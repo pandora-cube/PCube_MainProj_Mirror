@@ -96,9 +96,11 @@ public class PlayerCameraController : MonoBehaviour
         else ChangeAnimationState("GhostDefault");
     }
 
-    public void StartProductionCamera()
+    public void StartProductionCamera(Vector3 targetTrasform)
     {
         isProducting = true;
+        productionCamera.transform.position = targetTrasform;
+
         ChangeAnimationState("Production");
     }
 
