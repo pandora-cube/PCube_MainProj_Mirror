@@ -6,7 +6,7 @@ using UnityEngine;
 public class MovingCameraPosition : MonoBehaviour
 {
     [SerializeField] Transform obj;
-    [SerializeField] int CameraSize = 20;
+    [SerializeField] float CameraSize = 20f;
     PlayerCameraController cameraController => PlayerCameraController.instance;
 
     public void ActiveCameraProduction()
