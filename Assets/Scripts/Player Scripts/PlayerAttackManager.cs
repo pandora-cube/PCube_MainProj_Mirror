@@ -65,7 +65,12 @@ public class PlayerAttackManager : MonoBehaviour
 
     public void HandleAttackCollision(Collider2D collision)
     {
-
+        //Parryable parryable = collision.gameObject.GetComponent<Parryable();
+        //if (parryable != null)
+        //{
+            //parryable.Parry()
+            //return;
+        //}
         Damageable damageable = collision.gameObject.GetComponent<Damageable>();
         if (damageable == null) return;
 

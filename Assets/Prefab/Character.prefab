@@ -1337,6 +1337,7 @@ MonoBehaviour:
   isOnSlope: 0
   canDash: 0
   isGrounded: 0
+  isAttacking: 0
 --- !u!114 &2652426612113270752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1805,6 +1806,7 @@ GameObject:
   - component: {fileID: 4195761594226088202}
   - component: {fileID: 6812376800535443980}
   - component: {fileID: 7369082018093633404}
+  - component: {fileID: 5240523107145468780}
   m_Layer: 16
   m_Name: Normal
   m_TagString: Player
@@ -1979,6 +1981,21 @@ MonoBehaviour:
   <maxHealth>k__BackingField: 1
   <currentHealth>k__BackingField: 0
   gameOverPanel: {fileID: 4102675401255510411}
+--- !u!114 &5240523107145468780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6083986484843730980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed4cb3a04fca0f4fa676a10081ccdef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <maxHealth>k__BackingField: 1
+  <currentHealth>k__BackingField: 0
+  gameOverPanel: {fileID: 0}
 --- !u!1 &6517379880185006732
 GameObject:
   m_ObjectHideFlags: 0
@@ -2283,6 +2300,7 @@ GameObject:
   - component: {fileID: 6940658161782897316}
   - component: {fileID: 7215862154241327996}
   - component: {fileID: 964529266230998606}
+  - component: {fileID: 7515825421660515703}
   m_Layer: 17
   m_Name: Ghost
   m_TagString: Player
@@ -2486,6 +2504,26 @@ MonoBehaviour:
   timerEffectDuration: 3
   timerEffectRepeatRate: 5
   minAlpha: 0.3
+--- !u!114 &7515825421660515703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6787739559307351797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d91356aa18f7744f9a0d801201fb683, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 0
+  currentHealth: 0
+  isFacingRightByDefault: 1
+  isPlayer: 1
+  knockbackForce: 0
+  flashMaterial: {fileID: 0}
+  duration: 0
+  originalMaterial: {fileID: 0}
 --- !u!1 &6869943870109066890
 GameObject:
   m_ObjectHideFlags: 0

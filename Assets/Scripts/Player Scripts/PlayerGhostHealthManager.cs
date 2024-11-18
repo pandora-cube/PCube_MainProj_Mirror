@@ -39,6 +39,8 @@ public class PlayerGhostHealthManager : MonoBehaviour
 
     const int OBSTACLE_LAYER = 9;
 
+    private Damageable damageable;
+
     void OnEnable()
     {
         ghostTimer = 0f;
@@ -51,6 +53,7 @@ public class PlayerGhostHealthManager : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        damageable = GetComponent<Damageable>();
     }
 
     private void Start()
@@ -79,6 +82,7 @@ public class PlayerGhostHealthManager : MonoBehaviour
         if (isEffectRunning) return;
         StartCoroutine(TriggerTimerEffect());
     }
+
     IEnumerator TriggerTimerEffect()
     {
         isEffectRunning = true;
@@ -153,6 +157,7 @@ public class PlayerGhostHealthManager : MonoBehaviour
         currentHealth -= damageAmount;
         if (currentHealth <= 0) Die();
 
+        damageable.ApplyKnockback();
         StartCoroutine(BlinkAfterTakingDamage());
         StartCoroutine(ResetIsTakingDamageBool());
     }
