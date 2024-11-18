@@ -31,7 +31,9 @@ public abstract class EnemyBehaviour : MonoBehaviour
     {
         isAttacking = true;
         PlayerGhostHealthManager player = playerCollider.gameObject.GetComponent<PlayerGhostHealthManager>();
+        Damageable playerDamageable = playerCollider.gameObject.GetComponent<Damageable>();
         player.TakeDamage(attackDamage);
+        playerDamageable.ApplyKnockback(gameObject.transform);
 
         StartCoroutine(TriggerAttackAnimation());
     }

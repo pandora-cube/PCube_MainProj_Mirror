@@ -21,12 +21,12 @@ public class Damageable : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     public Material originalMaterial;
-    private Rigidbody2D rigidbody2D;
+    private Rigidbody2D rb;
     private Coroutine flashRoutine;
 
     void Awake()
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
@@ -42,7 +42,6 @@ public class Damageable : MonoBehaviour
         currentHealth -= damageAmount;
 
         Flash();
-        ApplyKnockback();
 
         if (currentHealth <= 0) Die();
     }
@@ -74,26 +73,25 @@ public class Damageable : MonoBehaviour
         flashRoutine = null;
     }
 
-    public void ApplyKnockback()
+    public void ApplyKnockback(Transform knockbackSource)
     {
-        float facingDirection;
-        float knockbackDirection;
-
-        if (isFacingRightByDefault) facingDirection = transform.localScale.x;
-        else facingDirection = -transform.localScale.x;
-
-        if (facingDirection > 0) knockbackDirection = -1f;
-        else knockbackDirection = 1f;
-
-        Vector2 knockbackVector = new Vector2(knockbackDirection * knockbackDirection, 0f);
+        Vector2 knockbackDirection = (transform.position - knockbackSource.position).normalized;
+        knockbackDirection.y = 0f;
+        Vector2 knockbackVector = knockbackDirection * knockbackForce;
 
         if (isPlayer)
         {
-            if (PlayerStateMachine.instance.isGhost) PlayerComponents.instance.ghostRb.AddForce(knockbackVector * knockbackForce, ForceMode2D.Impulse);
+            if (PlayerStateMachine.instance.isGhost)
+            {
+                PlayerComponents.instance.ghostRb.AddForce(knockbackVector, ForceMode2D.Impulse); //wtf?
+                Debug.Log($"Force applied to player: {knockbackVector}");
+            }
         }
         else
         {
-            rigidbody2D.AddForce(knockbackVector * knockbackForce, ForceMode2D.Impulse);
+            rb.AddForce(knockbackVector, ForceMode2D.Impulse);
+            Debug.Log($"Force applied to enemy: {knockbackVector}");
         }
     }
+
 }

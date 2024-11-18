@@ -8,9 +8,9 @@ using UnityEngine.UI;
 
 public class PlayerGhostHealthManager : MonoBehaviour
 {
-    [field: SerializeField] public float maxHealth { get; set; }
-    [field: SerializeField] public float currentHealth { get; set; }
-    public bool isAttacked {get; set;}
+    [SerializeField] public float maxHealth;
+    [SerializeField] public float currentHealth;
+    public bool isAttacked;
 
     [Header("Damage Effects")]
     [SerializeField] private float damageDelay;
@@ -156,8 +156,7 @@ public class PlayerGhostHealthManager : MonoBehaviour
         isTakingDamage = true;
         currentHealth -= damageAmount;
         if (currentHealth <= 0) Die();
-
-        damageable.ApplyKnockback();
+        
         StartCoroutine(BlinkAfterTakingDamage());
         StartCoroutine(ResetIsTakingDamageBool());
     }

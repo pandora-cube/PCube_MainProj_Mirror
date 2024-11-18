@@ -2520,7 +2520,7 @@ MonoBehaviour:
   currentHealth: 0
   isFacingRightByDefault: 1
   isPlayer: 1
-  knockbackForce: 0
+  knockbackForce: 10
   flashMaterial: {fileID: 0}
   duration: 0
   originalMaterial: {fileID: 0}
