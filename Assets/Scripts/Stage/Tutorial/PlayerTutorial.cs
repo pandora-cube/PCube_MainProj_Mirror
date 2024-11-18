@@ -5,12 +5,13 @@ using UnityEngine;
 public class PlayerTutorial : MonoBehaviour
 {
     protected DialogSystem dialogSystem => DialogSystem.instance;
-    protected CinemachineDollyTrack dollyTrack;
+    //protected CinemachineDollyTrack dollyTrack;
+    protected MovingCameraPosition cameraPosition;
     protected bool thisTutoPlaying = false;
 
     private void Start()
     {
-        dollyTrack = GetComponent<CinemachineDollyTrack>();
+        cameraPosition = GetComponent<MovingCameraPosition>();
     }
 
     public virtual void PlayTutorial()
@@ -21,7 +22,7 @@ public class PlayerTutorial : MonoBehaviour
 
     public virtual IEnumerator StartTutorialDialog()
     {
-        if (dollyTrack != null) dollyTrack.ActivateMyDollyTrack();
+        if (cameraPosition != null) cameraPosition.ActiveCameraProduction();
 
         yield return dialogSystem.StartCoroutine(dialogSystem.DialogProgress());
         
@@ -30,6 +31,6 @@ public class PlayerTutorial : MonoBehaviour
 
     public virtual void ExitTutorial()
     {
-        if (dollyTrack != null) dollyTrack.ExitCameraProduction();
+        if (cameraPosition != null) cameraPosition.ExitCameraProduction();
     }
 }

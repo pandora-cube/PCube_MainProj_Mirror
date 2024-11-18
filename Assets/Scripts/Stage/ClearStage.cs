@@ -25,6 +25,7 @@ public class ClearStage : MonoBehaviour, IInteractable
             collid.isTrigger = true;
 
             ClearStageSave();
+            CinemachineConfinerManager.instance.ChangeStage();
         }
     }
 

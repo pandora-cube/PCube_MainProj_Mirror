@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using Cinemachine;
 using UnityEngine;
@@ -34,8 +35,8 @@ public class PlayerCameraController : MonoBehaviour
 
     void Update()
     {
-        if (Mathf.Approximately(direction, 0f)) StopPeeking();
-        else StartPeeking();
+        //if (Mathf.Approximately(direction, 0f)) StopPeeking();
+        //else StartPeeking();
     }
 
     public void OnHoldDown(InputAction.CallbackContext input)
@@ -96,6 +97,12 @@ public class PlayerCameraController : MonoBehaviour
         else ChangeAnimationState("GhostDefault");
     }
 
+    public void SetProductionCamera(Vector3 targetTrasform, float size)
+    {
+        productionCamera.transform.position = targetTrasform;
+        productionCamera.m_Lens.OrthographicSize = size;
+    }
+
     public void StartProductionCamera()
     {
         isProducting = true;
@@ -107,6 +114,7 @@ public class PlayerCameraController : MonoBehaviour
         if (currentState == newState) return;
 
         animator.Play(newState);
+        CinemachineConfinerManager.instance.UpdateConfinerSize();
         currentState = newState;
     }
     

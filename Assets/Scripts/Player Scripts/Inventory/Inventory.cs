@@ -20,7 +20,6 @@ public class Inventory : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("?");
         if (instance == null) instance = this;
         else Destroy(instance);
 

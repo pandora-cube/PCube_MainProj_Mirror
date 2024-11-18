@@ -20,7 +20,7 @@ public class Tutorial3_Mirror : TutorialMirror
 
     public override IEnumerator StartTutorialDialog()
     {
-        if (dollyTrack != null) dollyTrack.ActivateMyDollyTrack();
+        if (cameraPosition != null)cameraPosition.ActiveCameraProduction();
 
         yield return dialogSystem.StartCoroutine(dialogSystem.DialogProgress());
 
@@ -28,6 +28,7 @@ public class Tutorial3_Mirror : TutorialMirror
     }
     public override void ExitTutorial()
     {
+        CamCollider.SetActive(false); // 해당 튜토 끝
         base.ExitTutorial();
     }
 
@@ -58,6 +59,5 @@ public class Tutorial3_Mirror : TutorialMirror
     {
         dieFlowre++; // 튜토리얼 플로레가 죽을때마다 +1
         if (dieFlowre == 6) StartCoroutine(StartTutorialDialog()); // 6마리가 다 죽으면 대사 시작
-        CamCollider.SetActive(false); // 해당 튜토 끝
     }
 }
