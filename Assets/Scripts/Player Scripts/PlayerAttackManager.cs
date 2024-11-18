@@ -31,6 +31,7 @@ public class PlayerAttackManager : MonoBehaviour
         if (PlayerState.isGhost && (Time.time - lastAttackTime > comboResetTime))
         {
             comboAttackNumber = 0;
+            PlayerState.isAttacking = false;
             playerAnimationController.ChangeAnimationState(PlayerAnimationController.GhostAnimationStates.ghostWalk); //TO-DO: Change to Idle
         }
     }
@@ -38,8 +39,8 @@ public class PlayerAttackManager : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (!PlayerState.isGhost || !context.performed) return;
-
+        if (!PlayerState.isGhost || !PlayerState.isGrounded || !context.performed) return;
+        PlayerState.isAttacking = true;
         lastAttackTime = Time.time;
 
         comboAttackNumber++;

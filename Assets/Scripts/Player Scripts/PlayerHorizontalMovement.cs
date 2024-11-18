@@ -53,7 +53,12 @@ public class PlayerHorizontalMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isDashing) return;
+        if (isDashing || PlayerState.isAttacking)
+        {
+            playerComponents.normalRb.velocity = new Vector2(0f, 0f);
+            playerComponents.ghostRb.velocity = new Vector2(0f, 0f);
+            return;
+        }
 
         if (PlayerState.isNormal)
         {
@@ -69,9 +74,13 @@ public class PlayerHorizontalMovement : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext value)
     {
-        if (isDashing) return;
-
         direction = value.ReadValue<float>();
+
+        if (isDashing || PlayerState.isAttacking)
+        {
+            direction = 0f;
+            return;
+        }
 
         TriggerWalkAnimation();
     }
@@ -94,13 +103,12 @@ public class PlayerHorizontalMovement : MonoBehaviour
     {
         float speed = DecidePlayerSpeed();
 
-        
         if (PlayerState.isNormal)
         {
-            if      (!PlayerState.isOnSlope && !PlayerState.isCrawling )    rb.velocity = new Vector2(direction * speed, rb.velocity.y); // normal walk
-            else if (PlayerState.isOnSlope  && !PlayerState.isCrawling)     rb.velocity = new Vector2(-direction * speed * playerGroundChecker.slopeNormalPrep.x, speed * playerGroundChecker.slopeNormalPrep.y * -direction); // slope walk
-            else if (PlayerState.isOnSlope  && PlayerState.isCrawling)      rb.velocity = new Vector2(-direction * (speed - crawlSpeedDecrease) * playerGroundChecker.slopeNormalPrep.x, (speed - crawlSpeedDecrease) * playerGroundChecker.slopeNormalPrep.y * -direction);
-            else if (!PlayerState.isOnSlope && PlayerState.isCrawling)      rb.velocity = new Vector2(direction * (speed - crawlSpeedDecrease), rb.velocity.y); // craw walk
+            if (!PlayerState.isOnSlope && !PlayerState.isCrawling) rb.velocity = new Vector2(direction * speed, rb.velocity.y); // normal walk
+            else if (PlayerState.isOnSlope && !PlayerState.isCrawling) rb.velocity = new Vector2(-direction * speed * playerGroundChecker.slopeNormalPrep.x, speed * playerGroundChecker.slopeNormalPrep.y * -direction); // slope walk
+            else if (PlayerState.isOnSlope && PlayerState.isCrawling) rb.velocity = new Vector2(-direction * (speed - crawlSpeedDecrease) * playerGroundChecker.slopeNormalPrep.x, (speed - crawlSpeedDecrease) * playerGroundChecker.slopeNormalPrep.y * -direction);
+            else if (!PlayerState.isOnSlope && PlayerState.isCrawling) rb.velocity = new Vector2(direction * (speed - crawlSpeedDecrease), rb.velocity.y); // craw walk
         }
         else if (PlayerState.isGhost)
         {
@@ -114,7 +122,7 @@ public class PlayerHorizontalMovement : MonoBehaviour
 
         //ItemAvabileAreaCheck(playerGroundChecker.ghostGroundCheckCollider.position);
     }
-    
+
     //Decide player speed based on current player state (normal, crawling, or ghost)
     private float DecidePlayerSpeed()
     {
@@ -124,7 +132,7 @@ public class PlayerHorizontalMovement : MonoBehaviour
             if (PlayerState.isCrawling) return normalSpeed - crawlSpeedDecrease;
             else return normalSpeed;
         }
-        else return ghostSpeed; 
+        else return ghostSpeed;
     }
 
     void FlipSpriteBasedOnDirection(Transform transform)

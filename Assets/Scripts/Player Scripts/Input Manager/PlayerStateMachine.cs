@@ -13,6 +13,7 @@ public class PlayerStateMachine : MonoBehaviour
     public bool isOnSlope;
     public bool canDash;
     public bool isGrounded;
+    public bool isAttacking;
 
     public static PlayerStateMachine instance;
     void Awake()
@@ -32,6 +33,7 @@ public class PlayerStateMachine : MonoBehaviour
         isCrawling = false;
         isOnSlope = false;
         canDash = true;
+        isAttacking = false;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
