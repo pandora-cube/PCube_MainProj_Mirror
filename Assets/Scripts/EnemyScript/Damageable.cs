@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public class Damageable : MonoBehaviour
 {
     public float maxHealth;
     public float currentHealth;
 
+    [Header("Knockback Variables")]
     [Tooltip("Is object's sprite facing right or left by default?")]
     [SerializeField] private bool isFacingRightByDefault;
-    [SerializeField] private bool isPlayer;
     [SerializeField] private float knockbackForce;
+    [SerializeField] private bool isPlayer;
+    [SerializeField] private float knocbackFallOffDuration;
 
     [Tooltip("Material to switch to during damage flash SFX.")]
     public Material flashMaterial;
@@ -75,23 +78,52 @@ public class Damageable : MonoBehaviour
 
     public void ApplyKnockback(Transform knockbackSource)
     {
+        // base knockbackDirection
         Vector2 knockbackDirection = (transform.position - knockbackSource.position).normalized;
+
+        // if sprite is facing left, flip the knocback direction
+        if (isFacingRightByDefault)
+        {
+            knockbackDirection.x = -knockbackDirection.x;
+        }
+
+        //knockback only in  x
         knockbackDirection.y = 0f;
+
+        // real final vector
         Vector2 knockbackVector = knockbackDirection * knockbackForce;
 
         if (isPlayer)
         {
             if (PlayerStateMachine.instance.isGhost)
             {
-                PlayerComponents.instance.ghostRb.AddForce(knockbackVector, ForceMode2D.Impulse); //wtf?
-                Debug.Log($"Force applied to player: {knockbackVector}");
+                PlayerComponents.instance.ghostRb.AddForce(knockbackVector, ForceMode2D.Impulse);
+                StartCoroutine(GradualVelocityFallOff(PlayerComponents.instance.ghostRb));
             }
         }
         else
         {
             rb.AddForce(knockbackVector, ForceMode2D.Impulse);
-            Debug.Log($"Force applied to enemy: {knockbackVector}");
+            StartCoroutine(GradualVelocityFallOff(rb));
         }
     }
 
+
+    //slowly decrease the rb velocity
+    IEnumerator GradualVelocityFallOff(Rigidbody2D rb)
+    {
+        float elapsedTime = 0f;
+
+        Vector2 initalVelocity = rb.velocity;
+
+        while (elapsedTime < knocbackFallOffDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            rb.velocity = Vector2.Lerp(initalVelocity, Vector2.zero, elapsedTime / knocbackFallOffDuration);
+
+            yield return null;
+        }
+
+        rb.velocity = Vector2.zero;
+    }
 }

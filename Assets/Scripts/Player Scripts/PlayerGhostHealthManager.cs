@@ -27,7 +27,6 @@ public class PlayerGhostHealthManager : MonoBehaviour
     [SerializeField] private float ghostTimeLimit;
 
     private SpriteRenderer spriteRenderer;
-    [SerializeField] private bool isTakingDamage = false;
     bool hasShownTimerEffect = false;
 
     [Header("Damage Effects")]
@@ -40,6 +39,7 @@ public class PlayerGhostHealthManager : MonoBehaviour
     const int OBSTACLE_LAYER = 9;
 
     private Damageable damageable;
+    private PlayerStateMachine PlayerState => PlayerStateMachine.instance;
 
     void OnEnable()
     {
@@ -152,8 +152,8 @@ public class PlayerGhostHealthManager : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
-        if (isTakingDamage) return;
-        isTakingDamage = true;
+        if (PlayerState.isTakingDamage) return;
+        PlayerState.isTakingDamage = true;
         currentHealth -= damageAmount;
         if (currentHealth <= 0) Die();
         
@@ -189,7 +189,7 @@ public class PlayerGhostHealthManager : MonoBehaviour
     {
         yield return new WaitForSeconds(damageDelay);
 
-        isTakingDamage = false;
+        PlayerState.isTakingDamage = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

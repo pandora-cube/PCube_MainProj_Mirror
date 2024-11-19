@@ -75,5 +75,6 @@ public class PlayerAttackManager : MonoBehaviour
         if (damageable == null) return;
 
         damageable.TakeDamage(1);
+        damageable.ApplyKnockback(gameObject.transform);
     }
 }

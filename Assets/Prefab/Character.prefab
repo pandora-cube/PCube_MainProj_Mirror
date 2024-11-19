@@ -1338,6 +1338,8 @@ MonoBehaviour:
   canDash: 0
   isGrounded: 0
   isAttacking: 0
+  isDashing: 0
+  isTakingDamage: 0
 --- !u!114 &2652426612113270752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2483,8 +2485,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 821e41bfe937adf44a6fd568027908cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <maxHealth>k__BackingField: 5
-  <currentHealth>k__BackingField: 5
+  maxHealth: 0
+  currentHealth: 0
+  isAttacked: 0
   damageDelay: 1
   numberOfBlinks: 1
   blinkInterval: 0.3
@@ -2495,7 +2498,6 @@ MonoBehaviour:
   gameOverPanel: {fileID: 4102675401255510411}
   ghostTimer: 0
   ghostTimeLimit: 60
-  isTakingDamage: 0
   timerEffectImages:
   - {fileID: 856698992718940018}
   - {fileID: 731961575608571750}
@@ -2519,8 +2521,9 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   isFacingRightByDefault: 1
+  knockbackForce: 20
   isPlayer: 1
-  knockbackForce: 10
+  knocbackFallOffDuration: 1
   flashMaterial: {fileID: 0}
   duration: 0
   originalMaterial: {fileID: 0}

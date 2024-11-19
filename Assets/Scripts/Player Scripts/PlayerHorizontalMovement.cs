@@ -14,7 +14,6 @@ public class PlayerHorizontalMovement : MonoBehaviour
     #endregion
 
     #region DASH VARIABLES
-    private bool isDashing;
     private float dashForce = 24f;
     private float dashTime = 0.2f;
     private float dashCooldown = 5.0f;
@@ -53,12 +52,14 @@ public class PlayerHorizontalMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isDashing || PlayerState.isAttacking)
+        if (PlayerState.isDashing || PlayerState.isAttacking)
         {
             playerComponents.normalRb.velocity = new Vector2(0f, 0f);
             playerComponents.ghostRb.velocity = new Vector2(0f, 0f);
             return;
         }
+
+        if (PlayerState.isTakingDamage) return;
 
         if (PlayerState.isNormal)
         {
@@ -76,7 +77,7 @@ public class PlayerHorizontalMovement : MonoBehaviour
     {
         direction = value.ReadValue<float>();
 
-        if (isDashing || PlayerState.isAttacking)
+        if (PlayerState.isDashing || PlayerState.isAttacking)
         {
             direction = 0f;
             return;
@@ -102,7 +103,7 @@ public class PlayerHorizontalMovement : MonoBehaviour
     private void MovePlayer(Rigidbody2D rb, Transform currentTransform)
     {
         float speed = DecidePlayerSpeed();
-
+        
         if (PlayerState.isNormal)
         {
             if (!PlayerState.isOnSlope && !PlayerState.isCrawling) rb.velocity = new Vector2(direction * speed, rb.velocity.y); // normal walk
@@ -164,6 +165,7 @@ public class PlayerHorizontalMovement : MonoBehaviour
             playerComponents.normalTransform.position = new Vector2(playerComponents.ghostTransform.position.x, playerComponents.ghostTransform.position.y - 3f);
         }
     }
+    
     void UpdateRbFrictionOnSlope(Rigidbody2D rb)
     {
         if (PlayerState.isOnSlope && Mathf.Approximately(direction, 0f)) rb.sharedMaterial = playerGroundChecker.fullFriction;
@@ -208,7 +210,7 @@ public class PlayerHorizontalMovement : MonoBehaviour
         if (PlayerState.canDash)
         {
             PlayerState.canDash = false;
-            isDashing = true;
+            PlayerState.isDashing = true;
 
             //�뽬 �� �������� �ʰ� gravity �� ����
             float originalGravity = playerComponents.ghostRb.gravityScale;
@@ -221,7 +223,7 @@ public class PlayerHorizontalMovement : MonoBehaviour
 
             trailRenderer.emitting = false;
             playerComponents.ghostRb.gravityScale = originalGravity;
-            isDashing = false;
+            PlayerState.isDashing = false;
 
             yield return new WaitForSeconds(dashCooldown);
             PlayerState.canDash = true;
