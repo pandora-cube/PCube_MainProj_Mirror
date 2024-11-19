@@ -30,10 +30,10 @@ public abstract class EnemyBehaviour : MonoBehaviour
     protected void AttackPlayer(Collider2D playerCollider)
     {
         isAttacking = true;
-        PlayerGhostHealthManager player = playerCollider.gameObject.GetComponent<PlayerGhostHealthManager>();
-        Damageable playerDamageable = playerCollider.gameObject.GetComponent<Damageable>();
-        player.TakeDamage(attackDamage);
-        playerDamageable.ApplyKnockback(gameObject.transform);
+        // PlayerGhostHealthManager player = playerCollider.gameObject.GetComponent<PlayerGhostHealthManager>();
+        // Damageable playerDamageable = playerCollider.gameObject.GetComponent<Damageable>();
+        // player.TakeDamage(attackDamage);
+        // playerDamageable.ApplyKnockback(gameObject.transform);
 
         StartCoroutine(TriggerAttackAnimation());
     }
