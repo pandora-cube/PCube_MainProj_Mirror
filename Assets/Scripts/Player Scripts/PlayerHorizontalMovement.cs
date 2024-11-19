@@ -75,13 +75,13 @@ public class PlayerHorizontalMovement : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext value)
     {
-        direction = value.ReadValue<float>();
-
-        if (PlayerState.isDashing || PlayerState.isAttacking)
+        if (PlayerState.isDashing || PlayerState.isAttacking || PlayerState.isTakingDamage)
         {
             direction = 0f;
             return;
         }
+
+        direction = value.ReadValue<float>();
 
         TriggerWalkAnimation();
     }
@@ -103,7 +103,7 @@ public class PlayerHorizontalMovement : MonoBehaviour
     private void MovePlayer(Rigidbody2D rb, Transform currentTransform)
     {
         float speed = DecidePlayerSpeed();
-        
+
         if (PlayerState.isNormal)
         {
             if (!PlayerState.isOnSlope && !PlayerState.isCrawling) rb.velocity = new Vector2(direction * speed, rb.velocity.y); // normal walk
@@ -165,7 +165,7 @@ public class PlayerHorizontalMovement : MonoBehaviour
             playerComponents.normalTransform.position = new Vector2(playerComponents.ghostTransform.position.x, playerComponents.ghostTransform.position.y - 3f);
         }
     }
-    
+
     void UpdateRbFrictionOnSlope(Rigidbody2D rb)
     {
         if (PlayerState.isOnSlope && Mathf.Approximately(direction, 0f)) rb.sharedMaterial = playerGroundChecker.fullFriction;

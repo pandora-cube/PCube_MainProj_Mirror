@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 
@@ -10,8 +11,6 @@ public class Damageable : MonoBehaviour
     public float currentHealth;
 
     [Header("Knockback Variables")]
-    [Tooltip("Is object's sprite facing right or left by default?")]
-    [SerializeField] private bool isFacingRightByDefault;
     [SerializeField] private float knockbackForce;
     [SerializeField] private bool isPlayer;
     [SerializeField] private float knocbackFallOffDuration;
@@ -81,12 +80,6 @@ public class Damageable : MonoBehaviour
         // base knockbackDirection
         Vector2 knockbackDirection = (transform.position - knockbackSource.position).normalized;
 
-        // if sprite is facing left, flip the knocback direction
-        if (isFacingRightByDefault)
-        {
-            knockbackDirection.x = -knockbackDirection.x;
-        }
-
         //knockback only in  x
         knockbackDirection.y = 0f;
 
@@ -97,12 +90,14 @@ public class Damageable : MonoBehaviour
         {
             if (PlayerStateMachine.instance.isGhost)
             {
+                PlayerComponents.instance.ghostRb.velocity = Vector2.zero;
                 PlayerComponents.instance.ghostRb.AddForce(knockbackVector, ForceMode2D.Impulse);
                 StartCoroutine(GradualVelocityFallOff(PlayerComponents.instance.ghostRb));
             }
         }
         else
         {
+            rb.velocity = Vector2.zero;
             rb.AddForce(knockbackVector, ForceMode2D.Impulse);
             StartCoroutine(GradualVelocityFallOff(rb));
         }
@@ -126,4 +121,24 @@ public class Damageable : MonoBehaviour
 
         rb.velocity = Vector2.zero;
     }
+
+    #region ignore  body to body collision 
+
+    //if object collides with Player's body, ignore physics calculation
+    void OnCollisionEnter2D(Collision2D collision2D)
+    {
+        if (collision2D.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("HERE");
+            StartCoroutine(ResetVelocityAfterCollision());
+        }
+    }
+
+    private IEnumerator ResetVelocityAfterCollision()
+    {
+        yield return new WaitForFixedUpdate();
+        Debug.Log("YES");
+        rb.velocity = Vector2.zero;
+    }
+    #endregion
 }
