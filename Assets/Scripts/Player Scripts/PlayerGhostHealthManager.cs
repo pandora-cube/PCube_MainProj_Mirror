@@ -6,10 +6,8 @@ using UnityEngine.Assertions.Must;
 using Cinemachine;
 using UnityEngine.UI;
 
-public class PlayerGhostHealthManager : MonoBehaviour
+public class PlayerGhostHealthManager : Damageable
 {
-    [SerializeField] public float maxHealth;
-    [SerializeField] public float currentHealth;
     public bool isAttacked;
 
     [Header("Damage Effects")]

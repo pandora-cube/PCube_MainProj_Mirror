@@ -71,10 +71,17 @@ public class PlayerAttackManager : MonoBehaviour
             //parryable.Parry()
             //return;
         //}
+
+        if (collision.gameObject.CompareTag("Player")) return;
+
+        Debug.Log(collision.gameObject.name);
         Damageable damageable = collision.gameObject.GetComponent<Damageable>();
+        Knockbackable knockbackable = collision.gameObject.GetComponent<Knockbackable>();
         if (damageable == null) return;
 
         damageable.TakeDamage(1);
-        damageable.ApplyKnockback(gameObject.transform);
+
+        if (knockbackable == null) return;
+        knockbackable.ApplyKnockback(gameObject.transform);
     }
 }

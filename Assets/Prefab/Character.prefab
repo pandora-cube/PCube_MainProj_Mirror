@@ -1366,6 +1366,8 @@ MonoBehaviour:
   itemLayer:
     serializedVersion: 2
     m_Bits: 16384
+  noFriction: {fileID: 0}
+  fullFriction: {fileID: 0}
 --- !u!114 &8159355029487188009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1408,8 +1410,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cfe8d718ca348243a7d9fbb83b05bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noFriction: {fileID: 6200000, guid: d426f8273b3a77149a657a2db620145d, type: 2}
-  fullFriction: {fileID: 6200000, guid: 3ecda9b66513d7643831be5058244ac1, type: 2}
   slopeNormalPrep: {x: 0, y: 0}
   slopeCheckDistanceVert: 0
   slopeCheckDistanceHori: 0
@@ -1808,7 +1808,6 @@ GameObject:
   - component: {fileID: 4195761594226088202}
   - component: {fileID: 6812376800535443980}
   - component: {fileID: 7369082018093633404}
-  - component: {fileID: 5240523107145468780}
   m_Layer: 16
   m_Name: Normal
   m_TagString: Player
@@ -1983,21 +1982,6 @@ MonoBehaviour:
   <maxHealth>k__BackingField: 1
   <currentHealth>k__BackingField: 0
   gameOverPanel: {fileID: 4102675401255510411}
---- !u!114 &5240523107145468780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6083986484843730980}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ed4cb3a04fca0f4fa676a10081ccdef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <maxHealth>k__BackingField: 1
-  <currentHealth>k__BackingField: 0
-  gameOverPanel: {fileID: 0}
 --- !u!1 &6517379880185006732
 GameObject:
   m_ObjectHideFlags: 0
@@ -2302,7 +2286,7 @@ GameObject:
   - component: {fileID: 6940658161782897316}
   - component: {fileID: 7215862154241327996}
   - component: {fileID: 964529266230998606}
-  - component: {fileID: 7515825421660515703}
+  - component: {fileID: 2365909585102822673}
   m_Layer: 17
   m_Name: Ghost
   m_TagString: Player
@@ -2485,8 +2469,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 821e41bfe937adf44a6fd568027908cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
+  maxHealth: 5
   currentHealth: 0
+  flashMaterial: {fileID: 0}
+  duration: 0
+  originalMaterial: {fileID: 0}
   isAttacked: 0
   damageDelay: 1
   numberOfBlinks: 1
@@ -2506,7 +2493,7 @@ MonoBehaviour:
   timerEffectDuration: 3
   timerEffectRepeatRate: 5
   minAlpha: 0.3
---- !u!114 &7515825421660515703
+--- !u!114 &2365909585102822673
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2515,18 +2502,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6787739559307351797}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d91356aa18f7744f9a0d801201fb683, type: 3}
+  m_Script: {fileID: 11500000, guid: 43b4752b8057a35438847aaa0c22e515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
-  currentHealth: 0
-  isFacingRightByDefault: 1
-  knockbackForce: 20
+  knockbackForce: 3
   isPlayer: 1
   knocbackFallOffDuration: 1
-  flashMaterial: {fileID: 0}
-  duration: 0
-  originalMaterial: {fileID: 0}
+  fullFrictionMaterial: {fileID: 6200000, guid: 3ecda9b66513d7643831be5058244ac1, type: 2}
 --- !u!1 &6869943870109066890
 GameObject:
   m_ObjectHideFlags: 0

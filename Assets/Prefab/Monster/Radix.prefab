@@ -13,11 +13,12 @@ GameObject:
   - component: {fileID: 5687835456187196217}
   - component: {fileID: 5259687990526126062}
   - component: {fileID: 7106570960480429813}
+  - component: {fileID: 1371625507413950524}
+  - component: {fileID: 3708918858400657086}
   - component: {fileID: 2921715438186832446}
   - component: {fileID: 589835752144428089}
   - component: {fileID: 9034587915470716319}
   - component: {fileID: 3956498205254300662}
-  - component: {fileID: 1371625507413950524}
   m_Layer: 12
   m_Name: Radix
   m_TagString: Untagged
@@ -89,10 +90,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 5
   currentHealth: 0
-  isFacingRightByDefault: 0
-  knockbackForce: 15
-  isPlayer: 0
-  knocbackFallOffDuration: 1
   flashMaterial: {fileID: 2100000, guid: 7d1f2937c3bfd064ead2ccdf22e3a052, type: 2}
   duration: 0.15
   originalMaterial: {fileID: 0}
@@ -112,6 +109,34 @@ MonoBehaviour:
   startFrame: 5
   endFrame: 20
   parryForce: 10
+--- !u!114 &1371625507413950524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7153457455099326931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aa4a72b928d8584b9c9ccf2c05ba96c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3708918858400657086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7153457455099326931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43b4752b8057a35438847aaa0c22e515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackForce: 3
+  isPlayer: 0
+  knocbackFallOffDuration: 1
+  fullFrictionMaterial: {fileID: 6200000, guid: 3ecda9b66513d7643831be5058244ac1, type: 2}
 --- !u!212 &2921715438186832446
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -257,18 +282,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1371625507413950524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7153457455099326931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aa4a72b928d8584b9c9ccf2c05ba96c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8222751323861115184
 GameObject:
   m_ObjectHideFlags: 0
