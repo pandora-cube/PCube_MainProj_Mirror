@@ -98,10 +98,13 @@ public class Damageable : MonoBehaviour
         }
         else
         {
-            rb.sharedMaterial = null;
-            rb.velocity = Vector2.zero;
-            rb.AddForce(knockbackVector, ForceMode2D.Impulse);
-            StartCoroutine(GradualVelocityFallOff(rb));
+            if (rb != null)
+            {
+                rb.sharedMaterial = null;
+                rb.velocity = Vector2.zero;
+                rb.AddForce(knockbackVector, ForceMode2D.Impulse);
+                StartCoroutine(GradualVelocityFallOff(rb));
+            }
         }
     }
 
