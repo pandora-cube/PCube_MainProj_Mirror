@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
@@ -168,8 +169,8 @@ public class PlayerHorizontalMovement : MonoBehaviour
 
     void UpdateRbFrictionOnSlope(Rigidbody2D rb)
     {
-        if (PlayerState.isOnSlope && Mathf.Approximately(direction, 0f)) rb.sharedMaterial = playerGroundChecker.fullFriction;
-        else rb.sharedMaterial = playerGroundChecker.noFriction;
+        if (PlayerState.isOnSlope && Mathf.Approximately(direction, 0f)) rb.sharedMaterial = PlayerComponents.instance.fullFriction;
+        else rb.sharedMaterial = PlayerComponents.instance.noFriction;
     }
 
     // void ItemAvabileAreaCheck(Vector2 checkPos)
@@ -227,6 +228,14 @@ public class PlayerHorizontalMovement : MonoBehaviour
 
             yield return new WaitForSeconds(dashCooldown);
             PlayerState.canDash = true;
+        }
+    }
+
+    void OnCollisionStay2D(Collision2D collision2D)
+    {
+        if (collision2D.gameObject.CompareTag("Enemy"))
+        {
+            PlayerComponents.instance.ghostRb.sharedMaterial = PlayerComponents.instance.fullFriction;
         }
     }
 }

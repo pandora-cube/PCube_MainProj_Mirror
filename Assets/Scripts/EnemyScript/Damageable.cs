@@ -14,6 +14,7 @@ public class Damageable : MonoBehaviour
     [SerializeField] private float knockbackForce;
     [SerializeField] private bool isPlayer;
     [SerializeField] private float knocbackFallOffDuration;
+    [SerializeField] private PhysicsMaterial2D fullFrictionMaterial;
 
     [Tooltip("Material to switch to during damage flash SFX.")]
     public Material flashMaterial;
@@ -97,6 +98,7 @@ public class Damageable : MonoBehaviour
         }
         else
         {
+            rb.sharedMaterial = null;
             rb.velocity = Vector2.zero;
             rb.AddForce(knockbackVector, ForceMode2D.Impulse);
             StartCoroutine(GradualVelocityFallOff(rb));
@@ -120,5 +122,6 @@ public class Damageable : MonoBehaviour
         }
 
         rb.velocity = Vector2.zero;
+        rb.sharedMaterial = fullFrictionMaterial;
     }
 }
