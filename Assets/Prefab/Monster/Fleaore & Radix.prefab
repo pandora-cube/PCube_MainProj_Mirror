@@ -298,6 +298,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5259687990526126062, guid: b03e20f85b8c8a243b717ea84abaf23f, type: 3}
+      propertyPath: fullFrictionMaterial
+      value: 
+      objectReference: {fileID: 6200000, guid: 3ecda9b66513d7643831be5058244ac1, type: 2}
     - target: {fileID: 7153457455099326931, guid: b03e20f85b8c8a243b717ea84abaf23f, type: 3}
       propertyPath: m_Name
       value: Radix

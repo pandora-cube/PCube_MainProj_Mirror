@@ -121,24 +121,4 @@ public class Damageable : MonoBehaviour
 
         rb.velocity = Vector2.zero;
     }
-
-    #region ignore  body to body collision 
-
-    //if object collides with Player's body, ignore physics calculation
-    void OnCollisionEnter2D(Collision2D collision2D)
-    {
-        if (collision2D.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("HERE");
-            StartCoroutine(ResetVelocityAfterCollision());
-        }
-    }
-
-    private IEnumerator ResetVelocityAfterCollision()
-    {
-        yield return new WaitForFixedUpdate();
-        Debug.Log("YES");
-        rb.velocity = Vector2.zero;
-    }
-    #endregion
 }
