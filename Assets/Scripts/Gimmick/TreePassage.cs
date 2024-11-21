@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TreePassage : ParentTreePassage, IInteractable
+public class TreePassage : MonoBehaviour, IInteractable
 {
     [SerializeField] private Transform normalPlayerGameObject;
     [SerializeField] private Transform ghostPlayerGameObject;
@@ -10,25 +10,28 @@ public class TreePassage : ParentTreePassage, IInteractable
     [SerializeField] private Item item;
     [SerializeField] private GameObject spiderWeb;
 
+    public Inventory invetory => Inventory.instance;
+
+    ParentTreePassage parentTree;
     private void Start()
     {
-
+        parentTree = transform.parent.GetComponent<ParentTreePassage>();
     }
     public void Interact()
     {
-        Debug.Log("current state : " + passageState);
+        Debug.Log("current state : " + parentTree.passageState);
 
-        if (passageState == ParentTreePassage.Available.closed && invetory != null)
+        if (parentTree.passageState == ParentTreePassage.Available.closed && invetory != null)
         {
             if (invetory.FindItem(item))
             {
                 invetory.UseItem(item);
-                passageState = ParentTreePassage.Available.open;
+                parentTree.passageState = ParentTreePassage.Available.open;
                 if (spiderWeb != null) spiderWeb.SetActive(false);
                 Debug.Log("now tree passage is open");
             }
         }
-        else if (passageState == ParentTreePassage.Available.open) // ��� ���� ���°� open
+        else if (parentTree.passageState == ParentTreePassage.Available.open) // ��� ���� ���°� open
         {
             Transform MoveToExit = FindingExitPosition();
 
