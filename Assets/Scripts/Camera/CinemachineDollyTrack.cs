@@ -10,16 +10,23 @@ public class CinemachineDollyTrack : MonoBehaviour
 
     PlayerCameraController cameraController => PlayerCameraController.instance;
 
-    public void ActivateMyDollyTrack()
+    public void ActivateMyDollyTrack(Vector3 startPosition)
     {
         var dollyCart = dollyCamera.GetComponent<CinemachineDollyCart>();
-
         // 현재 카메라 위치를 0번째 waypoint로 설정
-        myDollyTrack.m_Waypoints[0].position = myDollyTrack.transform.InverseTransformPoint(cameraController.CurCameraPosition().position); 
-        
+
         dollyCart.m_Path = myDollyTrack; // 이 오브젝트의 돌리 트랙을 할당
         dollyCart.m_Position = 0; // 트랙 시작 지점으로 초기화
-        //cameraController.StartProductionCamera();
+        dollyCart.m_Speed = 1f;
+
+        cameraController.SetProductionCamera(startPosition, 10);
+        cameraController.ChangeAnimationState("Production");
+    }
+
+    void temp(Vector3 startPosition)
+    {
+        cameraController.StartProductionCamera();
+        Invoke(nameof(ExitCameraProduction), 3f);
     }
 
     void Update()

@@ -15,11 +15,13 @@ public class PlayerCameraController : MonoBehaviour
     private float timeNeeded = 1.5f;
     private bool isPeeking = false;
     string currentState;
+    private float defalutBlendTime;
 
     [SerializeField] private CinemachineVirtualCamera normalCamera;
     [SerializeField] private CinemachineVirtualCamera ghostCamera;
     [SerializeField] private CinemachineVirtualCamera peekCamera;
     [SerializeField] private CinemachineVirtualCamera productionCamera;
+    private CinemachineStateDrivenCamera cinemachineBrain;
 
     private Animator animator;
     private PlayerStateMachine PlayerState => PlayerStateMachine.instance;
@@ -31,6 +33,8 @@ public class PlayerCameraController : MonoBehaviour
         else Destroy(instance);
 
         animator = GetComponent<Animator>();
+        cinemachineBrain = GetComponent<CinemachineStateDrivenCamera>();
+        defalutBlendTime = cinemachineBrain.m_DefaultBlend.m_Time;
     }
 
     void Update()
@@ -109,7 +113,12 @@ public class PlayerCameraController : MonoBehaviour
         ChangeAnimationState("Production");
     }
 
-    void ChangeAnimationState(string newState)
+    public void SetBlendTime(float blendTime)
+    {
+        cinemachineBrain.m_DefaultBlend.m_Time = blendTime;
+    }
+
+    public void ChangeAnimationState(string newState)
     {
         if (currentState == newState) return;
 

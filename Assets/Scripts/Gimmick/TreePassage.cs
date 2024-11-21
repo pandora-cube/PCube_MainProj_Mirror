@@ -9,13 +9,18 @@ public class TreePassage : MonoBehaviour, IInteractable
 
     [SerializeField] private Item item;
     [SerializeField] private GameObject spiderWeb;
-
+    private MovingCameraPosition cameraPosition;
     public Inventory invetory => Inventory.instance;
+    int passageHoleIndex;
 
     ParentTreePassage parentTree;
     private void Start()
     {
         parentTree = transform.parent.GetComponent<ParentTreePassage>();
+        cameraPosition = GetComponent<MovingCameraPosition>();
+
+        if (transform.gameObject.name == "top hole") passageHoleIndex = 1;
+        else passageHoleIndex = 0;
     }
     public void Interact()
     {
@@ -34,11 +39,13 @@ public class TreePassage : MonoBehaviour, IInteractable
         else if (parentTree.passageState == ParentTreePassage.Available.open) // ��� ���� ���°� open
         {
             Transform MoveToExit = FindingExitPosition();
+            Debug.Log(MoveToExit.gameObject.name);
 
             if (MoveToExit == null) return;
             
             normalPlayerGameObject.transform.position = MoveToExit.position; // �ݴ��� �ⱸ�� �̵�
             ghostPlayerGameObject.transform.position = MoveToExit.position;
+            parentTree.TreePassageCameraMoving(transform.position, MoveToExit.position, passageHoleIndex);
         }
     }
 
@@ -49,7 +56,8 @@ public class TreePassage : MonoBehaviour, IInteractable
         {
             foreach (Transform sibling in parent)
             {
-                if (sibling.gameObject != gameObject) return sibling.gameObject.transform;
+                if (sibling.gameObject != this.gameObject && sibling.gameObject.layer == gameObject.layer) 
+                    return sibling.gameObject.transform;
             }
         }
         return null;
