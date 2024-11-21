@@ -16,7 +16,7 @@ public class Damageable : MonoBehaviour
     [Tooltip("Duration of the flash.")]
     public float duration;
 
-    private SpriteRenderer spriteRenderer;
+    protected SpriteRenderer spriteRenderer;
     public Material originalMaterial;
     private Coroutine flashRoutine;
 
