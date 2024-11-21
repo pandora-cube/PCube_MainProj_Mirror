@@ -68,6 +68,7 @@ public class PlayerComponents : MonoBehaviour
 
     public void EnableOnlyAction(params string[] actionNames)
     {
+        PlayerState.canMove = false;
         foreach (var action in inputActionAsset)
         {
             if (System.Array.Exists(actionNames, name => name == action.name))
@@ -83,6 +84,7 @@ public class PlayerComponents : MonoBehaviour
 
     public void EnableAllActons()
     {
+        PlayerState.canMove = true;
         foreach (var action in inputActionAsset)
         {
             action.Enable();
