@@ -92,5 +92,7 @@ public class PlayerInteractionController : MonoBehaviour
         if (PlayerState.isGhost) inventory.ClearInventory();
 
         horizontalMovement.UpdateOtherTransformObjectPosition();
+
+        PlayerState.isAttacking = PlayerState.isGhost;
     }
 }
