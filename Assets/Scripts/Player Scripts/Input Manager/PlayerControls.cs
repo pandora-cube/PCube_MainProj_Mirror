@@ -328,22 +328,22 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""3e1e2971-d812-4a57-99c5-ecbcdde7c3d7"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""id"": ""de05cc1a-14f0-496f-91cc-e23fc46a4443"",
+                    ""path"": ""<Keyboard>/alt"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Controller"",
+                    ""groups"": ""PC"",
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""de05cc1a-14f0-496f-91cc-e23fc46a4443"",
-                    ""path"": ""<Keyboard>/alt"",
+                    ""id"": ""3e1e2971-d812-4a57-99c5-ecbcdde7c3d7"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PC"",
+                    ""groups"": ""Controller"",
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false

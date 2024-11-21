@@ -6,5 +6,5 @@ public class ParentTreePassage : MonoBehaviour
 {
     public enum Available { open, closed }
     public Available passageState;
-    public Inventory invetory;
+    public Inventory invetory => Inventory.instance;
 }

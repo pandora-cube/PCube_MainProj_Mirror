@@ -56,7 +56,7 @@ public class PlayerComponents : MonoBehaviour
 
     private void Update()
     {
-        playerInput.enabled = PlayerStateMachine.instance.canMove; //disable player input when dialog is happening
+        //playerInput.enabled = PlayerStateMachine.instance.canMove; //disable player input when dialog is happening
     }
 
     public Transform GetPlayerTransform()

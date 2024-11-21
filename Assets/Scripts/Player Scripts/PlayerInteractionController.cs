@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInteractionController : MonoBehaviour
 {
+    public static PlayerInteractionController instance;
     [SerializeField] private float normalInteractRange = 0.5f;
     [SerializeField] private float ghostInteractRange = 1f;
 
@@ -16,6 +17,11 @@ public class PlayerInteractionController : MonoBehaviour
 
     void Awake()
     {
+        #region singleton
+        if (instance == null) instance = this;
+        else Destroy(instance);
+        #endregion
+
         playerComponents = GetComponent<PlayerComponents>();
     }
 

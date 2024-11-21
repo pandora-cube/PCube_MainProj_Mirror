@@ -2,36 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TreePassage : MonoBehaviour, IInteractable
+public class TreePassage : ParentTreePassage, IInteractable
 {
     [SerializeField] private Transform normalPlayerGameObject;
     [SerializeField] private Transform ghostPlayerGameObject;
 
     [SerializeField] private Item item;
     [SerializeField] private GameObject spiderWeb;
-    private ParentTreePassage parentTree;
 
     private void Start()
     {
-        Transform parentTransform = transform.parent;
-        if (parentTransform != null ) parentTree = parentTransform.GetComponent<ParentTreePassage>();
-        //Debug.Log(parentTree.passageState);
+
     }
     public void Interact()
     {
-        Debug.Log("current state : " + parentTree.passageState);
+        Debug.Log("current state : " + passageState);
 
-        if (parentTree.passageState == ParentTreePassage.Available.closed && parentTree.invetory != null)
+        if (passageState == ParentTreePassage.Available.closed && invetory != null)
         {
-            if (parentTree.invetory.FindItem(item))
+            if (invetory.FindItem(item))
             {
-                parentTree.invetory.UseItem(item);
-                parentTree.passageState = ParentTreePassage.Available.open;
+                invetory.UseItem(item);
+                passageState = ParentTreePassage.Available.open;
                 if (spiderWeb != null) spiderWeb.SetActive(false);
                 Debug.Log("now tree passage is open");
             }
         }
-        else if (parentTree.passageState == ParentTreePassage.Available.open) // ��� ���� ���°� open
+        else if (passageState == ParentTreePassage.Available.open) // ��� ���� ���°� open
         {
             Transform MoveToExit = FindingExitPosition();
 
