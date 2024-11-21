@@ -6019,7 +6019,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6834460670576839641, guid: c08053190f3555b49bfb5e774cfe1d2d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2050762190}
-    - targetCorrespondingSourceObject: {fileID: 758932844082720566, guid: c08053190f3555b49bfb5e774cfe1d2d, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 6834460670576839641, guid: c08053190f3555b49bfb5e774cfe1d2d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1653818721}
     m_AddedComponents: []
@@ -6027,11 +6027,6 @@ PrefabInstance:
 --- !u!4 &700116426 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6834460670576839641, guid: c08053190f3555b49bfb5e774cfe1d2d, type: 3}
-  m_PrefabInstance: {fileID: 700116425}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &700116427 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 758932844082720566, guid: c08053190f3555b49bfb5e774cfe1d2d, type: 3}
   m_PrefabInstance: {fileID: 700116425}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &715509916
@@ -15095,7 +15090,7 @@ Transform:
   m_LocalScale: {x: 0.110000014, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 700116427}
+  m_Father: {fileID: 700116426}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -146.208}
 --- !u!50 &1653818722
@@ -20416,7 +20411,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventoryUI
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7515825421660515703, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
+    - {fileID: 5240523107145468780, guid: 51965c8dc7e0a6a47b378012c288ef2d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

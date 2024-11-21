@@ -8,6 +8,7 @@ TagManager:
   - Obstacle
   - CameraCollider
   - TutoPosition
+  - Enemy
   layers:
   - Default
   - TransparentFX

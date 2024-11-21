@@ -34,6 +34,10 @@ public class PlayerComponents : MonoBehaviour
     [SerializeField] protected LayerMask itemLayer;
     #endregion
 
+    [Header("Slope Variables")]
+    public PhysicsMaterial2D noFriction;
+    public PhysicsMaterial2D fullFriction;
+
     #region OTHER VARIABLES
     //[Header("Other Variables")]
     //[SerializeField] protected Inventory inventory;

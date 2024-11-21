@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public class Damageable : MonoBehaviour
 {
@@ -20,7 +23,7 @@ public class Damageable : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
- 
+
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalMaterial = spriteRenderer.material;
     }
@@ -28,14 +31,16 @@ public class Damageable : MonoBehaviour
     public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
+
         Flash();
+
         if (currentHealth <= 0) Die();
     }
-    
+
     public void Die()
     {
         Destroy(gameObject);
-    }   
+    }
 
 
     public void Flash()

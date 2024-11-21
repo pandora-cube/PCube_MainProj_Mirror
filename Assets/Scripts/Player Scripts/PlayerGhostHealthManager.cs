@@ -6,11 +6,9 @@ using UnityEngine.Assertions.Must;
 using Cinemachine;
 using UnityEngine.UI;
 
-public class PlayerGhostHealthManager : MonoBehaviour
+public class PlayerGhostHealthManager : Damageable
 {
-    [field: SerializeField] public float maxHealth { get; set; }
-    [field: SerializeField] public float currentHealth { get; set; }
-    public bool isAttacked {get; set;}
+    public bool isAttacked;
 
     [Header("Damage Effects")]
     [SerializeField] private float damageDelay;
@@ -27,7 +25,6 @@ public class PlayerGhostHealthManager : MonoBehaviour
     [SerializeField] private float ghostTimeLimit;
 
     private SpriteRenderer spriteRenderer;
-    [SerializeField] private bool isTakingDamage = false;
     bool hasShownTimerEffect = false;
 
     [Header("Damage Effects")]
@@ -38,6 +35,9 @@ public class PlayerGhostHealthManager : MonoBehaviour
     private bool isEffectRunning = false;
 
     const int OBSTACLE_LAYER = 9;
+
+    private Damageable damageable;
+    private PlayerStateMachine PlayerState => PlayerStateMachine.instance;
 
     void OnEnable()
     {
@@ -51,6 +51,7 @@ public class PlayerGhostHealthManager : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        damageable = GetComponent<Damageable>();
     }
 
     private void Start()
@@ -79,6 +80,7 @@ public class PlayerGhostHealthManager : MonoBehaviour
         if (isEffectRunning) return;
         StartCoroutine(TriggerTimerEffect());
     }
+
     IEnumerator TriggerTimerEffect()
     {
         isEffectRunning = true;
@@ -148,11 +150,11 @@ public class PlayerGhostHealthManager : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
-        if (isTakingDamage) return;
-        isTakingDamage = true;
+        if (PlayerState.isTakingDamage) return;
+        PlayerState.isTakingDamage = true;
         currentHealth -= damageAmount;
         if (currentHealth <= 0) Die();
-
+        
         StartCoroutine(BlinkAfterTakingDamage());
         StartCoroutine(ResetIsTakingDamageBool());
     }
@@ -185,7 +187,7 @@ public class PlayerGhostHealthManager : MonoBehaviour
     {
         yield return new WaitForSeconds(damageDelay);
 
-        isTakingDamage = false;
+        PlayerState.isTakingDamage = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

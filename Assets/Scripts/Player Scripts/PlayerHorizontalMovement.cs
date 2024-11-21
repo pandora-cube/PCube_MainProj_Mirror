@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
@@ -14,7 +15,6 @@ public class PlayerHorizontalMovement : MonoBehaviour
     #endregion
 
     #region DASH VARIABLES
-    private bool isDashing;
     private float dashForce = 24f;
     private float dashTime = 0.2f;
     private float dashCooldown = 5.0f;
@@ -53,7 +53,9 @@ public class PlayerHorizontalMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isDashing || PlayerState.isAttacking)
+        if (PlayerState.isTakingDamage) return;
+
+        if (PlayerState.isDashing || PlayerState.isAttacking)
         {
             playerComponents.normalRb.velocity = new Vector2(0f, 0f);
             playerComponents.ghostRb.velocity = new Vector2(0f, 0f);
@@ -74,13 +76,13 @@ public class PlayerHorizontalMovement : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext value)
     {
-        direction = value.ReadValue<float>();
-
-        if (isDashing || PlayerState.isAttacking)
+        if (PlayerState.isDashing || PlayerState.isAttacking || PlayerState.isTakingDamage)
         {
             direction = 0f;
             return;
         }
+
+        direction = value.ReadValue<float>();
 
         TriggerWalkAnimation();
     }
@@ -164,10 +166,11 @@ public class PlayerHorizontalMovement : MonoBehaviour
             playerComponents.normalTransform.position = new Vector2(playerComponents.ghostTransform.position.x, playerComponents.ghostTransform.position.y - 3f);
         }
     }
+
     void UpdateRbFrictionOnSlope(Rigidbody2D rb)
     {
-        if (PlayerState.isOnSlope && Mathf.Approximately(direction, 0f)) rb.sharedMaterial = playerGroundChecker.fullFriction;
-        else rb.sharedMaterial = playerGroundChecker.noFriction;
+        if (PlayerState.isOnSlope && Mathf.Approximately(direction, 0f)) rb.sharedMaterial = PlayerComponents.instance.fullFriction;
+        else rb.sharedMaterial = PlayerComponents.instance.noFriction;
     }
 
     // void ItemAvabileAreaCheck(Vector2 checkPos)
@@ -208,7 +211,7 @@ public class PlayerHorizontalMovement : MonoBehaviour
         if (PlayerState.canDash)
         {
             PlayerState.canDash = false;
-            isDashing = true;
+            PlayerState.isDashing = true;
 
             //�뽬 �� �������� �ʰ� gravity �� ����
             float originalGravity = playerComponents.ghostRb.gravityScale;
@@ -221,10 +224,18 @@ public class PlayerHorizontalMovement : MonoBehaviour
 
             trailRenderer.emitting = false;
             playerComponents.ghostRb.gravityScale = originalGravity;
-            isDashing = false;
+            PlayerState.isDashing = false;
 
             yield return new WaitForSeconds(dashCooldown);
             PlayerState.canDash = true;
+        }
+    }
+
+    void OnCollisionStay2D(Collision2D collision2D)
+    {
+        if (collision2D.gameObject.CompareTag("Enemy"))
+        {
+            PlayerComponents.instance.ghostRb.sharedMaterial = PlayerComponents.instance.fullFriction;
         }
     }
 }
