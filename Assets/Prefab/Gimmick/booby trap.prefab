@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8761523637480671342
 SpriteRenderer:
@@ -145,6 +145,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 1
   arrow: {fileID: 4837513465732603085, guid: a56c9bb489c66e14a9871e192ab20a1a, type: 3}
-  spawnInterval: 1.5
-  arrowSpeed: 15
-  player: {fileID: 0}
+  spawnInterval: 2
+  arrowSpeed: 10
+  isAttacking: 0

@@ -36,6 +36,7 @@ public class BoobyTrap : MonoBehaviour
         if (isAttacking) return;
         if (collision.gameObject.CompareTag("Player")) InvokeRepeating("SpawnArrowRoutine", 0f, spawnInterval);
     }
+    
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (!isAttacking) return;

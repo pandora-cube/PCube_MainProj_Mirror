@@ -53,14 +53,14 @@ public class PlayerHorizontalMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (PlayerState.isTakingDamage) return;
+
         if (PlayerState.isDashing || PlayerState.isAttacking)
         {
             playerComponents.normalRb.velocity = new Vector2(0f, 0f);
             playerComponents.ghostRb.velocity = new Vector2(0f, 0f);
             return;
         }
-
-        if (PlayerState.isTakingDamage) return;
 
         if (PlayerState.isNormal)
         {
