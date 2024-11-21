@@ -5,9 +5,7 @@ using UnityEngine;
 public class PlayerGroundChecker : MonoBehaviour
 {
     #region SLOPE VARIABLES
-    [Header("Slope Variables")]
-    public PhysicsMaterial2D noFriction;
-    public PhysicsMaterial2D fullFriction;
+    
     [HideInInspector] public Vector2 slopeNormalPrep;
 
     private float slopeDownAngle;

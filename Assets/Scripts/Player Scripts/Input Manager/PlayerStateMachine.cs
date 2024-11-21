@@ -14,6 +14,8 @@ public class PlayerStateMachine : MonoBehaviour
     public bool canDash;
     public bool isGrounded;
     public bool isAttacking;
+    public bool isDashing;
+    public bool isTakingDamage;
 
     public static PlayerStateMachine instance;
     void Awake()
@@ -27,16 +29,15 @@ public class PlayerStateMachine : MonoBehaviour
             Destroy(gameObject);
         }
 
-        isNormal = true;
-        isGhost = false;
-        canMove = true;
-        isCrawling = false;
-        isOnSlope = false;
-        canDash = true;
-        isAttacking = false;
+        Init();
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Init();
+    }
+
+    void Init()
     {
         isNormal = true;
         isGhost = false;
@@ -44,5 +45,8 @@ public class PlayerStateMachine : MonoBehaviour
         isCrawling = false;
         isOnSlope = false;
         canDash = true;
+        isAttacking = false;
+        isDashing = false;
+        isTakingDamage = false;
     }
 }

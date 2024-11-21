@@ -7,8 +7,8 @@ using UnityEngine.InputSystem;
 public class PlayerComponents : MonoBehaviour
 {
     public static PlayerComponents instance;
-    private static PlayerStateMachine PlayerState => PlayerStateMachine.instance;   
-    private PlayerInput playerInput;
+    private static PlayerStateMachine PlayerState => PlayerStateMachine.instance;
+
 
     #region NORMAL VARIABLES
     [Header("Normal Variables")]
@@ -34,15 +34,20 @@ public class PlayerComponents : MonoBehaviour
     [SerializeField] protected LayerMask itemLayer;
     #endregion
 
+    [Header("Slope Variables")]
+    public PhysicsMaterial2D noFriction;
+    public PhysicsMaterial2D fullFriction;
+
     #region OTHER VARIABLES
-    //[Header("Other Variables")]
-    //[SerializeField] protected Inventory inventory;
+    private PlayerInput playerInput;
+    private InputActionAsset inputActionAsset;
     #endregion
 
 
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
+        inputActionAsset = playerInput.actions;
 
         if (instance == null)
         {
@@ -54,15 +59,34 @@ public class PlayerComponents : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        //playerInput.enabled = PlayerStateMachine.instance.canMove; //disable player input when dialog is happening
-    }
 
     public Transform GetPlayerTransform()
     {
         if (PlayerState.isNormal) return normalTransform;
         else return ghostTransform;
+    }
+
+    public void EnableOnlyAction(params string[] actionNames)
+    {
+        foreach (var action in inputActionAsset)
+        {
+            if (System.Array.Exists(actionNames, name => name == action.name))
+            {
+                action.Enable(); 
+            }
+            else
+            {
+                action.Disable(); 
+            }
+        }
+    }
+
+    public void EnableAllActons()
+    {
+        foreach (var action in inputActionAsset)
+        {
+            action.Enable();
+        }
     }
 
     #region GHOST ONLY

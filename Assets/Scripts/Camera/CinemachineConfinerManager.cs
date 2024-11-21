@@ -26,7 +26,7 @@ public class CinemachineConfinerManager : MonoBehaviour
         foreach (CinemachineConfiner2D confiner in confiners)
         {
             if (confiner == null) continue;
-            confiner.InvalidateCache(); // °æ·Î Ä³½Ã ÃÊ±âÈ­
+            confiner.InvalidateCache(); // ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ ï¿½Ê±ï¿½È­
             confiner.m_BoundingShape2D = confiner2D[currentStage - 1];
         }
     }

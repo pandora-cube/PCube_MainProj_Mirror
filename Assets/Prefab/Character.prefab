@@ -1337,6 +1337,9 @@ MonoBehaviour:
   isOnSlope: 0
   canDash: 0
   isGrounded: 0
+  isAttacking: 0
+  isDashing: 0
+  isTakingDamage: 0
 --- !u!114 &2652426612113270752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1363,6 +1366,8 @@ MonoBehaviour:
   itemLayer:
     serializedVersion: 2
     m_Bits: 16384
+  noFriction: {fileID: 0}
+  fullFriction: {fileID: 0}
 --- !u!114 &8159355029487188009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1405,8 +1410,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cfe8d718ca348243a7d9fbb83b05bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noFriction: {fileID: 6200000, guid: d426f8273b3a77149a657a2db620145d, type: 2}
-  fullFriction: {fileID: 6200000, guid: 3ecda9b66513d7643831be5058244ac1, type: 2}
   slopeNormalPrep: {x: 0, y: 0}
   slopeCheckDistanceVert: 0
   slopeCheckDistanceHori: 0
@@ -1679,6 +1682,18 @@ MonoBehaviour:
       - m_Target: {fileID: 2479215063350025011}
         m_TargetAssemblyTypeName: PlayerInteractionController, Assembly-CSharp
         m_MethodName: OnInteract
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: DialogSystem, Assembly-CSharp
+        m_MethodName: OnKeyDown
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2283,6 +2298,7 @@ GameObject:
   - component: {fileID: 6940658161782897316}
   - component: {fileID: 7215862154241327996}
   - component: {fileID: 964529266230998606}
+  - component: {fileID: 2365909585102822673}
   m_Layer: 17
   m_Name: Ghost
   m_TagString: Player
@@ -2440,7 +2456,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.36, y: -4.02}
+  m_Offset: {x: -1.7169528, y: -4.0200005}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.4872981, y: 0.5230014}
@@ -2451,7 +2467,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10.583481, y: 26.793709}
+  m_Size: {x: 9.297387, y: 26.793709}
   m_EdgeRadius: 0
 --- !u!114 &964529266230998606
 MonoBehaviour:
@@ -2465,8 +2481,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 821e41bfe937adf44a6fd568027908cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <maxHealth>k__BackingField: 5
-  <currentHealth>k__BackingField: 5
+  maxHealth: 5
+  currentHealth: 0
+  flashMaterial: {fileID: 0}
+  duration: 0
+  originalMaterial: {fileID: 0}
+  isAttacked: 0
   damageDelay: 1
   numberOfBlinks: 1
   blinkInterval: 0.3
@@ -2477,7 +2497,6 @@ MonoBehaviour:
   gameOverPanel: {fileID: 4102675401255510411}
   ghostTimer: 0
   ghostTimeLimit: 60
-  isTakingDamage: 0
   timerEffectImages:
   - {fileID: 856698992718940018}
   - {fileID: 731961575608571750}
@@ -2486,6 +2505,22 @@ MonoBehaviour:
   timerEffectDuration: 3
   timerEffectRepeatRate: 5
   minAlpha: 0.3
+--- !u!114 &2365909585102822673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6787739559307351797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43b4752b8057a35438847aaa0c22e515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackForce: 15
+  isPlayer: 1
+  knocbackFallOffDuration: 1
+  fullFrictionMaterial: {fileID: 6200000, guid: 3ecda9b66513d7643831be5058244ac1, type: 2}
 --- !u!1 &6869943870109066890
 GameObject:
   m_ObjectHideFlags: 0

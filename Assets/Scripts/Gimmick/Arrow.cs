@@ -8,6 +8,11 @@ public class Arrow : MonoBehaviour
     {
         if (collision != null && !collision.gameObject.CompareTag("Obstacle") && !collision.gameObject.CompareTag("CameraCollider")) 
         {
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                Knockbackable knockbackable = collision.GetComponent<Knockbackable>();
+                knockbackable.ApplyKnockback(gameObject.transform);
+            }
             Destroy(gameObject);
         }
     }
