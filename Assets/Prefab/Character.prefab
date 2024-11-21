@@ -1691,6 +1691,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: DialogSystem, Assembly-CSharp
+        m_MethodName: OnKeyDown
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 824a01be-d532-43bd-8c7c-2a3d367b0d91
     m_ActionName: PlayerActions/Interact[/Keyboard/alt]
   - m_PersistentCalls:
@@ -2505,7 +2517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43b4752b8057a35438847aaa0c22e515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackForce: 10
+  knockbackForce: 15
   isPlayer: 1
   knocbackFallOffDuration: 1
   fullFrictionMaterial: {fileID: 6200000, guid: 3ecda9b66513d7643831be5058244ac1, type: 2}

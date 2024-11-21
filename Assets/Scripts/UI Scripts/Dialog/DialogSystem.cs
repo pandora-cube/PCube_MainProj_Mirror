@@ -15,11 +15,11 @@ public class Dialog
 
     public Dialog(int dialogScene, int id, string[] dialogText, int speakerID, string playFunc)
     {
-        this.dialogScene = dialogScene; // ÇÑ ¹øÀÇ ´ëÈ­ ¹üÀ§
-        this.id = id; // °¢ ´ëÈ­¿¡ ºÎ¿©µÈ °íÀ¯ ID
-        this.dialogText = dialogText; // ´ëÈ­ Text
-        this.speakerID = speakerID; // ¹ßÈ­ÀÚ ID
-        this.playFunc = playFunc; // ¿¬Ãâ ¶§¹®¿¡ ³ÖÀº ±â´É, ¾ÆÁ÷ X
+        this.dialogScene = dialogScene; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½
+        this.id = id; // ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ ï¿½Î¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ID
+        this.dialogText = dialogText; // ï¿½ï¿½È­ Text
+        this.speakerID = speakerID; // ï¿½ï¿½È­ï¿½ï¿½ ID
+        this.playFunc = playFunc; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ X
     }
 }
 
@@ -64,7 +64,7 @@ public class DialogSystem : MonoBehaviour
         JsonLoad();
     }
 
-    void JsonLoad() // Json ÆÄÀÏ Load
+    void JsonLoad() // Json ï¿½ï¿½ï¿½ï¿½ Load
     {
         if (dialogJSONFile != null)
         {
@@ -84,28 +84,28 @@ public class DialogSystem : MonoBehaviour
     public IEnumerator DialogProgress()
     {
         currentDialogScene = dialogLists.dialog[currentID].dialogScene;
-        PlayerState.canMove = false; // player ¿òÁ÷ÀÓ Á¦¾î
+        PlayerComponents.instance.EnableOnlyAction("Interact", "Pause"); // player ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         
-        // ÇÑ ´ëÈ­ ¾À (°°Àº dialgScene µ¿¾È ¹Ýº¹)
+        // ï¿½ï¿½ ï¿½ï¿½È­ ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ dialgScene ï¿½ï¿½ï¿½ï¿½ ï¿½Ýºï¿½)
         while (currentID < dialogLists.dialog.Count && currentDialogScene == dialogLists.dialog[currentID].dialogScene)
         {
             var currentDialog = dialogLists.dialog[currentID];
-            dialogUI.SetDialogUI(currentDialog); // ÇöÀç ´ëÈ­ÀÇ UI Ç¥½Ã
+            dialogUI.SetDialogUI(currentDialog); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ UI Ç¥ï¿½ï¿½
 
-            // ÇöÀç IDÀÇ TextsÀ» Ãâ·Â
+            // ï¿½ï¿½ï¿½ï¿½ IDï¿½ï¿½ Textsï¿½ï¿½ ï¿½ï¿½ï¿½
             foreach(var currentText in dialogLists.dialog[currentID].dialogText)
             {
                 yield return StartCoroutine(DialogTypingEffect(currentText));
             }
 
-            currentID++; // ID Áõ°¡
+            currentID++; // ID ï¿½ï¿½ï¿½ï¿½
         }
 
-        PlayerState.canMove = true; // ´ëÈ­ Á¾·á Ã³¸®
+        PlayerComponents.instance.EnableAllActons();// ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
         dialogUI.HideDialogUI();
     }
 
-    IEnumerator DialogTypingEffect(string currentText) // ÇÑ ±ÛÀÚ¾¿ Ãâ·Â ¿¬Ãâ
+    IEnumerator DialogTypingEffect(string currentText) // ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¾ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
         string showText = "";
 
