@@ -43,11 +43,14 @@ public class DialogSystem : MonoBehaviour
     private DialogList dialogLists = new DialogList();
     private int currentID = 0;
     private int currentDialogScene = 0;
+    private bool keyDown = false;
 
-    private PlayerInput playerInput;
+    [SerializeField] private PlayerInput playerInput;
+    private InputAction interactAction;
     private PlayerStateMachine PlayerState => PlayerStateMachine.instance;
     private DialogUIManager dialogUI => DialogUIManager.instance;
-    
+    private PlayerInteractionController playerInteraction => PlayerInteractionController.instance;
+
     private void Awake()
     {
         #region singleton
@@ -111,12 +114,13 @@ public class DialogSystem : MonoBehaviour
             showText += word;
             dialogUI.UpdateText(showText);
 
-            if (Input.GetMouseButton(0))
+            if (keyDown)
             {
                 dialogUI.UpdateText(currentText);
+                keyDown = false;
                 break;
             }
-
+            
             yield return new WaitForSeconds(0.08f);
         }
 
@@ -124,12 +128,17 @@ public class DialogSystem : MonoBehaviour
 
         while (true)
         {
-            if (Input.GetMouseButton(0))
+            if (keyDown)
             {
+                keyDown = false;
                 yield return new WaitForSeconds(0.15f);
                 break;
             }
             yield return null;
         }
+    }
+    public void OnKeyDown(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed) keyDown = true;
     }
 }
