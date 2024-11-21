@@ -26,6 +26,7 @@ public class PlayerJumpController : MonoBehaviour
 
         if (isHoldingDown)
         {
+            Debug.Log("YEAH!");
             StartCoroutine(JumpDownThroughPlatform());
         }
         else if (PlayerState.isOnSlope)
@@ -52,20 +53,34 @@ public class PlayerJumpController : MonoBehaviour
         }
     }
 
-    public void OnHoldDown(InputValue value)
+    public void OnHoldDown(InputAction.CallbackContext context)
     {
-        isHoldingDown = value.isPressed;
+        if (context.started || context.performed)
+        {
+            isHoldingDown = true;
+        }
+        else if (context.canceled)
+        {
+            isHoldingDown = false;
+        }
     }
 
     IEnumerator JumpDownThroughPlatform()
     {
-        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Bridge"), true);
-
-        if (PlayerState.isNormal) playerComponents.normalRb.AddForce(Vector2.down * 10f, ForceMode2D.Impulse);
-        else if (PlayerState.isGhost) playerComponents.ghostRb.AddForce(Vector2.down * 10f, ForceMode2D.Impulse);
+        if (PlayerState.isNormal)
+        {
+            Physics2D.IgnoreLayerCollision(playerComponents.normalRb.gameObject.layer, LayerMask.NameToLayer("Bridge"), true);
+            playerComponents.normalRb.AddForce(Vector2.down * 10f, ForceMode2D.Impulse);
+        }
+        else if (PlayerState.isGhost)
+        {
+            Physics2D.IgnoreLayerCollision(playerComponents.ghostRb.gameObject.layer, LayerMask.NameToLayer("Bridge"), true);
+            playerComponents.ghostRb.AddForce(Vector2.down * 10f, ForceMode2D.Impulse);
+        }
 
         yield return new WaitForSeconds(0.5f);
 
-        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Bridge"), false);
+        Physics2D.IgnoreLayerCollision(playerComponents.normalRb.gameObject.layer, LayerMask.NameToLayer("Bridge"), false);
+        Physics2D.IgnoreLayerCollision(playerComponents.ghostRb.gameObject.layer, LayerMask.NameToLayer("Bridge"), false);
     }
 }

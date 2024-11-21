@@ -24,7 +24,6 @@ public class PlayerGhostHealthManager : Damageable
     [SerializeField] private float ghostTimer;
     [SerializeField] private float ghostTimeLimit;
 
-    private SpriteRenderer spriteRenderer;
     bool hasShownTimerEffect = false;
 
     [Header("Damage Effects")]

@@ -1751,8 +1751,8 @@ MonoBehaviour:
     m_ActionName: PlayerActions/Smoke[/Keyboard/s]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerCameraController, Assembly-CSharp
+      - m_Target: {fileID: 8317366783203270412}
+        m_TargetAssemblyTypeName: PlayerJumpController, Assembly-CSharp
         m_MethodName: OnHoldDown
         m_Mode: 0
         m_Arguments:
@@ -1786,19 +1786,7 @@ MonoBehaviour:
     m_ActionId: adb95178-f0e8-4e47-abca-b071d300e826
     m_ActionName: PlayerActions/Parry[/Keyboard/shift]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MenuHeirarchyController, Assembly-CSharp
-        m_MethodName: OnPause
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 9015e0bd-65b2-45c3-9ea3-c3ebf138edcd
     m_ActionName: PlayerActions/Pause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
