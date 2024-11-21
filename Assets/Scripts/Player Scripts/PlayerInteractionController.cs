@@ -12,6 +12,7 @@ public class PlayerInteractionController : MonoBehaviour
     [SerializeField] private LayerMask interactableLayer;
 
     private PlayerComponents playerComponents;
+    private PlayerHorizontalMovement horizontalMovement;
     private PlayerStateMachine PlayerState => PlayerStateMachine.instance;
     private Inventory inventory => Inventory.instance;
 
@@ -23,6 +24,7 @@ public class PlayerInteractionController : MonoBehaviour
         #endregion
 
         playerComponents = GetComponent<PlayerComponents>();
+        horizontalMovement = GetComponent<PlayerHorizontalMovement>();
     }
 
     public void OnInteract(InputAction.CallbackContext ctx)
@@ -88,5 +90,7 @@ public class PlayerInteractionController : MonoBehaviour
 
         playerComponents.normalGameObject.SetActive(PlayerState.isNormal); playerComponents.ghostGameObject.SetActive(PlayerState.isGhost);
         if (PlayerState.isGhost) inventory.ClearInventory();
+
+        horizontalMovement.UpdateOtherTransformObjectPosition();
     }
 }

@@ -119,7 +119,7 @@ public class PlayerHorizontalMovement : MonoBehaviour
         }
 
         FlipSpriteBasedOnDirection(currentTransform);
-        UpdateOtherTransformObjectPosition();
+        //UpdateOtherTransformObjectPosition();
         UpdateRbFrictionOnSlope(rb);
 
         //ItemAvabileAreaCheck(playerGroundChecker.ghostGroundCheckCollider.position);
@@ -154,16 +154,19 @@ public class PlayerHorizontalMovement : MonoBehaviour
     }
 
     //adjusts object positions for transform and cinemachine follow target.
-    void UpdateOtherTransformObjectPosition()
+    public void UpdateOtherTransformObjectPosition()
     {
+        Debug.Log("HERE!");
         if (PlayerState.isNormal && !PlayerState.isGhost)
         {
-            playerComponents.ghostTransform.position = new Vector2(playerComponents.normalTransform.position.x, playerComponents.normalTransform.position.y + 3f);
-        }
+            Debug.Log("YEA!");
+            playerComponents.normalTransform.position = new Vector2(playerComponents.ghostTransform.position.x, playerComponents.ghostTransform.position.y - 3f);
 
+        }
         else if (PlayerState.isGhost && !PlayerState.isNormal)
         {
-            playerComponents.normalTransform.position = new Vector2(playerComponents.ghostTransform.position.x, playerComponents.ghostTransform.position.y - 3f);
+            playerComponents.ghostTransform.position = new Vector2(playerComponents.normalTransform.position.x, playerComponents.normalTransform.position.y + 3f);
+
         }
     }
 

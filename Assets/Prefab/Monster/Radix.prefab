@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43b4752b8057a35438847aaa0c22e515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackForce: 3
+  knockbackForce: 30
   isPlayer: 0
   knocbackFallOffDuration: 1
   fullFrictionMaterial: {fileID: 6200000, guid: 3ecda9b66513d7643831be5058244ac1, type: 2}
