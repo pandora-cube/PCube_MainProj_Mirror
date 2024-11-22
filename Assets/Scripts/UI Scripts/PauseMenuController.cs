@@ -20,16 +20,14 @@ public class PauseMenuController : MonoBehaviour
         isPaused = false;
         activatedSubMenuIdx = -1;
     }
-
-    void Start()
-    {
-
-    }
     
     public void OnPauseButtonPressed(InputAction.CallbackContext ctx)
     {
+        Debug.Log($"Pause Button Pressed: ctx.performed = {ctx.performed}, isPaused = {isPaused}");
+
         if (!ctx.performed) return;
 
+        Debug.Log(isPaused);
         //pause while playing 
         if (!isPaused)
         {
@@ -55,7 +53,6 @@ public class PauseMenuController : MonoBehaviour
             else
             {
                 //player is in the settings submenu
-                Debug.Log("Yes~");
                 CloseActivatedSubMenu();
             }
         }
@@ -63,6 +60,7 @@ public class PauseMenuController : MonoBehaviour
 
     public void TogglePause()
     {
+        Debug.Log(isPaused);
         if (isPaused)
         {
             topPauseMenu.SetActive(false);

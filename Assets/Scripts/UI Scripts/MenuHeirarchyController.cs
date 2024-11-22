@@ -13,7 +13,7 @@ public class MenuHeirarchyController : MonoBehaviour
     [SerializeField] private bool isOnMainMenu;
     [SerializeField] PlayerInput playerInput;
 
-    void Awake()
+    void Start()
     {
         playerInput.SwitchCurrentActionMap("PlayerActions");
     }
@@ -84,5 +84,6 @@ public class MenuHeirarchyController : MonoBehaviour
     public void ClearStack()
     {
         menuStack.Clear();
+        playerInput.SwitchCurrentActionMap("PlayerActions");
     }
 }
