@@ -6,8 +6,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerAttackManager : MonoBehaviour
 {
-    const int ATTACKABLE_LAYER = 12;
-
     #region ATTACK VARIABLES
     [Header("Attack Variables")]
     [SerializeField] private BoxCollider2D attackCollider;
@@ -65,23 +63,36 @@ public class PlayerAttackManager : MonoBehaviour
 
     public void HandleAttackCollision(Collider2D collision)
     {
-        //Parryable parryable = collision.gameObject.GetComponent<Parryable();
-        //if (parryable != null)
-        //{
-            //parryable.Parry()
-            //return;
-        //}
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Invincible"))
+        {
+            return;
+        }
+        else if (collision.gameObject.CompareTag("AttackCollider"))
+        {
+            Parryable parryable = collision.gameObject.GetComponent<Parryable>();
+            parryable.Parry();
+            StartCoroutine(ToggleParryInvincible());
 
-        if (collision.gameObject.CompareTag("Player")) return;
+            Debug.Log("PARRY!");
 
-        Debug.Log(collision.gameObject.name);
-        Damageable damageable = collision.gameObject.GetComponent<Damageable>();
-        Knockbackable knockbackable = collision.gameObject.GetComponent<Knockbackable>();
-        if (damageable == null) return;
+            return;
+        }
+        else if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Damageable damageable = collision.gameObject.GetComponent<Damageable>();
+            Knockbackable knockbackable = collision.gameObject.GetComponent<Knockbackable>();
 
-        damageable.TakeDamage(1);
+            damageable.TakeDamage(1);
 
-        if (knockbackable == null) return;
-        knockbackable.ApplyKnockback(gameObject.transform);
+            if (knockbackable == null) return;
+            knockbackable.ApplyKnockback(gameObject.transform);
+        }
+    }
+
+    private IEnumerator ToggleParryInvincible()
+    {
+        PlayerState.isTakingDamage = true;
+        yield return new WaitForSeconds(0.5f);
+        PlayerState.isTakingDamage = false;
     }
 }

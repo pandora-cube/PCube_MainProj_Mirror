@@ -9,6 +9,8 @@ TagManager:
   - CameraCollider
   - TutoPosition
   - Enemy
+  - AttackCollider
+  - Invincible
   layers:
   - Default
   - TransparentFX

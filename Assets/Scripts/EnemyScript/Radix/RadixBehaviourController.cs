@@ -96,4 +96,10 @@ public class RadixBehaviour : EnemyBehaviour
         
         isAttacking = false;
     }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red; // Set the color of the gizmo
+        Gizmos.DrawWireSphere(transform.position, playerDetectionRadius); // Draw a wireframe sphere
+    }
 }

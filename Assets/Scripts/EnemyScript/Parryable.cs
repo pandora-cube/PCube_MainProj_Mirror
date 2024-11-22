@@ -4,26 +4,34 @@ using UnityEngine;
 
 public class Parryable : MonoBehaviour
 {
-    private Animator animator;
     private Rigidbody2D rb;
+    private BoxCollider2D boxCollider2D;
 
-    [Header("Animation Variables")]
-    public string animationName;
-    public int startFrame = 2;
-    public int endFrame = 3;
-
-    [Header("Parry Variables")]
-    public float parryForce;
+    private bool isInvincible = false;
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        rb = GetComponentInParent<Rigidbody2D>();
+        boxCollider2D = GetComponentInParent<BoxCollider2D>();
     }
 
     public void Parry()
     {
-        Vector2 pushDirection = (transform.position - PlayerStateMachine.instance.transform.position).normalized;
-        rb.AddForce(pushDirection * parryForce, ForceMode2D.Impulse);
+        transform.parent.tag = "Invincible";
+
+        StartCoroutine(ToogleBoxCollider2D());
+    }
+
+    private IEnumerator ToogleBoxCollider2D()
+    {
+
+        yield return new WaitForSeconds(3);
+
+        transform.parent.tag = "Enemy";
+    }
+
+    public bool IsInvincible()
+    {
+        return isInvincible;
     }
 }

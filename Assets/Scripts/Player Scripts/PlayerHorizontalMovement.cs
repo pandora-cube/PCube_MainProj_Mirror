@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
@@ -156,17 +155,13 @@ public class PlayerHorizontalMovement : MonoBehaviour
     //adjusts object positions for transform and cinemachine follow target.
     public void UpdateOtherTransformObjectPosition()
     {
-        Debug.Log("HERE!");
         if (PlayerState.isNormal && !PlayerState.isGhost)
         {
-            Debug.Log("YEA!");
             playerComponents.normalTransform.position = new Vector2(playerComponents.ghostTransform.position.x, playerComponents.ghostTransform.position.y - 3f);
-
         }
         else if (PlayerState.isGhost && !PlayerState.isNormal)
         {
             playerComponents.ghostTransform.position = new Vector2(playerComponents.normalTransform.position.x, playerComponents.normalTransform.position.y + 3f);
-
         }
     }
 

@@ -19,6 +19,7 @@ public class Damageable : MonoBehaviour
     protected SpriteRenderer spriteRenderer;
     public Material originalMaterial;
     private Coroutine flashRoutine;
+    private Parryable parryable;
 
     private void Start()
     {
@@ -26,22 +27,32 @@ public class Damageable : MonoBehaviour
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalMaterial = spriteRenderer.material;
+
+        parryable = GetComponent<Parryable>();
     }
 
     public void TakeDamage(float damageAmount)
     {
+        if ((parryable != null && parryable.IsInvincible()) || gameObject.CompareTag("Invincible"))
+        {
+            Debug.Log("Damage canceled: Parried or invincible!");
+            return;
+        }
+
         currentHealth -= damageAmount;
 
         Flash();
 
-        if (currentHealth <= 0) Die();
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
     }
 
     public void Die()
     {
         Destroy(gameObject);
     }
-
 
     public void Flash()
     {

@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 2631276759909012142}
   m_Layer: 12
   m_Name: Flowre
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,10 +133,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   currentHealth: 0
-  isFacingRightByDefault: 0
-  knockbackForce: 0
-  isPlayer: 0
-  knocbackFallOffDuration: 0
   flashMaterial: {fileID: 2100000, guid: 7d1f2937c3bfd064ead2ccdf22e3a052, type: 2}
   duration: 0.15
   originalMaterial: {fileID: 0}

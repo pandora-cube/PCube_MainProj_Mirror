@@ -1288,7 +1288,6 @@ GameObject:
   - component: {fileID: 2479215063350025011}
   - component: {fileID: 7455220167819976435}
   - component: {fileID: 6284084170918939915}
-  - component: {fileID: 251096201836965028}
   - component: {fileID: 2613217983299259865}
   - component: {fileID: 547016282715293714}
   - component: {fileID: 2623866325261710830}
@@ -1473,22 +1472,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalAnimator: {fileID: 6812376800535443980}
   ghostAnimator: {fileID: 6940658161782897316}
---- !u!114 &251096201836965028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5824343611764768133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a881de5dec3aece4d8fb467f649eda65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackableLayer:
-    serializedVersion: 2
-    m_Bits: 4096
-  parryRange: 5
 --- !u!114 &2613217983299259865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2293,7 +2276,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &488549447599903303
 Transform:
   m_ObjectHideFlags: 0
@@ -2358,7 +2341,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 21.909286, y: 31.16}
+  m_Size: {x: 16.31207, y: 44.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -2447,9 +2430,9 @@ BoxCollider2D:
   m_Offset: {x: -1.7169528, y: -4.0200005}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.4872981, y: 0.5230014}
-    oldSize: {x: 17.78, y: 32.681145}
-    newSize: {x: 17.78, y: 32.681145}
+    pivot: {x: 0.233749, y: 0.6024784}
+    oldSize: {x: 35.27448, y: 27.99}
+    newSize: {x: 16.31207, y: 44.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0

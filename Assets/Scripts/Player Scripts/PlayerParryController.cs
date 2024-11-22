@@ -26,9 +26,9 @@ public class PlayerParryController : MonoBehaviour
         Collider2D collider = Physics2D.OverlapCircle(playerComponents.ghostTransform.position, parryRange, attackableLayer);
         if (collider == null) return;
         
-        // if (collider.TryGetComponent(out Parryable parryable))
-        // {
-        //     playerAnimationController.ChangeAnimationState(PlayerAnimationController.GhostAnimationStates.ghostParry);
-        // }
+        if (collider.TryGetComponent(out Parryable parryable))
+        {
+             playerAnimationController.ChangeAnimationState(PlayerAnimationController.GhostAnimationStates.ghostParry);
+        }
     }
 }
