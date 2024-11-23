@@ -16,6 +16,8 @@ public class PlayerAnimationController : MonoBehaviour
     {
         normalIdle,
         normalWalk,
+        normalJumpStart,
+        normalJumpEnd
     }
 
     public enum GhostAnimationStates

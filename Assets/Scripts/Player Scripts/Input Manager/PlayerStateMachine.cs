@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
@@ -13,11 +14,14 @@ public class PlayerStateMachine : MonoBehaviour
     public bool isOnSlope;
     public bool canDash;
     public bool isGrounded;
+    public bool wasGrounded;
     public bool isAttacking;
     public bool isDashing;
     public bool isTakingDamage;
 
     public static PlayerStateMachine instance;
+
+    public UnityEvent OnLanded;
     void Awake()
     {
         if (instance == null)
@@ -30,6 +34,16 @@ public class PlayerStateMachine : MonoBehaviour
         }
 
         Init();
+    }
+
+    private void FixedUpdate()
+    {
+        if (!wasGrounded && isGrounded)
+        {
+            OnLanded.Invoke();
+        }
+
+        wasGrounded = isGrounded;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -48,5 +62,6 @@ public class PlayerStateMachine : MonoBehaviour
         isAttacking = false;
         isDashing = false;
         isTakingDamage = false;
+        wasGrounded = false;
     }
 }

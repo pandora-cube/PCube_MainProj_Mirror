@@ -12,11 +12,23 @@ public class PlayerJumpController : MonoBehaviour
     bool isHoldingDown = false;
 
     PlayerComponents playerComponents;
+    PlayerAnimationController playerAnimationController;  
     PlayerStateMachine PlayerState => PlayerStateMachine.instance;
 
     void Awake()
     {
         playerComponents = GetComponent<PlayerComponents>();
+        playerAnimationController = GetComponent<PlayerAnimationController>();
+    }
+
+    private void Start()
+    {
+        PlayerState.OnLanded.AddListener(TriggerLandingAnimation);
+    }
+
+    private void OnDestroy()
+    {
+        PlayerState.OnLanded.RemoveAllListeners();
     }
 
     public void OnJump(InputAction.CallbackContext value)
@@ -26,7 +38,6 @@ public class PlayerJumpController : MonoBehaviour
 
         if (isHoldingDown)
         {
-            Debug.Log("YEAH!");
             StartCoroutine(JumpDownThroughPlatform());
         }
         else if (PlayerState.isOnSlope)
@@ -48,7 +59,11 @@ public class PlayerJumpController : MonoBehaviour
         }
         else
         {
-            if (PlayerState.isNormal) playerComponents.normalRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            if (PlayerState.isNormal)
+            {
+                playerComponents.normalRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+                playerAnimationController.ChangeAnimationState(PlayerAnimationController.NormalAnimationStates.normalJumpStart);
+            }
             else if (PlayerState.isGhost) playerComponents.ghostRb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
     }
@@ -82,5 +97,13 @@ public class PlayerJumpController : MonoBehaviour
 
         Physics2D.IgnoreLayerCollision(playerComponents.normalRb.gameObject.layer, LayerMask.NameToLayer("Bridge"), false);
         Physics2D.IgnoreLayerCollision(playerComponents.ghostRb.gameObject.layer, LayerMask.NameToLayer("Bridge"), false);
+    }
+
+    private void TriggerLandingAnimation()
+    {
+        if (PlayerState.isNormal)
+        {
+            playerAnimationController.ChangeAnimationState(PlayerAnimationController.NormalAnimationStates.normalJumpEnd);
+        }
     }
 }

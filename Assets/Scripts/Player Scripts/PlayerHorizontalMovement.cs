@@ -39,6 +39,15 @@ public class PlayerHorizontalMovement : MonoBehaviour
         playerComponents = GetComponent<PlayerComponents>();
     }
 
+    private void Start()
+    {
+        PlayerState.OnLanded.AddListener(HandleLandingAnimation);
+    }
+
+    private void OnDestroy()
+    {
+        PlayerState.OnLanded.RemoveAllListeners();
+    }
 
     void Update()
     {
@@ -88,6 +97,8 @@ public class PlayerHorizontalMovement : MonoBehaviour
 
     private void TriggerWalkAnimation()
     {
+        if (!PlayerState.isGrounded) return;
+
         if (PlayerState.isNormal)
         {
             if (Mathf.Approximately(direction, 0f)) playerAnimationController.ChangeAnimationState(PlayerAnimationController.NormalAnimationStates.normalIdle);
@@ -97,6 +108,18 @@ public class PlayerHorizontalMovement : MonoBehaviour
         {
             if (Mathf.Approximately(direction, 0f)) playerAnimationController.ChangeAnimationState(PlayerAnimationController.GhostAnimationStates.ghostWalk); //TO-DO: Change to Idle
             else playerAnimationController.ChangeAnimationState(PlayerAnimationController.GhostAnimationStates.ghostWalk);
+        }
+    }
+
+    private void HandleLandingAnimation()
+    {
+        if (Mathf.Approximately(direction, 0f))
+        {
+            playerAnimationController.ChangeAnimationState(PlayerAnimationController.NormalAnimationStates.normalIdle);
+        }
+        else
+        {
+            playerAnimationController.ChangeAnimationState(PlayerAnimationController.NormalAnimationStates.normalWalk);
         }
     }
 
