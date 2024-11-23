@@ -41,9 +41,23 @@ public class PlayerGroundChecker : MonoBehaviour
     }
     void GroundCheck()
     {
-        if (PlayerState.isNormal) PlayerState.isGrounded = Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, platformLayer) || Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, bridgeLayer) || PlayerState.isOnSlope;
-        if (PlayerState.isGhost) PlayerState.isGrounded = Physics2D.OverlapCircle(ghostGroundCheckCollider.position, 0.3f, platformLayer) || Physics2D.OverlapCircle(ghostGroundCheckCollider.position, 0.3f, bridgeLayer) || PlayerState.isOnSlope;
+        bool canCollideWithBridge = !Physics2D.GetIgnoreLayerCollision(playerComponents.normalRb.gameObject.layer, LayerMask.NameToLayer("Bridge"));
+        bool isOnBridge = Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, bridgeLayer);
+
+        if (PlayerState.isNormal)
+        {
+            PlayerState.isGrounded = (isOnBridge && canCollideWithBridge) ||
+                                     Physics2D.OverlapCircle(normalGroundCheckCollider.position, 0.1f, platformLayer) ||
+                                     PlayerState.isOnSlope;
+        }
+        else if (PlayerState.isGhost)
+        {
+            PlayerState.isGrounded = (isOnBridge && canCollideWithBridge) ||
+                                     Physics2D.OverlapCircle(ghostGroundCheckCollider.position, 0.3f, platformLayer) ||
+                                     PlayerState.isOnSlope;
+        }
     }
+
 
     #region SLOPE CHECK
 

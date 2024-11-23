@@ -21,7 +21,7 @@ public class PlayerAttackColliderHandler : MonoBehaviour
         {
             playerAttackManager.HandleAttackCollision(collider2D);
         }
-        else if (collider2D.gameObject.CompareTag("Enemy"))
+        else if (collider2D.gameObject.CompareTag("Enemy") || collider2D.gameObject.CompareTag("Obstacle"))
         {
             playerAttackManager.HandleAttackCollision(collider2D);
         }

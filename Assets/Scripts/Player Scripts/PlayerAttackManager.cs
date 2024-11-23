@@ -77,7 +77,7 @@ public class PlayerAttackManager : MonoBehaviour
 
             return;
         }
-        else if (collision.gameObject.CompareTag("Enemy"))
+        else if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Obstacle"))
         {
             Damageable damageable = collision.gameObject.GetComponent<Damageable>();
             Knockbackable knockbackable = collision.gameObject.GetComponent<Knockbackable>();

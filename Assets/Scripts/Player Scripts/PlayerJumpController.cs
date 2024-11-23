@@ -85,15 +85,16 @@ public class PlayerJumpController : MonoBehaviour
         if (PlayerState.isNormal)
         {
             Physics2D.IgnoreLayerCollision(playerComponents.normalRb.gameObject.layer, LayerMask.NameToLayer("Bridge"), true);
-            playerComponents.normalRb.AddForce(Vector2.down * 10f, ForceMode2D.Impulse);
+            playerComponents.normalRb.AddForce(Vector2.up * 3f, ForceMode2D.Impulse);
+            playerAnimationController.ChangeAnimationState(PlayerAnimationController.NormalAnimationStates.normalJumpStart);
         }
         else if (PlayerState.isGhost)
         {
             Physics2D.IgnoreLayerCollision(playerComponents.ghostRb.gameObject.layer, LayerMask.NameToLayer("Bridge"), true);
-            playerComponents.ghostRb.AddForce(Vector2.down * 10f, ForceMode2D.Impulse);
+            playerComponents.ghostRb.AddForce(Vector2.up * 3f, ForceMode2D.Impulse);
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.5f);
 
         Physics2D.IgnoreLayerCollision(playerComponents.normalRb.gameObject.layer, LayerMask.NameToLayer("Bridge"), false);
         Physics2D.IgnoreLayerCollision(playerComponents.ghostRb.gameObject.layer, LayerMask.NameToLayer("Bridge"), false);
