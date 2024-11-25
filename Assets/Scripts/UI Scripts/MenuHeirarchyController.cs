@@ -72,7 +72,6 @@ public class MenuHeirarchyController : MonoBehaviour
     public void PopStack()
     {
         menuStack.Pop();
-        Debug.Log(menuStack.Count);
         if (menuStack.Count == 1 && isOnMainMenu)
         {
             menuStack.Clear();
