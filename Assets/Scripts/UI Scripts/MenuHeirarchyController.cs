@@ -57,7 +57,6 @@ public class MenuHeirarchyController : MonoBehaviour
     public void AddToStack(GameObject obj)
     {
         menuStack.Push(obj);
-        Debug.Log(menuStack.Count);
     }
 
     public void SetTopMenu(GameObject obj)
