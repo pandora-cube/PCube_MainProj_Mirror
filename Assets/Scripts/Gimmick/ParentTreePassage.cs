@@ -14,9 +14,9 @@ public class ParentTreePassage : MonoBehaviour
         cameraTrack = GetComponent<CinemachineDollyTrack>();
     }
 
-    public void TreePassageCameraMoving()
+    public void TreePassageCameraMoving(int cameraPathIndex)
     {
-        cameraTrack.ActivateMyDollyTrack();
+        cameraTrack.ActivateMyDollyTrack(cameraPathIndex);
     }
 
     public void TreePassageCameraStopped()
