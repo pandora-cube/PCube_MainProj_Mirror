@@ -7,37 +7,46 @@ public class CinemachineDollyTrack : MonoBehaviour
 {
     public CinemachineVirtualCamera dollyCamera; // 참조할 카메라
     public CinemachinePath myDollyTrack; // 해당 오브젝트의 dollyTrack
+    CinemachineDollyCart dollyCart;
 
     PlayerCameraController cameraController => PlayerCameraController.instance;
-
-    public void ActivateMyDollyTrack(Vector3 startPosition)
+    
+    private void Awake()
     {
-        var dollyCart = dollyCamera.GetComponent<CinemachineDollyCart>();
-        // 현재 카메라 위치를 0번째 waypoint로 설정
-
-        dollyCart.m_Path = myDollyTrack; // 이 오브젝트의 돌리 트랙을 할당
-        dollyCart.m_Position = 0; // 트랙 시작 지점으로 초기화
-        dollyCart.m_Speed = 1f;
-
-        cameraController.SetProductionCamera(startPosition, 10);
-        cameraController.ChangeAnimationState("Production");
+        dollyCart = dollyCamera.GetComponent<CinemachineDollyCart>();
     }
 
-    void temp(Vector3 startPosition)
+    public void ActivateMyDollyTrack()
     {
+        // 현재 카메라 위치를 0번째 waypoint로 설정
+        if (myDollyTrack == null) Debug.Log("dolly track is null");
+        if (dollyCamera == null) Debug.Log("dolly camera is null");
+
+        dollyCart.m_Position = 0; // 트랙 시작 지점으로 초기화
+        dollyCart.m_Speed = 15f;
+        dollyCart.m_Path = myDollyTrack;
+
+        //Invoke(nameof(temp), 3f);
+        //cameraController.ChangeAnimationState("Production");
+    }
+
+    public void TurnProductionCamera(Vector3 startPosition)
+    {
+        PlayerStateMachine.instance.canMove = false;
+        cameraController.SetProductionCamera(startPosition, 10);
         cameraController.StartProductionCamera();
-        Invoke(nameof(ExitCameraProduction), 3f);
+    }
+
+    public void ExitProductionCamera()
+    {
+        PlayerStateMachine.instance.canMove = true;
+        Debug.Log(PlayerStateMachine.instance.canMove);
+        cameraController.ReturnCameraPosition();
     }
 
     void Update()
     {
         // 카메라의 회전을 고정 
         dollyCamera.transform.rotation = Quaternion.Euler(0f, 0f, dollyCamera.transform.eulerAngles.z);
-    }
-
-
-    public void ExitCameraProduction()
-    {
-        cameraController.ReturnCameraPosition();
     }
 }
