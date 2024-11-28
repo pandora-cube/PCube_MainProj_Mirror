@@ -21,7 +21,6 @@ public class ParentTreePassage : MonoBehaviour
 
     public void TreePassageCameraStopped()
     {
-        Debug.Log(PlayerStateMachine.instance.canMove);
         cameraTrack.ExitProductionCamera();
     }
 

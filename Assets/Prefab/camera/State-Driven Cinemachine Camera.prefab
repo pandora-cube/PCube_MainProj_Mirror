@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 8531947299621167904}
   - component: {fileID: 7536118925983821455}
   - component: {fileID: 7164202950821994861}
+  - component: {fileID: 8285488356545250643}
   m_Layer: 0
   m_Name: Production Virtual Camera
   m_TagString: Untagged
@@ -220,6 +221,23 @@ MonoBehaviour:
   m_BoundingShape2D: {fileID: 0}
   m_Damping: 1
   m_MaxWindowSize: -1
+--- !u!114 &8285488356545250643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4042797272940785890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99a9c787e5d1bbf48a389834c4a9641c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Path: {fileID: 0}
+  m_UpdateMethod: 0
+  m_PositionUnits: 1
+  m_Speed: 10
+  m_Position: 0
 --- !u!1 &4281442938880656764
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,7 +650,7 @@ MonoBehaviour:
     m_MinDuration: 0
   m_DefaultBlend:
     m_Style: 1
-    m_Time: 0.5
+    m_Time: 1
     m_CustomCurve:
       serializedVersion: 2
       m_Curve: []

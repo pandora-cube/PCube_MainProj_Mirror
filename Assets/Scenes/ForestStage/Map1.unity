@@ -388,17 +388,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 968407909}
     - target: {fileID: 4192908959834844874, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4192908959834844874, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
       propertyPath: m_BoundingShape2D
       value: 
       objectReference: {fileID: 968407909}
-    - target: {fileID: 5207025013068540810, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
-      propertyPath: m_DefaultBlend.m_Time
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5207025013068540810, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
       propertyPath: m_ChildCameras.Array.size
       value: 0
@@ -451,10 +443,6 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 1491362489}
-    - target: {fileID: 6492213904395321440, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
-      propertyPath: m_Lens.OrthographicSize
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 7164202950821994861, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
       propertyPath: m_BoundingShape2D
       value: 
@@ -463,10 +451,6 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 1116406447}
-    - target: {fileID: 7345085046030002597, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
-      propertyPath: m_Lens.OrthographicSize
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 8478264256086608593, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
       propertyPath: m_Name
       value: State-Driven Cinemachine Camera
@@ -474,10 +458,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4042797272940785890, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 267976098}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
 --- !u!1 &22208288
 GameObject:
@@ -750,7 +731,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7536118925983821455, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
   m_PrefabInstance: {fileID: 19863284}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 267976095}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
@@ -2432,28 +2413,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 432701064209738098, guid: 8923987b7cde66943b5d27f878b34aa6, type: 3}
   m_PrefabInstance: {fileID: 264749704}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &267976095 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4042797272940785890, guid: 62fb810330b4d3142a8ed5ec862d6775, type: 3}
-  m_PrefabInstance: {fileID: 19863284}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &267976098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 267976095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99a9c787e5d1bbf48a389834c4a9641c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Path: {fileID: 0}
-  m_UpdateMethod: 0
-  m_PositionUnits: 1
-  m_Speed: 10
-  m_Position: 0
 --- !u!1001 &273208901
 PrefabInstance:
   m_ObjectHideFlags: 0
