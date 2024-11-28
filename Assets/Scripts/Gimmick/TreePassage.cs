@@ -39,14 +39,25 @@ public class TreePassage : MonoBehaviour, IInteractable
         else if (parentTree.passageState == ParentTreePassage.Available.open) // ��� ���� ���°� open
         {
             Transform MoveToExit = FindingExitPosition();
-            Debug.Log(MoveToExit.gameObject.name);
 
             if (MoveToExit == null) return;
-            
-            normalPlayerGameObject.transform.position = MoveToExit.position; // �ݴ��� �ⱸ�� �̵�
-            ghostPlayerGameObject.transform.position = MoveToExit.position;
-            parentTree.TreePassageCameraMoving(transform.position, MoveToExit.position, passageHoleIndex);
+            StartCoroutine(MovingProduction(MoveToExit));
         }
+    }
+
+    IEnumerator MovingProduction(Transform MoveToExit)
+    {
+        parentTree.SettingCamera(transform.position);
+
+        yield return new WaitForSeconds(1f);
+        parentTree.TreePassageCameraMoving(passageHoleIndex);
+
+        yield return new WaitForSeconds(1f);
+        normalPlayerGameObject.transform.position = MoveToExit.position; // �ݴ��� �ⱸ�� �̵�
+        ghostPlayerGameObject.transform.position = MoveToExit.position;
+
+        yield return new WaitForSeconds(1f);
+        parentTree.TreePassageCameraStopped();
     }
 
     Transform FindingExitPosition()
