@@ -41,13 +41,13 @@ public class CinemachineDollyTrack : MonoBehaviour
     public void ExitProductionCamera()
     {
         PlayerStateMachine.instance.canMove = true;
-        Debug.Log(PlayerStateMachine.instance.canMove);
         cameraController.ReturnCameraPosition();
     }
 
     void Update()
     {
         // 카메라의 회전을 고정 
-        dollyCamera.transform.rotation = Quaternion.Euler(0f, 0f, dollyCamera.transform.eulerAngles.z);
+        //dollyCamera.transform.rotation = Quaternion.Euler(0f, 0f, dollyCamera.transform.eulerAngles.z);
+        dollyCamera.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
     }
 }
