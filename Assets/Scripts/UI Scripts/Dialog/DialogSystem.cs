@@ -114,7 +114,7 @@ public class DialogSystem : MonoBehaviour
             showText += word;
             dialogUI.UpdateText(showText);
 
-            if (keyDown)
+            if (keyDown || Input.GetMouseButton(0))
             {
                 dialogUI.UpdateText(currentText);
                 keyDown = false;
@@ -128,7 +128,7 @@ public class DialogSystem : MonoBehaviour
 
         while (true)
         {
-            if (keyDown)
+            if (keyDown || Input.GetMouseButton(0))
             {
                 keyDown = false;
                 yield return new WaitForSeconds(0.15f);
